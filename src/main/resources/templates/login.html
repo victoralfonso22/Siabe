@@ -13,25 +13,34 @@
 <script src="/css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body class="container" style="margin:0 auto; background: #DCDCDC;">
+	<!-- <th:block th:include="/default/menu"></th:block> -->
 	<div style="height: 250px;"></div>
 	<div class="row col-sm-6" 
 				style="border: 1.5px ridge #337AB7; padding:30px; float: none; display:block;margin:0 auto 0 auto; background: #fff;">
 		<h5 class="text-center" style="font-size: 30px">Siabe</h5>
+		<!-- /login?error=true -->
+      <div th:if="${#request.getParameter('error') == 'true'}"
+            style="color:red;margin:10px 0px;">
+         Login Failed!!!<br />
+         Reason :
+         <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+            th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
+                Static summary
+         </span>
+           
+      </div>
 		<div th:if="${param.error}">
 			<p style="color: red">El usuario o la contraseña son incorrectas, por favor verifique de nuevo!</p>
 	
 		</div>
-		<div th:if="${param.logout}">
-			<h1 style="color: blue">Logged out.</h1>
-		</div>
-		<form th:action="@{/login}" method="post">
+		<form name='f' th:action="@{/j_spring_security_check}" method='POST'>
 			<div class="form-group">
 				<label for="username">Usuario: </label>
-				<input type="text" class="form-control" id="username" placeholder="Introduzca el usuario" name="username"/>
+				<input type="text" class="form-control" id="username" name="username"/>
 			</div>
 			<div class="form-group">
 				<label for="password">Contraseña: </label>
-				<input type="password" class="form-control" id="password" placeholder="Introduzca contraseña" name="password"/>
+				<input type="password" class="form-control" id="password" name="password"/>
 			</div>
 			<button type="submit" class="btn btn-primary btn-block">Acceder</button>
 		</form>
