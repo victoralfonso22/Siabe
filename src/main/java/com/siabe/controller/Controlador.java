@@ -46,11 +46,11 @@ public class Controlador {
         return "salir";
     }
     
-    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/error", method = RequestMethod.GET)
     public String errorPage(Model model) {
         model.addAttribute("title", "Error");
         return "errores/404";
-    }
+    }*/
  
     @RequestMapping(value = "/usuario", method = RequestMethod.GET)
     public String userInfo(Model model, Principal principal) {
