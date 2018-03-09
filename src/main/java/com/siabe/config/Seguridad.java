@@ -1,6 +1,4 @@
 package com.siabe.config;
-
-import javax.sql.DataSource;
  
 import com.siabe.servicio.DetalleUsuarioServicioImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +37,7 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
  
     @Override
     protected void configure(HttpSecurity http) throws Exception {
- 
+    	
         http.csrf().disable();
  
         // The pages does not require login
@@ -51,6 +49,7 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
  
         // For ADMIN only.
         http.authorizeRequests().antMatchers("/inicio").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/usuarios/**").access("hasRole('ROLE_ADMIN')");
         //http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
  
         // When the user has logged in as XX.

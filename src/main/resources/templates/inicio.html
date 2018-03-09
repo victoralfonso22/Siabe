@@ -7,26 +7,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>Siabe</title>	
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link type="text/css" rel="stylesheet" href="/css/bootstrap-3.3.7/css/bootstrap.min.css" />	
 	
-	<script src="/js/jquery-3.3.1.min.js"></script>    
-<script src="/css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+	
+	
 </head>
-<body class="container" style="margin:0 auto; background: #DCDCDC;">
-	<th:block th:include="/default/menu"></th:block>
-	<div style="height: 250px;"></div>
-	<div class="row col-sm-6" 
-				style="border: 1.5px ridge #337AB7; padding:30px; float: none; display:block;margin:0 auto 0 auto; background: #fff;">
+<body class="container-full" style="margin:0 auto; background: #DCDCDC;">
+	<th:block th:include="/default/menu"></th:block>	
+	<div class="container bordeContainer">
 		<h5 class="text-center" style="font-size: 30px">Siabe</h5>
 		<!-- /login?error=true -->
   
 		<form>
-			<div class="">
+			<div >
 				<p>Aquí va la página principal</p>
-				<span th:utext="${usuario}"></span>
 			</div>
 			
 		</form>
+	</div>
+	<div style="padding-top: 20px;">
+	<th:block th:include="/default/pie"></th:block>
 	</div>
 </body>
 </html>

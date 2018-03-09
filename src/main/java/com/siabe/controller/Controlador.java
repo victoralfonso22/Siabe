@@ -52,8 +52,8 @@ public class Controlador {
         return "errores/404";
     }*/
  
-    @RequestMapping(value = "/usuario", method = RequestMethod.GET)
-    public String userInfo(Model model, Principal principal) {
+    @RequestMapping(value = "/usuarios/alta", method = RequestMethod.GET)
+    public String usuarioAlta(Model model, Principal principal) {
  
         // (1) (en)
         // After user login successfully.
@@ -67,7 +67,7 @@ public class Controlador {
         String userInfo = UtilidadesWeb.toString(loginedUser);
         model.addAttribute("usuario", userInfo);
  
-        return "usuario";
+        return "/usuarios/alta";
     }
  
     @RequestMapping(value = "/403", method = RequestMethod.GET)
