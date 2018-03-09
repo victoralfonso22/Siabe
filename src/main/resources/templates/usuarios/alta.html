@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<th:block th:include="/default/menu"></th:block>	
 <head>
 	<meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -12,7 +13,7 @@
 	
 </head>
 <body class="container-full" style="margin:0 auto; background: #DCDCDC;">
-	<th:block th:include="/default/menu"></th:block>	
+
 	<div class="container bordeContainer">		
 		<form name='f' th:action="@{/usuarios/baja}" method='POST'>
 			<div >
