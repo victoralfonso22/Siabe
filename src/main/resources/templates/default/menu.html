@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
         
     </head>
-    <body>
+    <body modelAttribute="usu">
 
         <div class="wrapper">
             <!-- Sidebar Holder -->
@@ -30,6 +30,10 @@
                 </div>
 
                 <ul class="list-unstyled components">
+                	
+                	<li >
+                        <a href="/inicio">Inicio</a>                       
+                    </li>
                     
                     <li >
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Becario</a>
@@ -90,7 +94,7 @@
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
-                                <li>Bienvenido : <span th:utext="${#request.userPrincipal.name}"></span></li>                                
+                                <li>Bienvenido : <span th:utext="${nombreUsuario}"></span></li>                                
                                 
                             </ul>
                         </div>

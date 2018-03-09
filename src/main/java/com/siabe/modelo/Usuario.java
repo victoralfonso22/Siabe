@@ -5,15 +5,17 @@ public class Usuario {
 	private Long id;
     private String usuario;
     private String password;
+    public String nombre;
  
     public Usuario() {
  
     }
  
-    public Usuario(Long userId, String userName, String encrytedPassword) {
+    public Usuario(Long userId, String userName, String encrytedPassword, String nombre) {
         this.id = userId;
         this.usuario = userName;
         this.password = encrytedPassword;
+        this.setNombre(nombre);
     }
  
     public Long getid() {
@@ -44,5 +46,13 @@ public class Usuario {
     public String toString() {
         return this.usuario + "/" + this.password;
     }
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
 }

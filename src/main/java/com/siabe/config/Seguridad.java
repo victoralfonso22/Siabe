@@ -39,6 +39,8 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
     	
         http.csrf().disable();
+        
+        http.sessionManagement().invalidSessionUrl("/sesionExpirada");
  
         // The pages does not require login
         http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
@@ -67,7 +69,7 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")//
                 .passwordParameter("password")
                 // Config for Logout Page
-                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
+                .and().logout().logoutUrl("/logout").logoutSuccessUrl("/salir");
  
     }
 }
