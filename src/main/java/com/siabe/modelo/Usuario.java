@@ -2,28 +2,32 @@ package com.siabe.modelo;
 
 public class Usuario {
 	
-	private Long id;
+	private Long idUsuario;
     private String usuario;
     private String password;
-    public String nombre;
- 
+    private int estatus;
+    private String nombre;
+    private int superU;
+    
     public Usuario() {
  
     }
  
-    public Usuario(Long userId, String userName, String encrytedPassword, String nombre) {
-        this.id = userId;
+    public Usuario(Long userId, String userName, String encrytedPassword, int estatus, String nombre, int superU) {
+        this.idUsuario = userId;
         this.usuario = userName;
         this.password = encrytedPassword;
+        this.estatus = estatus;
         this.setNombre(nombre);
+        this.superU = superU;
     }
  
-    public Long getid() {
-        return id;
+    public Long getIdUsuario() {
+        return idUsuario;
     }
  
-    public void setUserId(Long id) {
-        this.id = id;
+    public void setIdUsuario(Long id) {
+        this.idUsuario = id;
     }
  
     public String getUsuario() {
@@ -53,6 +57,22 @@ public class Usuario {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public int getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(int estatus) {
+		this.estatus = estatus;
+	}
+
+	public int getSuperU() {
+		return superU;
+	}
+
+	public void setSuperU(int superU) {
+		this.superU = superU;
 	}
 
 }

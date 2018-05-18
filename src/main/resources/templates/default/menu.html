@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +8,10 @@
 		<link rel="shortcut icon" type="image/x-icon" href="/imagenes/favicon.ico" /> 
         <!-- Bootstrap CSS CDN -->
         <link type="text/css" rel="stylesheet" href="/css/bootstrap-3.3.7/css/bootstrap.min.css" />	
-        <script src="/js/jquery-3.3.1.min.js"></script>    
+        <script src="/js/jquery-3.3.1.min.js"></script>  
+        <script src="/js/trigger.js"></script>    
 <script src="/css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
         <!-- Our Custom CSS -->        
         <link type="text/css" rel="stylesheet" href="/css/menu.css" />	
         <!-- Scrollbar Custom CSS -->
@@ -18,6 +20,8 @@
     </head>
     <body modelAttribute="usu">
 
+		<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+		
         <div class="wrapper">
             <!-- Sidebar Holder -->
             <nav id="sidebar">
@@ -35,6 +39,21 @@
                         <a href="/inicio">Inicio</a>                       
                     </li>
                     
+  
+                    <li th:each="seccionPermiso : ${seccionPermiso}" >
+                        <a th:href="${'#'+seccionPermiso.idSeccion+'Submenu'}" data-toggle="collapse" aria-expanded="false" th:text="${seccionPermiso.seccion}"></a>
+                        <ul class="collapse list-unstyled" th:id="${seccionPermiso.idSeccion+'Submenu'}">
+                        
+                        	<li th:each="menuPermiso : ${menuPermiso}"><a th:if="${menuPermiso.seccion} == ${seccionPermiso.seccion}" th:text="${menuPermiso.modulo}" th:href="${menuPermiso.url}"></a>
+							</li>
+                          
+                        </ul>
+                    </li>
+                    
+                   
+  
+                    
+                    <!-- 
                     <li >
                         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Becario</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
@@ -63,14 +82,17 @@
                         <a href="#usuariosSubmenu" data-toggle="collapse" aria-expanded="false">Usuarios</a>
                         <ul class="collapse list-unstyled" id="usuariosSubmenu">
                             <li><a href="/usuarios/alta">Alta</a></li>
-                            <li><a href="/usuarios/baja">Baja</a></li>
+                            <li><a href="/usuarios/suspenActivacion">Baja / Activación</a></li>
                             <li><a href="/usuarios/password">Cambio de password</a></li>    
                             <li><a href="/usuarios/permisos">Permisos</a></li>                            
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+					
+ 					-->
+
+
+
+
                     <li>
                         <a href="/logout">Cerrar sesión</a>
                     </li>
@@ -94,7 +116,7 @@
 
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
-                                <li>Bienvenido : <span th:utext="${nombreUsuario}"></span></li>                                
+                                <li ><span class="spanClass">Bienvenido : </span> <span class="spanClassImportante" th:utext="${nombreUsuario}"></span></li>                                
                                 
                             </ul>
                         </div>
@@ -130,6 +152,8 @@
                     $('.collapse.in').toggleClass('in');
                     $('a[aria-expanded=true]').attr('aria-expanded', 'false');
                 });
+                
+
             });
         </script>
     </body>

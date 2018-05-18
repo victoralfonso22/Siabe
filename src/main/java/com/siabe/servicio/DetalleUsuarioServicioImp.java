@@ -29,14 +29,14 @@ public class DetalleUsuarioServicioImp implements UserDetailsService  {
     	Usuario appUser = this.UserDAO.findUserAccount(userName);
  
         if (appUser == null) {
-            System.out.println("User not found! " + userName);
+        //    System.out.println("User not found! " + userName);
             throw new UsernameNotFoundException("User " + userName + " was not found in the database");
         }
  
-        System.out.println("Found User: " + appUser);
+      //  System.out.println("Found User: " + appUser);
  
         // [ROLE_USER, ROLE_ADMIN,..]
-        List<String> roleNames = this.RoleDAO.getRoleNames(appUser.getid());
+        List<String> roleNames = this.RoleDAO.getRoleNames(appUser.getIdUsuario());
  
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
         if (roleNames != null) {

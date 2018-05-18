@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <body modelAttribute="usu">
+		
+		
+		<th:block  th:each="permisoGlobal : ${permisoGlobal}" th:with="idS=0">
+			<th:block th:id="menuPermiso" value="${menuPermiso}">
+				<input type=hidden th:each="seccionPermiso : ${seccionPermiso}" >
+			</th:block>
+		
+		</th:block>
+		 
+                        <a th:href="${'#'+seccionPermiso.idSeccion+'Submenu'}" data-toggle="collapse" aria-expanded="false" th:text="${seccionPermiso.seccion}"></a>
+                        <ul class="collapse list-unstyled" th:id="${seccionPermiso.idSeccion+'Submenu'}">
+                        
+                        	<li th:each="menuPermiso : ${menuPermiso}"><a th:if="${menuPermiso.seccion} == ${seccionPermiso.seccion}" th:text="${menuPermiso.modulo}" th:href="${menuPermiso.url}"></a>
+							</li>
+                          
+                        </ul>
+        
+
+    </body>
+</html>

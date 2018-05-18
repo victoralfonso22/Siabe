@@ -2,8 +2,9 @@ package com.siabe.controller;
 
 import java.security.Principal;
 
-import com.siabe.dao.UsuarioDAO;
 import com.siabe.modelo.Usuario;
+import com.siabe.servicio.PermisosMenuServicio;
+import com.siabe.servicio.UsuarioServicio;
 import com.siabe.utils.UtilidadesWeb;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,24 +12,36 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
  
  
 @Controller
 public class Controlador {
 	
 	@Autowired
-    private UsuarioDAO UserDAO;
+    private UsuarioServicio usuarioServicio;
+	
+	@Autowired
+	private PermisosMenuServicio permisosMenuServicio;
+	
+	@Autowired
+    private UtilidadesWeb utilidadesWeb;
 	
 	@ModelAttribute
 	public void addAttributes(Model model,Principal principal) {
 			if(principal != null) {
-		   Usuario u = (Usuario) this.UserDAO.findUserAccount(principal.getName());
+		   Usuario u = (Usuario) this.usuarioServicio.regresaUsuario(principal.getName());
 	        model.addAttribute("nombreUsuario", u.getNombre());
-	        model.addAttribute("idUsuario", u.getid());
+	        model.addAttribute("idUsuario", u.getIdUsuario());
+	        model.addAttribute("seccionPermiso", permisosMenuServicio.todosPermisosMenuXSeccion(u.getIdUsuario().intValue()));
+	        model.addAttribute("menuPermiso", permisosMenuServicio.todosPermisosMenu(u.getIdUsuario().intValue()));	      
+	        model.addAttribute("permisoGlobal",utilidadesWeb.direccionActual(u.getIdUsuario().intValue()));	       
 			}
+
 	}
 	
 	
@@ -58,13 +71,13 @@ public class Controlador {
         
         return "admin";
     }
- 
     
-    @RequestMapping(value = "/salir", method = RequestMethod.GET)
+    
+   /* @RequestMapping(value = "/salir", method = RequestMethod.GET)
     public String logoutSuccessfulPage(Model model) {
         model.addAttribute("title", "Salir");
         return "salir";
-    }
+    }*/
     
     /*@RequestMapping(value = "/error", method = RequestMethod.GET)
     public String errorPage(Model model) {
@@ -72,24 +85,6 @@ public class Controlador {
         return "errores/404";
     }*/
  
-    @RequestMapping(value = "/usuarios/alta", method = RequestMethod.GET)
-    public String usuarioAlta(Model model, Principal principal) {
- 
-        // (1) (en)
-        // After user login successfully.
-
-        String userName = principal.getName();        
- 
-        System.out.println("User Name: " + userName);
- 
-        User loginedUser = (User) ((Authentication) principal).getPrincipal();
- 
-        String userInfo = UtilidadesWeb.toString(loginedUser);
-        model.addAttribute("usuario", userInfo);
- 
-        return "/usuarios/alta";
-    }
-    
     
     @RequestMapping(value = "/sesionExpirada", method = RequestMethod.GET)
     public String sesionExpired(Model model, Principal principal) {
@@ -118,7 +113,8 @@ public class Controlador {
  
         }
  
-        return "/errores/403";
+        return "/error/403";
     }
- 
+    
+   
 }

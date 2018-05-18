@@ -9,7 +9,13 @@ import org.springframework.jdbc.core.RowMapper;
 public class UsuarioMapa implements RowMapper<Usuario> {
 
 	public static final String BASE_SQL //
-			= "Select u.id, u.usuario, u.password, u.nombre From usuarios u ";
+			= "Select u.id, u.usuario, u.password, u.estatus, u.nombre, u.super From usuarios u ";
+	
+	public static final String INSERT_SQL //
+	= "INSERT INTO usuarios (usuario,password,estatus,nombre) values ";
+	
+	public static final String UPDATE_SQL //
+	= "update usuarios set ";
 
 	@Override
 	public Usuario mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -17,9 +23,11 @@ public class UsuarioMapa implements RowMapper<Usuario> {
 		Long userId = rs.getLong("id");
 		String userName = rs.getString("usuario");
 		String encrytedPassword = rs.getString("password");
+		int estatus = rs.getInt("estatus");
 		String nombre = rs.getString("nombre");
+		int superU = rs.getInt("super");
 
-		return new Usuario(userId, userName, encrytedPassword,nombre);
+		return new Usuario(userId, userName, encrytedPassword,estatus, nombre,superU);
 	}
 
 }

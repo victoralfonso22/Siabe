@@ -24,7 +24,7 @@ public class ControladorError {
      //   ModelAndView errorPage = new ModelAndView("errorPage");
         String errorMsg = "";
         int httpErrorCode = getErrorCode(httpRequest);
-        System.out.println("entre metodo "+httpErrorCode);
+     //   System.out.println("entre metodo "+httpErrorCode);
  
         switch (httpErrorCode) {
             case 400: {
