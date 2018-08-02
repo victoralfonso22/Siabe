@@ -6,7 +6,8 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+    /*background: #fafafa; */
+    margin:0 auto; background: #E9EBEE;
 }
 
 p {
@@ -195,21 +196,21 @@ padding-top: 10px;}
 .bordeMenu{
 border: 2px ridge #337AB7; 
 background: #fff;
--webkit-box-shadow: 0px 4px 4px 0px rgba(51, 122, 183, 0.75);
+/*-webkit-box-shadow: 0px 4px 4px 0px rgba(51, 122, 183, 0.75);
 -moz-box-shadow:    0px 4px 4px 0px rgba(51, 122, 183, 0.75);
-box-shadow:         0px 4px 4px 0px rgba(51, 122, 183, 0.75);
+box-shadow:         0px 4px 4px 0px rgba(51, 122, 183, 0.75); */
 }
 
 .bordePie{
 	border: 2px ridge #337AB7; 
-	-webkit-box-shadow: 0px -4px 4px 0px rgba(51, 122, 183, 0.75);
+/*	-webkit-box-shadow: 0px -4px 4px 0px rgba(51, 122, 183, 0.75);
 -moz-box-shadow:    0px -4px 4px 0px rgba(51, 122, 183, 0.75);
-box-shadow:         0px -4px 4px 0px rgba(51, 122, 183, 0.75);
+ box-shadow:         0px -4px 4px 0px rgba(51, 122, 183, 0.75); */
 }
 
 .h1Class{
 	border-bottom: 5px solid #337AB7;
-	font-size: 25px;
+	font-size: 20px;
 	color: #000;
 	text-align: center;
 	padding: 20px;
@@ -220,7 +221,7 @@ box-shadow:         0px -4px 4px 0px rgba(51, 122, 183, 0.75);
 }
 
 .espaciosLineas{
-	padding: 0 20px 0 20px;
+	padding: 0 15px 0 15px;
 }
 
 .footerSPadding{
@@ -229,7 +230,7 @@ box-shadow:         0px -4px 4px 0px rgba(51, 122, 183, 0.75);
 
 .spanClass{
 	border-bottom: 5px solid #337AB7;
-	font-size: 18px;
+	font-size: 14px;
 	color: #000;
 	text-align: center;
 	padding: 10px;
@@ -237,7 +238,7 @@ box-shadow:         0px -4px 4px 0px rgba(51, 122, 183, 0.75);
 
 .spanClassImportante{
 	border-bottom: 5px solid #337AB7;
-	font-size: 18px;
+	font-size: 14px;
 	color: #337AB7;
 	text-align: center;
 	padding: 10px;
@@ -247,7 +248,7 @@ box-shadow:         0px -4px 4px 0px rgba(51, 122, 183, 0.75);
 
 .spanClassModal{
 	
-	font-size: 15px;
+	font-size: 12px;
 	color: #000;
 	text-align: center;
 	padding: 10px;
@@ -255,7 +256,7 @@ box-shadow:         0px -4px 4px 0px rgba(51, 122, 183, 0.75);
 
 .spanClassImportanteModal{
 	
-	font-size: 15px;
+	font-size: 12px;
 	color: #337AB7;
 	text-align: center;
 	padding: 10px;
@@ -263,13 +264,13 @@ box-shadow:         0px -4px 4px 0px rgba(51, 122, 183, 0.75);
 }
 
 .inputClass{
-	font-size: 15px;
+	font-size: 12px;
 	color: #337AB7;
 	text-align: left;
 }
 
 label{
-	font-size: 16px;
+	font-size: 12px;
 	color: #337AB7;
 	text-align: left;
 }
@@ -279,16 +280,16 @@ label{
 }
 
 input{
-	font-size: 16px !important;
+	font-size: 12px !important;
 	color: #000 !important;
 	text-align: left !important;
 }
 
 .divRespuesta{
-	font-size: 18px;
+	font-size: 14px;
 	background-color:#337AB7; 
 	color:white; 
-	padding:20px 20px 20px 20px;
+	padding:15px 15px 15px 15px;
 	margin: 0 auto;
 	text-align: center;
 	}
@@ -296,7 +297,7 @@ input{
 .loader {
 border: 16px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
+  border-top: 12px solid #3498db;
   width: 120px;
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
@@ -318,21 +319,21 @@ border: 16px solid #f3f3f3;
 
 .tabla >th >td {
 	text-align: center !important;
-	font-size: 15px;
+	font-size: 12px;
 	color: #00993D;
 	width: 100%;
 }
 
 .tdSencillo {
 	text-align: center !important;
-	font-size: 15px !important;
+	font-size: 12px !important;
 	color: #337AB7 !important;
 	width: 100% !important;
 }
 
 .tdSencillo:hover {
 	text-align: center !important;
-	font-size: 15px !important;
+	font-size: 12px !important;
 	color: #ffffff !important;
 	background: #337AB7;
 	cursor : pointer;
@@ -341,7 +342,7 @@ border: 16px solid #f3f3f3;
 
 .tdSencilloPermiso {
 	text-align: center !important;
-	font-size: 15px !important;
+	font-size: 12px !important;
 	background: #00993D !important;
 	color: #fff;
 	width: 100% !important;
@@ -349,7 +350,7 @@ border: 16px solid #f3f3f3;
 
 .tdSencilloPermiso:hover {
 	text-align: center !important;
-	font-size: 15px !important;
+	font-size: 12px !important;
 	color: #ffffff !important;
 	background: #337AB7 !important;
 	cursor : pointer !important;
@@ -360,7 +361,7 @@ th{
 	text-align: center !important;
 	background: #337AB7;
 	color : #fff;
-	font-size: 17px;
+	font-size: 13px;
 	font-weight: normal;
 }
 
@@ -373,13 +374,19 @@ th{
 
 
 .tdSelect{
-	font-size:16px;
+	font-size:12px;
 	color: #337AB7;
 }
 
 .selectText{
-	font-size:16px;	
+	font-size:12px;	
+}
+
+.etiquetaSpan{
+	font-size:12px;
+	color: #00993D;
+	font-weight: bold;
 }
 
 
-
+.inactivo{background: #D9534F; color:#fff;}

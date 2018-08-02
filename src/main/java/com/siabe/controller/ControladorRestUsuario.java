@@ -58,20 +58,6 @@ public class ControladorRestUsuario {
 			}
 	}
 	
-	/*@PostMapping(value = "/usuarios/ajaxAlta")
-	public Response postUsuario(@RequestBody Usuario u) {
-		//cust.add(customer);
-		
-		// Create Response Object
-		Response response = new Response("Done", u);
-		
-		return response;
-		
-	}*/
-	
-	
-	
-	
 	@PostMapping(value = "/usuarios/ajaxAlta")
 	public Response postUsuarioAlta(@RequestBody Usuario u) {
 		

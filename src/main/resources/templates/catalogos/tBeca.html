@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+		<form class="form-inline" id="usuarioForm">
+			<div>
+				<h1 class="h1Class">Tipo de beca</h1>
+			</div>
+			<br/>
+			<div class="table-responsive valoresCentrados">
+			<table class="table tabla" th:fragment="tBecas" id="tBecas">
+				<tr>
+					<th>#</th>
+					<th>Nombre</th>
+
+				</tr>
+				<tr class="tdSencillo"  th:each="tBeca,iterationStatus : ${tBeca}" title="Click para editar registro"  th:onclick="|modificartBecaModal('${tBeca.nombre}',${tBeca.idTipoBeca});|">							
+				<td th:text="${iterationStatus.count}" th:id="${'conta'+tBeca.idTipoBeca}"></td>
+				
+					<td  th:text="${tBeca.nombre}" ></td>										
+					
+					
+				</tr>
+				<tr style="cursor:pointer;" th:onclick="|nuevotBecaModal();|">
+					<td colspan=6><img  alt="Agregar" src="/imagenes/mas.png"> Agregar tipo de beca</td>
+				</tr>
+			</table>
+			</div>
+		</form>
+		<div id="guardartBecaModal" class="modal" role="dialog">
+       <div class="modal-dialog">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title divRespuesta">Nuevo tipo de beca</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="tipoBecaForm">
+               		<div>
+               		
+               		<div class="valoresCentrados">
+               		<input type="hidden" id="id_user_pass" />
+               		<input placeholder="Nombre" type="text" style="text-align: center !important;" class="form-control" required minlength="5" id="nombre"/>
+
+               		</div>
+               		
+               		</div>
+               		<br/>
+               		<div id="respuestaPass"></div>
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('guardartBecaModal');">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>	
+   
+   
+   
+   <div id="modificartBecaModal" class="modal" role="dialog">
+       <div class="modal-dialog">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title divRespuesta">Modificar tipo de beca</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="tipoBecaFormM">
+               		<div>
+               		
+               		<div class="valoresCentrados">
+               		<input type="hidden" id="id_user_pass" />
+               		<input placeholder="Nombre" type="text" style="text-align: center !important;" class="form-control" required minlength="5" id="nombreModificar"/>
+					<input type="hidden" id="idModificar"/>
+					<input type="hidden" id="nombreModificarHidden"/>
+               		</div>
+               		
+               		</div>
+               		<br/>
+               		<div id="respuestaPass"></div>
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('modificartBecaModal');">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>
+   	
+		<div class="col-sm-7 valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+</html>

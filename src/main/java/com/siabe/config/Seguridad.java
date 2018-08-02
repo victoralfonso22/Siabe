@@ -3,15 +3,19 @@ package com.siabe.config;
 import com.siabe.servicio.DetalleUsuarioServicioImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.BeanNameViewResolver;
 
 
- 
+@ComponentScan
 @Configuration
 @EnableWebSecurity
 public class Seguridad extends WebSecurityConfigurerAdapter {
@@ -24,7 +28,7 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
-     
+    
      
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception { 
@@ -52,6 +56,8 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
         // For ADMIN only.
         http.authorizeRequests().antMatchers("/inicio").access("hasRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/usuarios/**").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/catalogos/**").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/reportes/**").access("hasRole('ROLE_ADMIN')");
         //http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
  
         // When the user has logged in as XX.

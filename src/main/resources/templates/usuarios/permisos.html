@@ -14,8 +14,7 @@
 
 
 </head>
-<body class="container-full"
-	style="margin: 0 auto; background: #DCDCDC;">
+<body class="container-full">
 
 	<div class="container bordeContainer">
 		<form class="form-inline" id="permisosForm">
@@ -27,9 +26,9 @@
 			<div class="table-responsive valoresCentrados"  >
 			
 			<table class="table tabla"  style="width: 50%; text-align: center; margin: 0 auto;">
-			<tr ><td class="tdSelect">Selecciona un usuario </td>
-			<td><select th:field="*{idUsuario}" id="usuarioSeleccionado" class="selectText">
-                         <option value="0">Seleccione</option>
+			<tr >
+			<td><select th:field="*{idUsuario}" id="usuarioSeleccionado" class="form-control selectText">
+                         <option value="0">Selecciona un usuario</option>
                          <option th:each="usuarios : ${usuarios}"
                             th:value="${usuarios.idUsuario}"
                             th:text="${usuarios.nombre}"></option>
