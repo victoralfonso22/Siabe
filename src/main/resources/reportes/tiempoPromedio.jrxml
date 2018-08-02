@@ -96,7 +96,7 @@
 				<text><![CDATA[Carrera]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="180" y="0" width="90" height="30" forecolor="#0976DB" uuid="66833b83-c2b4-4bae-84b2-c75b6d48873c">
+				<reportElement x="180" y="0" width="80" height="30" forecolor="#0976DB" uuid="66833b83-c2b4-4bae-84b2-c75b6d48873c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbb7e755-0947-4e41-8f27-4ef0c57e98a8"/>
 				</reportElement>
 				<box>
@@ -111,7 +111,7 @@
 				<text><![CDATA[Nivel]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="270" y="0" width="100" height="30" forecolor="#0976DB" uuid="be8e1ec3-7a7e-4871-918b-e9d03b94fb6f">
+				<reportElement x="260" y="0" width="110" height="30" forecolor="#0976DB" uuid="be8e1ec3-7a7e-4871-918b-e9d03b94fb6f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6ff2bd3-10b9-48db-9297-330d01935c8a"/>
 				</reportElement>
 				<box>
@@ -233,7 +233,7 @@
 				<textFieldExpression><![CDATA[$F{carrera}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="180" y="1" width="90" height="19" uuid="b9212e4e-3e80-43c5-bac2-2a9ec0e1a0d0">
+				<reportElement x="180" y="1" width="80" height="19" uuid="b9212e4e-3e80-43c5-bac2-2a9ec0e1a0d0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbb7e755-0947-4e41-8f27-4ef0c57e98a8"/>
 				</reportElement>
 				<box>
@@ -248,7 +248,7 @@
 				<textFieldExpression><![CDATA[$F{nivel}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="270" y="1" width="100" height="19" uuid="3a3a9c60-7a6c-49fb-9e71-a05dc5123057">
+				<reportElement x="260" y="1" width="110" height="19" uuid="3a3a9c60-7a6c-49fb-9e71-a05dc5123057">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6ff2bd3-10b9-48db-9297-330d01935c8a"/>
 				</reportElement>
 				<box>
