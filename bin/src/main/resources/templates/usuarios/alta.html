@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+	<th:block th:include="/default/menu"></th:block>	
+<head>
+	<meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Siabe</title>	
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+	
+	
+</head>
+<body class="container-full" >
+
+	<div class="container bordeContainer">		
+		<form class="form-inline" id="usuarioForm">
+			<div >
+				<h1 class="h1Class">Alta de usuario</h1>
+			</div>
+			
+			<div th:if="${NomC != null}" th:utext="${NomC}"></div>
+			<div class="col-sm-7 valoresCentrados">
+			<label for="nombreCompleto">Nombre completo: &nbsp;</label>
+				<input type="text" class="form-control inputWidth" required minlength="6" id="nombreCompleto" name="nombreCompleto"/>
+			<span class="espaciosLineas"></span>
+				
+			</div>
+			
+			<div class="form-inline valoresCentrados">
+			<label for="username">Usuario: &nbsp;</label>
+				<input type="text" class="form-control" required id="username" minlength="4" name="username"/>
+			<span class="espaciosLineas"></span>
+			<label for="password">Contraseña: &nbsp;</label>
+				<input type="password" class="form-control" required  minlength="4" id="password" name="password"/>
+				
+			</div>
+			
+			<div class="row col-sm-6 valoresCentrados">
+			<button type="submit" id="guardaUsuario" class="btn btn-primary btn-block">Guardar</button>
+			</div>
+			
+		</form>
+		<div class="col-sm-7 valoresCentrados" id="postResultDiv">
+			</div>
+	</div>
+	<div style="padding-top: 20px;">
+	<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+</html>

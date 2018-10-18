@@ -14,13 +14,17 @@
 
         <!-- Our Custom CSS -->        
         <link type="text/css" rel="stylesheet" href="/css/menu.css" />	
+        <link type="text/css" rel="stylesheet" href="/css/ui/jquery-ui.css" />	
         <!-- Scrollbar Custom CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        
         
     </head>
     <body modelAttribute="usu">
 
 		<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+		
+		<input type=hidden id="idUsuario" th:value="${idUsuario}" />
 		
         <div class="wrapper">
             <!-- Sidebar Holder -->

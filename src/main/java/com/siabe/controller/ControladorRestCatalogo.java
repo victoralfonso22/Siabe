@@ -4,23 +4,27 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.text.ParseException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.siabe.modelo.CatalogoMenu;
-import com.siabe.modelo.CatalogoSeccion;
-import com.siabe.modelo.Permisos;
 import com.siabe.modelo.Usuario;
 import com.siabe.modelo.Regiones;
 import com.siabe.modelo.RelacionRegion;
 import com.siabe.modelo.TiempoPromedio;
+import com.siabe.modelo.Areas;
 import com.siabe.modelo.Campana;
 import com.siabe.modelo.Facultades;
 
@@ -33,6 +37,7 @@ import com.siabe.servicio.RegionesServicio;
 import com.siabe.servicio.RelacionRegionServicio;
 import com.siabe.servicio.CampanaServicio;
 import com.siabe.servicio.TiempoPromedioServicio;
+import com.siabe.servicio.QuincenasServicio;
 
 @RestController
 public class ControladorRestCatalogo {
@@ -63,6 +68,9 @@ public class ControladorRestCatalogo {
 	
 	@Autowired
 	private TiempoPromedioServicio tiempoPromedioServicio;
+	
+	@Autowired
+	private QuincenasServicio quincenasServicio;
 
 	@ModelAttribute
 	public void addAttributes(Model model, Principal principal) {
@@ -419,14 +427,19 @@ public class ControladorRestCatalogo {
 			List<Regiones> regionesPeriodo = new ArrayList<Regiones>(
 					regionesServicio.regresaRegionesPeriodo(idPeriodo));
 
-			response +=	"<div><a href='reporteTiempoPromedio?type=pdf' title='Descargar pdf' target='_blank'><img src='/imagenes/pdf.png' alt='Descargar PDF' /></a>&nbsp&nbsp&nbsp<a href='reporteTiempoPromedio?type=vnd.openxmlformats-officedocument.spreadsheetml.sheet' title='Descargar excel' target='_blank'><img src='/imagenes/excel.png' alt='Descargar Excel' /></a></div><br/><br/>"
-					+ "<select class=\"form-control selectText\" required onchange=\"verTiempoPromerdio(this.value);\" id=\"idRegionTiempo\"> "
-					+ "<option value='' disabled selected>Selecciona una región</option>  ";
+			response +=	""
+					+ "<select class=\"form-control selectText\" required onchange=\"verTiempoPromerdio();\" id=\"idRegionTiempo\"> "
+					+ "<option value='0' selected>Selecciona una región</option>  ";
 			for (int b = 0; b < regionesPeriodo.size(); b++) {
 				response += "<option value=\"" + regionesPeriodo.get(b).getIdRegion() + "\">"
 						+ regionesPeriodo.get(b).getNombre() + "</option>";
 			}
-			response += "</select>";
+			response += "</select><br/><br/>"
+					+ ""
+					+ ""
+					+ "<div id=\"selction-ajax\"></div>";
+			
+			
 
 		} else {
 			response = "Nada";
@@ -436,14 +449,18 @@ public class ControladorRestCatalogo {
 		return response;
 
 	}
-
-	@PostMapping(value = "/catalogos/ajaxTiempoRegionSelect")
-	public String postAjaxtTiempoRegionT(@RequestParam int idRegion) {
+	
+	
+	@PostMapping(value = "/catalogos/ajaxTiempoPeriodoTablaP")
+	public String postAjaxTiempoPeriodoTabla(@RequestParam int idPeriodo) {
 		String response = "";
-		if (idRegion != 0) {
-
-			List<TiempoPromedio> tiempoPromedioR = new ArrayList<TiempoPromedio>(
-					tiempoPromedioServicio.todosTiemposPromedioRegion(idRegion));
+		if (idPeriodo != 0) {
+			
+			/**************************************************************************************************************************/
+			
+			
+			List<TiempoPromedio> tiempoPromedioP = new ArrayList<TiempoPromedio>(
+					tiempoPromedioServicio.todosTiemposPromedioPeriodo(idPeriodo));
 
 			response += "<br/><br/>"
 					+ "<table class=\"table tabla\"  id=\"tableTiempoPeriodo\">"
@@ -454,12 +471,70 @@ public class ControladorRestCatalogo {
 					+ "<th>Plan</th>"
 					+ "<th>Periodo promedio</th>"
 					+ "<th>Facultad</th>"
-					+ "<th>Area</th></tr><tr>";
+					+ "<th>Area</th>"
+					+ "<th>Región</th>"
+					+ "<th>Estatus</th></tr>";
+			int a = 1;
+			for (int b = 0; b < tiempoPromedioP.size(); b++) {
+				response += "<tr class=\"tdSencillo\" id="+tiempoPromedioP.get(b).getIdCarrera()+" title='Click para editar' onclick='modificarTiempoPromedio(\""+tiempoPromedioP.get(b).getCarrera()+"\",\""+tiempoPromedioP.get(b).getNivel()+"\",\""
+						+ tiempoPromedioP.get(b).getModalidad()+"\","+tiempoPromedioP.get(b).getPlan()+","+tiempoPromedioP.get(b).getPeriodoPromedio()+","+tiempoPromedioP.get(b).getIdFacultad()+","+tiempoPromedioP.get(b).getIdArea()+","
+								+ tiempoPromedioP.get(b).getIdRegion()+","+tiempoPromedioP.get(b).getIdCarrera()+","+tiempoPromedioP.get(b).getEstatus()+")'>"
+						+ "<td>"+a+"</td>"
+						+ "<td>"+tiempoPromedioP.get(b).getCarrera()+"</td>"
+						+ "<td>"+tiempoPromedioP.get(b).getNivel()+"</td>"
+						+ "<td>"+tiempoPromedioP.get(b).getModalidad()+"</td>"
+						+ "<td>"+tiempoPromedioP.get(b).getPlan()+"</td>"
+						+ "<td>"+tiempoPromedioP.get(b).getPeriodoPromedio()+"</td>"
+						+ "<td>"+tiempoPromedioP.get(b).getFacultad()+"</td>"
+					    + "<td>"+tiempoPromedioP.get(b).getArea()+"</td>"
+					    + "<td>"+tiempoPromedioP.get(b).getRegion()+"</td>"
+						+ "<td>"+tiempoPromedioP.get(b).getEstatusDefinicion()+"</td>"
+								+ "</tr>";
+				a++;
+			}
+			response += "<tr style='cursor:pointer;' onclick=\"nuevoTiempoPeriodoModal();\">"
+					+ "<td colspan=10><img  alt='Agregar' src=\"/imagenes/mas.png\"> Agregar tiempo promedio</td></tr></table>";
+			
+			
+			/**************************************************************************************************************************/
+			
+
+		} else {
+			response = "Nada";
+		}
+		// System.out.println(response);
+
+		return response;
+
+	}
+	
+	
+	
+	@PostMapping(value = "/catalogos/ajaxTiempoRegionSelect")
+	public String postAjaxtTiempoRegionT(@RequestParam int idRegion, @RequestParam int idPeriodo, @RequestParam String buscarInput) {
+		String response = "";
+
+
+			List<TiempoPromedio> tiempoPromedioR = new ArrayList<TiempoPromedio>(
+					tiempoPromedioServicio.todosTiemposPromedioPeriodoRegionInput(idPeriodo, idRegion, buscarInput));
+
+			response += "<br/><br/>"
+					+ "<table class=\"table tabla\"  id=\"tableTiempoPeriodo\">"
+					+ "<tr><th>#</th>"
+					+ "<th>Carrera</th>"
+					+ "<th>Nivel</th>"
+					+ "<th>Modalidad</th>"
+					+ "<th>Plan</th>"
+					+ "<th>Periodo promedio</th>"
+					+ "<th>Facultad</th>"
+					+ "<th>Area</th>"
+					+ "<th>Región</th>"
+					+ "<th>Estatus</th></tr>";
 			int a = 1;
 			for (int b = 0; b < tiempoPromedioR.size(); b++) {
 				response += "<tr class=\"tdSencillo\" id="+tiempoPromedioR.get(b).getIdCarrera()+" title='Click para editar' onclick='modificarTiempoPromedio(\""+tiempoPromedioR.get(b).getCarrera()+"\",\""+tiempoPromedioR.get(b).getNivel()+"\",\""
 						+ tiempoPromedioR.get(b).getModalidad()+"\","+tiempoPromedioR.get(b).getPlan()+","+tiempoPromedioR.get(b).getPeriodoPromedio()+","+tiempoPromedioR.get(b).getIdFacultad()+","+tiempoPromedioR.get(b).getIdArea()+","
-								+ tiempoPromedioR.get(b).getIdRegion()+","+tiempoPromedioR.get(b).getIdCarrera()+")'>"
+								+ tiempoPromedioR.get(b).getIdRegion()+","+tiempoPromedioR.get(b).getIdCarrera()+","+tiempoPromedioR.get(b).getEstatus()+")'>"
 						+ "<td>"+a+"</td>"
 						+ "<td>"+tiempoPromedioR.get(b).getCarrera()+"</td>"
 						+ "<td>"+tiempoPromedioR.get(b).getNivel()+"</td>"
@@ -467,15 +542,15 @@ public class ControladorRestCatalogo {
 						+ "<td>"+tiempoPromedioR.get(b).getPlan()+"</td>"
 						+ "<td>"+tiempoPromedioR.get(b).getPeriodoPromedio()+"</td>"
 						+ "<td>"+tiempoPromedioR.get(b).getFacultad()+"</td>"
-					    + "<td>"+tiempoPromedioR.get(b).getArea()+"</td></tr>";
+					    + "<td>"+tiempoPromedioR.get(b).getArea()+"</td>"
+						+ "<td>"+tiempoPromedioR.get(b).getRegion()+"</td>"
+						+ "<td>"+tiempoPromedioR.get(b).getEstatusDefinicion()+"</td></tr>";
 				a++;
 			}
-			response += "<tr style='cursor:pointer;' onclick=\"nuevoTiempoPeriodoModal("+idRegion+");\">"
-					+ "<td colspan=8><img  alt='Agregar' src=\"/imagenes/mas.png\"> Agregar tiempo promedio</td></tr></table>";
+			response += "<tr style='cursor:pointer;' onclick=\"nuevoTiempoPeriodoModal();\">"
+					+ "<td colspan=10><img  alt='Agregar' src=\"/imagenes/mas.png\"> Agregar tiempo promedio</td></tr></table>";
 
-		} else {
-			response = "Nada";
-		}
+	
 		
 		
 		//System.out.println(response);
@@ -483,7 +558,42 @@ public class ControladorRestCatalogo {
 		return response;
 
 	}
+	
+	@PostMapping(value = "/catalogos/ajaxAreasRegiones")
+	public String postAjaxAreasRegiones(@RequestParam int idRegion) {
+		String response = "";
+		if (idRegion != 0) {
 
+			List<Areas> areasRegion = new ArrayList<Areas>(
+					tiempoPromedioServicio.todosAreasRegion(idRegion));
+			String seleccionado = "";			
+
+			
+			response +=	""
+					+ "<select class=\"form-control selectText\" onchange=\"obtenerFacultadesArea(this.value);\" required  id='idArea'> "
+					+ "<option value='' "+seleccionado+">Selecciona area...</option>  ";
+			for (int b = 0; b < areasRegion.size(); b++) {
+
+
+				
+				response += "<option "+seleccionado+" value=\"" + areasRegion.get(b).getIdArea()+ "\">"
+						+ areasRegion.get(b).getNombre() + "</option>";
+				
+				
+			}
+			response += "</select>";
+			
+			
+
+		} else {
+			response = "Nada";
+		}
+		// System.out.println(response);
+
+		return response;
+
+	}
+	
 	
 	@PostMapping(value = "/catalogos/ajaxTiempoPeriodoArea")
 	public String postAjaxtTiempoPeriodoArea(@RequestParam int idArea) {
@@ -491,7 +601,7 @@ public class ControladorRestCatalogo {
 		if (idArea != 0) {
 
 			List<Facultades> facultades = new ArrayList<Facultades>(
-					tiempoPromedioServicio.todosFaculatdes(idArea));
+					tiempoPromedioServicio.todosFacultades(idArea,0));
 
 			response +=	"<select class=\"form-control selectText\" required  id=\"idFac\"> "
 					+ "<option value='' disabled selected>Selecciona una facultad</option>  ";
@@ -518,7 +628,7 @@ public class ControladorRestCatalogo {
 		if (idArea != 0) {
 
 			List<Facultades> facultades = new ArrayList<Facultades>(
-					tiempoPromedioServicio.todosFaculatdes(idArea));
+					tiempoPromedioServicio.todosFacultades(idArea,0));
 
 			response +=	"<select class=\"form-control selectText\" required  id=\"idFacM\"> "
 					+ "<option value='' disabled >Selecciona una facultad</option>  ";
@@ -542,12 +652,167 @@ public class ControladorRestCatalogo {
 
 	}
 	
+	
+	
 	@PostMapping(value = "/catalogos/ajaxtPromedio")
-	public String postAjaxtPromedio(@RequestParam String carrera, @RequestParam String nivel, @RequestParam String modalidad,  @RequestParam int plan,  @RequestParam int pPromedio, @RequestParam int idRegion, @RequestParam int idFac) {		
+	public String postAjaxtPromedio(@RequestParam String carrera, @RequestParam String nivel, @RequestParam String modalidad,  @RequestParam int plan,  @RequestParam int pPromedio, @RequestParam int idRegion, @RequestParam int idFac , @RequestParam int idArea , @RequestParam int idPeriodo) {		
 
-		String response = tiempoPromedioServicio.insertCarrera(idFac, idRegion, carrera, nivel, modalidad, plan, pPromedio);
+		String response = tiempoPromedioServicio.insertCarrera(idFac,idArea, idRegion, carrera, nivel, modalidad, plan, pPromedio, idPeriodo);
 		
 		return response;
 
 	}
+	
+	
+	@PostMapping(value = "/catalogos/ajaxtPromedioModificar")
+	public String postAjaxtPromedioModificar( @RequestParam int idFacultad , @RequestParam int idRegion , @RequestParam String carrera, @RequestParam String nivel, @RequestParam String modalidad,  @RequestParam int plan,  @RequestParam int pPromedio, @RequestParam int estatus,@RequestParam int idArea, @RequestParam int idCarrera) {		
+
+		String response = tiempoPromedioServicio.actualizarCarrera(idFacultad, idArea, idRegion, carrera, nivel, modalidad, plan, pPromedio, estatus, idCarrera);
+		
+		return response;
+
+	}
+	
+	@PostMapping(value = "/catalogos/ajaxAreaTPro")
+	public String postajaxAreaTPro(@RequestParam String tipo, @RequestParam String nombreArea, @RequestParam int idAreaModifica) {		
+		
+		String response = "";
+		if(tipo.equals("N")) {
+		response = tiempoPromedioServicio.insertArea(nombreArea);
+		}else if (tipo.equals("M")) {
+			response = tiempoPromedioServicio.actualizarArea(idAreaModifica, nombreArea);
+		}
+		
+		return response;
+
+	}
+	
+	@PostMapping(value = "/catalogos/ajaxFacTPro")
+	public String postajaxFacTPro(@RequestParam String tipo, @RequestParam String nombreFac, @RequestParam int idFacModifica) {		
+		
+		String response = "";
+		if(tipo.equals("N")) {
+		response = tiempoPromedioServicio.insertFacultad(nombreFac);
+		}else if (tipo.equals("M")) {
+			response = tiempoPromedioServicio.actualizarFacultad(idFacModifica, nombreFac);
+		}
+		
+		return response;
+
+	}
+	
+	@PostMapping(value = "/catalogos/ajaxQuincenas")
+	public String postAjaxtPromedio(@RequestParam int numQuincena, @RequestParam String nombre, @RequestParam int anio) {		
+
+		String response = quincenasServicio.insertQuincena(numQuincena, nombre, anio);
+		
+		return response;
+
+	}
+	
+	@PostMapping(value = "/catalogos/ajaxQuincenasModificar")
+	public String postAjaxQuincenasModificar(@RequestParam int numQuincena, @RequestParam String nombre, @RequestParam int anio, @RequestParam int idQuincena) {		
+
+		String response = quincenasServicio.actualizarQuincenas(idQuincena, numQuincena, nombre, anio);
+		
+		return response;
+
+	}
+	
+	@RequestMapping(value = "/catalogos/autocompleteRegion", method = RequestMethod.GET)
+	
+	public  @ResponseBody Map<String,Regiones> postAjaxAutocompleteRegion(@RequestParam String term, @RequestParam int idPeriodo) {		
+
+		List<Regiones> region = regionesServicio.autocompletarRegiones(idPeriodo, term); 
+		
+		Map<String,Regiones> response = new HashMap<String,Regiones>();
+		
+		for(int b = 0; b < region.size() ;b++) {
+			response.put(region.get(b).getNombre(), region.get(b));
+		}
+		
+		return response;
+
+	}
+	
+@RequestMapping(value = "/catalogos/autocompleteArea", method = RequestMethod.GET)
+	
+	public  @ResponseBody Map<String,Areas> postAjaxAutocompleteArea(@RequestParam String term, @RequestParam int idRegion) {		
+
+		List<Areas> area = tiempoPromedioServicio.autocompletarAreas(idRegion, term); 
+		
+		Map<String,Areas> response = new TreeMap<String,Areas>();
+		
+		for(int b = 0; b < area.size() ;b++) {
+			response.put(area.get(b).getNombre(), area.get(b));
+		}
+		
+		return response;
+
+	}
+
+@RequestMapping(value = "/catalogos/autocompleteFacultad", method = RequestMethod.GET)
+
+public  @ResponseBody Map<String,Facultades> postAjaxAutocompleteFacultad(@RequestParam String term, @RequestParam int idRegion, @RequestParam int idArea) {		
+
+	List<Facultades> fac = tiempoPromedioServicio.autocompleteFacultad(idRegion, idArea, term); 
+	
+	Map<String,Facultades> response = new TreeMap<String,Facultades>();
+	
+	for(int b = 0; b < fac.size() ;b++) {
+		response.put(fac.get(b).getNombre(), fac.get(b));
+	}
+	
+	return response;
+
+}
+
+@RequestMapping(value = "/catalogos/autocompleteNivel", method = RequestMethod.GET)
+
+public  @ResponseBody Map<String,TiempoPromedio> postAjaxAutocompleteNivel(@RequestParam String term, @RequestParam int idRegion, @RequestParam int idArea, @RequestParam int idFac) {		
+
+	List<TiempoPromedio> nivel = tiempoPromedioServicio.autocompleteNivel(idRegion, idArea, idFac, term); 
+	
+	Map<String,TiempoPromedio> response = new TreeMap<String,TiempoPromedio>();
+	
+	for(int b = 0; b < nivel.size() ;b++) {
+		response.put(nivel.get(b).getNivel(), nivel.get(b));
+	}
+	
+	return response;
+
+}
+
+@RequestMapping(value = "/catalogos/autocompleteModalidad", method = RequestMethod.GET)
+
+public  @ResponseBody Map<String,TiempoPromedio> postAjaxAutocompleteModalidad(@RequestParam String term, @RequestParam int idRegion, @RequestParam int idArea, @RequestParam int idFac, @RequestParam String nivel) {		
+
+	List<TiempoPromedio> modalidad = tiempoPromedioServicio.autocompleteModalidad(idRegion, idArea, idFac,nivel, term); 
+	
+	Map<String,TiempoPromedio> response = new TreeMap<String,TiempoPromedio>();
+	
+	for(int b = 0; b < modalidad.size() ;b++) {
+		response.put(modalidad.get(b).getModalidad(), modalidad.get(b));
+	}
+	
+	return response;
+
+}
+
+@RequestMapping(value = "/catalogos/autocompleteCarrera", method = RequestMethod.GET)
+
+public  @ResponseBody Map<String,TiempoPromedio> postAjaxAutocompleteCarrera(@RequestParam String term, @RequestParam int idRegion, @RequestParam int idArea, @RequestParam int idFac, @RequestParam String nivel, @RequestParam String modalidad) {		
+
+	List<TiempoPromedio> carrera = tiempoPromedioServicio.autocompleteCarrera(idRegion, idArea, idFac,nivel, modalidad,term); 
+	
+	Map<String,TiempoPromedio> response = new TreeMap<String,TiempoPromedio>();
+	
+	for(int b = 0; b < carrera.size() ;b++) {
+		response.put(carrera.get(b).getCarrera(), carrera.get(b));
+	}
+	
+	return response;
+
+}
+
 }

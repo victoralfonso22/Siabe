@@ -8,7 +8,10 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.siabe.modelo.Regiones;
+import com.siabe.modelo.TiempoPromedio;
 import com.siabe.mapa.RegionesMapa;
+import com.siabe.mapa.TiempoPromedioMapa;
+
 import java.util.List;
 
 
@@ -109,6 +112,21 @@ public class RegionesDAO extends JdbcDaoSupport {
 			return "Done";
 		} catch (EmptyResultDataAccessException e) {
 			return "Error";
+		}
+
+	}
+	
+	public List<Regiones> autocompletarRegion(int idPeriodo, String termino) {
+		
+	
+		String	sql = RegionesMapa.BASE_SQL + " where r.nombre like '%"+termino+"%' and r.id_periodo = "+idPeriodo+" and r.estatus= 1; ";
+	
+		
+		try {
+			return this.getJdbcTemplate().query(sql, new RegionesMapa());
+
+		} catch (EmptyResultDataAccessException e) {
+			return null;
 		}
 
 	}

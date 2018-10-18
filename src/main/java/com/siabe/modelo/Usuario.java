@@ -7,18 +7,20 @@ public class Usuario {
     private String password;
     private int estatus;
     private String nombre;
+    private String correo;
     private int superU;
     
     public Usuario() {
  
     }
  
-    public Usuario(Long userId, String userName, String encrytedPassword, int estatus, String nombre, int superU) {
+    public Usuario(Long userId, String userName, String encrytedPassword, int estatus, String nombre, String correo, int superU) {
         this.idUsuario = userId;
         this.usuario = userName;
         this.password = encrytedPassword;
         this.estatus = estatus;
         this.setNombre(nombre);
+        this.setCorreo(correo);
         this.superU = superU;
     }
  
@@ -73,6 +75,14 @@ public class Usuario {
 
 	public void setSuperU(int superU) {
 		this.superU = superU;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
 }

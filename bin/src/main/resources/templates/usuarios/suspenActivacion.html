@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+</head>
+<body class="container-full">
+
+	<div class="container bordeContainer">
+		<form class="form-inline" id="usuarioForm">
+			<div>
+				<h1 class="h1Class">Suspención / Activación de usuarios</h1>
+			</div>
+			<br/>
+			<div class="table-responsive valoresCentrados">
+			<table class="table tabla" th:fragment="usuarios" id="usuarios">
+				<tr>
+					<th>#</th>
+					<th>Usuario</th>
+					<th>Nombre completo</th>
+					<th>Estatus</th>
+				</tr>
+				<tr  th:each="usuario,iterationStatus : ${usuarios}" th:onclick="|desactivarUsuario('${usuario.idUsuario}','${usuario.estatus}');|" class="tdSencillo">							
+				<td th:if="${usuario.estatus} == 1" th:text="${iterationStatus.count}" th:id="${'conta'+usuario.idUsuario}"></td>
+				<td th:unless="${usuario.estatus} == 1" style="background: #D9534F; color:#fff;" th:text="${iterationStatus.count}" th:id="${'conta'+usuario.idUsuario}"></td>
+					<td th:if="${usuario.estatus} == 1" th:text="${usuario.usuario}" th:id="${'user'+usuario.idUsuario}"></td>
+					<td th:unless="${usuario.estatus} == 1" style="background: #D9534F; color:#fff;" th:text="${usuario.usuario}" th:id="${'user'+usuario.idUsuario}"></td>
+					<td th:if="${usuario.estatus} == 1" th:text="${usuario.nombre}" th:id="${'name'+usuario.idUsuario}"></td>
+					<td th:unless="${usuario.estatus} == 1" style="background: #D9534F; color:#fff;" th:text="${usuario.nombre}" th:id="${'name'+usuario.idUsuario}"></td>
+					<td th:if="${usuario.estatus} == 1" th:text="Activo" th:id="${'status'+usuario.idUsuario}"></td>
+					<td th:unless="${usuario.estatus} == 1" style="background: #D9534F; color:#fff;"  th:text="Inactivo" th:id="${'status'+usuario.idUsuario}"></td>
+				</tr>
+			</table>
+			</div>
+		</form>
+		<div class="col-sm-7 valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+</html>

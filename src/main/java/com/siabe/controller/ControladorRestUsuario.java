@@ -63,7 +63,7 @@ public class ControladorRestUsuario {
 		
 		PasswordEncryptado passwordEncryptado = new PasswordEncryptado();
 		
-		Response response = new Response(usuarioServicio.insertUsuario(u.getUsuario(), passwordEncryptado.encrytePassword(u.getPassword()), u.getNombre()), null);
+		Response response = new Response(usuarioServicio.insertUsuario(u.getUsuario(), passwordEncryptado.encrytePassword(u.getPassword()), u.getNombre(), u.getCorreo()), null);
 		
 		return response;
 		

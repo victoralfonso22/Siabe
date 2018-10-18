@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+		<form class="form-inline" onSubmit="return false;" >
+			<div>
+				<h1 class="h1Class">Quincenas</h1>
+			</div>
+			<div class="col-sm-7 valoresCentrados" id="postResultDiv"></div>
+			
+
+			<div class="table-responsive valoresCentrados">
+	
+			
+			<div class="divLogosAgregarGeneral" id="logosAgregar">
+			<label class="labelAgregar" title='Agregar quincena' onclick="nuevaQuincenaModal();"><img alt='Agregar quincena' src="/imagenes/mas.png" >Quincena </label>
+					</div> 
+			
+			<br/>
+			<br/>
+			<br/>
+			
+			
+			<table class="table tabla" id="quincenasF">
+				<tr>
+					<th>#</th>
+					<th>Número de quincena</th>
+					<th>Nombre</th>
+					<th>Año</th>
+				</tr>
+					<th:block th:each="quincena,iterationStatus : ${quincenas}" >
+				<tr class="tdSencillo"  title="Click para editar periodo" th:onclick="|modificarQuincenaModal('${quincena.idQuincena}','${quincena.numeroQuincena}','${quincena.nombre}','${quincena.anio}');|">							
+				<td th:text="${iterationStatus.count}" ></td>
+				
+					<td  th:text="${quincena.numeroQuincena}" ></td>
+					<td  th:text="${quincena.nombre}" ></td>
+					<td  th:text="${quincena.anio}" ></td>				
+					
+				</tr>
+				</th:block>
+	
+			</table>
+			
+			</div>
+		</form>
+		
+
+		<div id="nuevaQuincenaModal" class="modal" role="dialog" style="overflow-y: auto;">
+       <div class="modal-dialog" role="document">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title divRespuesta">Nueva quincena</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="quincenaForm">
+
+               		
+               		<div class="valoresCentrados">
+               		<input placeholder="Número de quincena" type="text" style="text-align: center !important;" class="form-control selectText" required id="numQuincena" onkeypress="return valida(event)"/>
+               		<br>
+               		<input placeholder="Nombre" type="text" style="text-align: center !important;" class="form-control selectText" required minlength="4"  id="nombre" />
+					<br>
+               		<input placeholder="Año" type="text" pattern="[0-9.]+" style="text-align: center !important;" class="form-control selectText" maxlength="4" required minlength="4"  id="anio" onkeypress="return valida(event)"/>
+               		<br>
+               		
+               		</div>
+               		<br/>
+               		<div id="respuestaPass"></div>
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('nuevaQuincenaModal');">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>	
+   
+   
+   
+   <div id="modificarQuincenaModal" class="modal" role="dialog" style="overflow-y: auto;">
+       <div class="modal-dialog" role="document">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title divRespuesta">Modificar tiempo promedio</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="quincenaFormM">
+               		<div class="valoresCentrados">
+               		<span class="etiquetaSpan">Número de quincena</span>
+               		<input type="text" style="text-align: center !important;" class="form-control selectText" required id="numQuincenaM" onkeypress="return valida(event)"/>
+               		<br>
+               		<span class="etiquetaSpan">Nombre</span>
+               		<input type="text" style="text-align: center !important;" class="form-control selectText" required minlength="4"  id="nombreM" />
+               		<br>
+               		<span class="etiquetaSpan">Año</span>
+               		<input placeholder="Año" type="text" pattern="[0-9.]+" style="text-align: center !important;" class="form-control selectText" maxlength="4" required minlength="4"  id="anioM" onkeypress="return valida(event)"/>
+               		<br>
+               		
+               		
+               		<input type="hidden" id="numeroQuincenaA" />
+               		<input type="hidden" id="nombreA" />
+               		<input type="hidden" id="anioA" />
+               		<input type="hidden" id="idQuincenaA" />
+               		</div>
+               		<br/>
+               		<br/>
+               		<div id="respuestaPass"></div>
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('modificarQuincenaModal');">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>
+   	
+   	
+	</div>
+	<div style="padding-top: 20px;">
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+</html>

@@ -30,7 +30,7 @@ public class PeriodoDAO extends JdbcDaoSupport {
 	}
 
 	public Periodo regresarPeriodo(int idPeriodo) {	
-		String sql = PeriodoMapa.BASE_SQL + " where id = ? ; ";
+		String sql = PeriodoMapa.BASE_SQL + " where p.id = ? ; ";
 		Object[] params = new Object[] { idPeriodo };
 		PeriodoMapa mapper = new PeriodoMapa();
 		try {
@@ -101,6 +101,22 @@ public class PeriodoDAO extends JdbcDaoSupport {
 		}
 
 	}
+	
+	
+	public List<Periodo> obtenerPeriodosIdBeca(int idTipoBeca) {
+
+		String sql = PeriodoMapa.BASE_SQL + " where tb.id = ?";
+		Object[] params = new Object[] { idTipoBeca };
+		PeriodoMapa mapper = new PeriodoMapa();
+		try {
+			return this.getJdbcTemplate().query(sql, params, mapper);
+			
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+
 
 	public String actualizaEstatusUsuario(int id, int estatus) {
 

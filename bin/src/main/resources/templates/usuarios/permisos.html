@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+</head>
+<body class="container-full">
+
+	<div class="container bordeContainer">
+		<form class="form-inline" id="permisosForm">
+			<div>
+				<h1 class="h1Class">Permisos de usuarios</h1>
+			</div>
+			
+			<br/>
+			<div class="table-responsive valoresCentrados"  >
+			
+			<table class="table tabla"  style="width: 50%; text-align: center; margin: 0 auto;">
+			<tr >
+			<td><select th:field="*{idUsuario}" id="usuarioSeleccionado" class="form-control selectText">
+                         <option value="0">Selecciona un usuario</option>
+                         <option th:each="usuarios : ${usuarios}"
+                            th:value="${usuarios.idUsuario}"
+                            th:text="${usuarios.nombre}"></option>
+                  </select></td>
+			
+			</tr>
+			</table>
+			
+			<br/>
+			
+			<table class="table tabla" th:fragment="tablaPermisos" id="tablaPermisos"  >
+		<!-- 	<tr >
+					<th:block th:each="seccion : ${secciones}" >
+					<th  th:text="${seccion.seccion}"></th>
+					</th:block>
+				</tr>
+				
+				<th:block th:each="menu : ${menu}" th:with="idS=0">
+				<tr th:if="menu.idSeccion == idS" >				
+				<td  th:text="${menu.modulo}" th:id="${'menu'+menu.idMenu}" th:with="idS = ${menu.idSeccion}"></td>				
+				</tr >
+				<tr th:unless="menu.idSeccion == idS" >				
+				<td  th:text="${idS}" th:id="${'menu'+menu.idMenu}" th:with="idS = ${menu.idSeccion}"></td>				
+				</tr >
+				</th:block>	-->	
+				
+				
+				
+			</table>
+			</div>
+		</form>
+		<div class="col-sm-7 valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+</html>

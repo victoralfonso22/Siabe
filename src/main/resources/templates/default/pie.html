@@ -5,12 +5,25 @@
 	<meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-	<script src="/js/funciones.js"></script>
-	
+	<script src="/js/funcionesGenerales.js"></script>
+	<script src="/js/funcionesUsuCat.js"></script>	
+	<script src="/js/jquery-ui.js"></script>
+	<script src="/js/reportes.js"></script>
+	<script src="/js/reportesJasper.js"></script>
+	<script src="/js/egresos.js"></script>
+	<script src="/js/ingresos.js"></script>
+	<script src="/js/autocompletar.js"></script>
 	
 </head>
 <body >
 <div class="container-full">
+<script type="text/javascript">
+      
+		if($("#idUsuario").val() == null || $("#idUsuario").val() == ''){
+        	window.location = "/login?session=false";
+        }
+        
+        </script>
 <footer style="border: 1.5px ridge #337AB7; padding:10px; float: none; display:block;margin:0 auto 0 auto; background: #fff; right: 0; bottom: 0; left: 0;" class="page-footer font-small pt-4 mt-4 bordePie">
 
     <!--Footer Links-->

@@ -18,8 +18,8 @@ public class UsuarioServicio {
 		return UserDAO.findUserAccount(usuario);
 	}
 	
-	public String insertUsuario(String userName, String password, String nombre) {
-		return UserDAO.insertaUsuario(userName, password, nombre);
+	public String insertUsuario(String userName, String password, String nombre, String correo) {
+		return UserDAO.insertaUsuario(userName, password, nombre,correo);
 	}
 	
 	public List<Usuario> todosUsuarios(){
@@ -36,5 +36,9 @@ public class UsuarioServicio {
 	
 	public String usuarioActualizaPassword(String password, int id) {
 		return UserDAO.actualizaPassword(password,id);
+	}
+	
+	public Usuario rescueUP(String recuperacion) {
+		return UserDAO.recuperaUP(recuperacion);
 	}
 }

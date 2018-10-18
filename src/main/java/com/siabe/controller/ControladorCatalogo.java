@@ -9,12 +9,11 @@ import com.siabe.servicio.TipoDonativoServicio;
 import com.siabe.servicio.CuentasBancariasServicio;
 import com.siabe.servicio.UsuarioServicio;
 import com.siabe.servicio.TiempoPromedioServicio;
+import com.siabe.servicio.QuincenasServicio;
 
 import com.siabe.servicio.PermisosMenuServicio;
 import com.siabe.servicio.RegionesServicio;
 import com.siabe.utils.UtilidadesWeb;
-
-import org.springframework.web.servlet.ModelAndView;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +52,9 @@ public class ControladorCatalogo {
 
 	@Autowired
 	private TiempoPromedioServicio tiempoPromedioServicio;
+	
+	@Autowired
+	private QuincenasServicio quincenasServicio;
 
 	@ModelAttribute
 	public void addAttributes(Model model, Principal principal) {
@@ -173,10 +175,62 @@ public class ControladorCatalogo {
 		model.addAttribute("periodos", periodoServicio.todosPerido());
 		model.addAttribute("regiones", regionesServicio.todosRegiones());
 		model.addAttribute("areas", tiempoPromedioServicio.todosAreas());
+		model.addAttribute("facultades", tiempoPromedioServicio.todosFacultades());
 		
 		model.addAttribute("tiemposPromedio", tiempoPromedioServicio.todosTiemposPromedio());
 
 		return "/catalogos/tiemposPromedio";
+	}
+	
+	@RequestMapping("/catalogos/refreshAreaNuevaTiemposPromedio")
+	public String refreshAreaNuevaTiemposPromedio(Model model, Principal principal) {
+		model.addAttribute("areas", tiempoPromedioServicio.todosAreas());
+		return "/catalogos/tiemposPromedio :: #idArea";
+	}
+	
+	@RequestMapping("/catalogos/refreshAreaModificarTiempoPromedio")
+	public String refreshAreaModificarTiempoPromedio(Model model, Principal principal) {
+		model.addAttribute("areas", tiempoPromedioServicio.todosAreas());
+		return "/catalogos/tiemposPromedio :: #idAreaM";
+	}
+	
+	@RequestMapping("/catalogos/refreshAreaNMTiempoPromedio")
+	public String refreshAreaNMTiempoPromedio(Model model, Principal principal) {
+		model.addAttribute("areas", tiempoPromedioServicio.todosAreas());
+		return "/catalogos/tiemposPromedio :: #idAreaNM";
+	}
+	
+	
+	@RequestMapping("/catalogos/refreshFacNuevaTiemposPromedio")
+	public String refreshFacNuevaTiemposPromedio(Model model, Principal principal) {
+		model.addAttribute("facultades", tiempoPromedioServicio.todosFacultades());
+		return "/catalogos/tiemposPromedio :: #idFac";
+	}
+	
+	@RequestMapping("/catalogos/refreshFacModificarTiempoPromedio")
+	public String refreshFacModificarTiempoPromedio(Model model, Principal principal) {
+		model.addAttribute("facultades", tiempoPromedioServicio.todosFacultades());
+		return "/catalogos/tiemposPromedio :: #idFacM";
+	}
+	
+	@RequestMapping("/catalogos/refreshFacNMTiempoPromedio")
+	public String refreshFacNMTiempoPromedio(Model model, Principal principal) {
+		model.addAttribute("facultades", tiempoPromedioServicio.todosFacultades());
+		return "/catalogos/tiemposPromedio :: #idFacNM";
+	}
+	
+	@GetMapping(value = "/catalogos/quincenas")
+	public String quincenas(Model model, Principal principal) {
+		
+		model.addAttribute("quincenas", quincenasServicio.todasQuincenas());
+		
+		return "/catalogos/quincenas";
+	}
+	
+	@RequestMapping("/catalogos/actualizaTablaQuincenas")
+	public String actualizaTablaQuincenas(Model model, Principal principal) {
+		model.addAttribute("quincenas", quincenasServicio.todasQuincenas());
+		return "/catalogos/quincenas :: #quincenasF";
 	}
 	
 	

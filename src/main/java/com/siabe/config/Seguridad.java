@@ -44,7 +44,7 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
     	
         http.csrf().disable();
         
-        http.sessionManagement().invalidSessionUrl("/sesionExpirada");
+       http.sessionManagement().invalidSessionUrl("/login?session=false");        
  
         // The pages does not require login
       //  http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
@@ -58,6 +58,8 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/usuarios/**").access("hasRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/catalogos/**").access("hasRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/reportes/**").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/egresos/**").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/ingresos/**").access("hasRole('ROLE_ADMIN')");
         //http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
  
         // When the user has logged in as XX.

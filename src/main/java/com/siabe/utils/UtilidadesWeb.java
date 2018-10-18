@@ -1,13 +1,24 @@
 package com.siabe.utils;
 
-import java.io.IOException;
-import java.util.Collection;
-import java.util.List;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
+
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
@@ -16,22 +27,21 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.siabe.modelo.PermisosMenu;
 import com.siabe.servicio.PermisosMenuServicio;
+import com.siabe.servicio.UsuarioServicio;
 
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
-import net.sf.jasperreports.export.SimplePdfReportConfiguration;
-import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
+
 
 @Service
 public class UtilidadesWeb {
 	
 	@Autowired
 	private PermisosMenuServicio permisosMenuServicio;
+	
+	@Autowired
+	private UsuarioServicio usuarioServicio;
+	
+	@Autowired 
+	private JavaMailSender sender;
  
     public static String toString(User user) {
         StringBuilder sb = new StringBuilder();
@@ -73,7 +83,8 @@ public class UtilidadesWeb {
 	   //     System.out.println("recorrido "+registrado);
 	  return registrado;
     }
-    
+   
+    /*
     public void exportarPDF(JasperPrint jasperPrint, HttpServletResponse response, ServletOutputStream nombre) throws IOException, JRException {
     	JRPdfExporter exporter = new JRPdfExporter();
 
@@ -114,5 +125,99 @@ public class UtilidadesWeb {
     	
     	response.setContentType("application/x-ms-excel");
     	exporter.exportReport();
+    }*/
+    
+    public String hostname() {
+    	InetAddress ip;
+        String hostname;
+        try {
+            ip = InetAddress.getLocalHost();
+            hostname = ip.getHostName();
+            System.out.println("Your current IP address : " + ip);
+            System.out.println("Your current Hostname : " + hostname);
+            return hostname;
+        } catch (UnknownHostException e) {        	
+            e.printStackTrace();
+            return "";
+        }
     }
+    
+    
+    public String MillisToDate(long mili) {
+    	          
+           //creating Date from millisecond
+           Date currentDate = new Date(mili);
+          
+           //printing value of Date
+           System.out.println("current Date: " + currentDate);
+          
+           DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+           System.out.println("Milliseconds to Date: " + df.format(currentDate));
+           //formatted value of current Date
+           return df.format(currentDate);
+        //   
+          
+
+          
+    }
+    
+    public String formatoMoneda(double dato) {
+    	DecimalFormat formatea = new DecimalFormat("###,###.##");
+    	return formatea.format(dato);
+    	
+    }
+    
+    public String sendEmailRecuperacionUP(String destino,String nombre, String usuario, String pass, int id) throws Exception{
+    	
+    	        MimeMessage message = sender.createMimeMessage();
+    	
+    	        MimeMessageHelper helper = new MimeMessageHelper(message,true,"UTF-8");
+    	        
+    	        String passw = "";
+    	        Random rnd = new Random();
+
+    	        for (int i = 0; i < 7; i++)
+    	        {
+    	            if(i < 4)
+    	            {
+    	                passw += rnd.nextInt(10);
+    	            }
+    	            else
+    	            {
+    	                passw += (char)(rnd.nextInt(91) + 65);
+    	            }
+    	        }
+
+    	        System.out.println("pass : " + passw);
+    	        
+    	        PasswordEncryptado passwordEncryptado = new PasswordEncryptado();
+    	        
+    	        usuarioServicio.usuarioActualizaPassword(passwordEncryptado.encrytePassword(passw), id);
+    	      
+    	        String mensaje = "<div style='font-family: \"calibri\", Garamond, 'Comic Sans MS';'><p>Hola, <b>"+nombre+"</b></p>";
+    	        
+    	        mensaje+="<p>Usuario : <b style='color:#337AB7;'>"+usuario+"</b></p>";
+    	        mensaje+="<p>Nueva contraseña : <b style='color:#337AB7;'>"+passw+"</b></p>";
+    	        
+    	        mensaje+="<br/>Te sugerimos que cambies esta nueva contraseña por una que recuerdes, para realizarlo debes ir a SIABE->Menú->Usuarios->Cambio de password";
+    	        
+    	        mensaje+="<p>Si no solicitaste esta información, por favor envía un correo a vquitano@fundacionuv.org</p><br/></div>";
+    	        
+    	        helper.setFrom("vquitano@fundacionuv.org");
+    	        
+    	        helper.setTo(destino);
+    	
+    	        helper.setText(mensaje,true);
+    	
+    	        helper.setSubject("Usuario y nueva contraseña SIABE");
+    	
+    	         
+    	
+    	        sender.send(message);
+    	        
+    	        return "Done";
+    	    }
+
+
+   
 }

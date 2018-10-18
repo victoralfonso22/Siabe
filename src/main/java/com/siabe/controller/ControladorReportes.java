@@ -1,146 +1,83 @@
 package com.siabe.controller;
 
+import java.security.Principal;
 
-/*prueba de arriba*/
-
-import java.io.InputStream;
-import java.util.HashMap;
-
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.siabe.modelo.Usuario;
+import com.siabe.servicio.UsuarioServicio;
+import com.siabe.servicio.TipoBecaServicio;
+import com.siabe.utils.UtilidadesWeb;
+import com.siabe.servicio.PeriodoServicio;
+import com.siabe.servicio.PermisosMenuServicio;
+import com.siabe.servicio.RegionesServicio;
 
-import com.siabe.servicio.TiempoPromedioServicio;
 
-
-
-
-import net.sf.jasperreports.engine.JRDataSource;
-
-import net.sf.jasperreports.engine.JasperCompileManager;
-
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
-import net.sf.jasperreports.export.SimplePdfReportConfiguration;
-import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
 @Controller
 public class ControladorReportes {
 	
 	@Autowired
-	private TiempoPromedioServicio tiempoPromedioServicio;
-
-	@RequestMapping(value = "/catalogos/reporteTiempoPromedio")
-	public void generatePDFJasperChart(HttpServletRequest request, HttpServletResponse response, @RequestParam("type") String type) throws Exception {
-		
-		System.out.println("Escribe type "+type);
-		
-		response.setContentType("application/"+type);
-		long start = System.currentTimeMillis();
-//data source
-JRDataSource dataSource = new JRBeanCollectionDataSource(tiempoPromedioServicio.todosTiemposPromedio());
-//compile jrxml template and get report
-JasperReport report;
-InputStream stream = getClass().getResourceAsStream("/reportes/tiempoPromedio.jrxml");
-report = JasperCompileManager.compileReport(stream);
-
-Map<String, Object> parameters = new HashMap<>();
-parameters.put("periodo", "Employee Report");
-
-//fill the report with data source objects
-JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, dataSource);
-
-if(type.equals("pdf")) {
+	private UsuarioServicio usuarioServicio;
 	
-	System.err.println("PDF entre");
-JRPdfExporter exporter = new JRPdfExporter();
-
-exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(response.getOutputStream()));
- 
-SimplePdfReportConfiguration reportConfig  = new SimplePdfReportConfiguration();
-reportConfig.setSizePageToContent(true);
-reportConfig.setForceLineBreakPolicy(false);
-
- 
-SimplePdfExporterConfiguration exportConfig  = new SimplePdfExporterConfiguration();
-//exportConfig.setMetadataAuthor("baeldung");
-
-//exportConfig.setEncrypted(true);
-//exportConfig.setAllowedPermissionsHint("PRINTING");
-exportConfig.setCreatingBatchModeBookmarks(true); 
-
-//exporter.setConfiguration(reportConfig);
-exporter.setConfiguration(exportConfig);
-
-response.setContentType("application/pdf");
-//response.setHeader("Content-Disposition", "attachment; filename=\"Archivo.pdf\""); 
-exporter.exportReport();
-
-System.err.println("PDF creation time : " + (System.currentTimeMillis() - start));
-
-}else if(type.equals("vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
-	JRXlsxExporter exporter = new JRXlsxExporter();
-	  
-	exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-	exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(response.getOutputStream()));
-	SimpleXlsxReportConfiguration reportConfig  = new SimpleXlsxReportConfiguration();
-	reportConfig.setSheetNames(new String[] { "Employee Data" });
-	 
-	exporter.setConfiguration(reportConfig);
+	@Autowired
+	private PermisosMenuServicio permisosMenuServicio;
 	
-	response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-	exporter.exportReport();
-}
+	@Autowired
+	private UtilidadesWeb utilidadesWeb;
+	
+	@Autowired
+	private TipoBecaServicio tipoBecaServicio;
+	
+	@Autowired
+	private PeriodoServicio periodoServicio;
+	
+	@Autowired
+	private RegionesServicio regionesServicio;
 
-	 
-	/*	String sourceFileName = "/reportes/tiempoPromedio.jrxml";
-		System.out.println(sourceFileName);
-		Map<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("ReportTitle", "Jasper Demo");
-		parameters.put("Author", "Prepared By jCombat");
-		try {
-			System.out.println("Start compiling!!! ...");
-			JasperCompileManager.compileReportToFile(sourceFileName);
-			System.out.println("Done compiling!!! ...");
-			sourceFileName = "D://Documents/jasper_report_template.jasper";
-			
-			List<TiempoPromedio> dataList = tiempoPromedioServicio.todosTiemposPromedio();
-			JRBeanCollectionDataSource beanColDataSource = new JRBeanCollectionDataSource(
-					dataList);
-			JasperReport report = (JasperReport) JRLoader.loadObjectFromFile(sourceFileName);
-			JasperPrint jasperPrint = JasperFillManager.fillReport(report,
-					parameters, beanColDataSource);
-			if (jasperPrint != null) {
-				byte[] pdfReport = JasperExportManager
-						.exportReportToPdf(jasperPrint);
-				response.reset();
-				response.setContentType("application/pdf");
-				response.setHeader("Cache-Control", "no-store");
-				response.setHeader("Cache-Control", "private");
-				response.setHeader("Pragma", "no-store");
-				response.setContentLength(pdfReport.length);
-				response.getOutputStream().write(pdfReport);
-				response.getOutputStream().flush();
-				response.getOutputStream().close();
-			}
-		} catch (JRException e) {
-			e.printStackTrace();
-		}*/
+	@ModelAttribute
+	public void addAttributes(Model model, Principal principal) {
+		if (principal != null) {
+			Usuario u = (Usuario) this.usuarioServicio.regresaUsuario(principal.getName());
+			model.addAttribute("nombreUsuario", u.getNombre());
+			model.addAttribute("idUsuario", u.getIdUsuario());
+			model.addAttribute("seccionPermiso",
+					permisosMenuServicio.todosPermisosMenuXSeccion(u.getIdUsuario().intValue()));
+			model.addAttribute("menuPermiso", permisosMenuServicio.todosPermisosMenu(u.getIdUsuario().intValue()));
+			model.addAttribute("permisoGlobal", utilidadesWeb.direccionActual(u.getIdUsuario().intValue()));
+		}
 	}
 	
+	@GetMapping(value = "/reportes/beneficiarios")
+	public String campania(Model model, Principal principal) {
+
+		model.addAttribute("tbecas", tipoBecaServicio.todosTipoBeca());		
+		return "/reportes/beneficiarios";
+	}
+	
+	@RequestMapping("/reportes/actualizaPeriodoRepGen")
+	public String actualizaSelPeriodos(Model model, Principal principal,@RequestParam int idTipoBeca) {
+		model.addAttribute("periodos", periodoServicio.todosPeridoIdBeca(idTipoBeca));
+		
+		if(principal == null) {
+		return "/login";	
+		}else {
+		return "/reportes/beneficiarios :: #idPeriodoGeneral";
+		}
+	}
+	
+	@RequestMapping("/reportes/actualizaRegionRepGen")
+	public String actualizaSelRegiones(Model model, Principal principal,@RequestParam int idPeriodo) {
+		model.addAttribute("regiones", regionesServicio.regresaRegionesPeriodo(idPeriodo));
+		return "/reportes/beneficiarios :: #idRegionGeneral";
+	}
+	
+	
+
 }

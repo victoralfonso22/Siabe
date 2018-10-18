@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+		<form class="form-inline" id="usuarioForm">
+			<div>
+				<h1 class="h1Class">Cuentas bancarias</h1>
+			</div>
+			<br/>
+			
+
+			<div class="table-responsive valoresCentrados">
+			<table class="table tabla" th:fragment="cuentasBancarias" id="cuentasBancarias">
+				<tr>
+					<th>#</th>
+					<th>Nombre</th>
+					<th>Número de cuenta</th>
+					<th>Sucursal</th>
+					<th>CLABE</th>
+
+				</tr>
+				<tr class="tdSencillo"  th:each="mCobro,iterationStatus : ${mCobro}" title="Click para editar registro"  th:onclick="|modificarmCobroModal('${mCobro.nombre}','${mCobro.numeroCuenta}','${mCobro.sucursal}','${mCobro.clabe}',${mCobro.idCuentasBancarias});|">							
+				<td th:text="${iterationStatus.count}" th:id="${'conta'+mCobro.idCuentasBancarias}"></td>
+					<td  th:text="${mCobro.nombre}" ></td>
+					<td  th:text="${mCobro.numeroCuenta}" ></td>		
+					<td  th:text="${mCobro.sucursal}" ></td>		
+					<td  th:text="${mCobro.clabe}" ></td>
+				</tr>
+				<tr style="cursor:pointer;" th:onclick="|nuevomCobroModal();|">
+					<td colspan=6><img  alt="Agregar" src="/imagenes/mas.png"> Agregar cuenta bancaria</td>
+				</tr>
+			</table>
+			</div>
+		</form>
+		<div id="guardarmCobroModal" class="modal" role="dialog">
+       <div class="modal-dialog">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title divRespuesta">Nueva cuenta bancaria</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="tipoMedioCobroForm">
+               		<div>
+               		
+               		<div class="valoresCentrados">
+               		<input type="hidden" id="id_user_pass" />
+               		<input placeholder="Nombre de la cuenta" type="text" style="text-align: center !important;" class="form-control" required minlength="5" id="nombre" />
+               		<br>
+               		<input placeholder="Número de cuenta" type="text" pattern="[0-9.]+" style="text-align: center !important;" class="form-control" required minlength="3" size="16" id="numCuenta" onkeypress="return valida(event)"/>
+               		<br>
+               		<input placeholder="Sucursal" type="text" style="text-align: center !important;" class="form-control" required minlength="2" id="sucursal"/>
+               		<br>
+               		<input placeholder="CLABE" type="text" pattern="[0-9.]+" style="text-align: center !important;" class="form-control" required minlength="18" size="18" id="clabe" onkeypress="return valida(event)"/>
+
+               		</div>
+               		
+               		</div>
+               		<br/>
+               		<div id="respuestaPass"></div>
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('guardarmCobroModal');">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>	
+   
+   
+   
+   <div id="modificarmCobroModal" class="modal" role="dialog">
+       <div class="modal-dialog">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title divRespuesta">Modificar cuenta bancaria</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="tipoMedioCobroFormM">
+               		<div>
+               		
+               		<div class="valoresCentrados">
+               		<input type="hidden" id="id_user_pass" />
+               		<span class="etiquetaSpan">Nombre de la cuenta</span>
+               		<input placeholder="Nombre de la cuenta" type="text" style="text-align: center !important;" class="form-control" required minlength="5" id="nombreModificar" />
+               		<br>
+               		<span class="etiquetaSpan">Número de cuenta</span>
+               		<input placeholder="Número de cuenta" type="text" style="text-align: center !important;" class="form-control" required minlength="3" id="numCuentaModificar"/>
+               		<br>
+               		<span class="etiquetaSpan">Sucursal</span>
+               		<input placeholder="Sucursal" type="text" style="text-align: center !important;" class="form-control" required minlength="2" id="sucursalModificar"/>
+               		<br>
+               		<span class="etiquetaSpan">CLABE</span>
+               		<input placeholder="CLABE" type="text" pattern="[0-9.]+" style="text-align: center !important;" class="form-control" required minlength="18" id="clabeModificar"/>
+					<input type="hidden" id="idModificar"/>
+					<input type="hidden" id="numCuentaModificarHidden"/>
+					<input type="hidden" id="sucursalModificarHidden"/>
+					<input type="hidden" id="clabeModificarHidden"/>
+					<input type="hidden" id="nombreModificarHidden"/>
+               		</div>
+               		
+               		</div>
+               		<br/>
+               		<div id="respuestaPass"></div>
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('modificarmCobroModal');">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>
+   	
+		<div class="col-sm-7 valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+</html>

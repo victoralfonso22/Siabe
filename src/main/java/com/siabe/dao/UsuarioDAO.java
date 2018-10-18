@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.siabe.modelo.Usuario;
+import com.siabe.mapa.TiempoPromedioMapa;
 import com.siabe.mapa.UsuarioMapa;
 import java.util.List;
 
@@ -36,13 +37,13 @@ public class UsuarioDAO extends JdbcDaoSupport {
         }
     }
     
-    public String insertaUsuario(String userName, String password, String nombre) {
+    public String insertaUsuario(String userName, String password, String nombre, String correo) {
     	
     	
-    	String sql = UsuarioMapa.INSERT_SQL + "(?, ?, ?,?)";
+    	String sql = UsuarioMapa.INSERT_SQL + "(?, ?, ?,?,?)";
     	
     	
-    	Object[] params = new Object[] { userName, password, 1, nombre };    	
+    	Object[] params = new Object[] { userName, password, 1, nombre,correo };    	
         try {
             this.getJdbcTemplate().update(sql, params);
             
@@ -121,6 +122,21 @@ public String actualizaPassword(String password, int id){
     } catch (EmptyResultDataAccessException e) {
     	 return "Error";
     } 
+	
+}
+
+public Usuario recuperaUP(String recuperacion){
+	
+	
+	String sql = UsuarioMapa.BASE_SQL  + " where u.usuario like '%"+recuperacion+"%' or u.correo like '%"+recuperacion+"%';";	
+	 
+   System.out.println(sql);
+   try {
+		return this.getJdbcTemplate().queryForObject(sql, new UsuarioMapa());
+
+	} catch (EmptyResultDataAccessException e) {
+		return null;
+	}
 	
 }
 

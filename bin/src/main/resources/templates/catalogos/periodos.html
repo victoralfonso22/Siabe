@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+		<form class="form-inline" id="usuarioForm">
+			<div>
+				<h1 class="h1Class">Periodos</h1>
+			</div>
+			<br/>
+			<div class="table-responsive valoresCentrados">
+			<table class="table tabla" th:fragment="periodos" id="periodos">
+				<tr>
+					<th>#</th>
+					<th>Nombre</th>
+					<th>Fecha inicio</th>
+					<th>Fecha final</th>			
+					<th>Tipo beca</th>
+					<th>Estatus</th>
+				</tr>
+					<th:block th:each="periodo,iterationStatus : ${periodos}" >
+				<tr class="tdSencillo"  title="Click para editar periodo" th:onclick="|modificaPeriodoModal('${periodo.nombre}','${periodo.fecha_inicio}','${periodo.fecha_final}','${periodo.idTipoBeca}','${periodo.estatus}','${periodo.idPeriodo}');|">							
+				<td th:text="${iterationStatus.count}" th:id="${'conta'+periodo.idPeriodo}"></td>
+				
+					<td  th:text="${periodo.nombre}" ></td>
+					<td  th:text="${periodo.fecha_inicio}" ></td>
+					<td  th:text="${periodo.fecha_final}" ></td>				
+					<td  th:text="${periodo.tBeca}" ></td>					
+					<td th:if="${periodo.estatus} == 1" th:text="Activo" ></td>
+					<td th:unless="${periodo.estatus} == 1" class="inactivo"  th:text="Inactivo" ></td>
+					
+				<!-- 	<td th:id="${'name'+periodo.idPeriodo}"><img  alt="Editar" src="/imagenes/editar.png"></td> -->
+					
+				</tr>
+				</th:block>
+				<tr style="cursor:pointer;" th:onclick="|nuevoPeriodoModal();|">
+					<td colspan=6><img  alt="Agregar" src="/imagenes/mas.png"> Agregar periodo</td>
+				</tr>
+			</table>
+			</div>
+		</form>
+		
+		<!-- Modal alta de periodo -->
+		
+		<div id="guardarPeriodoModal" class="modal" role="dialog">
+       <div class="modal-dialog">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title divRespuesta">Nuevo periodo</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="periodoForm">
+               		<div>
+               		
+               		<div class="valoresCentrados">
+               		<input type="hidden" id="id_user_pass" />
+               		<input placeholder="Nombre" type="text" style="text-align: center !important;" class="form-control" required minlength="5" id="nombre"/>
+               		<br/>
+               		<input placeholder="fecha de inicio" class="form-control" style="text-align: center !important;" type="date" required id="fecha_inicio"/>
+               		<br/>
+               		<input placeholder="fecha final" class="form-control" style="text-align: center !important;" type="date" required id="fecha_final"/>
+					<br/>					
+					<select id="tBecaSeleccionado" name="tBecaSeleccionado" required  class="form-control selectText">
+					<option disabled selected value=""> Selecciona un tipo de beca </option>
+                         <option th:each="tBeca : ${tBeca}"
+                            th:value="${tBeca.idTipoBeca}"
+                            th:text="${tBeca.nombre}"></option>
+                  </select>
+                  
+               		</div>
+               		
+               		</div>
+               		<br/>
+               		<div id="respuestaPass"></div>
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('guardarPeriodoModal');">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>		
+   
+   
+   <!-- Modal modificacion de periodo -->
+   
+   <div id="modificarPeriodoModal" class="modal" role="dialog">
+       <div class="modal-dialog">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title divRespuesta">Modificar periodo</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="periodoFormM">
+               		<div>
+               		<input type="hidden" id="idPeriodo" />
+               		<input type="hidden" id="nombreA" />
+               		<input type="hidden" id="fecha_inicioA" />
+               		<input type="hidden" id="fecha_finalA" />
+               		<input type="hidden" id="tBecaSeleccionadoA" />
+               		<input type="hidden" id="estatusA" />
+               		<div class="valoresCentrados">               		
+               		<span class="etiquetaSpan">Nombre</span>
+               		<input placeholder="Nombre" type="text" style="text-align: center !important;" class="form-control" required minlength="5" id="nombreM"/>
+               		<br/>
+               		<span class="etiquetaSpan">Fechad de inicio</span>
+               		<input placeholder="fecha de inicio" class="form-control" style="text-align: center !important;" type="date" required id="fecha_inicioM"/>
+               		<br/>
+               		<span class="etiquetaSpan">Fecha final</span>
+               		<input placeholder="fecha final" class="form-control" style="text-align: center !important;" type="date" required id="fecha_finalM"/>
+               		<br/>
+               		<span class="etiquetaSpan">Tipo de beca</span>
+               		<select id="tBecaSeleccionadoM" name="tBecaSeleccionadoM" required  class="form-control">					
+                         <option style="text-align: center !important;" th:each="tBeca : ${tBeca}"
+                            th:value="${tBeca.idTipoBeca}"
+                            th:text="${tBeca.nombre}"></option>
+                  </select>
+					<br/>
+					<span class="etiquetaSpan">Estatus</span>
+					<select id="estatusM" name="estatusM" required  class="form-control">
+					     <option style="text-align: center !important;" th:text="Activo" th:value="1"></option>
+                         <option style="text-align: center !important;" th:text="Inactivo" th:value="0"></option>
+                  </select>
+                  
+               		</div>
+               		
+               		</div>
+               		<br/>
+               		<div id="respuestaPass"></div>
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('modificarPeriodoModal');">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>	
+   
+   
+		<div class="col-sm-7 valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+</html>

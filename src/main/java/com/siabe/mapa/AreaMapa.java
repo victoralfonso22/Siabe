@@ -12,6 +12,11 @@ public class AreaMapa implements RowMapper<Areas> {
 	public static final String BASE_SQL //
 			= "Select id, nombre From areas ";
 	
+	public static final String BASE_SQL_REGION //
+	= "SELECT a . * \r\n" + 
+			"FROM areas a\r\n" + 
+			"JOIN carreras c ON c.id_area = a.id";
+	
 	/*public static final String INSERT_SQL //
 	= "INSERT INTO tipo_beca (nombre) values ";
 	

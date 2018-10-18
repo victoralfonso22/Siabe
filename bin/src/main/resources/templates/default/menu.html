@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+		<link rel="shortcut icon" type="image/x-icon" href="/imagenes/favicon.ico" /> 
+        <!-- Bootstrap CSS CDN -->
+        <link type="text/css" rel="stylesheet" href="/css/bootstrap-3.3.7/css/bootstrap.min.css" />	
+        <script src="/js/jquery-3.3.1.min.js"></script>  
+        <script src="/js/trigger.js"></script>    
+<script src="/css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Our Custom CSS -->        
+        <link type="text/css" rel="stylesheet" href="/css/menu.css" />	
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+        
+    </head>
+    <body modelAttribute="usu">
+
+		<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+		
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div id="dismiss">
+                    <i class="glyphicon glyphicon-arrow-left"></i>
+                </div>
+
+                <div class="sidebar-header">
+                    <h3>Menú Siabe</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                	
+                	<li >
+                        <a href="/inicio">Inicio</a>                       
+                    </li>
+                    
+  
+                    <li th:each="seccionPermiso : ${seccionPermiso}" >
+                        <a th:href="${'#'+seccionPermiso.idSeccion+'Submenu'}" data-toggle="collapse" aria-expanded="false" th:text="${seccionPermiso.seccion}"></a>
+                        <ul class="collapse list-unstyled" th:id="${seccionPermiso.idSeccion+'Submenu'}">
+                        
+                        	<li th:each="menuPermiso : ${menuPermiso}"><a th:if="${menuPermiso.seccion} == ${seccionPermiso.seccion}" th:text="${menuPermiso.modulo}" th:href="${menuPermiso.url}"></a>
+							</li>
+                          
+                        </ul>
+                    </li>
+                    
+                   
+  
+                    
+                    <!-- 
+                    <li >
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Becario</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li><a href="#">Home 1</a></li>
+                            <li><a href="#">Home 2</a></li>
+                            <li><a href="#">Home 3</a></li>
+                        </ul>
+                    </li>
+                    <li>                        
+                        <a href="#donanteSubmenu" data-toggle="collapse" aria-expanded="false">Donante</a>
+                        <ul class="collapse list-unstyled" id="donanteSubmenu">
+                            <li><a href="#">Page 1</a></li>
+                            <li><a href="#">Page 2</a></li>
+                            <li><a href="#">Page 3</a></li>
+                        </ul>
+                    </li>
+                    <li>                        
+                        <a href="#reportesSubmenu" data-toggle="collapse" aria-expanded="false">Reportes</a>
+                        <ul class="collapse list-unstyled" id="reportesSubmenu">
+                            <li><a href="#">Page 1</a></li>
+                            <li><a href="#">Page 2</a></li>
+                            <li><a href="#">Page 3</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#usuariosSubmenu" data-toggle="collapse" aria-expanded="false">Usuarios</a>
+                        <ul class="collapse list-unstyled" id="usuariosSubmenu">
+                            <li><a href="/usuarios/alta">Alta</a></li>
+                            <li><a href="/usuarios/suspenActivacion">Baja / Activación</a></li>
+                            <li><a href="/usuarios/password">Cambio de password</a></li>    
+                            <li><a href="/usuarios/permisos">Permisos</a></li>                            
+                        </ul>
+                    </li>
+					
+ 					-->
+
+
+
+
+                    <li>
+                        <a href="/logout">Cerrar sesión</a>
+                    </li>
+                    
+                </ul>
+
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="container-full" >
+
+                <nav class="navbar navbar-default bordeMenu">
+                    <div class="container-fluid">
+
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                                <span style="">Abrir menú</span>
+                            </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li ><span class="spanClass">Bienvenido : </span> <span class="spanClassImportante" th:utext="${nombreUsuario}"></span></li>                                
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        <div class="overlay"></div>
+
+
+        <!-- jQuery CDN -->
+        
+        <!-- Bootstrap Js CDN -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#sidebar").mCustomScrollbar({
+                    theme: "minimal"
+                });
+
+                $('#dismiss, .overlay').on('click', function () {
+                    $('#sidebar').removeClass('active');
+                    $('.overlay').fadeOut();
+                });
+
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').addClass('active');
+                    $('.overlay').fadeIn();
+                    $('.collapse.in').toggleClass('in');
+                    $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                });
+                
+
+            });
+        </script>
+    </body>
+</html>

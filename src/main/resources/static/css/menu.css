@@ -1,7 +1,7 @@
 /*
     DEMO STYLE
 */
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import "https://fonts.googleapis.com/css?family=Poppins";
 
 
 body {
@@ -335,7 +335,8 @@ border: 16px solid #f3f3f3;
 	text-align: center !important;
 	font-size: 12px !important;
 	color: #ffffff !important;
-	background: #337AB7;
+	/*background: #337AB7;*/
+	background: #04447c;
 	cursor : pointer;
 	width: 100% !important;
 }
@@ -365,6 +366,28 @@ th{
 	font-weight: normal;
 }
 
+::-webkit-input-placeholder {
+   font-style: italic;
+   color:#00993D;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #00993D !important;
+    opacity: 1; /* Firefox */
+}
+:-moz-placeholder {
+   font-style: italic;
+   color: #00993D !important;  
+}
+::-moz-placeholder {
+   font-style: italic;
+   color: #00993D !important;
+}
+:-ms-input-placeholder {  
+   font-style: italic;
+   color: #00993D !important;
+}
+
 /*tr:not(:first-child):hover td{
     background: #5BC0DE !important;
     cursor: pointer !important;
@@ -379,7 +402,13 @@ th{
 }
 
 .selectText{
-	font-size:12px;	
+	font-size:13px;	
+}
+
+.selectTextFormulario{
+	font-size:13px;
+	width:100% !important;	
+	text-align:center !important;
 }
 
 .etiquetaSpan{
@@ -388,5 +417,96 @@ th{
 	font-weight: bold;
 }
 
+.widthAutocompletar{
+	width:50% !important;
+	text-align : center !important;
+	font-weight: bold !important;
+	color : #00993D !important;
+	font-size:13px !important; 	
+}
+
 
 .inactivo{background: #D9534F; color:#fff;}
+
+.divLogosReportes{
+	cursor: pointer;
+	text-align:left;
+	display:none;
+	position: absolute;
+}
+
+.divLogosAgregar{	
+	clear: both;
+	text-align:right;
+	display:none;
+	float:right;
+	position: inherit;
+}
+
+.divLogosAgregarGeneral{	
+	text-align:right;	
+	float:right;
+	position: inherit;
+}
+
+.labelAgregar{
+	cursor: pointer;
+}
+
+.fCVariable{
+	width: 100% !important;
+	position: initial !important;
+	font-family: inherit !important;
+}
+
+.divisionForm{
+	    border-bottom: 2px solid rgb(51, 122, 183);
+	    padding:10px;
+}
+
+.div50{
+	width: 50% !important;
+}
+
+.divReportes{	
+	border: 2px solid #00993D;
+	color :black !important;
+	border-radius: 18px;
+	padding: 10px;
+	margin: 0 .5em!important;
+}
+
+.divReportes label{
+	color :#00993D !important;
+	font-size: initial;
+	font-weight: normal;
+}
+
+.divReportes:hover {
+/*	background: #f2f9ff; */
+	border: 2px solid #337AB7;
+	color:white !important;
+	box-shadow: 3px 3px 3px 0px rgba(51,122,183,1);    
+}
+
+.divReportes:hover label{
+	color :#337AB7 !important;  
+}
+
+.divReportes:hover .image{
+	cursor:pointer;
+	/*opacity: 0.8;*/
+}
+
+.lbl{
+	cursor:pointer;
+	/*opacity: 0.8;*/
+}
+
+.tablaModal td {
+	text-align: center !important;
+	font-size: 11px;
+	padding:6px !important;
+	color: #00993D;
+	width: auto;
+}

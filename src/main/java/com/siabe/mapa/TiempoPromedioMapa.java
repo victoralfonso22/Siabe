@@ -13,13 +13,14 @@ public class TiempoPromedioMapa implements RowMapper<TiempoPromedio> {
 			= "SELECT * FROM tiempos_promedio ";
 	
 	public static final String INSERT_SQL_CARRERA //
-	= "INSERT INTO carreras (id_facultad, id_region, nombre, nivel, modalidad, plan, periodo_promedio) values ";
+	
+	= "INSERT INTO carreras (id_facultad,id_area, id_region, nombre, nivel, modalidad, plan, periodo_promedio, id_periodo) values ";
 	
 	public static final String UPDATE_SQL_CARRERA //
 	= "update carreras set ";
 	
 	public static final String INSERT_SQL_FACULTAD //
-	= "INSERT INTO facultades (nombre, id_area) values ";
+	= "INSERT INTO facultades (nombre) values ";
 	
 	public static final String UPDATE_SQL_FACULTAD //
 	= "update facultades set ";
@@ -45,8 +46,12 @@ public class TiempoPromedioMapa implements RowMapper<TiempoPromedio> {
 		String area = rs.getString("area");
 		int idRegion = rs.getInt("id_region");
 		String region = rs.getString("region");
-			
-		return new TiempoPromedio(idCarrera, carrera,nivel,modalidad,plan,periodoPromedio,idFacultad, facultad, idArea,area,idRegion,region);
+		int idPeriodo = rs.getInt("id_periodo");
+		String periodo = rs.getString("periodo");		
+		int estatus = rs.getInt("estatus");
+		String estatusDefinicion = rs.getString("estatusDef");
+		
+		return new TiempoPromedio(idCarrera, carrera,nivel,modalidad,plan,periodoPromedio,idFacultad, facultad, idArea,area,idRegion,region,idPeriodo,periodo,estatus,estatusDefinicion);
 	}
 
 }

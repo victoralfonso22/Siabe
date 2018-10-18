@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+		<form class="form-inline" id="usuarioForm">
+			<div>
+				<h1 class="h1Class">Tiempos promedio</h1>
+			</div>
+			<br/>
+			
+
+			<div class="table-responsive valoresCentrados">
+			
+			<select id="peridoTSeleccionado" required  class="form-control selectText" >
+					<option disabled selected value=""> Selecciona un periodo</option>
+                         <option th:each="periodo : ${periodos}"
+                            th:value="${periodo.idPeriodo}"
+                            th:text="${periodo.nombre}"></option>
+                  </select>
+			
+			<br/>
+			<br/>
+
+			
+			<div id="regionesTiempoPeriodo">
+			</div>
+			<br/>
+			<br/>
+
+			
+			<div id="tablaTiempoPeriodo">
+			</div>
+			<br/>
+			</div>
+		</form>
+		<div id="nuevoTiempoPeriodoModal" class="modal" role="dialog">
+       <div class="modal-dialog">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title divRespuesta">Nuevo tiempo periodo</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="timepoPeriodoForm">
+
+               		
+               		<div class="valoresCentrados">
+               		<input type="hidden" id="idRegionN" />
+               		<input placeholder="Carrera" type="text" style="text-align: center !important;" class="form-control" required minlength="5" id="carrera" />
+               		<br>
+               		<input placeholder="Nivel" type="text" style="text-align: center !important;" class="form-control" required minlength="3"  id="nivel" />
+               		<br>
+               		<input placeholder="Modalidad" type="text" style="text-align: center !important;" class="form-control" required minlength="5" id="modalidad"/>
+               		<br>
+               		<input placeholder="Plan" type="text" pattern="[0-9.]+" style="text-align: center !important;" class="form-control" required minlength="4"  id="plan" onkeypress="return valida(event)"/>
+					<br>
+               		<input placeholder="Periodo promedio" type="text" pattern="[0-9.]+" style="text-align: center !important;" class="form-control" required minlength="1"  id="pPromedio" onkeypress="return valida(event)"/>
+               		
+               		<br>
+               		<select id="idArea" required  class="form-control selectText" >
+					<option disabled selected value=""> Selecciona una area</option>
+                         <option th:each="areas : ${areas}"
+                            th:value="${areas.idArea}"
+                            th:text="${areas.nombre}"></option>
+                  </select>
+                  
+                  <br>
+               		<select id="idFac" required  class="form-control selectText" >
+					<option disabled selected value=""> Selecciona una facultad</option>
+                         <option th:each="facultades : ${facultades}"
+                            th:value="${facultades.idFacultad}"
+                            th:text="${facultades.nombre}"></option>
+                  </select>
+               		
+               		</div>
+               		<br/>
+               		<div id="respuestaPass"></div>
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('nuevoTiempoPeriodoModal');">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>	
+   
+   
+   
+   <div id="modificartPromedio" class="modal" role="dialog" style="overflow-y: auto;">
+       <div class="modal-dialog" role="document">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title divRespuesta">Modificar tiempo promedio</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="tPromedioFormM">
+               		<div class="valoresCentrados">
+               		<span class="etiquetaSpan">Carrera</span>
+               		<input placeholder="Carrera" type="text" style="text-align: center !important;" class="form-control" required minlength="5" id="carreraM" />
+               		<br>
+               		<span class="etiquetaSpan">Nivel</span>
+               		<input placeholder="Nivel" type="text" style="text-align: center !important;" class="form-control" required minlength="3"  id="nivelM" />
+               		<br>
+               		<span class="etiquetaSpan">Modalidad</span>
+               		<input placeholder="Modalidad" type="text" style="text-align: center !important;" class="form-control" required minlength="5" id="modalidadM"/>
+               		<br>
+               		<span class="etiquetaSpan">Plan</span>
+               		<input placeholder="Plan" type="text" pattern="[0-9.]+" style="text-align: center !important;" class="form-control" required minlength="4"  id="planM" onkeypress="return valida(event)"/>
+					<br>
+					<span class="etiquetaSpan">Periodo promedio</span>
+               		<input placeholder="Periodo promedio" type="text" pattern="[0-9.]+" style="text-align: center !important;" class="form-control" required minlength="1"  id="pPromedioM" onkeypress="return valida(event)"/>
+               		
+               		
+               		<br>
+               		<span class="etiquetaSpan">Región</span>
+               		<select id="idRegionM" required  class="form-control selectText" >
+					<option disabled selected value=""> Selecciona una región</option>
+                         <option th:each="regiones : ${regiones}"
+                            th:value="${regiones.idRegion}"
+                            th:text="${regiones.nombre}"></option>
+                  </select>
+               		<br>
+               		<span class="etiquetaSpan">Area</span>
+               		<select id="idAreaM" required  class="form-control selectText" >
+					<option disabled selected value=""> Selecciona una area</option>
+                         <option th:each="areas : ${areas}"
+                            th:value="${areas.idArea}"
+                            th:text="${areas.nombre}"></option>
+                  </select>
+                  
+                  <br>
+                  <span class="etiquetaSpan">Facultad</span>
+               		<select id="idFacM" required  class="form-control selectText" >
+					<option disabled selected value=""> Selecciona una facultad</option>
+                         <option th:each="facultades : ${facultades}"
+                            th:value="${facultades.idFacultad}"
+                            th:text="${facultades.nombre}"></option>
+                  </select>
+               		
+               		<input type="hidden" id="idRegionA" />
+               		<input type="hidden" id="carreraA" />
+               		<input type="hidden" id="nivelA" />
+               		<input type="hidden" id="modalidadA" />
+               		<input type="hidden" id="planA" />
+               		<input type="hidden" id="pPromedioA" />
+               		<input type="hidden" id="idAreaA" />
+               		<input type="hidden" id="idFacA" />
+               		<input type="hidden" id="idCarreraA" />
+               		</div>
+               		<br/>
+               		<br/>
+               		<div id="respuestaPass"></div>
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('modificartPromedio');">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>
+   	
+		<div class="col-sm-7 valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+</html>

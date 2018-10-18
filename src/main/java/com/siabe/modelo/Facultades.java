@@ -4,16 +4,16 @@ public class Facultades {
 	
 	private int idFacultad;
     private String nombre;
-    private int idArea;
+  
     
     public Facultades() {
     	
     }
  
-    public Facultades(int idFacultad, String nombre, int idArea) {
+    public Facultades(int idFacultad, String nombre) {
         this.idFacultad = idFacultad;
         this.nombre = nombre;
-        this.idArea = idArea;
+        
     }
 
 	public int getIdFacultad() {
@@ -31,14 +31,5 @@ public class Facultades {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public int getIdArea() {
-		return idArea;
-	}
-
-	public void setIdArea(int idArea) {
-		this.idArea = idArea;
-	}
-
 
 }

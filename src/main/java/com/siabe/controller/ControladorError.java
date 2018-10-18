@@ -1,4 +1,4 @@
-package com.siabe.controller;
+/*package com.siabe.controller;
 
 import java.io.IOException;
 
@@ -60,4 +60,4 @@ public class ControladorError {
         return (Integer) httpRequest
           .getAttribute("javax.servlet.error.status_code");
     }
-}
+}*/

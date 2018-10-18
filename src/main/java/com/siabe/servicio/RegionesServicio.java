@@ -41,4 +41,8 @@ public class RegionesServicio {
 	public String regionesActualizaDatos(int idRegion, String nombre, String abreviatura, int idPeriodo, int estatus) {
 		return regionesDAO.actualizaDatos(idRegion, nombre, abreviatura, idPeriodo, estatus);
 	}
+	
+	public List<Regiones> autocompletarRegiones(int idPeriodo, String termino){
+		return regionesDAO.autocompletarRegion(idPeriodo, termino);
+	}
 }

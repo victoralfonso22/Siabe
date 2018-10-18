@@ -14,12 +14,18 @@ public class TiempoPromedio {
     private String area;
     private int idRegion;
     private String region;
+    private int idPeriodo;
+    private String periodo;
+    private int estatus;
+    private String estatusDefinicion;
+    
     
     public TiempoPromedio() {
     	
     }
  
-    public TiempoPromedio(int idCarrera, String carrera, String nivel, String modalidad, int plan, int periodoPromedio, int idFacultad, String facultad, int idArea, String area, int idRegion, String region) {
+    public TiempoPromedio(int idCarrera, String carrera, String nivel, String modalidad, int plan, int periodoPromedio, int idFacultad, 
+    		String facultad, int idArea, String area, int idRegion, String region, int idPeriodo, String periodo, int estatus, String estatusDefinicion) {
         this.idCarrera = idCarrera;
         this.carrera = carrera;
         this.nivel = nivel;
@@ -32,6 +38,10 @@ public class TiempoPromedio {
         this.area = area;
         this.idRegion = idRegion;
         this.region = region;
+        this.idPeriodo = idPeriodo;
+        this.periodo = periodo;
+        this.estatus  = estatus;
+        this.estatusDefinicion = estatusDefinicion;
          }
 
 	public int getIdCarrera() {
@@ -128,6 +138,38 @@ public class TiempoPromedio {
 
 	public void setRegion(String region) {
 		this.region = region;
+	}
+
+	public int getIdPeriodo() {
+		return idPeriodo;
+	}
+
+	public void setIdPeriodo(int idPeriodo) {
+		this.idPeriodo = idPeriodo;
+	}
+
+	public String getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(String periodo) {
+		this.periodo = periodo;
+	}
+
+	public int getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(int estatus) {
+		this.estatus = estatus;
+	}
+
+	public String getEstatusDefinicion() {
+		return estatusDefinicion;
+	}
+
+	public void setEstatusDefinicion(String estatusDefinicion) {
+		this.estatusDefinicion = estatusDefinicion;
 	}
  
 }

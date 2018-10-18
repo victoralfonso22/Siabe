@@ -10,7 +10,12 @@ import org.springframework.jdbc.core.RowMapper;
 public class FacultadesMapa implements RowMapper<Facultades> {
 
 	public static final String BASE_SQL //
-			= "Select id, nombre, id_area From facultades ";
+			= "Select id, nombre From facultades ";
+	
+	
+	public static final String BASE_SQL_REGION //
+	= "SELECT f.* FROM facultades f\r\n" + 
+			"join carreras c on c.id_facultad = f.id\r\n";
 	
 	/*public static final String INSERT_SQL //
 	= "INSERT INTO tipo_beca (nombre) values ";
@@ -23,9 +28,9 @@ public class FacultadesMapa implements RowMapper<Facultades> {
 
 		int idFacultades = rs.getInt("id");
 		String nombre = rs.getString("nombre");
-		int idArea = rs.getInt("id_area");
 		
-		return new Facultades(idFacultades, nombre, idArea);
+		
+		return new Facultades(idFacultades, nombre);
 	}
 
 }

@@ -79,11 +79,11 @@ public class Controlador {
         return "salir";
     }*/
     
-    /*@RequestMapping(value = "/error", method = RequestMethod.GET)
+    @RequestMapping(value = "error", method = RequestMethod.GET)
     public String errorPage(Model model) {
         model.addAttribute("title", "Error");
-        return "errores/404";
-    }*/
+        return "/error/500";
+    }
  
     
     @RequestMapping(value = "/sesionExpirada", method = RequestMethod.GET)
