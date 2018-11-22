@@ -65,13 +65,13 @@ public class BeneficiariosServicio {
 			String breveHistoria, int integrantesFamiliares, double ingresosFamiliares, String calleVivFam, String numEVivFam, String numIVivFam, String colVivFam, String locVivFam, String munVivFam, String edoVivFam,
 			int cpVivFam, String enlaceMaps, int mismoVivFam, String calleEst, String numEEst, String numIEst, String colEst, String locEst, String munEst, String edoEst, String cpEst, String celular, String telDomicilio,
 			String tipoTelRef, String numTelRef, String parentescoRef, String observacionesRef, String email, String facebook, String facebook2, String facebook3, int formaPago, String banco, String cuentaDeposito, 
-			String tarjetaDeposito, String claveReferenciado, String vigenciaReferenciado, double montoBeca, String finalidadApoyo, String observaciones, String idBenefactor, int idBeneficiario, int idUsuario) {
+			String tarjetaDeposito, String claveReferenciado, String vigenciaReferenciado, double montoBeca, String finalidadApoyo, String observaciones, int idBeneficiario, int idUsuario) {
 		
 		return beneficiariosDAO.actualizaDatosBecas(idPeriodo, matricula, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, tipoBecario, adscripcion, idRegion, idCarrera,
 				periodoActual, promedioGeneral, edad, genero, lenguaIndigena, discapacidad, estadoCivil, lugarNacimiento, fechaNacimiento, breveHistoria, integrantesFamiliares, ingresosFamiliares, 
 				calleVivFam, numEVivFam, numIVivFam, colVivFam, locVivFam, munVivFam, edoVivFam, cpVivFam, enlaceMaps, mismoVivFam, calleEst, numEEst, numIEst, colEst, locEst, munEst, edoEst, cpEst, 
 				celular, telDomicilio, tipoTelRef, numTelRef, parentescoRef, observacionesRef, email, facebook, facebook2, facebook3, formaPago, banco, cuentaDeposito, tarjetaDeposito, claveReferenciado, 
-				vigenciaReferenciado, montoBeca, finalidadApoyo, observaciones, idBenefactor, idBeneficiario, idUsuario);
+				vigenciaReferenciado, montoBeca, finalidadApoyo, observaciones, idBeneficiario, idUsuario);
 	}
 	
 	public String actualizaDatosDeportivas(int idPeriodo, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String tipoBecario, String adscripcion, int idRegion, 
@@ -95,6 +95,14 @@ public class BeneficiariosServicio {
 	
 	public List<Beneficiarios> autocompletarBeneficiarios(String termino){
 		return beneficiariosDAO.autocompletarBeneficiarios(termino);
+	}
+	
+	public List<Beneficiarios> autocompletarBeneficiarios(String termino, int idPeriodo){
+		return beneficiariosDAO.autocompletarBeneficiarios(termino,idPeriodo);
+	}
+	
+	public List<Beneficiarios> autocompletarBeneficiariosNoDepor(String termino, int idPeriodo){
+		return beneficiariosDAO.autocompletarBeneficiariosNoDepor(termino,idPeriodo);
 	}
 	
 	public List<Beneficiarios> reporteGeneral(int idTipoBeca, int idPeriodo, int idRegion){

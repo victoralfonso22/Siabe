@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.siabe.modelo.Usuario;
 import com.siabe.servicio.PermisosMenuServicio;
 import com.siabe.servicio.UsuarioServicio;
-import com.siabe.servicio.TipoBecaServicio;
+import com.siabe.servicio.CampanaServicio;
 import com.siabe.servicio.PeriodoServicio;
 import com.siabe.utils.UtilidadesWeb;
 
@@ -30,7 +30,7 @@ public class ControladorIngresos {
 	private UtilidadesWeb utilidadesWeb;
 	
 	@Autowired
-	private TipoBecaServicio tipoBecaServicio;
+	private CampanaServicio campanaServicio;
 	
 	@Autowired
 	private PeriodoServicio periodoServicio;
@@ -56,16 +56,28 @@ public class ControladorIngresos {
 		return "/ingresos/donativos";
 	}
 	
-	/*@RequestMapping("/ingresos/actualizaPeriodos")
-	public String actualizaSelPeriodos(Model model, Principal principal,@RequestParam int idTipoBeca) {
-		model.addAttribute("periodos", periodoServicio.todosPeridoIdBeca(idTipoBeca));
+	@RequestMapping("/ingresos/actualizaCampanias")
+	public String actualizaCampaniasSel(Model model, Principal principal,@RequestParam int idRegion) {
+		
+		model.addAttribute("campanias", campanaServicio.todosCampanaRegion(idRegion));
 		
 		if(principal == null) {
 		return "/login";	
 		}else {
-		return "/ingresos/ :: #idPeriodo";
+		return "/ingresos/donativos :: #idCampaniaDon";
 		}
-	}*/
+	}
+	
+	@RequestMapping("/ingresos/actualizaPeriodosDon")
+	public String actualizaSelPeriodos(Model model, Principal principal) {
+		model.addAttribute("periodos", periodoServicio.todosPerido());
+		
+		if(principal == null) {
+		return "/login";	
+		}else {
+		return "/ingresos/donativos :: #idPeriodoDon";
+		}
+	}
 	
 	/*@RequestMapping("/egresos/actualizaRegion")
 	public String actualizaSelRegiones(Model model, Principal principal,@RequestParam int idPeriodo) {

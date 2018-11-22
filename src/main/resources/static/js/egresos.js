@@ -43,6 +43,7 @@ $("#becaSeleccionada").change(function(event) {
 	$("input.deshab").attr("placeholder","");
 	
 	
+	
 	$('input:radio[name=hermanosEscuelas]')[0].checked = true;
 	checkIdsHED('hesD');
 	
@@ -54,9 +55,15 @@ $("#becaSeleccionada").change(function(event) {
 	}
 	
 	if(tipoBeca == 1 || tipoBeca == 2 || tipoBeca == 3){
+		
 		$("#datosBecas").show();
 		$("#datosBecasDeportivas").hide();
-		
+		$("#benefactor").prop('disabled',true);
+		if( $('input:radio[name=altaCambio]:checked').val() ==1){
+		$("#divBenficiarioAsig").show();
+		}else{
+			$("#divBenficiarioAsig").hide();
+		}
 		$('input.becasRequired').prop('required', true);
 		$('select.becasRequired').prop('required', true);
 		$('textarea.becasRequired').prop('required', true);
@@ -138,7 +145,8 @@ function cambiaPeriodo(id,idRegion){
 
 	if($("#"+id).val() > 0){
 	$("#"+idRegion).prop('disabled',false);
-	$("#"+idRegion).attr("placeholder","Escribe y selecciona región");
+	$("#"+idRegion).attr("placeholder","Escribe y selecciona una opción");
+	$("#benefactor").prop('disabled',false);
 	}
 
 }
@@ -186,7 +194,7 @@ function autocompletarRegion(idRegion,idRegionHidden,valRegionHidden,idArea,idFa
 		//	alert("valor "+$("#valRegionHidden").val()+" id"+$("#idRegionHidden").val());
 			$("#"+idArea).val('');
 			$("#"+idArea).prop('disabled',false);
-			$("#"+idArea).attr("placeholder","Escribe y selecciona área");
+			$("#"+idArea).attr("placeholder","Escribe y selecciona una opción");
 			$("#"+idArea).focus();
 			$("#idAreaHidden").val('');
 			$("#valAreaHidden").val('');			
@@ -309,7 +317,7 @@ function autocompletarArea(idRegionHidden,idArea,idAreaHidden,valAreaHidden,idFa
 			//alert("valor "+$("#valAreaHidden").val()+" id"+$("#idAreaHidden").val());
 			$("#"+idFac).val('');
 			$("#"+idFac).prop('disabled',false);
-			$("#"+idFac).attr("placeholder","Escribe y selecciona facultad");
+			$("#"+idFac).attr("placeholder","Escribe y selecciona una opción");
 			$("#"+idFac).focus();
 			$("#idFacHidden").val('');
 			$("#valFacHidden").val('');	
@@ -376,7 +384,7 @@ function autocompletarFac(idRegionHidden,idAreaHidden,idFac,idFacHidden,valFacHi
 			//alert("valor "+$("#valAreaHidden").val()+" id"+$("#idAreaHidden").val());
 			$("#"+nivel).val('');
 			$("#"+nivel).prop('disabled',false);
-			$("#"+nivel).attr("placeholder","Escribe y selecciona nivel");
+			$("#"+nivel).attr("placeholder","Escribe y selecciona una opción");
 			$("#"+nivel).focus();
 			$("#valNivelHidden").val('');	
 			$("#"+modalidad).prop('disabled',true);
@@ -437,7 +445,7 @@ function autocompletarNivel(idRegionHidden,idAreaHidden,idFacHidden,nivel,valNiv
 			$("#"+valNivelHidden).val(this.value);	
 			$("#"+modalidad).val('');
 			$("#"+modalidad).prop('disabled',false);
-			$("#"+modalidad).attr("placeholder","Escribe y selecciona modalidad");
+			$("#"+modalidad).attr("placeholder","Escribe y selecciona una opción");
 			$("#"+modalidad).focus();
 			$("#valModalidadHidden").val('');
 			$("#"+idCarrera).prop('disabled',true);
@@ -494,7 +502,7 @@ function autocompletarModalidad(idRegionHidden,idAreaHidden,idFacHidden,valNivel
 			$("#"+valModalidadHidden).val(this.value);			
 			$("#"+idCarrera).val('');
 			$("#"+idCarrera).prop('disabled',false);
-			$("#"+idCarrera).attr("placeholder","Escribe y selecciona programa educativo");
+			$("#"+idCarrera).attr("placeholder","Escribe y selecciona una opción");
 			$("#"+idCarrera).focus();
 			$("#idCarreraHidden").val('');
 			$("#valCarreraHidden").val('');
@@ -680,6 +688,12 @@ $("#beneficiarioForm").submit(function(event) {
         
         if(tBeca== 1 || tBeca == 2 || tBeca == 3){
         	
+       // 	if($("#idBenefactorHidden").val() == ''){
+       // 		idBenefactorAsignado = null;
+      //  	}else{
+        		idBenefactorAsignado = $("#idBenefactorHidden").val();
+       /// 	}
+        	
         	_url= "ajaxAgregarBeneficiarioBeca";
         	
         	parametros = { "idPeriodo" : $("#idPeriodo").val(),  "matricula" : $("#matricula").val(),  "nombre" : $("#nombres").val(),  "apellidoPaterno" : $("#aPaterno").val(),  
@@ -694,7 +708,7 @@ $("#beneficiarioForm").submit(function(event) {
         			 "tipoTelRef" :  $("#tTelRef").val(),  "numTelRef" : $("#tNumRef").val(), "parentescoRef" : $("#tParenRef").val(),  "observacionesRef" : $("#tObserRef").val(),  "email" : $("#correo").val(),
         			 "facebook" : $("#face1").val(),  "facebook2" : $("#face2").val(),  "facebook3" : $("#face3").val(),  "formaPago" : $('input:radio[name=formaPago]:checked').val(),  "banco" : $("#banco").val(), 
         			 "cuentaDeposito" : $("#numCuenta").val(), "tarjetaDeposito" : $("#numTarjeta").val(),  "claveReferenciado" : $("#clavePago").val(), "vigenciaReferenciado" : $("#vigencia").val(), 
-        			 "montoBeca" : $("#montoApoyo").val(), "finalidadApoyo" : $("#finalidadApoyo").val(),  "observaciones" : $("#observaciones").val(), "idBenefactor" : $("#benefactor").val(), "idUsuario" : $("#idUsuario").val()}
+        			 "montoBeca" : $("#montoApoyo").val(), "finalidadApoyo" : $("#finalidadApoyo").val(),  "observaciones" : $("#observaciones").val(), "idBenefactor" : idBenefactorAsignado, "idUsuario" : $("#idUsuario").val()}
         	
         	
         	
@@ -752,7 +766,7 @@ $("#beneficiarioForm").submit(function(event) {
 		        			$("#correoH").val() != $("#correo").val() || $("#face1H").val() != $("#face1").val() || $("#face2H").val() != $("#face2").val() || $("#face3H").val() != $("#face3").val() ||
 		        			$("#formaPagoH").val() != $('input:radio[name=formaPago]:checked').val() || $("#bancoH").val() != $("#banco").val() || $("#numCuentaH").val() != $("#numCuenta").val() || $("#numTarjetaH").val() != $("#numTarjeta").val() ||
 		        			$("#clavePagoH").val() != $("#clavePago").val() || $("#vigenciaH").val() != $("#vigencia").val() || $("#montoApoyoH").val() != $("#montoApoyo").val() || $("#finalidadApoyoH").val() != $("#finalidadApoyo").val() ||
-		        			$("#observacionesH").val() != $("#observaciones").val() || $("#benefactorH").val() != $("#benefactor").val()){
+		        			$("#observacionesH").val() != $("#observaciones").val() ){
 		        		
 		        	
 		        	
@@ -770,7 +784,7 @@ $("#beneficiarioForm").submit(function(event) {
 		        			 "tipoTelRef" :  $("#tTelRef").val(),  "numTelRef" : $("#tNumRef").val(), "parentescoRef" : $("#tParenRef").val(),  "observacionesRef" : $("#tObserRef").val(),  "email" : $("#correo").val(),
 		        			 "facebook" : $("#face1").val(),  "facebook2" : $("#face2").val(),  "facebook3" : $("#face3").val(),  "formaPago" : $('input:radio[name=formaPago]:checked').val(),  "banco" : $("#banco").val(), 
 		        			 "cuentaDeposito" : $("#numCuenta").val(), "tarjetaDeposito" : $("#numTarjeta").val(),  "claveReferenciado" : $("#clavePago").val(), "vigenciaReferenciado" : $("#vigencia").val(), 
-		        			 "montoBeca" : $("#montoApoyo").val(), "finalidadApoyo" : $("#finalidadApoyo").val(),  "observaciones" : $("#observaciones").val(), "idBenefactor" : $("#benefactor").val(), "idUsuario" : $("#idUsuario").val(), 
+		        			 "montoBeca" : $("#montoApoyo").val(), "finalidadApoyo" : $("#finalidadApoyo").val(),  "observaciones" : $("#observaciones").val(), "idUsuario" : $("#idUsuario").val(), 
 		        			 "idBeneficiario" : $("#idBeneficiario").val()}
 		        
 		        	}else{
@@ -848,6 +862,8 @@ $("#beneficiarioForm").submit(function(event) {
 				window.location = "/login?session=false";
 			    }
 			    
+			    if(result != "Duplicado"){
+			    
 				$("#postResultDiv").show();
 				if(result == "Done"){
 					$("#postResultDiv").html(mensaje);
@@ -859,9 +875,13 @@ $("#beneficiarioForm").submit(function(event) {
 				console.log(result);
 				
 				$("#becaSeleccionada").val(tBeca).trigger('change');
+			    }else{
+			    	$("#postResultDiv").delay(1000).hide(100);
+			    	alert("La matrícula ya se encuentra registrada en este periodo");
+			    }
 			},
 			error : function(jqXHR,e) {
-			    	//alert(jqXHR.responseText);
+			    //	alert(jqXHR.responseText);
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
@@ -990,7 +1010,7 @@ function autocompletarBeneficiarioMod() {
 						     montoBeca : item.montoBeca,
 						     finalidadApoyo : item.finalidadApoyo,
 						     observaciones : item.observaciones,
-						     idBenefactor : item.idBenefactor,
+						 //    idBenefactor : item.idBenefactor,
 						     idBeneficiario : item.idBeneficiario
 							};
 					}));
@@ -1143,7 +1163,7 @@ function autocompletarBeneficiarioMod() {
 				
 				$("#observaciones").val(ui.item.observaciones);
 			     
-				$("#benefactor").val(ui.item.idBenefactor);
+			//	$("#benefactor").val(ui.item.idBenefactor);
 				
 				
 			}else if(ui.item.tBeca == 4){
@@ -1352,7 +1372,7 @@ function autocompletarBeneficiarioMod() {
 			$("#montoApoyoH").val(ui.item.montoBeca);		    
 			$("#finalidadApoyoH").val(ui.item.finalidadApoyo);			
 			$("#observacionesH").val(ui.item.observaciones);		     
-			$("#benefactorH").val(ui.item.idBenefactor);
+		//	$("#benefactorH").val(ui.item.idBenefactor);
 			$("#idBeneficiario").val(ui.item.idBeneficiario);
 		//	$("#"+idRegionHidden).val(ui.item.value);
 			return false;
@@ -1369,12 +1389,66 @@ function checkIdAccion(id){
 	$("#becaSeleccionada").val('');
 	$("#datosBecasDeportivas").hide();
 	$("#datosBecas").hide();
+	$("#btn-guardar").hide();
 	if($("#"+id).val() == '1'){
 		$("#becaAlta").show();
 		$("#completeCambio").hide();				
 	}else if($("#"+id).val() == '0'){
+		$("#divBenficiarioAsig").hide();
 		$("#becaAlta").hide();
 		$("#completeCambio").show();
 	}
+}
+
+function autocompleteDonanteBecas() {
+
+	$("#benefactor").autocomplete({
+		source : function(request, response) {
+			$.ajax({
+				url : "/ingresos/autocompleteBenefactorNoPatrocinador",
+				dataType : "json",
+				data : {
+					term : request.term,
+					idPeriodo : $("#idPeriodo").val()
+				},
+				success : function(data) {
+
+					response($.map(data, function(item) {
+						return {
+							label: item.nombreCompletoDon,
+							
+							value : item.idDonativo							
+						};
+					}));
+
+				},
+				error : function(jqXHR,textStatus) {
+					alert(jqXHR.responseText);
+					if(jqXHR.status==200 && textStatus== "parsererror"){
+						window.location = "/login?session=false";
+					}
+				}
+			});
+		},
+		focus : function() {
+			 
+			// prevent value inserted on focus
+			return false;
+		},
+		select : function(event, ui) {
+			this.value = ui.item.label;		
+			if(ui.item.value=='Sin donante'){
+			$("#idBenefactorHidden").val(0);
+			}else{
+				$("#idBenefactorHidden").val(ui.item.value);
+			}
+			$("#valBenefactorHidden").val(this.value);
+		
+			return false;
+		},
+		minLength: 0
+		
+
+	});
 }
 

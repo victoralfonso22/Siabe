@@ -32,4 +32,8 @@ public class QuincenasServicio {
 	public String actualizarQuincenas(int idQuincena,  int numeroQuincena, String nombre, int anio) {
 		return quincenasDAO.actualizaQuincena(idQuincena, numeroQuincena, nombre, anio);
 	}
+	
+	public List<Quincenas> autocompleteQuincenas(String termino) {
+		return quincenasDAO.autocompletarQuincena(termino);
+	}
 }

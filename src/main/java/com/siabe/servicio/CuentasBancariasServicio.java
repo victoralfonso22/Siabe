@@ -30,4 +30,8 @@ public class CuentasBancariasServicio {
 	public String actualizarCuentasBancarias(int idCuentaBancaria, String nombre ,String numeroTarjeta, String sucursal, String clabe) {
 		return cuentasBancariasDAO.actualizaCuentaBancaria(idCuentaBancaria, nombre,numeroTarjeta, sucursal, clabe);
 	}
+	
+	public List<CuentasBancarias> autocompleteCuentasBancarias(String termino) {
+		return cuentasBancariasDAO.autocompletarCuentaBancaria(termino);
+	}
 }

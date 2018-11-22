@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -26,8 +27,9 @@ import com.siabe.modelo.RelacionRegion;
 import com.siabe.modelo.TiempoPromedio;
 import com.siabe.modelo.Areas;
 import com.siabe.modelo.Campana;
+import com.siabe.modelo.CuentasBancarias;
 import com.siabe.modelo.Facultades;
-
+import com.siabe.modelo.Quincenas;
 import com.siabe.servicio.UsuarioServicio;
 import com.siabe.servicio.PeriodoServicio;
 import com.siabe.servicio.TipoBecaServicio;
@@ -809,6 +811,38 @@ public  @ResponseBody Map<String,TiempoPromedio> postAjaxAutocompleteCarrera(@Re
 	
 	for(int b = 0; b < carrera.size() ;b++) {
 		response.put(carrera.get(b).getCarrera(), carrera.get(b));
+	}
+	
+	return response;
+
+}
+
+@RequestMapping(value = "/catalogos/autocompleteQuincena", method = RequestMethod.GET)
+
+public  @ResponseBody Map<String,Quincenas> postAjaxAutocompleteQuincena(@RequestParam String term) {		
+
+	List<Quincenas> quincena = quincenasServicio.autocompleteQuincenas(term); 
+	
+	Map<String,Quincenas> response = new LinkedHashMap<String,Quincenas>();
+	
+	for(int b = 0; b < quincena.size() ;b++) {
+		response.put(quincena.get(b).getNombre(), quincena.get(b));
+	}
+	
+	return response;
+
+}
+
+@RequestMapping(value = "/catalogos/autocompleteCuentaBancaria", method = RequestMethod.GET)
+
+public  @ResponseBody Map<String,CuentasBancarias> postAjaxAutocompleteCuentaBancaria(@RequestParam String term) {		
+
+	List<CuentasBancarias> quincena = cuentasBancariasServicio.autocompleteCuentasBancarias(term); 
+	
+	Map<String,CuentasBancarias> response = new LinkedHashMap<String,CuentasBancarias>();
+	
+	for(int b = 0; b < quincena.size() ;b++) {
+		response.put(quincena.get(b).getNombre(), quincena.get(b));
 	}
 	
 	return response;

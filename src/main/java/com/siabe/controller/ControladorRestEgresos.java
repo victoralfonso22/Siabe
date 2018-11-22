@@ -3,6 +3,7 @@ package com.siabe.controller;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -159,7 +160,7 @@ public class ControladorRestEgresos {
 			String tipoTelRef, @RequestParam String numTelRef, @RequestParam String parentescoRef, @RequestParam String observacionesRef, @RequestParam String email, @RequestParam String facebook, 
 			@RequestParam String facebook2, @RequestParam String facebook3, @RequestParam int formaPago, @RequestParam String banco, @RequestParam String cuentaDeposito, @RequestParam 
 			String tarjetaDeposito, @RequestParam String claveReferenciado, @RequestParam String vigenciaReferenciado, @RequestParam double montoBeca, @RequestParam String finalidadApoyo, 
-			@RequestParam String observaciones, @RequestParam String idBenefactor, @RequestParam int idUsuario, @RequestParam int idBeneficiario) throws ParseException {
+			@RequestParam String observaciones, @RequestParam int idUsuario, @RequestParam int idBeneficiario) throws ParseException {
 		
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -170,7 +171,7 @@ public class ControladorRestEgresos {
 				idCarrera, periodoActual, promedioGeneral, edad, genero, lenguaIndigena, discapacidad, estadoCivil, lugarNacimiento, dateBirth, breveHistoria, integrantesFamiliares, 
 				ingresosFamiliares, calleVivFam, numEVivFam, numIVivFam, colVivFam, locVivFam, munVivFam, edoVivFam, cpVivFam, enlaceMaps, mismoVivFam, calleEst, numEEst, numIEst, colEst, locEst, 
 				munEst, edoEst, cpEst, celular, telDomicilio, tipoTelRef, numTelRef, parentescoRef, observacionesRef, email, facebook, facebook2, facebook3, formaPago, banco, cuentaDeposito, 
-				tarjetaDeposito, claveReferenciado, vigenciaReferenciado, montoBeca, finalidadApoyo, observaciones, idBenefactor, idBeneficiario, idUsuario);
+				tarjetaDeposito, claveReferenciado, vigenciaReferenciado, montoBeca, finalidadApoyo, observaciones, idBeneficiario, idUsuario);
 				
 		
 		return response;
@@ -208,6 +209,41 @@ public class ControladorRestEgresos {
 		return response;
 
 	}
+	
+	@RequestMapping(value = "/egresos/autocompleteBeneficiario", method = RequestMethod.GET)
+	public  @ResponseBody Map<String,Beneficiarios> postAjaxAutocompleteBene(@RequestParam String term, @RequestParam int idPeriodo) {		
+
+		List<Beneficiarios> beneficiario = beneficiariosServicio.autocompletarBeneficiarios(term,idPeriodo); 
+		
+		Map<String,Beneficiarios> response = new TreeMap<String,Beneficiarios>();
+		
+		for(int b = 0; b < beneficiario.size() ;b++) {
+			response.put(beneficiario.get(b).getNombre(), beneficiario.get(b));
+		}
+		
+		return response;
+
+	}
+
+	@RequestMapping(value = "/egresos/autocompleteBeneficiarioNoDepor", method = RequestMethod.GET)
+	public  @ResponseBody Map<String,Beneficiarios> postAjaxAutocompleteBeneNoDepor(@RequestParam String term, @RequestParam int idPeriodo) {		
+
+		List<Beneficiarios> beneficiario = beneficiariosServicio.autocompletarBeneficiariosNoDepor(term,idPeriodo); 
+		
+		Map<String,Beneficiarios> response = new LinkedHashMap<String,Beneficiarios>();
+		Beneficiarios ben = new Beneficiarios();
+		ben.setIdBeneficiario(0);
+		ben.setNombreCompletoBene("Sin beneficiario");
+		
+		response.put("Sin beneficiario", ben);
+		for(int b = 0; b < beneficiario.size() ;b++) {
+			response.put(beneficiario.get(b).getNombre(), beneficiario.get(b));
+		}
+		
+		return response;
+
+	}
+	
 	
 
 

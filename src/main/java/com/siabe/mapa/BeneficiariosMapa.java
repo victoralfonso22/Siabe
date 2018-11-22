@@ -17,7 +17,7 @@ public class BeneficiariosMapa implements RowMapper<Beneficiarios> {
 			+ "edad,genero,lengua_indigena,discapacidad,estado_civil,lugar_nacimiento,fecha_nacimiento,breve_historia,integrantes_familiares,ingresos_familiares,calle_viv_fam,numE_viv_fam,numI_viv_fam,"
 			+ "col_viv_fam,loc_viv_fam,mun_viv_fam,edo_viv_fam,cp_viv_fam,enlace_maps,mismo_vivienda_fam,calle_est,numE_est,numI_est,col_est,loc_est,mun_est,edo_est,cp_est,celular,tel_domicilio,"
 			+ "tipo_tel_ref,num_tel_ref,parentesco_ref,observaciones_ref,email,facebook,facebook2,facebook3,forma_pago,banco,cuenta_deposito,tarjeta_deposito,clave_referenciado,vigencia_referenciado,"
-			+ "monto_beca,finalidad_apoyo,observaciones,id_benefactor,id_usuario) values ";
+			+ "monto_beca,finalidad_apoyo,observaciones,id_usuario) values ";
 	
 	public static final String INSERT_SQL_DEPORTIVAS //
 	= "INSERT INTO beneficiarios (id_periodo, nombre, apellido_paterno,apellido_materno,estatus,motivo_estatus,tipo_becario,adscripcion, id_region, escuela_deportiva,fecha_ing_escuela_dep,nivel_edu_cursa,"
@@ -30,6 +30,8 @@ public class BeneficiariosMapa implements RowMapper<Beneficiarios> {
 	public static final String UPDATE_SQL //
 	= "update beneficiarios set ";
 	
+	public static final String BASE_SQL_ID //
+	= "SELECT id from view_beneficiarios ";
 	
 	@Override
 	public Beneficiarios mapRow(ResultSet rs, int rowNum) throws SQLException {

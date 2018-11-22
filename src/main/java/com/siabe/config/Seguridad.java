@@ -60,6 +60,7 @@ public class Seguridad extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/reportes/**").access("hasRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/egresos/**").access("hasRole('ROLE_ADMIN')");
         http.authorizeRequests().antMatchers("/ingresos/**").access("hasRole('ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/administracion/**").access("hasRole('ROLE_ADMIN')");
         //http.authorizeRequests().antMatchers("/admin").access("hasRole('ROLE_ADMIN')");
  
         // When the user has logged in as XX.

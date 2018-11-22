@@ -3,13 +3,16 @@ package com.siabe.dao;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.siabe.modelo.Beneficiarios;
 
 import com.siabe.mapa.BeneficiariosMapa;
+import com.siabe.mapa.DonativosMapa;
 import com.siabe.mapa.UsuarioMapa;
 
 import java.util.Date;
@@ -77,22 +80,35 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 															+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
 															+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
 															+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
-															+ "?, ?)";
+															+ "?)";
 
-		Object[] params = new Object[] { idPeriodo, matricula.toUpperCase(), nombre, apellidoPaterno, apellidoMaterno , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
-				 idCarrera,  periodoActual,  promedioGeneral,  edad,  genero,  lenguaIndigena,  discapacidad,  estadoCivil,  lugarNacimiento,  fechaNacimiento,
-				 breveHistoria,  integrantesFamiliares,  ingresosFamiliares,  calleVivFam,  numEVivFam,  numIVivFam,  colVivFam,  locVivFam,  munVivFam,  edoVivFam,
-				 cpVivFam,  enlaceMaps,  mismoVivFam,  calleEst,  numEEst,  numIEst,  colEst,  locEst,  munEst,  edoEst,  cpEst,  celular,  telDomicilio,
+		Object[] params = new Object[] { idPeriodo, matricula.toUpperCase().trim(), nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
+				 idCarrera,  periodoActual,  promedioGeneral,  edad,  genero,  lenguaIndigena,  discapacidad,  estadoCivil,  lugarNacimiento.trim(),  fechaNacimiento,
+				 breveHistoria.trim(),  integrantesFamiliares,  ingresosFamiliares,  calleVivFam,  numEVivFam,  numIVivFam,  colVivFam,  locVivFam,  munVivFam,  edoVivFam,
+				 cpVivFam,  enlaceMaps.trim(),  mismoVivFam,  calleEst.trim(),  numEEst,  numIEst,  colEst.trim(),  locEst.trim(),  munEst.trim(),  edoEst.trim(),  cpEst,  celular,  telDomicilio,
 				 tipoTelRef,  numTelRef,  parentescoRef,  observacionesRef,  email,  facebook,  facebook2,  facebook3,  formaPago,  banco,  cuentaDeposito, 
-				 tarjetaDeposito,  claveReferenciado,  vigenciaReferenciado,  montoBeca,  finalidadApoyo,  observaciones,  idBenefactor,  idUsuario };
+				 tarjetaDeposito,  claveReferenciado,  vigenciaReferenciado,  montoBeca,  finalidadApoyo.trim(),  observaciones.trim(),   idUsuario };
 		
 		try {
 			
 		this.getJdbcTemplate().update(sql, params);
+		
+		if(idBenefactor != "") {
+			
+			if(idBenefactor == "Sin donante") {
+				
+			}
+			String sqlInsertaRelacion = DonativosMapa.INSERT_SQL_TRDONBEN + " ("+idBenefactor+","+getIdBeneficiario(matricula.toUpperCase(),idPeriodo)+")";
+			this.getJdbcTemplate().update(sqlInsertaRelacion);
+		}
 			
 		return "Done";
 		} catch (EmptyResultDataAccessException e) {
 			return "Error";
+		}catch(IncorrectResultSizeDataAccessException ex) {
+			return "MasFilas";
+		}catch(DataIntegrityViolationException exx) {
+			return "Duplicado";
 		}
 	}
 	
@@ -114,13 +130,13 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 																	+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 																	
 
-		Object[] params = new Object[] { idPeriodo, nombre, apellidoPaterno, apellidoMaterno , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
-				 escuelaDeportiva,  fechaIngEscDep,  nivelEduCursa,  turno,  tipoInstitucion,  grado,  nombreEdu, calleEdu,  numExtEdu,  numIntEdu,  colEdu,  locEdu, 
-				 munEdu,  edoEdu,  cpEdu,  telEdu,  promedioGeneral,  edad,  genero,  lugarNacimiento,  fechaNacimiento,
-				 breveHistoria,  integrantesFamiliares,  ingresosFamiliares,  calleVivFam,  numEVivFam,  numIVivFam,  colVivFam,  locVivFam,  munVivFam,  edoVivFam,
-				 cpVivFam,  enlaceMaps,   nombreTutor,  parentescoTutor,  celular,  telDomicilio,
-				 tipoTelRef,  numTelRef,  parentescoRef,  observacionesRef,  email,  facebook,  facebook2,  facebook3,  ocupacionTutor,  hermanosInscritos,  escuelaHermanosInscritos, 
-				 montoBeca,  observaciones,  idUsuario};
+		Object[] params = new Object[] { idPeriodo, nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus.trim(),  tipoBecario,  adscripcion,  idRegion, 
+				 escuelaDeportiva,  fechaIngEscDep,  nivelEduCursa,  turno,  tipoInstitucion,  grado,  nombreEdu.trim(), calleEdu.trim(),  numExtEdu.trim(),  numIntEdu.trim(),  colEdu.trim(),  locEdu.trim(), 
+				 munEdu.trim(),  edoEdu.trim(),  cpEdu,  telEdu.trim(),  promedioGeneral,  edad,  genero,  lugarNacimiento.trim(),  fechaNacimiento,
+				 breveHistoria,  integrantesFamiliares,  ingresosFamiliares,  calleVivFam.trim(),  numEVivFam,  numIVivFam,  colVivFam,  locVivFam.trim(),  munVivFam.trim(),  edoVivFam.trim(),
+				 cpVivFam,  enlaceMaps.trim(),   nombreTutor.trim(),  parentescoTutor.trim(),  celular,  telDomicilio,
+				 tipoTelRef,  numTelRef,  parentescoRef,  observacionesRef,  email,  facebook,  facebook2,  facebook3,  ocupacionTutor.trim(),  hermanosInscritos,  escuelaHermanosInscritos.trim(), 
+				 montoBeca,  observaciones.trim(),  idUsuario};
 		
 		try {
 			
@@ -129,6 +145,10 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 		return "Done";
 		} catch (EmptyResultDataAccessException e) {
 			return "Error";
+		}catch(IncorrectResultSizeDataAccessException ex) {
+			return "MasFilas";
+		}catch(DataIntegrityViolationException exx) {
+			return "Duplicado";
 		}
 	}
 
@@ -150,21 +170,21 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 			String breveHistoria, int integrantesFamiliares, double ingresosFamiliares, String calleVivFam, String numEVivFam, String numIVivFam, String colVivFam, String locVivFam, String munVivFam, String edoVivFam,
 			int cpVivFam, String enlaceMaps, int mismoVivFam, String calleEst, String numEEst, String numIEst, String colEst, String locEst, String munEst, String edoEst, String cpEst, String celular, String telDomicilio,
 			String tipoTelRef, String numTelRef, String parentescoRef, String observacionesRef, String email, String facebook, String facebook2, String facebook3, int formaPago, String banco, String cuentaDeposito, 
-			String tarjetaDeposito, String claveReferenciado, String vigenciaReferenciado, double montoBeca, String finalidadApoyo, String observaciones, String idBenefactor, int idBeneficiario, int idUsuario) {
+			String tarjetaDeposito, String claveReferenciado, String vigenciaReferenciado, double montoBeca, String finalidadApoyo, String observaciones, int idBeneficiario, int idUsuario) {
 
 		String sql = BeneficiariosMapa.UPDATE_SQL + " id_periodo = ?,matricula=?, nombre=?, apellido_paterno=?,apellido_materno=?,estatus=?,motivo_estatus=?,tipo_becario=?,adscripcion=?, id_region=?, id_carrera=?, periodo_actual=?,promedio_general=?," + 
 				"edad=?,genero=?,lengua_indigena=?,discapacidad=?,estado_civil=?,lugar_nacimiento=?,fecha_nacimiento=?,breve_historia=?,integrantes_familiares=?,ingresos_familiares=?,calle_viv_fam=?,numE_viv_fam=?,numI_viv_fam=?," + 
 				"col_viv_fam=?,loc_viv_fam=?,mun_viv_fam=?,edo_viv_fam=?,cp_viv_fam=?,enlace_maps=?,mismo_vivienda_fam=?,calle_est=?,numE_est=?,numI_est=?,col_est=?,loc_est=?,mun_est=?,edo_est=?,cp_est=?,celular=?,tel_domicilio=?," + 
 				"tipo_tel_ref=?,num_tel_ref=?,parentesco_ref=?,observaciones_ref=?,email=?,facebook=?,facebook2=?,facebook3=?,forma_pago=?,banco=?,cuenta_deposito=?,tarjeta_deposito=?,clave_referenciado=?,vigencia_referenciado=?," + 
-				"monto_beca=?,finalidad_apoyo=?,observaciones=?,id_benefactor=?  where id =?;";
+				"monto_beca=?,finalidad_apoyo=?,observaciones=?  where id =?;";
 		
 		//System.out.println(sql);
-		Object[] params = new Object[] { idPeriodo, matricula.toUpperCase(), nombre, apellidoPaterno, apellidoMaterno , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
-				 idCarrera,  periodoActual,  promedioGeneral,  edad,  genero,  lenguaIndigena,  discapacidad,  estadoCivil,  lugarNacimiento,  fechaNacimiento,
-				 breveHistoria,  integrantesFamiliares,  ingresosFamiliares,  calleVivFam,  numEVivFam,  numIVivFam,  colVivFam,  locVivFam,  munVivFam,  edoVivFam,
-				 cpVivFam,  enlaceMaps,  mismoVivFam,  calleEst,  numEEst,  numIEst,  colEst,  locEst,  munEst,  edoEst,  cpEst,  celular,  telDomicilio,
+		Object[] params = new Object[] { idPeriodo, matricula.toUpperCase().trim(), nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
+				 idCarrera,  periodoActual,  promedioGeneral,  edad,  genero,  lenguaIndigena,  discapacidad,  estadoCivil,  lugarNacimiento.trim(),  fechaNacimiento,
+				 breveHistoria.trim(),  integrantesFamiliares,  ingresosFamiliares,  calleVivFam,  numEVivFam,  numIVivFam,  colVivFam,  locVivFam,  munVivFam,  edoVivFam,
+				 cpVivFam,  enlaceMaps.trim(),  mismoVivFam,  calleEst.trim(),  numEEst,  numIEst,  colEst.trim(),  locEst.trim(),  munEst.trim(),  edoEst.trim(),  cpEst,  celular,  telDomicilio,
 				 tipoTelRef,  numTelRef,  parentescoRef,  observacionesRef,  email,  facebook,  facebook2,  facebook3,  formaPago,  banco,  cuentaDeposito, 
-				 tarjetaDeposito,  claveReferenciado,  vigenciaReferenciado,  montoBeca,  finalidadApoyo,  observaciones,  idBenefactor,  idBeneficiario};
+				 tarjetaDeposito,  claveReferenciado,  vigenciaReferenciado,  montoBeca,  finalidadApoyo.trim(),  observaciones.trim(),  idBeneficiario};
 		// System.out.println(sql+ id+ password);
 		
 		
@@ -177,6 +197,10 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 			return "Done";
 		} catch (EmptyResultDataAccessException e) {
 			return "Error";
+		}catch(IncorrectResultSizeDataAccessException ex) {
+			return "MasFilas";
+		}catch(DataIntegrityViolationException exx) {
+			return "Duplicado";
 		}
 
 	}
@@ -196,13 +220,13 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 				"observaciones=? where id =?;";
 		
 		//System.out.println(sql);
-		Object[] params = new Object[] { idPeriodo, nombre, apellidoPaterno, apellidoMaterno , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
-				 escuelaDeportiva,  fechaIngEscDep,  nivelEduCursa,  turno,  tipoInstitucion,  grado,  nombreEdu ,calleEdu,  numExtEdu,  numIntEdu,  colEdu,  locEdu, 
-				 munEdu,  edoEdu,  cpEdu,  telEdu,  promedioGeneral,  edad,  genero,  lugarNacimiento,  fechaNacimiento,
-				 breveHistoria,  integrantesFamiliares,  ingresosFamiliares,  calleVivFam,  numEVivFam,  numIVivFam,  colVivFam,  locVivFam,  munVivFam,  edoVivFam,
+		Object[] params = new Object[] { idPeriodo, nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
+				 escuelaDeportiva,  fechaIngEscDep,  nivelEduCursa,  turno,  tipoInstitucion,  grado,  nombreEdu.trim() ,calleEdu.trim(),  numExtEdu,  numIntEdu,  colEdu.trim(),  locEdu.trim(), 
+				 munEdu.trim(),  edoEdu.trim(),  cpEdu,  telEdu,  promedioGeneral,  edad,  genero,  lugarNacimiento.trim(),  fechaNacimiento,
+				 breveHistoria.trim(),  integrantesFamiliares,  ingresosFamiliares,  calleVivFam.trim(),  numEVivFam,  numIVivFam.trim(),  colVivFam.trim(),  locVivFam.trim(),  munVivFam.trim(),  edoVivFam.trim(),
 				 cpVivFam,  enlaceMaps,   nombreTutor,  parentescoTutor,  celular,  telDomicilio,
 				 tipoTelRef,  numTelRef,  parentescoRef,  observacionesRef,  email,  facebook,  facebook2,  facebook3,  ocupacionTutor,  hermanosInscritos,  escuelaHermanosInscritos, 
-				 montoBeca,  observaciones,  idBeneficiario};
+				 montoBeca,  observaciones.trim(),  idBeneficiario};
 		// System.out.println(sql+ id+ password);
 		
 		
@@ -215,6 +239,10 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 			return "Done";
 		} catch (EmptyResultDataAccessException e) {
 			return "Error";
+		}catch(IncorrectResultSizeDataAccessException ex) {
+			return "MasFilas";
+		}catch(DataIntegrityViolationException exx) {
+			return "Duplicado";
 		}
 
 	}
@@ -238,8 +266,38 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 	public List<Beneficiarios> autocompletarBeneficiarios(String termino) {
 		
 		
-		String	sql = BeneficiariosMapa.BASE_SQL + " WHERE (nombre_completo_bene LIKE '%"+termino+"%') OR (matricula LIKE  '%"+termino+"%'); ";
+		String	sql = BeneficiariosMapa.BASE_SQL + " WHERE (nombre_completo_bene LIKE '%"+termino+"%') OR (matricula LIKE  '%"+termino+"%') order by nombre_completo_bene; ";
 	
+		
+		try {
+			return this.getJdbcTemplate().query(sql, new BeneficiariosMapa());
+
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+	public List<Beneficiarios> autocompletarBeneficiarios(String termino, int idPeriodo) {
+		
+		
+		String	sql = BeneficiariosMapa.BASE_SQL + " WHERE (nombre_completo_bene LIKE '%"+termino+"%') OR (matricula LIKE  '%"+termino+"%') and id_periodo = "+idPeriodo+" order by nombre_completo_bene ; ";
+		
+		try {
+			return this.getJdbcTemplate().query(sql, new BeneficiariosMapa());
+
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+public List<Beneficiarios> autocompletarBeneficiariosNoDepor(String termino, int idPeriodo) {
+		
+		
+		String	sql = BeneficiariosMapa.BASE_SQL + " WHERE id_periodo = "+idPeriodo+" and id_tipo_beca in(1,2,3) and (nombre_completo_bene LIKE '%"+termino+"%' OR matricula LIKE  '%"+termino+"%') order by nombre_completo_bene ; ";
+		
+		System.out.println(sql);
 		
 		try {
 			return this.getJdbcTemplate().query(sql, new BeneficiariosMapa());
@@ -274,5 +332,20 @@ public List<Beneficiarios> reporteGeneral(int idTipoBeca,int idPeriodo, int idRe
 		}
 
 	}
+
+public int getIdBeneficiario(String matricula, int idPeriodo) {
+	
+	
+	String	sql = BeneficiariosMapa.BASE_SQL_ID + " WHERE matricula = '"+matricula+"' and id_periodo = "+idPeriodo+"; ";
+
+	
+	try {
+		return this.getJdbcTemplate().queryForObject(sql, Integer.class);
+
+	} catch (EmptyResultDataAccessException e) {
+		return 0;
+	}
+
+}
 
 }

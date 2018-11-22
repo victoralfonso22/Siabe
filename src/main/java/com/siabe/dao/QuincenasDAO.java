@@ -8,7 +8,9 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.siabe.modelo.Quincenas;
+import com.siabe.modelo.Regiones;
 import com.siabe.mapa.QuincenasMapa;
+import com.siabe.mapa.RegionesMapa;
 
 import java.util.List;
 
@@ -71,6 +73,21 @@ public class QuincenasDAO extends JdbcDaoSupport {
 			return "Done";
 		} catch (EmptyResultDataAccessException e) {
 			return "Error";
+		}
+
+	}
+	
+	public List<Quincenas> autocompletarQuincena(String termino) {
+		
+		
+		String	sql = QuincenasMapa.BASE_SQL + " where (nombre like '%"+termino+"%') or (anio like '%"+termino+"%') order by id,nombre,anio limit 10; ";
+	
+		
+		try {
+			return this.getJdbcTemplate().query(sql, new QuincenasMapa());
+
+		} catch (EmptyResultDataAccessException e) {
+			return null;
 		}
 
 	}

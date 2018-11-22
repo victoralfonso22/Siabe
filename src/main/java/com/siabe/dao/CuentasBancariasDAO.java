@@ -8,7 +8,10 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.siabe.modelo.CuentasBancarias;
+import com.siabe.modelo.Quincenas;
 import com.siabe.mapa.CuentasBancariasMapa;
+import com.siabe.mapa.QuincenasMapa;
+
 import java.util.List;
 
 
@@ -71,6 +74,22 @@ public class CuentasBancariasDAO extends JdbcDaoSupport {
 			return "Done";
 		} catch (EmptyResultDataAccessException e) {
 			return "Error";
+		}
+
+	}
+	
+	public List<CuentasBancarias> autocompletarCuentaBancaria(String termino) {
+		
+		
+		String	sql = CuentasBancariasMapa.BASE_SQL + " where (nombre like '%"+termino+"%') or (numero_cuenta like '%"+termino+"%') or (sucursal like '%"+termino+"%') or (clabe like '%"+termino+"%') "
+				+ "order by nombre,numero_cuenta,sucursal,clabe  limit 10; ";
+	
+		
+		try {
+			return this.getJdbcTemplate().query(sql, new CuentasBancariasMapa());
+
+		} catch (EmptyResultDataAccessException e) {
+			return null;
 		}
 
 	}
