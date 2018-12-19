@@ -174,22 +174,22 @@ public class ControladorRestIngresos {
 	}
 	
 	
-/*	
-	@RequestMapping(value = "/egresos/autocompleteBeneficiario", method = RequestMethod.GET)
-	public  @ResponseBody Map<String,Beneficiarios> postAjaxAutocompleteBene(@RequestParam String term, @RequestParam int idPeriodo) {		
+	
+	@RequestMapping(value = "/ingresos/autocompleteDonantesTodos", method = RequestMethod.GET)
+	public  @ResponseBody Map<String,Donativos> postAjaxAutocompleDonantesTodos(@RequestParam String term, @RequestParam int idPeriodo) {		
 
-		List<Beneficiarios> beneficiario = beneficiariosServicio.autocompletarBeneficiarios(term,idPeriodo); 
+		List<Donativos> donativos = donativosServicio.autocompletarDonativosTodos(term, idPeriodo); 
 		
-		Map<String,Beneficiarios> response = new TreeMap<String,Beneficiarios>();
+		Map<String,Donativos> response = new LinkedHashMap<String,Donativos>();
 		
-		for(int b = 0; b < beneficiario.size() ;b++) {
-			response.put(beneficiario.get(b).getNombre(), beneficiario.get(b));
+		for(int b = 0; b < donativos.size() ;b++) {
+			response.put(donativos.get(b).getNombre(), donativos.get(b));
 		}
 		
 		return response;
 
 	}
 	
-*/
+
 
 }

@@ -88,9 +88,9 @@ public class DonativosServicio {
 	public List<Donativos> autocompletarBenefactorNoPatrocinador(String termino, int idPeriodo){
 		return donativosDAO.autocompletarBenefactorNoPatrocinador(termino, idPeriodo);
 	}
-	/*
-	public List<Donativos> autocompletarBeneficiarios(String termino, int idPeriodo){
-		return beneficiariosDAO.autocompletarBeneficiarios(termino,idPeriodo);
+	
+	public List<Donativos> autocompletarDonativosTodos(String termino, int idPeriodo){
+		return donativosDAO.autocompletarDonativosTodos(termino, idPeriodo);
 	}
 	/*
 	public List<Donativos> reporteGeneral(int idTipoBeca, int idPeriodo, int idRegion){

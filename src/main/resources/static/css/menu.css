@@ -517,25 +517,25 @@ th{
 	font-size: 20px !important;	
 	}
 	
-/*	
+
 .file-input {
   visibility: hidden;
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
 
-  display: inline-block;
+  display: block;
 }
 .file-input::before {
   margin: 0 auto;
-  width: 100px;
-  height: 100px;
-  content: 'Seleccionar archivo';  
+  width: 110px;
+  height: 110px;
+  content: 'Seleccionar archivo(s)';  
   text-align:center;
-  display: inline-block;
+  display: block;
   background: #337AB7;
-  border: 1px solid #000;
+/*  border: 1px solid #000;*/
   border-radius: 50%;
-  padding:25px 0;
+  padding:30px 0;
   outline: none;
   white-space: inherit;
   -webkit-user-select: none;
@@ -544,17 +544,17 @@ th{
   font-weight: 600;
   font-size: 10pt;
   visibility: visible;
-  position: absolute;
+  position: relative;
 }
 .file-input:hover::before {
-  border: 1px solid #000;
+ /* border: 1px solid #000;*/
   background: #00993D;
   
 }
 .file-input:active::before {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
-*/
+
 	
 .linea {
 	display:inline-block;
@@ -564,9 +564,10 @@ th{
 
 
 input[type="file"] {
-    border: 1px solid #128ff2;
-    padding: 6px;
+    border: 1px solid #00993D;
+  /*  padding: 6px;*/
     max-width: 100%;
+    margin:0 auto;
 }
 
 .file-input {
@@ -621,3 +622,14 @@ input[type="file"] {
     overflow-x: hidden;
     word-break: break-all;
 }
+
+.tablaArchivos > tbody > tr > td{
+	border-top: 0px solid white;
+	
+}
+
+.tablaArchivos > tbody > tr > td > span{
+	font-weight: bold;
+	
+}
+	

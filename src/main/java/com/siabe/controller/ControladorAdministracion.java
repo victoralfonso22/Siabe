@@ -14,6 +14,7 @@ import com.siabe.servicio.UsuarioServicio;
 
 import com.siabe.utils.UtilidadesWeb;
 import com.siabe.servicio.ArchivoStorageServicio;
+import com.siabe.servicio.PeriodoServicio;
 import com.siabe.servicio.PermisosMenuServicio;
 
 
@@ -30,6 +31,9 @@ public class ControladorAdministracion {
 	
 	@Autowired
 	private UtilidadesWeb utilidadesWeb;
+	
+	@Autowired
+	private PeriodoServicio periodoServicio;
 	
 	@Autowired
 	private ArchivoStorageServicio archivoStorageServicio;
@@ -49,11 +53,10 @@ public class ControladorAdministracion {
 	
 	@GetMapping(value = "/administracion/comprobanteFiscal")
 	public String campania(Model model, Principal principal) throws IOException {
+
+		model.addAttribute("periodos", periodoServicio.todosPerido());
+	//	model.addAttribute("lista", archivoStorageServicio.listarArchivos().size());
 		
-		System.out.println("2323223 "+archivoStorageServicio.listarArchivos().get(0).getFilename());
-		System.out.println("2323223sdfd "+archivoStorageServicio.listarArchivos().get(0).getURI());
-		
-		model.addAttribute("lista", archivoStorageServicio.listarArchivos());		
 		return "/administracion/comprobanteFiscal";
 	}
 	

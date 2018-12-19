@@ -265,7 +265,24 @@ public class DonativosDAO extends JdbcDaoSupport {
 public List<Donativos> autocompletarBenefactorNoPatrocinador(String termino, int idPeriodo) {
 		
 		
-		String	sql = DonativosMapa.BASE_SQL + " WHERE id_periodo = "+idPeriodo+" and donativo_tipo = 1 and (nombre_completo_don LIKE '%"+termino+"%' OR rfc LIKE  '%"+termino+"%') order by nombre_completo_don ; ";
+		String	sql = DonativosMapa.BASE_SQL + " WHERE id_periodo = "+idPeriodo+" and donativo_tipo = 1 and (nombre_completo_don LIKE '%"+termino+"%' OR rfc LIKE  '%"+termino+"%') order by nombre_completo_don limit 10; ";
+		
+//		System.out.println(sql);
+		
+		try {
+			return this.getJdbcTemplate().query(sql, new DonativosMapa());
+
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+	
+	public List<Donativos> autocompletarDonativosTodos(String termino, int idPeriodo) {
+		
+		
+			String	sql = DonativosMapa.BASE_SQL + " WHERE id_periodo = "+idPeriodo+" and (nombre_completo_don LIKE '%"+termino+"%' OR rfc LIKE  '%"+termino+"%') order by nombre_completo_don limit 10; ";
 		
 //		System.out.println(sql);
 		
@@ -279,22 +296,6 @@ public List<Donativos> autocompletarBenefactorNoPatrocinador(String termino, int
 	}
 	
 	/*
-	public List<Donativos> autocompletarDonativos(String termino) {
-		
-		
-		String	sql = DonativosMapa.BASE_SQL + " WHERE (nombre_completo_bene LIKE '%"+termino+"%') OR (matricula LIKE  '%"+termino+"%'); ";
-	
-		
-		try {
-			return this.getJdbcTemplate().query(sql, new DonativosMapa());
-
-		} catch (EmptyResultDataAccessException e) {
-			return null;
-		}
-
-	}
-	
-	
 public List<Donativos> reporteGeneral(int idTipoBeca,int idPeriodo, int idRegion) {
 		String idPString = "";
 		String idRString = "";

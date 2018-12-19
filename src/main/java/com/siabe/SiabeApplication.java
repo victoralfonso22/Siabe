@@ -7,12 +7,12 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import com.siabe.utils.PropiedadesArchivosGuardados;
+//import com.siabe.utils.PropiedadesArchivosGuardados;
 
 @SpringBootApplication
-@EnableConfigurationProperties({
+/*@EnableConfigurationProperties({
 	PropiedadesArchivosGuardados.class
-})
+})*/
 public class SiabeApplication extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {

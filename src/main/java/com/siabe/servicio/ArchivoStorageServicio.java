@@ -9,8 +9,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.siabe.excepciones.FileStorageException;
 import com.siabe.excepciones.MyFileNotFoundException;
+//import com.siabe.utils.PropiedadesArchivosGuardados;
 import com.siabe.utils.PropiedadesArchivosGuardados;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -24,12 +26,14 @@ import java.util.List;
 public class ArchivoStorageServicio {
 
 	private final Path fileStorageLocation;
+	
 
     @Autowired
-    public ArchivoStorageServicio(PropiedadesArchivosGuardados fileStorageProperties) {
-        this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
+    public ArchivoStorageServicio() {
+    //public ArchivoStorageServicio(PropiedadesArchivosGuardados fileStorageProperties) {
+        this.fileStorageLocation = Paths.get("C:\\Users\\victo\\Music\\comprobantes")
                 .toAbsolutePath().normalize();
-
+   //     System.out.println("1 "+this.fileStorageLocation);
         try {
             Files.createDirectories(this.fileStorageLocation);
         } catch (Exception ex) {
@@ -37,18 +41,21 @@ public class ArchivoStorageServicio {
         }
     }
 
-    public String storeFile(MultipartFile file) {
+    public String storeFile(MultipartFile file, int idPeriodo, int idDonativo) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        fileName = idPeriodo+"-"+idDonativo+"-"+fileName;
 
         try {
             // Check if the file's name contains invalid characters
             if(fileName.contains("..")) {
                 throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
-
+            
+          
             // Copy file to the target location (Replacing existing file with the same name)
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
+            System.out.println("2 "+fileStorageLocation+" filename"+fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             return fileName;
@@ -71,21 +78,44 @@ public class ArchivoStorageServicio {
         }
     }
     
-    public List<Resource> listarArchivos() throws IOException {
+    public List<PropiedadesArchivosGuardados> listarArchivos(int idPeriodo, int idDonativo) throws IOException {
     	
-    	List<Resource> archivos = new ArrayList<Resource>();
-    	Files.walk(Paths.get("uploads")).forEach(ruta-> {
+    	/*List<PropiedadesArchivosGuardados> archivos = new ArrayList<PropiedadesArchivosGuardados>();
+    	Files.walk(Paths.get("C:\\Users\\victo\\Music\\comprobantes")).forEach(ruta-> {
     		
-    	    if (Files.isRegularFile(ruta)) {
+    	    if (Files.isRegularFile(ruta)) {    	    	
     	    	
-    	    	archivos.add(loadFileAsResource(ruta.getFileName().toString()));
+    	    	if(loadFileAsResource(ruta.getFileName().toString()).exists()) {
+    	    		PropiedadesArchivosGuardados propiedadesArchivosGuardados = new PropiedadesArchivosGuardados();
+    	    		propiedadesArchivosGuardados.setNombreArchivo( loadFileAsResource(ruta.getFileName().toString()).toString() );
     	    	
-    	    	System.out.println(ruta.getFileName());
+    	    	archivos.add(propiedadesArchivosGuardados);
+    	    	System.out.println("filename 78 "+propiedadesArchivosGuardados.getNombreArchivo());
+    	    	}
     	    }
+    	
     	});
+    	*/
+    	
+    	List<PropiedadesArchivosGuardados> archivos = new ArrayList<PropiedadesArchivosGuardados>();
+    	File directory = new File("C:\\Users\\victo\\Music\\comprobantes");
+        //get all the files from a directory
+        File[] fList = directory.listFiles();
+        for (File file : fList){
+        	PropiedadesArchivosGuardados propiedadesArchivosGuardados = new PropiedadesArchivosGuardados();        	
+            if (file.isFile()){
+            	if(file.getName().contains(idPeriodo+"-"+idDonativo+"-")) {
+            	propiedadesArchivosGuardados.setNombreArchivo(file.getName().replace(idPeriodo+"-"+idDonativo+"-", ""));
+            	propiedadesArchivosGuardados.setLinkDescarga("http://localhost/downloadFile/"+file.getName().replace(idPeriodo+"-"+idDonativo+"-", ""));
+            	archivos.add(propiedadesArchivosGuardados);
+             //   System.out.println(file.getName());
+            	}
+            }
+        }
     	
     	return archivos;
     	
     }
 	
 }
+

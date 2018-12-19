@@ -1,18 +1,26 @@
 package com.siabe.utils;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "file")
 public class PropiedadesArchivosGuardados {
 	
-	private String uploadDir;
-
-    public String getUploadDir() {
-        return uploadDir;
-    }
-
-    public void setUploadDir(String uploadDir) {
-        this.uploadDir = uploadDir;
-    }
+	private String nombreArchivo;
+	private String linkDescarga;
+	
+	
+	public String getNombreArchivo() {
+		return nombreArchivo;
+	}
+	
+	public void setNombreArchivo(String nombreArchivo) {
+		this.nombreArchivo = nombreArchivo;
+	}
+	
+	public String getLinkDescarga() {
+		return linkDescarga;
+	}
+	
+	public void setLinkDescarga(String linkDescarga) {
+		this.linkDescarga = linkDescarga;
+	}
 
 }

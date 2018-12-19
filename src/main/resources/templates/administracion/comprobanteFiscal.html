@@ -12,6 +12,7 @@
 
 
 
+
 </head>
 <body class="container-full">
 	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
@@ -26,37 +27,94 @@
 				
             <div class="upload-content">
                 
-                <div class="multiple-upload">
+                
                 <br>
-				<label class="sublabel" style="font-size: 20px !important">Subir comprobantes fiscales</label>
+				
+				
+				
+				<div class="row " >
+						<div class="col-xs-6" style="margin: 0 auto; float: none;">
+							<label for="idPeriodoCF">Periodo</label><br> <select onchange="cambiaPeriodoCF();"
+								id="idPeriodoCF" 
+								class="form-control selectTextFormulario">
+								<option disabled selected value="">Selecciona periodo</option>
+								<option th:each="periodo : ${periodos}"
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+							</select>
+						</div>
+				</div>
+				<br/>
+				<div class="row">
+						<div class="col-xs-6 " style=" margin: 0 auto; float: none;">
+							<label for="benefactorCF">Benefactor(a) asignado(a)</label><br>
+							<input type="text" id="benefactorCF" disabled						
+								class="form-control selectTextFormulario"
+								onkeyup="autocompleteDonanteCF();">
+								<input	type="hidden" id="idBenefactorHiddenCF"> 
+								<input type="hidden" id="valBenefactorHiddenCF">
+						</div>
+
+					</div>
+				
+				<div id="subirYMostrarCF" style="display:none;">
+				<br>
 				<div class="divisionForm"></div>
 				<br>
+				<label class="sublabel" style="font-size: 20px !important">Subir comprobantes fiscales</label>
+				<br>
+				<br>
+				<div class="multiple-upload">
                     <form id="multipleUploadForm" name="multipleUploadForm" enctype="multipart/form-data" action="/" method="POST">
                     	<div class="linea">
-                        <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required onchange="updateSize();" />
-                 		selected files: <span id="fileNum">0</span>;
-                		total size: <span id="fileSize">0</span>
+                        <div><input id="multipleFileUploadInput" type="file" name="files" class="btn btn-mdb-color btn-rounded" multiple required onchange="updateSize();" /></div><br/>
+                 		<!-- archivos seleccionados: <span id="fileNum">0</span>; --> 
+                		 <span style="font-weight: lighter;">Tamaño total:</span> <span id="fileSize" style="font-weight: bold;">0</span><br><br>
                         <button type="submit" class="btn btn-primary pull-center">Subir archivos seleccionados</button>
                         </div>
                     </form>
+                    <br/>
                     <div class="upload-response">
                         <div id="multipleFileUploadError"></div>
-                        <div id="multipleFileUploadSuccess"></div>
+                        <div id="multipleFileUploadSuccess" ></div>
                     </div>
+                    
+                    </div>
+                
+                
+                <br>
+				<br>
+				<br>
+                    
+                <div class="divisionForm"></div>
+				<br>
+				<label class="sublabel" style="font-size: 20px !important">Comprobantes fiscales agregados</label> 
+                
+                <div id="listarArchivos">
+				
+					<!-- 
+											<div th:each="lista,iterationStatus : ${lista}" style="display:inline-block">
+						<span  th:if="${lista.numLista} < 3" >					
+							<a th:href="${lista.linkDescarga}" th:text="${lista.nombreArchivo}" ></a>
+						</span>
+						<span th:unless="${lista.numLista} < 3">
+						<a th:href="${lista.linkDescarga}" th:text="NAda" >Uloooo</a><br/>
+						</span>
+					</div> -->
+				
+				</div>
+				<br>
+                    
                 </div>
             </div>
 				
 				
 			
 
-				<br>
-				<br>
-				<br>
-				<br>
-				<label class="sublabel" style="font-size: 20px !important">Ver comprobantes fiscales</label>
-				<div class="divisionForm"></div>
 				
-				<table class="table tabla" th:fragment="tBecas" id="tBecas">
+				
+			
+				
+			<!-- 	<table class="table tabla" th:fragment="tBecas" id="tBecas">
 				<tr>
 					<th>#</th>
 					<th>Nombre</th>
@@ -64,17 +122,14 @@
 				</tr>
 				<tr class="tdSencillo"  th:each="lista,iterationStatus : ${lista}" title="Click para editar registro"  >							
 		
-					<td  th:text="${lista.getFilename}" ></td>										
-					
+					<td  th:text="${lista.nombreArchivo}" ></td>	
+					<td th:text="${lista.linkDescarga}"></td>									
 					
 				</tr>
-				<tr style="cursor:pointer;" th:onclick="|nuevotBecaModal();|">
-					<td colspan=6><img  alt="Agregar" src="/imagenes/mas.png"> Agregar tipo de beca</td>
-				</tr>
-			</table>
 				
-				<div id="listarArchivos"></div>
-				<br>
+			</table> -->
+				
+				
 				
 
 
@@ -90,7 +145,9 @@
 		<div class="valoresCentrados" id="postResultDiv"></div>
 	</div>
 	<div style="padding-top: 20px;">
+	
 		<th:block th:include="/default/pie"></th:block>
 	</div>
 </body>
+<script src="/js/archivos.js"></script>
 </html>

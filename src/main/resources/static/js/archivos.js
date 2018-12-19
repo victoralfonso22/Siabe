@@ -37,6 +37,8 @@ function uploadMultipleFiles(files) {
     var formData = new FormData();
     for(var index = 0; index < files.length; index++) {
         formData.append("files", files[index]);
+        formData.append("idPeriodo",$("#idPeriodoCF").val());
+        formData.append("idDonativo",$("#idBenefactorHiddenCF").val());
     }
 
     var xhr = new XMLHttpRequest();
@@ -47,13 +49,45 @@ function uploadMultipleFiles(files) {
         var response = JSON.parse(xhr.responseText);
         if(xhr.status == 200) {
             multipleFileUploadError.style.display = "none";
-            var content = "<p>All Files Uploaded Successfully</p>";
-            for(var i = 0; i < response.length; i++) {
+            var content = "<p style='color:#00993D; font-weight:bold;'>Todos los archivos subieron con éxito</p>";
+            /*for(var i = 0; i < response.length; i++) {
                 content += "<p>DownloadUrl : <a href='" + response[i].fileDownloadUri + "' target='_blank'>" + response[i].fileDownloadUri + "</a></p>";
-            }
+            }*/
+            
+            /*$("#postResultDiv").show();
+			if(result == "Done"){
+				$("#postResultDiv").html("<p class='divRespuesta'>! Quincena modificada !<br></p>");
+			}else{
+				$("#postResultDiv").html("<strong>Error</strong>");
+			}*/
+			
             multipleFileUploadSuccess.innerHTML = content;
             multipleFileUploadSuccess.style.display = "block";
+            
+            $("#multipleFileUploadSuccess").delay(6000).hide(600);
+            
+            $("#subirYMostrarCF").show();		
+			var datos = {
+					idPeriodo : $("#idPeriodoCF").val(),
+					idDonativo : $("#idBenefactorHiddenCF").val()
+					
+				}
+			$("#listarArchivos").load("/listFiles", datos,function( response, status, xhr ) {
+			  if(response.includes("Sesión inactiva")){				 
+					 window.location = "/login?session=false";
+					    }
+				  
+				if(xhr.status==200 && xhr.statusText== "parsererror"){
+					window.location = "/login?session=false";
+				}
+			}); 
+			
+			$("#multipleFileUploadInput").val('');
+			$("#fileSize").text('0');
+            
         } else {
+        	alert(xhr.responseText);
+            alert(xhr.status);
             multipleFileUploadSuccess.style.display = "none";
             multipleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
         }
@@ -74,13 +108,14 @@ function uploadMultipleFiles(files) {
 
 
 multipleUploadForm.addEventListener('submit', function(event){
+	 event.preventDefault();
     var files = multipleFileUploadInput.files;
     if(files.length === 0) {
         multipleFileUploadError.innerHTML = "Please select at least one file";
         multipleFileUploadError.style.display = "block";
     }
     uploadMultipleFiles(files);
-    event.preventDefault();
+   
 }, true);
 
 
@@ -100,6 +135,90 @@ function updateSize() {
     }
     // end of optional code
 
-    document.getElementById("fileNum").innerHTML = nFiles;
+    //document.getElementById("fileNum").innerHTML = nFiles;
     document.getElementById("fileSize").innerHTML = sOutput;
 }
+
+
+function cambiaPeriodoCF(){
+	
+	$("#subirYMostrarCF").hide();
+	
+	if($("#idPeriodoCF").val() > 0){
+	$("#benefactorCF").prop('disabled',false);
+	}else{
+		$("#benefactorCF").prop('disabled',true);
+	}
+
+}
+
+
+function autocompleteDonanteCF() {
+
+	$("#benefactorCF").autocomplete({
+		source : function(request, response) {
+			$.ajax({
+				url : "/ingresos/autocompleteDonantesTodos",
+				dataType : "json",
+				data : {
+					term : request.term,
+					idPeriodo : $("#idPeriodoCF").val()
+				},
+				success : function(data) {
+
+					response($.map(data, function(item) {
+						return {
+							label: item.nombreCompletoDon,
+							
+							value : item.idDonativo							
+						};
+					}));
+
+				},
+				error : function(jqXHR,textStatus) {
+					alert(jqXHR.responseText);
+					if(jqXHR.status==200 && textStatus== "parsererror"){
+						window.location = "/login?session=false";
+					}
+				}
+			});
+		},
+		focus : function() {
+			 
+			// prevent value inserted on focus
+			return false;
+		},
+		select : function(event, ui) {
+			this.value = ui.item.label;		
+			$("#subirYMostrarCF").show();		
+			var datos = {
+					idPeriodo : $("#idPeriodoCF").val(),
+					idDonativo : ui.item.value
+					
+				}
+			$("#listarArchivos").load("/listFiles", datos,function( response, status, xhr ) {
+			  if(response.includes("Sesión inactiva")){				 
+					 window.location = "/login?session=false";
+					    }
+				  
+				if(xhr.status==200 && xhr.statusText== "parsererror"){
+					window.location = "/login?session=false";
+				}
+			}); 
+			
+			
+			if(ui.item.value=='Sin donante'){
+			$("#idBenefactorHiddenCF").val(0);
+			}else{
+				$("#idBenefactorHiddenCF").val(ui.item.value);
+			}
+			$("#valBenefactorHiddenCF").val(this.value);
+		
+			return false;
+		},
+		minLength: 0
+		
+
+	});
+}
+
