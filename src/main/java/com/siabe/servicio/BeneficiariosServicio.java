@@ -19,11 +19,11 @@ public class BeneficiariosServicio {
 		return beneficiariosDAO.beneficiario(idBeneficiario);
 	}
 	
-	public List<Beneficiarios> regresaRegionesPeriodo(int idPeriodo) {
+	public List<Beneficiarios> beneficiariosPeriodo(int idPeriodo) {
 		return beneficiariosDAO.beneficiariosPeriodo(idPeriodo);
 	}
 	
-	public List<Beneficiarios> regresaRegionesPeriodoActivas(int idPeriodo) {
+	public List<Beneficiarios> beneficiariosActivosPeriodo(int idPeriodo) {
 		return beneficiariosDAO.beneficiariosActivosPeriodo(idPeriodo);
 	}
 	

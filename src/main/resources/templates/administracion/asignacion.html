@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+	
+			<div>
+				<h1 class="h1Class">Asignación de donante/beneficiario</h1>
+			</div>
+
+			<div class="valoresCentrados">
+
+			<br/> <input
+						type="radio" name="altaCambio" onclick="checkIds('donan');"
+						id="donan" value="1" checked> Donantes&nbsp;&nbsp;&nbsp; <input
+						type="radio" name="altaCambio" onclick="checkIds('benen');"
+						id="benen" value="0"> Beneficiarios <br /> <br />		
+       
+			
+			
+	
+			<div class="row " >
+						<div class="col-xs-6" style="margin: 0 auto; float: none;">
+							<label for="idPeriodoCF">Periodo</label><br> <select onchange="cambiaPeriodoAs();"
+								id="idPeriodoAs" 
+								class="form-control selectTextFormulario">
+								<option disabled selected value="">Selecciona periodo</option>
+								<option th:each="periodo : ${periodos}"
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+							</select>
+						</div>
+				</div>
+				<br/>
+			
+			
+			<div class="row"  >
+						<div class="col-xs-6 " style=" margin: 0 auto; float: none;">
+							<label for="idDonBene" id="donBene">Beneficiario</label><br>
+							<input type="text" id="idDonBene" disabled						
+								class="form-control selectTextFormulario"
+								onkeyup="autocompleteDonBeneAS();">
+								<input	type="hidden" id="idBenefactorHiddenCF"> 
+								<input type="hidden" id="valBenefactorHiddenCF">
+						</div>
+
+			</div>
+			
+			<br/>
+			<br/>
+			
+			<div id="registros" style="display:none; width: 60%; margin: 0 auto;">
+			
+			
+			<table class="table tabla" id="registrosAs" >
+				<tr>
+					<th style="width:15%;">#</th>
+					<th style="width:70%;"><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Nombre</label></th>
+					<th style="width:15%;">Seleccionar</th>
+				</tr>
+					<th:block th:each="registrosTabla,iterationStatus : ${registrosTab}" >
+				<tr class="tdSencillo" >							
+					<td th:text="${iterationStatus.count}" ></td>
+					<td  th:text="${registrosTabla.nombre+' '+registrosTabla.apellidoPaterno+' '+registrosTabla.apellidoMaterno}" ></td>
+					<td ><input type="checkbox" id="registrosTabla.idDonante"></td>				
+					
+				</tr>
+				</th:block>
+	
+			</table>
+			
+			
+			
+			<div >
+					<br> <br> <br>
+					<button type="submit" id="btn-guardar"
+						class="btn btn-primary pull-center" >Guardar</button>
+				</div>
+			
+			</div>
+			
+			</div>
+
+
+
+<!-- Empieza el modal para la modificacion de los beneficiarios--->
+		
+
+		<div class="valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+	
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+<script src="/js/administracion.js"></script>
+</html>

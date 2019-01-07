@@ -19,11 +19,11 @@ public class DonativosServicio {
 		return donativosDAO.donativo(idDonativo);
 	}
 	
-	public List<Donativos> regresaRegionesPeriodo(int idPeriodo) {
+	public List<Donativos> regresaDonantesPeriodo(int idPeriodo) {
 		return donativosDAO.donativosPeriodo(idPeriodo);
 	}
 	
-	public List<Donativos> regresaRegionesPeriodoActivas(int idPeriodo) {
+	public List<Donativos> regresaDonantesPeriodoActivas(int idPeriodo) {
 		return donativosDAO.donativosActivosPeriodo(idPeriodo);
 	}
 	

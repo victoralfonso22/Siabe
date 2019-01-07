@@ -245,6 +245,26 @@ public class ControladorRestEgresos {
 	}
 	
 	
+	@RequestMapping(value = "/egresos/autocompleteBeneficiarioNoDeporA", method = RequestMethod.GET)
+	public  @ResponseBody Map<String,Beneficiarios> postAjaxAutocompleteBeneNoDeporA(@RequestParam String term, @RequestParam int idPeriodo) {		
+
+		List<Beneficiarios> beneficiario = beneficiariosServicio.autocompletarBeneficiariosNoDepor(term,idPeriodo); 
+		
+		Map<String,Beneficiarios> response = new LinkedHashMap<String,Beneficiarios>();
+		/*Beneficiarios ben = new Beneficiarios();
+		ben.setIdBeneficiario(0);
+		ben.setNombreCompletoBene("Sin beneficiario");
+		
+		response.put("Sin beneficiario", ben);*/
+		for(int b = 0; b < beneficiario.size() ;b++) {
+			response.put(beneficiario.get(b).getNombre(), beneficiario.get(b));
+		}
+		
+		return response;
+
+	}
+	
+	
 
 
 }

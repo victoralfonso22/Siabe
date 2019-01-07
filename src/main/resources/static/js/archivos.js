@@ -154,7 +154,9 @@ function cambiaPeriodoCF(){
 
 
 function autocompleteDonanteCF() {
-
+	
+	
+	
 	$("#benefactorCF").autocomplete({
 		source : function(request, response) {
 			$.ajax({
@@ -165,6 +167,7 @@ function autocompleteDonanteCF() {
 					idPeriodo : $("#idPeriodoCF").val()
 				},
 				success : function(data) {
+					$("#subirYMostrarCF").hide();
 
 					response($.map(data, function(item) {
 						return {

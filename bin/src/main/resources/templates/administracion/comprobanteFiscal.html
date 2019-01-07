@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+	
+			<div>
+				<h1 class="h1Class">Comprobantes fiscales</h1>
+			</div>
+
+			<div class="valoresCentrados">
+
+				
+            <div class="upload-content">
+                
+                <div class="multiple-upload">
+                <br>
+				<label class="sublabel" style="font-size: 20px !important">Subir comprobantes fiscales</label>
+				<div class="divisionForm"></div>
+				<br>
+                    <form id="multipleUploadForm" name="multipleUploadForm" enctype="multipart/form-data" action="/" method="POST">
+                    	<div class="linea">
+                        <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required onchange="updateSize();" />
+                 		selected files: <span id="fileNum">0</span>;
+                		total size: <span id="fileSize">0</span>
+                        <button type="submit" class="btn btn-primary pull-center">Subir archivos seleccionados</button>
+                        </div>
+                    </form>
+                    <div class="upload-response">
+                        <div id="multipleFileUploadError"></div>
+                        <div id="multipleFileUploadSuccess"></div>
+                    </div>
+                </div>
+            </div>
+				
+				
+			
+
+				<br>
+				<br>
+				<br>
+				<br>
+				<label class="sublabel" style="font-size: 20px !important">Ver comprobantes fiscales</label>
+				<div class="divisionForm"></div>
+				
+				<table class="table tabla" th:fragment="tBecas" id="tBecas">
+				<tr>
+					<th>#</th>
+					<th>Nombre</th>
+
+				</tr>
+				<tr class="tdSencillo"  th:each="lista,iterationStatus : ${lista}" title="Click para editar registro"  >							
+		
+					<td  th:text="${lista.getFilename}" ></td>										
+					
+					
+				</tr>
+				<tr style="cursor:pointer;" th:onclick="|nuevotBecaModal();|">
+					<td colspan=6><img  alt="Agregar" src="/imagenes/mas.png"> Agregar tipo de beca</td>
+				</tr>
+			</table>
+				
+				<div id="listarArchivos"></div>
+				<br>
+				
+
+
+
+			</div>
+
+
+
+
+<!-- Empieza el modal para la modificacion de los beneficiarios--->
+		
+
+		<div class="valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+</html>

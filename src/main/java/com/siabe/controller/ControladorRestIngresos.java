@@ -173,6 +173,25 @@ public class ControladorRestIngresos {
 
 	}
 	
+	@RequestMapping(value = "/ingresos/autocompleteBenefactorNoPatrocinadorA", method = RequestMethod.GET)
+	public  @ResponseBody Map<String,Donativos> postAjaxAutocompleteBeneNoDeporA(@RequestParam String term, @RequestParam int idPeriodo) {		
+
+		List<Donativos> donante = donativosServicio.autocompletarBenefactorNoPatrocinador(term, idPeriodo); 
+		
+		Map<String,Donativos> response = new LinkedHashMap<String,Donativos>();
+		/*
+		Donativos don = new Donativos();
+		don.setIdDonativo(0);
+		don.setNombreCompletoDon("Sin donante");		
+		response.put("Sin donante", don);*/
+		for(int b = 0; b < donante.size() ;b++) {
+			response.put(donante.get(b).getNombre(), donante.get(b));
+		}
+		
+		return response;
+
+	}
+	
 	
 	
 	@RequestMapping(value = "/ingresos/autocompleteDonantesTodos", method = RequestMethod.GET)
