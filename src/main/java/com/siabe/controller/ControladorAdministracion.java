@@ -86,15 +86,16 @@ public class ControladorAdministracion {
 	public String actualizaRegistrosAsig(Model model, Principal principal,@RequestParam int idPeriodo, @RequestParam int tipoAsig) {
 	//	model.addAttribute("periodos", periodoServicio.todosPeridoIdBeca(idTipoBeca));
 		
+		
 		if(tipoAsig == 1) {
 		
-			model.addAttribute("registrosTab", beneficiariosServicio.beneficiariosActivosPeriodo(idPeriodo));
-				
+			model.addAttribute("registrosTab", donativosServicio.regresaDonantesPeriodoActivas(idPeriodo));
+			model.addAttribute("asig", 1);	
 		
 		}else {
 			
-			model.addAttribute("registrosTab", donativosServicio.regresaDonantesPeriodoActivas(idPeriodo));
-						
+			model.addAttribute("registrosTab", beneficiariosServicio.beneficiariosActivosPeriodo(idPeriodo));
+			model.addAttribute("asig", 2);				
 		}
 		
 		

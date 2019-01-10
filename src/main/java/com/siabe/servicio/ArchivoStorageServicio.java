@@ -31,7 +31,7 @@ public class ArchivoStorageServicio {
     @Autowired
     public ArchivoStorageServicio() {
     //public ArchivoStorageServicio(PropiedadesArchivosGuardados fileStorageProperties) {
-        this.fileStorageLocation = Paths.get("C:\\Users\\TI\\Music\\comprobantes")
+        this.fileStorageLocation = Paths.get("C:\\Users\\victo\\Music\\comprobantes")
                 .toAbsolutePath().normalize();
    //     System.out.println("1 "+this.fileStorageLocation);
         try {
@@ -98,7 +98,7 @@ public class ArchivoStorageServicio {
     	*/
     	
     	List<PropiedadesArchivosGuardados> archivos = new ArrayList<PropiedadesArchivosGuardados>();
-    	File directory = new File("C:\\Users\\TI\\Music\\comprobantes");
+    	File directory = new File("C:\\Users\\victo\\Music\\comprobantes");
         //get all the files from a directory
         File[] fList = directory.listFiles();
         for (File file : fList){
@@ -106,7 +106,7 @@ public class ArchivoStorageServicio {
             if (file.isFile()){
             	if(file.getName().contains(idPeriodo+"-"+idDonativo+"-")) {
             	propiedadesArchivosGuardados.setNombreArchivo(file.getName().replace(idPeriodo+"-"+idDonativo+"-", ""));
-            	propiedadesArchivosGuardados.setLinkDescarga("http://localhost/downloadFile/"+file.getName().replace(idPeriodo+"-"+idDonativo+"-", ""));
+            	propiedadesArchivosGuardados.setLinkDescarga("http://localhost/downloadFile/"+file.getName()+"/"+idPeriodo+"/"+idDonativo);
             	archivos.add(propiedadesArchivosGuardados);
              //   System.out.println(file.getName());
             	}

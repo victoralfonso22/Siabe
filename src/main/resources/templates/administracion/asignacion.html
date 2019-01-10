@@ -59,23 +59,50 @@
 
 			</div>
 			
+			
+			<br/>
+			<br/>
+			<div id="labels" style="display:none;">
+			<label id="lblTotal" >Monto apoyo</label>			 
+			<label>Monto asignado</label>
+			<label>Saldo</label>
+			</div>
 			<br/>
 			<br/>
 			
-			<div id="registros" style="display:none; width: 60%; margin: 0 auto;">
+			
+			<div id="registros" style="display:none; margin: 0 auto;">
+			
 			
 			
 			<table class="table tabla" id="registrosAs" >
 				<tr>
-					<th style="width:15%;">#</th>
-					<th style="width:70%;"><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Nombre</label></th>
-					<th style="width:15%;">Seleccionar</th>
+					<th>#</th>
+					<th th:if="${asig} == 1"><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Donantes</label></th>
+					<th th:unless="${asig} == 1"><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Beneficiarios</label></th>
+					<th><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Saldo</label></th>
+					<th><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Monto a asignar</label></th>
+					<th>Seleccionar</th>
 				</tr>
 					<th:block th:each="registrosTabla,iterationStatus : ${registrosTab}" >
 				<tr class="tdSencillo" >							
 					<td th:text="${iterationStatus.count}" ></td>
 					<td  th:text="${registrosTabla.nombre+' '+registrosTabla.apellidoPaterno+' '+registrosTabla.apellidoMaterno}" ></td>
-					<td ><input type="checkbox" id="registrosTabla.idDonante"></td>				
+					<td  th:if="${asig} == 1" th:text="${registrosTabla.donativoTotal}" ></td>
+					<td  th:unless="${asig} == 1" th:text="${registrosTabla.montoBeca}" ></td>
+					
+					<td th:if="${asig} == 1" class="col-xs-2"><input
+								type="text" th:id="${'montoAsig'+registrosTabla.idDonativo}" minlength="2" maxlength="10"
+								onkeypress="return filterFloat(event,this)"
+								class="form-control "></td>
+								
+					<td th:unless="${asig} == 1" class="col-xs-2"><input
+								type="text" th:id="${'montoAsig'+registrosTabla.idBeneficiario}" minlength="2" maxlength="10"
+								onkeypress="return filterFloat(event,this)"
+								class="form-control "></td>
+								
+					<td th:if="${asig} == 1"><input type="checkbox" id="registrosTabla.idDonativo"></td>
+					<td th:unless="${asig} == 1"><input type="checkbox" id="registrosTabla.idBeneficiario"></td>				
 					
 				</tr>
 				</th:block>

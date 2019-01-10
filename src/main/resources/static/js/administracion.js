@@ -18,10 +18,13 @@ function checkIds(id){
 	$("#idDonBene").prop('disabled',true);
 	$("#registros").hide();
 	$("#idDonBene").keyup();
+	$("#labels").hide();
 	if($("#"+id).val() == '1'){
-		$("#donBene").text("Beneficiario");				
+		$("#donBene").text("Beneficiario");		
+		$("#lblTotal").text("Monto apoyo");
 	}else if($("#"+id).val() == '0'){
 		$("#donBene").text("Donante");
+		$("#lblTotal").text("Donativo total");
 	}
 }
 
@@ -88,7 +91,7 @@ function autocompleteDonBeneAS() {
 			this.value = ui.item.label;
 			
 			if( $('input:radio[name=altaCambio]:checked').val() ==1){
-			$("#etiquetaTab").text("Donante(s)");
+			//$("#etiquetaTab").text("Donante(s)");
 			
 			reg=1;
 			if(ui.item.value=='Sin beneficiario'){
@@ -99,7 +102,7 @@ function autocompleteDonBeneAS() {
 			$("#valBeneficiarioHidden").val(this.value);
 			
 			}else{
-				$("#etiquetaTab").text("Beneficiario(s)");
+				//$("#etiquetaTab").text("Beneficiario(s)");
 				reg=0;
 				
 			if(ui.item.value=='Sin donante'){
@@ -109,6 +112,8 @@ function autocompleteDonBeneAS() {
 				}
 				$("#valBenefactorHiddenCF").val(this.valueD);
 			}
+			
+			$("#labels").show();
 			
 			$("#registros").show();		
 			var datos = {

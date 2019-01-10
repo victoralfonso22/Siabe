@@ -68,13 +68,13 @@ public class ControladorRestArchivo {
     	for(int b = 0; b < listaFiles.size() ;b++) {
     		if(count == 1) {
     			response += "<tr>";
-    			response += "<td><span>	<a title='Click para descargar' href="+listaFiles.get(b).getLinkDescarga()+">"+listaFiles.get(b).getNombreArchivo()+"</a></span></td>";
+    			response += "<td><span>	<a title='Click para descargar' href="+listaFiles.get(b).getLinkDescarga().replace(" ", "%20")+">"+listaFiles.get(b).getNombreArchivo()+"</a></span></td>";
     			count++;
     		}else if(count > 1 && count < 3) {
-    		response += "<td><span>	<a title='Click para descargar' href="+listaFiles.get(b).getLinkDescarga()+">"+listaFiles.get(b).getNombreArchivo()+"</a></span></td>"; 
+    		response += "<td><span>	<a title='Click para descargar' href="+listaFiles.get(b).getLinkDescarga().replace(" ", "%20")+">"+listaFiles.get(b).getNombreArchivo()+"</a></span></td>"; 
     		count++;
     		}else {
-    			response += "<td><span>	<a title='Click para descargar' href="+listaFiles.get(b).getLinkDescarga()+">"+listaFiles.get(b).getNombreArchivo()+"</a></span></td>";
+    			response += "<td><span>	<a title='Click para descargar' href="+listaFiles.get(b).getLinkDescarga().replace(" ", "%20")+">"+listaFiles.get(b).getNombreArchivo()+"</a></span></td>";
     			response += "</tr>";
     		count = 1;
     		}
@@ -86,8 +86,8 @@ public class ControladorRestArchivo {
     	return response;
     }
 
-    @GetMapping("/downloadFile/{fileName:.+}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
+    @GetMapping("/downloadFile/{fileName:.+}/{idPeriodo}/{idDonativo}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request,@PathVariable int idPeriodo,@PathVariable int idDonativo) {
         // Load file as Resource
         Resource resource = fileStorageService.loadFileAsResource(fileName);
 
@@ -106,7 +106,7 @@ public class ControladorRestArchivo {
 
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(contentType))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename().replace(idPeriodo+"-"+idDonativo+"-", "") + "\"")
                 .body(resource);
     }
 }
