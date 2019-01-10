@@ -31,8 +31,9 @@ public class ArchivoStorageServicio {
     @Autowired
     public ArchivoStorageServicio() {
     //public ArchivoStorageServicio(PropiedadesArchivosGuardados fileStorageProperties) {
-        this.fileStorageLocation = Paths.get("C:\\Users\\victo\\Music\\comprobantes")
-                .toAbsolutePath().normalize();
+        //this.fileStorageLocation = Paths.get("C:\\Users\\victo\\Music\\comprobantes").toAbsolutePath().normalize();
+        this.fileStorageLocation = Paths.get("/home/Siabe/archivos")
+                .toAbsolutePath().normalize();        
    //     System.out.println("1 "+this.fileStorageLocation);
         try {
             Files.createDirectories(this.fileStorageLocation);
@@ -98,7 +99,8 @@ public class ArchivoStorageServicio {
     	*/
     	
     	List<PropiedadesArchivosGuardados> archivos = new ArrayList<PropiedadesArchivosGuardados>();
-    	File directory = new File("C:\\Users\\victo\\Music\\comprobantes");
+    	//File directory = new File("C:\\Users\\victo\\Music\\comprobantes");
+    	File directory = new File("/home/Siabe/archivos");
         //get all the files from a directory
         File[] fList = directory.listFiles();
         for (File file : fList){
@@ -106,7 +108,7 @@ public class ArchivoStorageServicio {
             if (file.isFile()){
             	if(file.getName().contains(idPeriodo+"-"+idDonativo+"-")) {
             	propiedadesArchivosGuardados.setNombreArchivo(file.getName().replace(idPeriodo+"-"+idDonativo+"-", ""));
-            	propiedadesArchivosGuardados.setLinkDescarga("http://localhost/downloadFile/"+file.getName()+"/"+idPeriodo+"/"+idDonativo);
+            	propiedadesArchivosGuardados.setLinkDescarga("http://siabe/downloadFile/"+file.getName()+"/"+idPeriodo+"/"+idDonativo);
             	archivos.add(propiedadesArchivosGuardados);
              //   System.out.println(file.getName());
             	}
