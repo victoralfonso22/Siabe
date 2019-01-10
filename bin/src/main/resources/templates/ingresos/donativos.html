@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+		<form class="form-inline" onSubmit="return false;" id="donativoForm">
+			<div>
+				<h1 class="h1Class">Donativos</h1>
+			</div>
+			
+			<div class="valoresCentrados">
+			
+				<!-- Select del tipo de beca para mostrar datos a llenar -->
+				<div id="tMovimientoDonante">
+				<label style="font-weight: bold; font-size: 20px;">Tipo de movimiento &nbsp;</label><br/> 
+				<input	type="radio" name="altaCambioDon" onclick="checkInicioDonante('altaDon');"	id="altaDon" value="1" checked> Alta&nbsp;&nbsp;&nbsp; 
+				<input	type="radio" name="altaCambioDon" onclick="checkInicioDonante('cambioDon');" id="cambioDon" value="0"> Cambio <br /> <br />
+				</div>
+				
+				
+				<br/>
+				
+				<div id="tipoDonativo" >
+				<label>Tipo de donativo &nbsp;</label><br/>
+					<select	id="tDonativo" 
+								class="form-control selectTextFormulario div50">							
+								<option selected value="1">Donantes</option>
+								<option value="2">Patrocinadores</option>
+							</select>
+				
+				</div>
+				<br/>
+				<div id="completeCambio" style="display: none;"><label id="lblAutoDon" for="idDon">Nombre de donante</label><br> <input type="text"
+								id="idDon" class="form-control selectTextFormulario div50"
+								onkeyup="autocompletarDonanteMod();" >
+				</div> 			
+				<br />
+				<!-- Datos para dar de alta a beneficiario -->
+				<div id="donante" class="text-center" >
+					<br />
+
+					<div class="divisionForm"></div>
+
+					<br />
+					<!-- Primera fila de datos periodo,matricula -->
+					<div class="row ">
+						<div class="col-xs-5 ">
+							<label for="idPeriodoDon">Periodo</label><br> <select onchange="cambiaPeriodoDon('idPeriodoDon','idRegionDon');"
+								id="idPeriodoDon" 
+								class="form-control selectTextFormulario donativosRequired selectInicial">
+								<option disabled selected value="">Selecciona periodo</option>
+								<option th:each="periodo : ${periodos}"
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+							</select>
+						</div>
+
+						<div class="col-xs-7 ">
+							<label for="razonSocialDon">Denominación o Razón Social</label><br> <input
+								type="text" id="razonSocialDon" minlength="3" 
+								placeholder="" 
+								class="form-control selectTextFormulario vacias  donativosRequired " maxlength="100"
+								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
+						</div>
+
+						<!-- Segunda fila de datos nombre,ap paterno, ap materno -->
+					</div>
+					<br />
+					<br />
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="nombresDon">Nombre (s)</label><br> <input
+								type="text" id="nombresDon"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" minlength="3"
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+						<div class="col-xs-4">
+							<label for="aPaternoDon">Apellido paterno</label><br> <input minlength="3"
+								type="text" id="aPaternoDon"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+"
+								class="form-control selectTextFormulario vacias donativosRequired">
+						</div>
+						<div class="col-xs-4">
+							<label for="aMaternoDon">Apellido materno</label><br> <input
+								type="text" id="aMaternoDon"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" minlength="3"
+								class="form-control selectTextFormulario vacias ">
+						</div>
+					</div>
+					<br> <br>
+
+					<!-- Tercera fila de datos estatus,motivo de inactivacion, tipo de becario y adscripción -->
+
+					<div class="row ">
+
+						<div class="col-xs-3">
+							<label for="estatusDon">Estatus</label><br> <select
+								id="estatusDon" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+								<option selected value="1">Activo</option>
+								<option value="0">Inactivo</option>
+							</select>
+						</div>
+
+						<div class="col-xs-3" style="display: none;" id="motivosEstatusDon">
+							<label for="motivoEstInactivoDon">Motivo de inactivación</label><br>
+							<input type="text" id="motivoEstInactivoDon" minlength="5"
+								pattern="[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ\s]+" class="form-control selectTextFormulario vacias ">
+						</div>
+						
+						<div class="col-xs-3">
+							<label for="adscripcionDon">Adscripción</label><br> <select
+								id="adscripcionDon" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+								<option selected value="1">Comité Regional</option>
+								<option value="2">Unidad de Becas (oficina)</option>
+							</select>
+						</div>
+
+						<div class="col-xs-3">
+							<label for="tDonanteDon">Tipo de donante</label><br> <select
+								id="tDonanteDon" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+								<option selected value="1">Nuevo</option>
+								<option value="2">Refrendo</option>
+							</select>
+						</div>
+
+						
+
+
+					</div>
+					<br /> <br />
+
+
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="idRegionDon">Región</label><br> <input type="text"
+								id="idRegionDon" disabled
+								onkeyup="autocompletarRegionDon('idPeriodoDon','idRegionDon','idRegionHiddenDon','valRegionHiddenDon','idCampaniaDon');"
+								onblur="this.value=$('#valRegionHiddenDon').val();"
+								class="form-control selectTextFormulario vacias deshab donativosRequired"> 
+								<input type="hidden" id="idRegionHiddenDon"> 
+								<input type="hidden" id="valRegionHiddenDon">
+							<!-- <select
+								id="idRegion" required
+								class="form-control selectTextFormulario vacias ">
+								<option disabled selected value="">Selecciona región</option>
+								<option th:each="region : ${regiones}"
+									th:value="${region.idRegion}" th:text="${region.nombre}"></option>
+								
+							</select> -->
+						</div>
+
+						<div class="col-xs-4">
+							<label for="sectorDon">Sector</label><br> <select
+								id="sectorDon" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+								<option selected value="1">Sociedad en general </option>
+								<option value="2">Personal UV</option>
+							</select>
+						</div>
+
+						<div class="col-xs-4">
+							<label for="idCampaniaDon">Campaña</label><br> <select
+								id="idCampaniaDon"  disabled
+								class="form-control selectTextFormulario selectInicial donativosRequired">
+								<option disabled selected value="">Selecciona campaña</option>
+								<option th:each="campania : ${campanias}"
+									th:value="${campania.idCampana}" th:text="${campania.nombre}"></option>
+								
+							</select>
+						</div>
+
+
+
+					</div>
+					<br /> <br />
+
+					<!-- Quinta fila de datos nivel, modalidad y carrera -->
+					<div class="row ">
+						<div class="col-xs-5">
+							<label for="medioAutorizacionDon">Medio de autorización de donativo </label><br> <select
+								id="medioAutorizacionDon" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+								<option selected value="1">Teléfono</option>
+								<option value="2">Correo</option>
+								<option value="3">Formulario en línea</option>
+								<option value="4">Formato impreso</option>								
+								
+							</select>
+		
+						</div>
+
+						<div class="col-xs-5">
+							<label for="observacionesMADon">Observaciones</label><br> <input
+								type="text" id="observacionesMADon" 
+								class="form-control selectTextFormulario vacias deshab"> 
+
+					</div>
+					
+					</div>
+					<br />
+					
+					<div class="divisionForm"></div>
+					<br />
+					
+					<label for="medioCobroDon">Medio de cobro (aportación)</label><br> <select
+								id="medioCobroDon" 
+								class="form-control selectTextFormulario vacias div50  donativosRequired ">
+								<option selected value="1">Nómina</option>
+								<option value="2">Depósito o transferencia</option>
+								<option value="3">Tarjeta de crédito/débito</option>								
+							</select>
+							<br/>
+							<br/>
+					<div id="mcNominaDon">							
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="numPersonalDon">Número de personal</label><br>
+							<input type="text" id="numPersonalDon"
+								placeholder="" 
+								class="form-control selectTextFormulario vacias  mcNominaDonClass " onkeypress="return valida(event)">
+						</div>
+
+						<div class="col-xs-4">
+							<label for="depAdscripcionDon">Dependencia de adscripción</label><br>
+							<input type="text" id="depAdscripcionDon" 
+								
+								class="form-control selectTextFormulario vacias  mcNominaDonClass ">
+						</div>
+						<div class="col-xs-4">
+							<label for="donaTotalDon">Donativo Total</label><br>
+							<input type="text" id="donaTotalDon" maxlength="10"
+								onkeypress="return filterFloat(event,this)"
+								class="form-control selectTextFormulario vacias mcNominaDonClass  ">
+						</div>
+
+					</div>
+					<br/>
+					<br/>
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="donaQnaDon">Donativo quincenal</label><br>
+							<input type="text" id="donaQnaDon" maxlength="10"
+								onkeypress="return filterFloat(event,this)"
+								class="form-control selectTextFormulario vacias mcNominaDonClass  ">
+						</div>
+						<div class="col-xs-4">
+							<label for="numQuincenasDon">Número de quincenas</label><br>
+							<input type="text" id="numQuincenasDon"
+								placeholder="" 
+								class="form-control selectTextFormulario vacias  mcNominaDonClass " onkeypress="return valida(event)">
+						</div>
+
+						<div class="col-xs-4">
+							<label for="quincenaInicioDon">Quincena de inicio de aportación</label><br>
+							<input type="text" id="quincenaInicioDon" onkeyup="autocompletarQuincenaDon();" placeholder="Escribe y selecciona una opción"
+								class="form-control selectTextFormulario vacias  mcNominaDonClass "  onblur="this.value=$('#valQuincenaHidden').val();">
+								<input	type="hidden" id="idQuincenaHidden"> 
+								<input type="hidden" id="valQuincenaHidden">
+						</div>
+					</div>		
+									
+					</div>
+						
+					<div id="mcDepTransDon" style="display:none;">							
+					<div class="row ">
+						<div class="col-xs-6">
+							<label for="cscBanDon">Cuenta, sucursal y CLABE Bancaria</label><br>
+							<input type="text" id="cscBanDon" onkeyup="autocompletarCuentaBanDon();"
+								class="form-control selectTextFormulario vacias  mcDepTransDonClass " onblur="this.value=$('#valCuentaBanHidden').val();">
+								<input	type="hidden" id="idCuentaBanHidden"> 
+								<input type="hidden" id="valCuentaBanHidden">
+						</div>
+
+						<div class="col-xs-6">
+							<label for="depTraReferenciaDon">Referencia</label><br>
+							<input type="text" id="depTraReferenciaDon" 
+								
+								class="form-control selectTextFormulario vacias  mcDepTransDonClass ">
+						</div>
+						
+
+					</div>
+					<br/>
+					<br/>
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="donaTotalDTDon">Donativo Total</label><br>
+							<input type="text" id="donaTotalDTDon" maxlength="10"
+								onkeypress="return filterFloat(event,this)" onkeyup="calcularCobro('donaTotalDTDon', 'numPagosDTDon', 'importePagoDTDon');"
+								class="form-control selectTextFormulario vacias mcDepTransDonClass  ">
+						</div>
+						<div class="col-xs-4">
+							<label for="numPagosDTDon">Número de cobros</label><br>
+							<input type="text" id="numPagosDTDon"
+								placeholder="" 
+								class="form-control selectTextFormulario vacias  mcDepTransDonClass " onkeypress="return valida(event)" onkeyup="calcularCobro('donaTotalDTDon', 'numPagosDTDon', 'importePagoDTDon');">
+						</div>
+
+						<div class="col-xs-4">
+							<label for="importePagoDTDon">Importe de cada cobro</label><br>
+							<input type="text" id="importePagoDTDon"  onkeypress="return filterFloat(event,this)" maxlength="10"
+								class="form-control selectTextFormulario vacias  mcDepTransDonClass ">
+						</div>
+					</div>		
+									
+					</div>				
+						
+					
+					<div id="mcTarjetaCreditoDon" style="display:none;">							
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="tcBanDon">Banco</label><br>
+							<input type="text" id="tcBanDon"
+								minlength="3"
+								class="form-control selectTextFormulario vacias  mcTarjetaCreditoDonClass " pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+						</div>
+
+						<div class="col-xs-4">
+							<label for="tcNombreTarHabDon">Nombre del tarjetahabiente</label><br>
+							<input type="text" id="tcNombreTarHabDon" 
+								
+								class="form-control selectTextFormulario vacias  mcTarjetaCreditoDonClass " pattern="[A-Za-zñÑáéíóúÁÉÍÓÚ\s]+">
+						</div>
+						
+						<div class="col-xs-4">
+							<label for="tcRedDon">Red</label><br>
+							<select
+								id="tcRedDon" 
+								class="form-control selectTextFormulario vacias   mcTarjetaCreditoDonClass ">
+								<option selected value="Visa">Visa</option>
+								<option value="Mastercard">Mastercard</option>															
+							</select>
+						</div>
+						
+					</div>
+					<br/>
+					<br/>
+					<div class="row ">
+					
+						<div class="col-xs-4">
+							<label for="tcTipoDon">Tipo</label><br>
+							<select
+								id="tcTipoDon" 
+								class="form-control selectTextFormulario vacias   mcTarjetaCreditoDonClass ">
+								<option selected value="Crédito">Crédito</option>
+								<option value="Débito">Débito</option>															
+							</select>
+						</div>
+					
+						<div class="col-xs-4" >
+							<label for="tcNumTarjetaDon">Número de tarjeta</label><br> <input
+								type="text" id="tcNumTarjetaDon" pattern="[0-9]{16}" title="16 dígitos" maxlength="16"
+								class="form-control selectTextFormulario vacias  mcTarjetaCreditoDonClass " onkeypress="return valida(event)">
+						</div>
+						<div class="col-xs-4">
+							<label>Fecha de vencimiento</label><br>
+							<input style="width:40% !important;" type="text" id="tcFechaMesDon"
+								placeholder="Mes (2 dígitos)" maxlength="2" minlength="2"
+								class="form-control selectTextFormulario vacias  mcTarjetaCreditoDonClass " onkeypress="return valida(event)">
+								
+								<input type="text" id="tcFechaAnioDon" style="width:40% !important;"
+								placeholder="Año (4 dígitos)" maxlength="4" minlength="4"
+								class="form-control selectTextFormulario vacias  mcTarjetaCreditoDonClass " onkeypress="return valida(event)">
+						</div>
+
+				
+					</div>	
+					<br>
+					<br>
+					
+					<div class="row ">
+					
+						<div class="col-xs-4">
+							<label for="tcTipoDonaDon">Tipo de donativo</label><br>
+							<select
+								id="tcTipoDonaDon" 
+								class="form-control selectTextFormulario vacias   mcTarjetaCreditoDonClass ">
+								<option selected value="Recurrente">Recurrente</option>
+								<option value="Único">Único</option>															
+							</select>
+						</div>
+					
+						<div class="col-xs-4" id="nPagoTDon">
+							<label for="tcNumPagosDon">Número de cobros</label><br> <input
+								type="text" id="tcNumPagosDon" maxlength="4" onkeyup="calcularCobro('tcDonaTotalDon', 'tcNumPagosDon', 'tcImportePagoDon');"
+								class="form-control selectTextFormulario vacias  mcTarjetaCreditoDonClass " onkeypress="return valida(event)">
+						</div>
+					
+						<div class="col-xs-4">
+							<label for="tcDonaTotalDon">Donativo Total</label><br>
+							<input type="text" id="tcDonaTotalDon"  onkeyup="calcularCobro('tcDonaTotalDon', 'tcNumPagosDon', 'tcImportePagoDon');"
+								onkeypress="return filterFloat(event,this)" maxlength="10"
+								class="form-control selectTextFormulario vacias mcTarjetaCreditoDonClass  ">
+						</div>
+					</div>		
+					<br>
+					<br>
+					<div class="row ">
+					
+					<div class="col-xs-4">
+							<label for=" tcImportePagoDon">Importe de cada cobro</label><br>
+							<input type="text" id="tcImportePagoDon" maxlength="10" onkeypress="return filterFloat(event,this)"
+								class="form-control selectTextFormulario vacias  mcTarjetaCreditoDonClass ">
+						</div>
+					
+						<div class="col-xs-4">
+							<label for="tcfechaIniAporDon">Fecha de inicio de aportación (mes)</label><br>
+							<input type="text" id="tcfechaIniAporDon"
+								placeholder="Mes (dos dígitos)" maxlength="2" minlength="2"
+								class="form-control selectTextFormulario vacias  mcTarjetaCreditoDonClass " onkeypress="return valida(event)">
+								
+						</div>
+					
+						
+					</div>	
+									
+					</div>
+							
+				
+					<br>
+
+					<div class="divisionForm"></div>
+					<br />
+					
+					<div class="row ">
+						<div class="col-xs-6 ">
+							<label for="correoDon">Correo electrónico </label><br> <input
+								type="text" id="correoDon" 
+								pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+						<div class="col-xs-6">
+							<label for="celularDon">Celular </label><br> <input type="text"
+								id="celularDon" minlength="10" maxlength="10"
+								onkeypress="return valida(event)" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+						
+					</div> 
+					<br>
+					<br>
+					<div class="row ">
+
+						<div class="col-xs-6">
+							<label for="tel1Don">Teléfono 1</label><br> <input
+								type="text" id="tel1Don" 
+								class="form-control selectTextFormulario vacias " minlength="10"
+								maxlength="10" onkeypress="return valida(event)">
+						</div>
+						
+						<div class="col-xs-6">
+							<label for="tel2don">Teléfono 2</label><br> <input
+								type="text" id="tel2Don" 
+								class="form-control selectTextFormulario vacias " minlength="10"
+								maxlength="10" onkeypress="return valida(event)">
+						</div>
+
+					</div> 
+					<br>
+
+					<div class="divisionForm"></div>
+					<br />					
+
+					<h2>Domicilio particular</h2>
+					<div class="row ">
+						<div class="col-xs-3">
+							<label for="calleDon">Calle</label><br> <input type="text"
+								id="calleDon" minlength="4" 
+								class="form-control selectTextFormulario vacias donativosRequired  ">
+						</div>
+						
+						<div class="col-xs-3">
+							<label for="nExteriorDon">No. Ext</label><br> <input
+								type="text" id="nExteriorDon" 
+								class="form-control selectTextFormulario vacias donativosRequired  ">
+						</div>
+
+						<div class="col-xs-3">
+							<label for="nInteriorDon">No. Int</label><br> <input
+								type="text" id="nInteriorDon" 
+								class="form-control selectTextFormulario vacias   ">
+						</div>
+						
+
+						<div class="col-xs-3">
+							<label for="colDon">Colonia o fraccionamiento </label><br> <input
+								type="text" id="colDon" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+
+					</div>
+					<br> <br>
+					<div class="row ">
+						<div class="col-xs-3">
+							<label for="localidadDon">Localidad </label><br> <input
+								type="text" id="localidadDon" minlength="4" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+
+						<div class="col-xs-3">
+							<label for="municipioDon">Municipio</label><br> <input
+								type="text" id="municipioDon" 
+								class="form-control selectTextFormulario vacias donativosRequired  ">
+						</div>
+						<div class="col-xs-3">
+							<label for="estadoDon">Estado</label><br> <input type="text"
+								id="estadoDon"  class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+
+						<div class="col-xs-3">
+							<label for="cpDon">C. P.</label><br> <input type="text" id="cpDon"
+								 class="form-control selectTextFormulario vacias  donativosRequired "
+								minlength="5" maxlength="5" onkeypress="return valida(event)">
+						</div>
+
+					</div>
+				
+					<br> <br>
+
+					<h2>Domicilio fiscal</h2>
+					<br /> 
+					<label>¿Mismo que Domicilio particular?</label><br/>
+					<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFS');"	id="mismoDFS" value="0" checked> No&nbsp;&nbsp;&nbsp; 
+					<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFN');" id="mismoDFN" value="1"> Si <br /> <br />
+					<br /> 
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="calleFDon">Calle</label><br> <input type="text"
+								id="calleFDon" minlength="4"
+								class="form-control selectTextFormulario vacias  donativosRequired " >
+						</div>
+						
+						<div class="col-xs-4">
+							<label for="nExteriorFDon">No. Ext</label><br> <input
+								type="text" id="nExteriorFDon" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+						
+						<div class="col-xs-4">
+							<label for="nInteriorFDon">No. Int</label><br> <input
+								type="text" id="nInteriorFDon" 
+								class="form-control selectTextFormulario vacias   " >
+						</div>
+						
+					</div>
+					<br> <br>
+					<div class="row ">
+					
+					<div class="col-xs-4">
+							<label for="colFDon">Colonia o fraccionamiento </label><br> <input
+								type="text" id="colFDon" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+					
+					
+						<div class="col-xs-4">
+							<label for="localidadFDon">Localidad </label><br> <input
+								type="text" id="localidadFDon" minlength="4" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+
+						<div class="col-xs-4">
+							<label for="municipioFDon">Municipio</label><br> <input
+								type="text" id="municipioFDon" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+						
+
+					</div>
+					<br> <br>
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="estadoFDon">Estado</label><br> <input type="text"
+								id="estadoFDon" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+
+						<div class="col-xs-4">
+							<label for="cpFDon">C. P.</label><br> <input type="text"
+								id="cpFDon" class="form-control selectTextFormulario vacias donativosRequired  "
+								minlength="5" maxlength="5" 
+								onkeypress="return valida(event)">
+						</div>
+						<div class="col-xs-4">
+							<label for="rfcFDon">RFC </label><br> <input
+								type="text" id="rfcFDon" minlength="10" maxlength="13" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+
+						
+
+					</div>
+
+				
+					<br>
+					<div class="divisionForm"></div>
+					
+					<br>
+
+					<div class="row ">
+						<div class="col-xs-8">
+							<label for="observacionesDon">Observaciones</label><br> <input
+								type="text" id="observacionesDon"
+								class="form-control selectTextFormulario vacias   ">
+						</div>
+
+
+						<div class="col-xs-4" id="divBeneAsignado"  >
+							<label for="idBeneficiarioDon">Beneficiario asignado</label><br>
+							<input type="text" disabled id="idBeneficiarioDon" onblur="valorBlur('idBeneficiarioDon','idBeneficiarioHidden','valBeneficiarioHidden');" onkeyup="autocompleteBeneficiarioDon();" 
+							 
+								class="form-control selectTextFormulario vacias  ">
+								<input	type="hidden" id="idBeneficiarioHidden"> 
+								<input type="hidden" id="valBeneficiarioHidden">
+						</div>
+						
+
+					</div>
+		
+
+
+				</div>
+
+
+
+				<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+				<div id="patrocinadores" class="text-center" style="display: none;">
+					<br />
+
+					<div class="divisionForm"></div>
+
+					<br />
+					<!-- Primera fila de datos periodo,matricula -->
+					<div class="row ">
+						<div class="col-xs-5 ">
+							<label for="idPeriodoP">Periodo</label><br> <select onchange="cambiaPeriodo('idPeriodoP','idRegionP');"
+								id="idPeriodoP" 
+								class="form-control selectTextFormulario patrocRequired selectInicial">
+								<option disabled selected value="">Selecciona periodo</option>
+								<option th:each="periodo : ${periodos}"
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+							</select>
+						</div>
+
+						<div class="col-xs-7 ">
+							<label for="razonSocialP">Denominación o Razón Social</label><br> <input
+								type="text" id="razonSocialP" minlength="3" 
+								placeholder="" 
+								class="form-control selectTextFormulario vacias  patrocRequired " maxlength="100"
+								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
+						</div>
+
+						<!-- Segunda fila de datos nombre,ap paterno, ap materno -->
+					</div>
+					<br />
+					<br />
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="nombresP">Nombre (s)</label><br> <input
+								type="text" id="nombresP"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" minlength="3"
+								class="form-control selectTextFormulario vacias  patrocRequired ">
+						</div>
+						<div class="col-xs-4">
+							<label for="aPaternoP">Apellido paterno</label><br> <input minlength="3"
+								type="text" id="aPaternoP"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+"
+								class="form-control selectTextFormulario vacias patrocRequired">
+						</div>
+						<div class="col-xs-4">
+							<label for="aMaternoP">Apellido materno</label><br> <input
+								type="text" id="aMaternoP"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" minlength="3"
+								class="form-control selectTextFormulario vacias ">
+						</div>
+					</div>
+					<br> <br>
+
+					<!-- Tercera fila de datos estatus,motivo de inactivacion, tipo de becario y adscripción -->
+
+					<div class="row ">
+					
+						<div class="col-xs-4">
+							<label for="adscripcionP">Adscripción</label><br> <select
+								id="adscripcionP" 
+								class="form-control selectTextFormulario vacias  patrocRequired ">
+								<option selected value="1">Comité Regional</option>
+								<option value="2">Unidad de Becas (oficina)</option>
+							</select>
+						</div>
+						
+						<div class="col-xs-4">
+							<label for="idRegionP">Región</label><br> <input type="text"
+								id="idRegionP" 
+								onkeyup="autocompletarRegionDon('idPeriodoP','idRegionP','idRegionHiddenP','valRegionHiddenP','');"
+								onblur="this.value=$('#valRegionHiddenP').val();"
+								class="form-control selectTextFormulario vacias deshab patrocRequired"> 
+								<input type="hidden" id="idRegionHiddenP"> 
+								<input type="hidden" id="valRegionHiddenP">
+							
+						</div>
+						
+						<div class="col-xs-4">
+							<label for="sectorP">Sector</label><br> <select
+								id="sectorP" 
+								class="form-control selectTextFormulario vacias  patrocRequired ">
+								<option selected value="1">Sociedad en general </option>
+								<option value="2">Personal UV</option>
+							</select>
+						</div>
+
+
+					</div>
+					<br /> <br />
+
+				<div class="row ">
+						<div class="col-xs-12">
+							<label for="descripcionDP">Descripción del donativo</label><br>
+							<textarea id="descripcionDP"
+								class="form-control selectTextFormulario vacias patrocRequired" rows="5"
+								maxlength="3000" minlength="10" ></textarea>
+						</div>
+					</div>
+					<br/>
+					<br/>
+			
+					
+					<div class="row ">
+						<div class="col-xs-3 ">
+							<label for="correoP">Correo electrónico </label><br> <input
+								type="text" id="correoP" 
+								pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
+								class="form-control selectTextFormulario vacias  patrocRequired ">
+						</div>
+						<div class="col-xs-3">
+							<label for="celularP">Celular </label><br> <input type="text"
+								id="celularP" minlength="10" maxlength="10"
+								onkeypress="return valida(event)" 
+								class="form-control selectTextFormulario vacias  patrocRequired ">
+						</div>
+
+						<div class="col-xs-3">
+							<label for="tel1P">Teléfono 1</label><br> <input
+								type="text" id="tel1P" 
+								class="form-control selectTextFormulario vacias " minlength="10"
+								maxlength="10" onkeypress="return valida(event)">
+						</div>
+						
+						<div class="col-xs-3">
+							<label for="tel2P">Teléfono 2</label><br> <input
+								type="text" id="tel2P" 
+								class="form-control selectTextFormulario vacias " minlength="10"
+								maxlength="10" onkeypress="return valida(event)">
+						</div>
+
+					</div>
+					<br>
+
+					<div class="divisionForm"></div>
+					<br />					
+
+					<h2>Domicilio particular</h2>
+					<div class="row ">
+						<div class="col-xs-3">
+							<label for="calleP">Calle</label><br> <input type="text"
+								id="calleP" minlength="4" 
+								class="form-control selectTextFormulario vacias patrocRequired  ">
+						</div>
+						
+						<div class="col-xs-3">
+							<label for="nExteriorP">No. Ext</label><br> <input
+								type="text" id="nExteriorP" 
+								class="form-control selectTextFormulario vacias patrocRequired  ">
+						</div>
+
+						<div class="col-xs-3">
+							<label for="nInteriorP">No. Int</label><br> <input
+								type="text" id="nInteriorP" 
+								class="form-control selectTextFormulario vacias   ">
+						</div>
+						
+
+						<div class="col-xs-3">
+							<label for="colP">Colonia o fraccionamiento </label><br> <input
+								type="text" id="colP" 
+								class="form-control selectTextFormulario vacias  patrocRequired ">
+						</div>
+
+					</div>
+					<br> <br>
+					<div class="row ">
+						<div class="col-xs-3">
+							<label for="localidadP">Localidad </label><br> <input
+								type="text" id="localidadP" minlength="4" 
+								class="form-control selectTextFormulario vacias  patrocRequired ">
+						</div>
+
+						<div class="col-xs-3">
+							<label for="municipioP">Municipio</label><br> <input
+								type="text" id="municipioP" 
+								class="form-control selectTextFormulario vacias patrocRequired  ">
+						</div>
+						<div class="col-xs-3">
+							<label for="estadoP">Estado</label><br> <input type="text"
+								id="estadoP"  class="form-control selectTextFormulario vacias  patrocRequired ">
+						</div>
+
+						<div class="col-xs-3">
+							<label for="cpP">C. P.</label><br> <input type="text" id="cpP"
+								 class="form-control selectTextFormulario vacias  patrocRequired "
+								minlength="5" maxlength="5" onkeypress="return valida(event)">
+						</div>
+
+					</div>
+				
+					<br> <br>
+
+					<h2>Domicilio fiscal</h2>
+					<br /> 
+					<label>¿Mismo que domicilio particular?</label><br/>
+					<input	type="radio" name="mismoDFP" onclick="checkMismoDFP('mismoDFSP');"	id="mismoDFSP" value="0" checked> No&nbsp;&nbsp;&nbsp; 
+					<input	type="radio" name="mismoDFP" onclick="checkMismoDFP('mismoDFNP');" id="mismoDFNP" value="1"> Si <br /> <br />
+					<br /> 
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="calleFP">Calle</label><br> <input type="text"
+								id="calleFP" minlength="4"
+								class="form-control selectTextFormulario vacias  patrocRequired " >
+						</div>
+						
+						<div class="col-xs-4">
+							<label for="nExteriorFP">No. Ext</label><br> <input
+								type="text" id="nExteriorFP" 
+								class="form-control selectTextFormulario vacias   patrocRequired" >
+						</div>
+						
+						<div class="col-xs-4">
+							<label for="nInteriorFP">No. Int</label><br> <input
+								type="text" id="nInteriorFP" 
+								class="form-control selectTextFormulario vacias   " >
+						</div>
+
+					
+					</div>
+					<br> <br>
+					<div class="row ">
+					
+						<div class="col-xs-4">
+							<label for="colFP">Colonia o fraccionamiento </label><br> <input
+								type="text" id="colFP" 
+								class="form-control selectTextFormulario vacias   patrocRequired" >
+						</div>
+					
+					
+						<div class="col-xs-4">
+							<label for="localidadFP">Localidad </label><br> <input
+								type="text" id="localidadFP" minlength="4" 
+								class="form-control selectTextFormulario vacias   patrocRequired" >
+						</div>
+
+						<div class="col-xs-4">
+							<label for="municipioFP">Municipio</label><br> <input
+								type="text" id="municipioFP" 
+								class="form-control selectTextFormulario vacias   patrocRequired" >
+						</div>
+						
+
+					</div>
+					<br> <br>
+					<div class="row ">
+					
+					<div class="col-xs-4">
+							<label for="estadoFP">Estado</label><br> <input type="text"
+								id="estadoFP" 
+								class="form-control selectTextFormulario vacias   patrocRequired" >
+						</div>
+
+						<div class="col-xs-4">
+							<label for="cpFP">C. P.</label><br> <input type="text"
+								id="cpFP"  class="form-control selectTextFormulario vacias patrocRequired  "
+								minlength="5" maxlength="5" 
+								onkeypress="return valida(event)">
+						</div>
+						<div class="col-xs-4">
+							<label for="rfcFP">RFC </label><br> <input
+								type="text" id="rfcFP" minlength="10" maxlength="13" 
+								class="form-control selectTextFormulario vacias   patrocRequired" >
+						</div>
+
+						
+
+					</div>
+
+				
+					<br>
+					<div class="divisionForm"></div>
+					
+					<br>
+
+					<div class="row ">
+						<div class="col-xs-8">
+							<label for="observacionesP">Observaciones</label><br> <input
+								type="text" id="observacionesP"
+								class="form-control selectTextFormulario vacias   ">
+						</div>
+					
+
+				
+
+					</div>
+	
+
+				</div>
+
+	
+	
+
+				<!-- Fin ----------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+				
+				<input type="hidden" id="idDonativoH">
+			<input type="hidden" id="idPeriodoDonH">
+				
+				<input type="hidden" id="razonSocialDonH">
+				<input type="hidden" id="nombresDonH">
+				<input type="hidden" id="aPaternoDonH">
+				<input type="hidden" id="aMaternoDonH">
+				
+				<input type="hidden" id="estatusDonH">
+				
+				
+				<input type="hidden" id="motivoEstInactivoDonH">
+				<input type="hidden" id="descripcionDPH">
+				
+				<input type="hidden" id="tDonanteDonH">
+				<input type="hidden" id="adscripcionDonH">
+				
+				<input type="hidden" id="idRegionDonH">
+				<input type="hidden" id="idRegionHiddenDonH">
+				<input type="hidden" id="valRegionHiddenDonH">
+								
+				<input type="hidden" id="sectorDonH">
+				
+				<input type="hidden" id="idCampaniaDonH">
+				<input type="hidden" id="medioAutorizacionDonH">
+				<input type="hidden" id="observacionesMADonH">
+			    
+				<input type="hidden" id="medioCobroDonH">
+			    
+		
+					<input type="hidden" id="numPersonalDonH">
+					<input type="hidden" id="depAdscripcionDonH">
+					<input type="hidden" id="donaTotalDonH">
+					<input type="hidden" id="donaQnaDonH">
+					<input type="hidden" id="numQuincenasDonH">
+					<input type="hidden" id="quincenaInicioDonH">
+					<input type="hidden" id="idQuincenaHiddenH">
+					<input type="hidden" id="valQuincenaHiddenH">
+					
+			
+					<input type="hidden" id="cscBanDonH">
+					<input type="hidden" id="idCuentaBanHiddenH">
+					<input type="hidden" id="valCuentaBanHiddenH">
+					<input type="hidden" id="depTraReferenciaDonH">
+					<input type="hidden" id="donaTotalDTDonH">
+					<input type="hidden" id="numPagosDTDonH">
+					<input type="hidden" id="importePagoDTDonH">
+
+					<input type="hidden" id="tcBanDonH">
+					<input type="hidden" id="tcNombreTarHabDonH">
+					<input type="hidden" id="tcRedDonH">
+					<input type="hidden" id="tcTipoDonH">
+					<input type="hidden" id="tcNumTarjetaDonH">
+					<input type="hidden" id="tcFechaMesDonH">
+					<input type="hidden" id="tcFechaAnioDonH">
+					<input type="hidden" id="tcTipoDonaDonH">
+					<input type="hidden" id="tcNumPagosDonH">
+					<input type="hidden" id="tcDonaTotalDonH">
+					<input type="hidden" id="tcImportePagoDonH">
+					<input type="hidden" id="tcfechaIniAporDonH">
+
+				<input type="hidden" id="correoDonH">
+				<input type="hidden" id="celularDonH">
+				<input type="hidden" id="tel1DonH">
+				<input type="hidden" id="tel2DonH">
+				
+			 	<input type="hidden" id="calleDonH">
+					<input type="hidden" id="nExteriorDonH">
+					<input type="hidden" id="nInteriorDonH">
+					<input type="hidden" id="colDonH">
+					<input type="hidden" id="localidadDonH">
+					<input type="hidden" id="municipioDonH">
+					<input type="hidden" id="estadoDonH">
+					<input type="hidden" id="cpDonH">
+					
+					<input type="hidden" id="calleFDonH">
+					<input type="hidden" id="nExteriorFDonH">
+					<input type="hidden" id="nInteriorFDonH">
+					<input type="hidden" id="colFDonH">
+					<input type="hidden" id="localidadFDonH">
+					<input type="hidden" id="municipioFDonH">
+					<input type="hidden" id="estadoFDonH">
+					<input type="hidden" id="cpFDonH">
+					<input type="hidden" id="rfcFDonH">
+				<input type="hidden" id="observacionesDonH">
+			     
+				<input type="hidden" id="idBeneficiarioDonH">
+				<input type="hidden" id="idBeneficiarioHiddenH">
+				<input type="hidden" id="valBeneficiarioHiddenH">	
+				
+
+				<div id="divBotonGuardar">
+					<br> <br> <br>
+					<button type="submit" id="btn-guardar"
+						class="btn btn-primary pull-center" >Guardar</button>
+				</div>
+
+			</div>
+		
+
+		</form>
+
+
+<!-- Empieza el modal para la modificacion de los beneficiarios--->
+
+		<div id="buscarBeneficiarioModal" class="modal" role="dialog"
+			style="overflow-y: auto;">
+			<div class="modal-dialog" role="document">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+						<h4 class="modal-title divRespuesta">Modificar beneficiario</h4>
+					</div>
+					<div class="modal-body">
+						<form id="beneForm">
+
+			
+
+							<br />
+							<div id="respuestaPass"></div>
+							<br />
+							<button type="button" class="btn btn-danger" data-dismiss="modal"
+								onclick="cerrarModal('buscarBeneficiarioModal');">Cancelar</button>
+							<button type="submit" id="btn-confirm"
+								class="btn btn-primary pull-right">Guardar</button>
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div class="valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+</html>
