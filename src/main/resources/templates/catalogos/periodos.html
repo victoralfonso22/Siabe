@@ -34,7 +34,7 @@
 				<tr class="tdSencillo"  title="Click para editar periodo" th:onclick="|modificaPeriodoModal('${periodo.nombre}','${periodo.fecha_inicio}','${periodo.fecha_final}','${periodo.idTipoBeca}','${periodo.estatus}','${periodo.idPeriodo}');|">							
 				<td th:text="${iterationStatus.count}" th:id="${'conta'+periodo.idPeriodo}"></td>
 				
-					<td  th:text="${periodo.nombre}" ></td>
+					<td  style="text-align: left;" th:text="${periodo.nombre}" ></td>
 					<td  th:text="${periodo.fecha_inicio}" ></td>
 					<td  th:text="${periodo.fecha_final}" ></td>				
 					<td  th:text="${periodo.tBeca}" ></td>					

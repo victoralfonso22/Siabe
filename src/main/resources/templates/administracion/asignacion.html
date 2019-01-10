@@ -92,17 +92,17 @@
 					<td  th:unless="${asig} == 1" th:text="${registrosTabla.montoBeca}" ></td>
 					
 					<td th:if="${asig} == 1" class="col-xs-2"><input
-								type="text" th:id="${'montoAsig'+registrosTabla.idDonativo}" minlength="2" maxlength="10"
+								type="text" th:id="${'montoAsig'+registrosTabla.idDonativo}" disabled minlength="2" maxlength="10"
 								onkeypress="return filterFloat(event,this)"
 								class="form-control "></td>
 								
 					<td th:unless="${asig} == 1" class="col-xs-2"><input
-								type="text" th:id="${'montoAsig'+registrosTabla.idBeneficiario}" minlength="2" maxlength="10"
+								type="text" th:id="${'montoAsig'+registrosTabla.idBeneficiario}" disabled minlength="2" maxlength="10"
 								onkeypress="return filterFloat(event,this)"
 								class="form-control "></td>
 								
-					<td th:if="${asig} == 1"><input type="checkbox" id="registrosTabla.idDonativo"></td>
-					<td th:unless="${asig} == 1"><input type="checkbox" id="registrosTabla.idBeneficiario"></td>				
+					<td th:if="${asig} == 1"><input type="checkbox" th:id="${registrosTabla.idDonativo}" th:onclick="deshabilitaMonto(${registrosTabla.idDonativo});"></td>
+					<td th:unless="${asig} == 1"><input type="checkbox" th:id="${registrosTabla.idBeneficiario}" th:onclick="deshabilitaMonto('${registrosTabla.idBeneficiario}');"></td>				
 					
 				</tr>
 				</th:block>

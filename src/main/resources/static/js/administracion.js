@@ -141,3 +141,11 @@ function autocompleteDonBeneAS() {
 	});
 }
 
+function deshabilitaMonto(id){
+	if (id.checked == true){
+		$("#montoAsig"+id).prop('disabled',true);
+	  } else {
+		  $("#montoAsig"+id).prop('disabled',false);
+	  }
+	
+}

@@ -91,7 +91,7 @@ public class PeriodoDAO extends JdbcDaoSupport {
 
 	public List<Periodo> obtenerPeriodos() {
 
-		String sql = PeriodoMapa.BASE_SQL;
+		String sql = PeriodoMapa.BASE_SQL +" order by p.nombre";
 		try {
 			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
 
