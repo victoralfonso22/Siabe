@@ -62,7 +62,7 @@
 								class="form-control selectTextFormulario donativosRequired selectInicial">
 								<option disabled selected value="">Selecciona periodo</option>
 								<option th:each="periodo : ${periodos}"
-									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre +' / '+ periodo.tBeca}"></option>
 							</select>
 						</div>
 
@@ -651,7 +651,7 @@
 								class="form-control selectTextFormulario patrocRequired selectInicial">
 								<option disabled selected value="">Selecciona periodo</option>
 								<option th:each="periodo : ${periodos}"
-									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre +' / '+ periodo.tBeca}"></option>
 							</select>
 						</div>
 
