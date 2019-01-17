@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>    
@@ -43,7 +42,7 @@
 
         </div>
         <div class="row footerSPadding" >
-        <b>Sistema integral de administración de becas (Siabe) 2018.</b>
+        <b><span th:utext="${anio}"></span></b>
         </div>
     </div>
 

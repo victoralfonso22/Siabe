@@ -46,10 +46,10 @@ public class ControladorRestCatalogo {
 
 	@Autowired
 	private UsuarioServicio usuarioServicio;
-
+	
 	@Autowired
-	private PeriodoServicio periodoServicio;
-
+	private PeriodoServicio periodoServicio;	
+	
 	@Autowired
 	private TipoBecaServicio tipoBecaServicio;
 
@@ -83,10 +83,11 @@ public class ControladorRestCatalogo {
 
 		}
 	}
-
+	
+	
 	@PostMapping(value = "/catalogos/ajaxPeriodo")
 	public String postAjaxPeriodo(@RequestParam String nombre, @RequestParam String fecha_inicio,
-			@RequestParam String fecha_final, @RequestParam int idTipoBeca) {
+			@RequestParam String fecha_final) {
 		System.out.println("nombre " + nombre);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -95,7 +96,7 @@ public class ControladorRestCatalogo {
 		try {
 			Date dateI = formatter.parse(fecha_inicio);
 			Date dateF = formatter.parse(fecha_final);
-			response = periodoServicio.insertPeriodo(nombre, dateI, dateF, idTipoBeca);
+			response = periodoServicio.insertPeriodo(nombre, dateI, dateF);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -106,7 +107,7 @@ public class ControladorRestCatalogo {
 
 	@PostMapping(value = "/catalogos/ajaxPeriodoModificar")
 	public String postAjaxPeriodoModificar(@RequestParam String nombre, @RequestParam String fecha_inicio,
-			@RequestParam String fecha_final, @RequestParam int idTipoBeca, @RequestParam int estatus,
+			@RequestParam String fecha_final, @RequestParam int estatus,
 			@RequestParam int idPeriodo) {
 		System.out.println("nombre " + nombre);
 
@@ -116,7 +117,7 @@ public class ControladorRestCatalogo {
 		try {
 			Date dateI = formatter.parse(fecha_inicio);
 			Date dateF = formatter.parse(fecha_final);
-			response = periodoServicio.periodoActualizaDatos(idPeriodo, nombre, dateI, dateF, idTipoBeca, estatus);
+			response = periodoServicio.periodoActualizaDatos(idPeriodo, nombre, dateI, dateF, estatus);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -154,7 +155,8 @@ public class ControladorRestCatalogo {
 			response = "<table class=\"table tabla\" th:fragment=\"tablaRegionesPeriodo\" id=\"tablaRegionesPeriodo\"  >\r\n"
 					+ "				<tr >" + "<tr>\r\n" + "					<th>#</th>\r\n"
 					+ "					<th>Nombre</th>\r\n" + "					<th>Abreviatura</th>\r\n"
-					+ "					<th>Periodo</th>	\r\n" + "					<th>Estatus</th>\r\n"
+				//	+ "					<th>Periodo</th>	\r\n" + "					
+					+"<th>Estatus</th>\r\n"
 					+ "				</tr>";
 
 			List<Regiones> regionesPeriodo = new ArrayList<Regiones>(
@@ -166,19 +168,19 @@ public class ControladorRestCatalogo {
 					claseTD = "inactivo";
 				}
 
-				response += "<tr class=\"tdSencillo\" title='Click para editar región' style='cursor: pointer;' onclick=\"modificarRegionModal("
-						+ regionesPeriodo.get(i).getIdRegion() + ",'" + regionesPeriodo.get(i).getNombre() + "','"
-						+ regionesPeriodo.get(i).getAbreviatura() + "'," + idPeriodo + ","
+				response += "<tr class=\"tdSencillo\" title='Click para editar región' style='cursor: pointer;' onclick=\"modificarRegionPeriodoModal("
+						+ regionesPeriodo.get(i).getIdRegion() + ",'" + regionesPeriodo.get(i).getNombre() + "'," + idPeriodo + ","
 						+ regionesPeriodo.get(i).getEstatus() + ");\">" + "<td>" + a + "</td>" + "<td>"
 						+ regionesPeriodo.get(i).getNombre() + "</td>" + "<td>"
-						+ regionesPeriodo.get(i).getAbreviatura() + "</td>" + "<td>"
-						+ regionesPeriodo.get(i).getPeriodo() + "</td>" + "<td class=" + claseTD + ">" + estatus
+						+ regionesPeriodo.get(i).getAbreviatura() + "</td>"
+						//+"<td>"	+ regionesPeriodo.get(i).getPeriodo() + "</td>"  
+						+"<td class=" + claseTD + ">" + estatus
 						+ "</td>" + "</tr>";
 				a = a + 1;
 
 			}
-			response += "<tr style='cursor:pointer;' onclick='nuevaRegionModal(" + idPeriodo + ");'>"
-					+ "					<td colspan=6><img  alt=\"Agregar\" src=\"/imagenes/mas.png\"> Agregar región</td>"
+			response += "<tr style='cursor:pointer;' onclick='nuevaRegionPeriodoModal(" + idPeriodo + ");'>"
+					+ "					<td colspan=6><img  alt=\"Agregar\" src=\"/imagenes/mas.png\"> Agregar región a periodo</td>"
 					+ "				</tr>";
 
 			List<Regiones> regionesPeriodoDependencia = new ArrayList<Regiones>(
@@ -205,10 +207,18 @@ public class ControladorRestCatalogo {
 	}
 
 	@PostMapping(value = "/catalogos/ajaxRegion")
-	public String postAjaxRegion(@RequestParam String nombre, @RequestParam String abreviatura,
-			@RequestParam int idPeriodo) {
+	public String postAjaxRegion(@RequestParam String nombre, @RequestParam String abreviatura) {
 
-		String response = regionesServicio.insertRegion(nombre, abreviatura, idPeriodo);
+		String response = regionesServicio.insertRegion(nombre, abreviatura);
+
+		return response;
+
+	}
+	
+	@PostMapping(value = "/catalogos/ajaxRegionPeriodoN")
+	public String postAjaxRegion(@RequestParam int idRegion, @RequestParam int idPeriodo) {
+
+		String response = regionesServicio.insertRegionPeriodoN(idRegion, idPeriodo);
 
 		return response;
 
@@ -216,10 +226,20 @@ public class ControladorRestCatalogo {
 
 	@PostMapping(value = "/catalogos/ajaxRegionModificar")
 	public String postAjaxRegionModificar(@RequestParam String nombre, @RequestParam String abreviatura,
-			@RequestParam int idPeriodo, @RequestParam int estatus, @RequestParam int idRegion) {
+			@RequestParam int idRegion) {
 		System.out.println("nombre " + nombre);
 
-		String response = regionesServicio.regionesActualizaDatos(idRegion, nombre, abreviatura, idPeriodo, estatus);
+		String response = regionesServicio.regionesActualizaDatos(idRegion, nombre, abreviatura);
+
+		return response;
+
+	}
+	
+	@PostMapping(value = "/catalogos/ajaxRegionPeriodoModificar")
+	public String ajaxRegionPeriodoModificar(@RequestParam int estatus, @RequestParam int idPeriodo,
+			@RequestParam int idRegion) {
+		
+		String response = regionesServicio.regionesActualizaDatosTR(estatus, idPeriodo, idRegion);
 
 		return response;
 

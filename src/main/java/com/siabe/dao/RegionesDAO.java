@@ -37,7 +37,7 @@ public class RegionesDAO extends JdbcDaoSupport {
 	}
 	
 	public List<Regiones> regresarRegionesPeriodo(int idPeriodo) {	
-		String sql = RegionesMapa.BASE_SQL + " where id_periodo = ? ; ";
+		String sql = RegionesMapa.BASE_SQL + " where p.id = ? ; ";
 		Object[] params = new Object[] { idPeriodo };
 		RegionesMapa mapper = new RegionesMapa();
 		try {
@@ -49,7 +49,7 @@ public class RegionesDAO extends JdbcDaoSupport {
 	}
 	
 	public List<Regiones> regresarRegionesPeriodoActiva(int idPeriodo) {	
-		String sql = RegionesMapa.BASE_SQL + " where r.id_periodo = ? and r.estatus = 1; ";
+		String sql = RegionesMapa.BASE_SQL + " where p.id = ? and tr.estatus = 1; ";
 		Object[] params = new Object[] { idPeriodo };
 		RegionesMapa mapper = new RegionesMapa();
 		try {
@@ -61,7 +61,7 @@ public class RegionesDAO extends JdbcDaoSupport {
 	}
 	
 	public List<Regiones> regresarRegionesPeriodoActivaNoId(int idPeriodo,int idRegion) {	
-		String sql = RegionesMapa.BASE_SQL + " where r.id_periodo = ? and r.estatus = 1 and r.id != ?; ";
+		String sql = RegionesMapa.BASE_SQL + " where p.id = ? and tr.estatus = 1 and r.id != ?; ";
 		Object[] params = new Object[] { idPeriodo , idRegion };
 		RegionesMapa mapper = new RegionesMapa();
 		try {
@@ -72,11 +72,27 @@ public class RegionesDAO extends JdbcDaoSupport {
 		}
 	}
 
-	public String insertaRegion(String nombre, String abreviatura,  int idPeriodo) {
+	public String insertaRegion(String nombre, String abreviatura) {
 		
-		String sql = RegionesMapa.INSERT_SQL + "(?, ?, ?, 1)";
+		String sql = RegionesMapa.INSERT_SQL + "(?, ?)";
 
-		Object[] params = new Object[] { nombre, abreviatura, idPeriodo };
+		Object[] params = new Object[] { nombre, abreviatura };
+		
+		try {
+			
+		this.getJdbcTemplate().update(sql, params);
+			
+		return "Done";
+		} catch (EmptyResultDataAccessException e) {
+			return "Error";
+		}
+	}
+	
+public String insertaRegionPeridoN(int idRegion, int idPeriodo) {
+		
+		String sql = RegionesMapa.INSERT_SQL_TR + " (?, ?)";
+
+		Object[] params = new Object[] { idRegion, idPeriodo };
 		
 		try {
 			
@@ -100,12 +116,53 @@ public class RegionesDAO extends JdbcDaoSupport {
 		}
 
 	}
+	
+	public List<Regiones> obtenerRegionesPrincipales() {
 
-	public String actualizaDatos(int idRegion, String nombre,  String abreviatura, int idPeriodo, int estatus) {
+		String sql = RegionesMapa.BASE_SQL_REGION_PRINCIPAL;
+		try {
+			return this.getJdbcTemplate().query(sql, new RegionesMapa());
 
-		String sql = RegionesMapa.UPDATE_SQL + " nombre = ?, abreviatura = ?, id_periodo = ?, estatus = ? where id =?;";
-		Object[] params = new Object[] { nombre,  abreviatura, idPeriodo, estatus, idRegion};
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+
+	public List<Regiones> obtenerRegionesNoPeriodo(int idPeriodo) {
+
+		String sql = RegionesMapa.BASE_SQL_REG +" where id not in (select id_region from trPeridoRegion where id_periodo = ?);";
+		Object[] params = new Object[] { idPeriodo };
+		RegionesMapa mapper = new RegionesMapa();
+		try {
+			return this.getJdbcTemplate().query(sql, params, mapper);
+			
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public String actualizaDatos(int idRegion, String nombre,  String abreviatura) {
+
+		String sql = RegionesMapa.UPDATE_SQL + " nombre = ?, abreviatura = ? where id =?;";
+		Object[] params = new Object[] { nombre,  abreviatura, idRegion};
 		// System.out.println(sql+ id+ password);
+		try {
+			this.getJdbcTemplate().update(sql, params);
+
+			return "Done";
+		} catch (EmptyResultDataAccessException e) {
+			return "Error";
+		}
+
+	}
+	
+	public String actualizaDatosTR(int estatus, int idPeriodo, int idRegion) {
+
+		String sql = RegionesMapa.UPDATE_SQL_TR + " estatus = ? where id_region =? and id_periodo = ?;";
+		Object[] params = new Object[] { estatus, idRegion, idPeriodo};
+		 //System.out.println(sql+ id+ password);
 		try {
 			this.getJdbcTemplate().update(sql, params);
 
@@ -119,7 +176,7 @@ public class RegionesDAO extends JdbcDaoSupport {
 	public List<Regiones> autocompletarRegion(int idPeriodo, String termino) {
 		
 	
-		String	sql = RegionesMapa.BASE_SQL + " where r.nombre like '%"+termino+"%' and r.id_periodo = "+idPeriodo+" and r.estatus= 1; ";
+		String	sql = RegionesMapa.BASE_SQL + " where r.nombre like '%"+termino+"%' and p.id = "+idPeriodo+" and tr.estatus= 1; ";
 	
 		
 		try {
@@ -130,5 +187,7 @@ public class RegionesDAO extends JdbcDaoSupport {
 		}
 
 	}
+	
+
 
 }

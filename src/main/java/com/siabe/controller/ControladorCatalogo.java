@@ -22,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ControladorCatalogo {
@@ -80,10 +81,11 @@ public class ControladorCatalogo {
 	public String periodos(Model model, Principal principal) {
 
 		model.addAttribute("periodos", periodoServicio.todosPerido());
-		model.addAttribute("tBeca", tipoBecaServicio.todosTipoBeca());
-
+	//	model.addAttribute("tBeca", tipoBecaServicio.todosTipoBeca());
+	
 		return "/catalogos/periodos";
 	}
+
 
 	@GetMapping(value = "/catalogos/tBeca")
 	public String tipoBeca(Model model, Principal principal) {
@@ -121,10 +123,37 @@ public class ControladorCatalogo {
 
 	@GetMapping(value = "/catalogos/regiones")
 	public String regiones(Model model, Principal principal) {
-
+		
+		model.addAttribute("regiones", regionesServicio.todosRegionesPrincipales());
 		model.addAttribute("periodos", periodoServicio.todosPerido());
 
 		return "/catalogos/regiones";
+	}
+	
+	@RequestMapping("/catalogos/refreshModalRegionesPeriodo")
+	public String refreshModalRegionesPeriodo(Model model, Principal principal,@RequestParam int idPeriodo) {
+		Usuario u = new Usuario();
+		if (principal != null) {
+			u = (Usuario) this.usuarioServicio.regresaUsuario(principal.getName());
+			model.addAttribute("nombreUsuario", u.getNombre());
+			model.addAttribute("idUsuario", u.getIdUsuario());
+		}
+		model.addAttribute("regionesModal", regionesServicio.todosRegionesNoPeriodo(idPeriodo));
+
+		return "/catalogos/regiones :: nuevaRegionPeriodo";
+	}
+	
+	@RequestMapping("/catalogos/refreshTablaRegionesPrin")
+	public String refreshTablaRegionesPrin(Model model, Principal principal) {
+		Usuario u = new Usuario();
+		if (principal != null) {
+			u = (Usuario) this.usuarioServicio.regresaUsuario(principal.getName());
+			model.addAttribute("nombreUsuario", u.getNombre());
+			model.addAttribute("idUsuario", u.getIdUsuario());
+		}
+		model.addAttribute("regiones", regionesServicio.todosRegionesPrincipales());
+
+		return "/catalogos/regiones :: tablaRegiones";
 	}
 
 	@GetMapping(value = "/catalogos/tDonativo")

@@ -4,8 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -13,12 +12,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.siabe.modelo.Periodo;
 import com.siabe.mapa.PeriodoMapa;
+
 import java.util.List;
-import java.util.Map;
 import java.sql.PreparedStatement;
 import java.util.Date;
 
-import java.util.HashMap;
 
 @Repository
 @Transactional
@@ -41,11 +39,11 @@ public class PeriodoDAO extends JdbcDaoSupport {
 		}
 	}
 
-	public String insertaPeriodo(String nombre, Date fecha_inicio, Date fecha_final, int idTipoBeca) {
+	public String insertaPeriodo(String nombre, Date fecha_inicio, Date fecha_final) {
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		
-		String sql = PeriodoMapa.INSERT_SQL + "(?, ?, ?, ?, 1)";
+		String sql = PeriodoMapa.INSERT_SQL + "(?, ?, ?, 1)";
 
 		//Object[] params = new Object[] { nombre, fecha_inicio, fecha_final };
 		
@@ -55,6 +53,8 @@ public class PeriodoDAO extends JdbcDaoSupport {
         bind.put("fecha_final", fecha_final);
         bind.put("id_tipo_beca", idTipoBeca);
         SqlParameterSource paramSource = new MapSqlParameterSource(bind);*/
+		
+		
 		try {
 			
 			java.sql.Date fechaI = new java.sql.Date(fecha_inicio.getTime()); 
@@ -65,9 +65,13 @@ public class PeriodoDAO extends JdbcDaoSupport {
 			    PreparedStatement ps = con.prepareStatement(sql, new String[]{"id"});
 			    ps.setString(1, nombre);
 			    ps.setDate(2, fechaI);
-			    ps.setDate(3, fechaF);
-			    ps.setInt(4, idTipoBeca);
+			    ps.setDate(3, fechaF);			    
 			    return ps;}, keyHolder);
+			
+			
+			//String sqlPeriodoDB = PeriodoMapa.INSERT_SQL_PERIODO_DB + " ("+idPeriodoDonante+","+keyHolder.getKey().intValue()+")";
+			
+		//	this.getJdbcTemplate().update(sqlPeriodoDB);
 			
 			System.out.println("Ud insertado :"+keyHolder.getKey().intValue());
 
@@ -91,7 +95,7 @@ public class PeriodoDAO extends JdbcDaoSupport {
 
 	public List<Periodo> obtenerPeriodos() {
 
-		String sql = PeriodoMapa.BASE_SQL +" order by p.nombre, p.id_tipo_beca";
+		String sql = PeriodoMapa.BASE_SQL +" order by nombre";
 		try {
 			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
 
@@ -102,8 +106,22 @@ public class PeriodoDAO extends JdbcDaoSupport {
 
 	}
 	
+	/*public List<Periodo> obtenerPeriodosBenDona() {
+
+		String sql = PeriodoMapa.BASE_SQL_TB_PD +" order by p.nombre, p.id_tipo_beca";
+		try {
+			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
+
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}*/
 	
-	public List<Periodo> obtenerPeriodosIdBeca(int idTipoBeca) {
+	
+	
+	/*public List<Periodo> obtenerPeriodosIdBeca(int idTipoBeca) {
 
 		String sql = PeriodoMapa.BASE_SQL + " where tb.id = ?";
 		Object[] params = new Object[] { idTipoBeca };
@@ -115,7 +133,7 @@ public class PeriodoDAO extends JdbcDaoSupport {
 			return null;
 		}
 
-	}
+	}*/
 
 
 	public String actualizaEstatusUsuario(int id, int estatus) {
@@ -125,7 +143,7 @@ public class PeriodoDAO extends JdbcDaoSupport {
 		} else {
 			estatus = 1;
 		}
-		String sql = PeriodoMapa.UPDATE_SQL + "estatus = ? where id =?;";
+		String sql = PeriodoMapa.UPDATE_SQL + " estatus = ? where id =?;";
 		Object[] params = new Object[] { estatus, id };
 		// System.out.println(sql+ id+ estatus);
 		try {
@@ -138,14 +156,18 @@ public class PeriodoDAO extends JdbcDaoSupport {
 
 	}
 
-	public String actualizaDatos(int idPeriodo, String nombre,  Date fecha_inicio, Date fecha_final, int idTipoBeca, int estatus) {
+	public String actualizaDatos(int idPeriodo, String nombre,  Date fecha_inicio, Date fecha_final, int estatus) {
 
-		String sql = PeriodoMapa.UPDATE_SQL + " nombre = ?, fecha_inicio = ?, fecha_final = ?, id_tipo_beca = ?, estatus = ? where id =?;";
-		Object[] params = new Object[] { nombre,  fecha_inicio, fecha_final, idTipoBeca, estatus, idPeriodo};
+		String sql = PeriodoMapa.UPDATE_SQL + " nombre = ?, fecha_inicio = ?, fecha_final = ?, estatus = ? where id =?;";
+		Object[] params = new Object[] { nombre,  fecha_inicio, fecha_final, estatus, idPeriodo};
 		// System.out.println(sql+ id+ password);
+		
+		//String sqlPeriodoDB = PeriodoMapa.UPDATE_SQL_DB + " id_periodo_donante = "+periodoDonante+" where id_periodo_beneficiario = "+idPeriodo+"";
+		
+		
 		try {
 			this.getJdbcTemplate().update(sql, params);
-
+		//	this.getJdbcTemplate().update(sqlPeriodoDB);
 			return "Done";
 		} catch (EmptyResultDataAccessException e) {
 			return "Error";

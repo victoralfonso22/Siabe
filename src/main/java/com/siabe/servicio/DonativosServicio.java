@@ -29,13 +29,13 @@ public class DonativosServicio {
 	
 	public String insertaDonante(int idPeriodo, String razonSocial, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String adscripcion,  String tipoDonante, int idRegion, 
 			int sector, int idCampania, int medioAutorizacionDonativo, String observacionesMedioAutorizacion, int medioCobro, String numPersonal, String dependenciaAdscripcion, double donativoTotal, double donativoQuincenal,
-			int numQuincenas, int idQuincenaInicio, int idCuentasBancarias, String referencia, int numPagos, double importeNumPagos, String banco, String nombreTarjetahabiente, String red, String tipoTarjeta,
+			int numQuincenas, int idQuincenaInicio, String anioQuincena, int idCuentasBancarias, String referencia, int numPagos, double importeNumPagos, String banco, String nombreTarjetahabiente, String red, String tipoTarjeta,
 			String numTarjeta,int mesVencimiento, int anioVencimiento, String tipoDonativo, int mesInicioAportacion, String email, String celular, String telefono1, String telefono2, String calle,String numE, 
 			String numI, String col, String loc, String mun, String edo, int cp, String calleFiscal, String numEFiscal, String numIFiscal, String colFiscal, 
 			String locFiscal, String munFiscal, String edoFiscal, String cpFiscal, String rfc, String observaciones, String idBeneficiarioAsignado, int idUsuario) {
 		
 		return donativosDAO.insertaDonante(idPeriodo, razonSocial, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, adscripcion, tipoDonante, idRegion, sector, idCampania, 
-				medioAutorizacionDonativo, observacionesMedioAutorizacion, medioCobro, numPersonal, dependenciaAdscripcion, donativoTotal, donativoQuincenal, numQuincenas, idQuincenaInicio, 
+				medioAutorizacionDonativo, observacionesMedioAutorizacion, medioCobro, numPersonal, dependenciaAdscripcion, donativoTotal, donativoQuincenal, numQuincenas, idQuincenaInicio, anioQuincena,
 				idCuentasBancarias, referencia, numPagos, importeNumPagos, banco, nombreTarjetahabiente, red, tipoTarjeta, numTarjeta, mesVencimiento, anioVencimiento, tipoDonativo, mesInicioAportacion, 
 				email, celular, telefono1, telefono2, calle,numE, numI, col, loc, mun, edo, cp, calleFiscal, numEFiscal, numIFiscal, colFiscal, locFiscal, munFiscal, edoFiscal, cpFiscal, rfc, observaciones, 
 				idBeneficiarioAsignado, idUsuario);
@@ -56,13 +56,13 @@ public class DonativosServicio {
 	
 	public String actualizaDatosDonantes(int idPeriodo, String razonSocial, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String adscripcion,  String tipoDonante, int idRegion, 
 			int sector, int idCampania, int medioAutorizacionDonativo, String observacionesMedioAutorizacion, int medioCobro, String numPersonal, String dependenciaAdscripcion, double donativoTotal, double donativoQuincenal,
-			int numQuincenas, int idQuincenaInicio, int idCuentasBancarias, String referencia, int numPagos, double importeNumPagos, String banco, String nombreTarjetahabiente, String red, String tipoTarjeta,
+			int numQuincenas, int idQuincenaInicio, String anioQuincena, int idCuentasBancarias, String referencia, int numPagos, double importeNumPagos, String banco, String nombreTarjetahabiente, String red, String tipoTarjeta,
 			String numTarjeta,int mesVencimiento, int anioVencimiento, String tipoDonativo, int mesInicioAportacion, String email, String celular, String telefono1, String telefono2,String calle,String numE, 
 			String numI, String col, String loc, String mun, String edo, int cp, String calleFiscal, String numEFiscal, String numIFiscal, String colFiscal, 
 			String locFiscal, String munFiscal, String edoFiscal, String cpFiscal, String rfc, String observaciones, int idUsuario, int idDonativo) {
 		
 		return donativosDAO.actualizaDatosDonantes(idPeriodo, razonSocial, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, adscripcion, tipoDonante, idRegion, sector, idCampania, 
-				medioAutorizacionDonativo, observacionesMedioAutorizacion, medioCobro, numPersonal, dependenciaAdscripcion, donativoTotal, donativoQuincenal, numQuincenas, idQuincenaInicio, idCuentasBancarias, 
+				medioAutorizacionDonativo, observacionesMedioAutorizacion, medioCobro, numPersonal, dependenciaAdscripcion, donativoTotal, donativoQuincenal, numQuincenas, idQuincenaInicio, anioQuincena,idCuentasBancarias, 
 				referencia, numPagos, importeNumPagos, banco, nombreTarjetahabiente, red, tipoTarjeta, numTarjeta, mesVencimiento, anioVencimiento, tipoDonativo, mesInicioAportacion, email, celular, 
 				telefono1, telefono2, calle, numE, numI, col, loc, mun, edo, cp, calleFiscal, numEFiscal, numIFiscal, colFiscal, locFiscal, munFiscal, edoFiscal, cpFiscal, rfc, observaciones,  
 				idUsuario, idDonativo);

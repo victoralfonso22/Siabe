@@ -22,8 +22,8 @@ $("#tDonativo").change(function() {
 	$("textarea.vacias").val('');
 	$("input.vacias").val('');
 	$("select.selectInicial").val("");
-/*	$("#tcRedDon").val('Visa');
-	$("#tcTipoDon").val('Crédito');
+	$("#anioQuincena").val('2019');
+/*	$("#tcTipoDon").val('Crédito');
 	$("#tcTipoDonaDon").val('Recurrente');
 	*/
 	
@@ -318,7 +318,8 @@ function autocompletarQuincenaDon() {
 
 					response($.map(data, function(item) {
 						return {
-							label: item.nombre + " - " +item.anio,
+		//					label: item.nombre + " - " +item.anio,
+							label: item.nombre ,
 							//label : item.nombre,
 							value : item.idQuincena
 						};
@@ -495,6 +496,7 @@ $("#donativoForm").submit(function(event) {
     		donativoQuincenal = $("#donaQnaDon").val();
     		numQuincenas = $("#numQuincenasDon").val();
     		idQuincenaInicio = $("#idQuincenaHidden").val();
+    		anioQuincena = $("#anioQuincena").val();
     		
     		idCuentasBancarias = 0;
     		referencia = "";
@@ -518,6 +520,7 @@ $("#donativoForm").submit(function(event) {
     		donativoQuincenal = 0;
     		numQuincenas = 0;
     		idQuincenaInicio = 0;
+    		anioQuincena = "";
     		
     		idCuentasBancarias = $("#idCuentaBanHidden").val();
     		referencia = $("#depTraReferenciaDon").val();
@@ -541,6 +544,7 @@ $("#donativoForm").submit(function(event) {
     		donativoQuincenal = 0;
     		numQuincenas = 0;
     		idQuincenaInicio = 0;
+    		anioQuincena = "";
     		
     		idCuentasBancarias = 0;
     		referencia = "";
@@ -594,7 +598,8 @@ $("#donativoForm").submit(function(event) {
         			"donativoTotal" : donativoTotal,         			
         			"donativoQuincenal" : donativoQuincenal,        			
         			"numQuincenas" : numQuincenas,         			
-        			"idQuincenaInicio" : idQuincenaInicio,        			
+        			"idQuincenaInicio" : idQuincenaInicio,  
+        			"anioQuincena" : anioQuincena,
         			"idCuentasBancarias" : idCuentasBancarias,        			
         			"referencia" : referencia,       			
         			"numPagos" : numPagos,        			
@@ -646,7 +651,7 @@ $("#donativoForm").submit(function(event) {
 						$("#idRegionHiddenDonH").val() != $("#idRegionHiddenDon").val()  || $("#sectorDonH").val() != $("#sectorDon").val()  || $("#idCampaniaDonH").val() != $("#idCampaniaDon").val()  ||
 						$("#medioAutorizacionDonH").val() != $("#medioAutorizacionDon").val()  || $("#observacionesMADonH").val() != $("#observacionesMADon").val()  || $("#medioCobroDonH").val() != $("#medioCobroDon").val()  ||
 					    $("#numPersonalDonH").val() != numPersonal || $("#depAdscripcionDonH").val() != dependenciaAdscripcion  || $("#donaTotalDonH").val() != donativoTotal  ||
-						$("#donaQnaDonH").val() != donativoQuincenal  || $("#numQuincenasDonH").val() != numQuincenas  || $("#idQuincenaHidden").val() != idQuincenaInicio  ||
+						$("#donaQnaDonH").val() != donativoQuincenal  || $("#numQuincenasDonH").val() != numQuincenas  || $("#idQuincenaHiddenH").val() != idQuincenaInicio  || $("#anioQuincenaH").val() != anioQuincena,
 						$("#idCuentaBanHidden").val() != idCuentasBancarias  || $("#depTraReferenciaDonH").val() != referencia || $("#donaTotalDTDonH").val() != donativoTotal ||
 						$("#numPagosDTDonH").val() != numPagos  || $("#importePagoDTDonH").val() != importePago  || $("#tcBanDonH").val() != banco  ||
 						$("#tcNombreTarHabDonH").val() != nombreTarjetahabiente || $("#tcRedDonH").val() != red || $("#tcTipoDonH").val() != tipoTarjeta ||
@@ -668,7 +673,7 @@ $("#donativoForm").submit(function(event) {
 		        			"apellidoMaterno" : $("#aMaternoDon").val(), "estatus" : $("#estatusDon").val(), "motivoEstatus" : $("#motivoEstInactivoDon").val(),  "adscripcion" : $("#adscripcionDon").val(), "tipoDonante" : $("#tDonanteDon").val(),  
 		        			"idRegion" : $("#idRegionHiddenDon").val(), "sector" : $("#sectorDon").val(), "idCampania" : $("#idCampaniaDon").val(), "medioAutorizacion" : $("#medioAutorizacionDon").val(), "observacionesMedioAutorizacion" : $("#observacionesMADon").val(),
 		        			"medioCobro" : $("#medioCobroDon").val(), "numPersonal" : numPersonal, "dependenciaAdscripcion" : dependenciaAdscripcion,"donativoTotal" : donativoTotal,"donativoQuincenal" : donativoQuincenal, 
-		        			"numQuincenas" : numQuincenas,"idQuincenaInicio" : idQuincenaInicio,"idCuentasBancarias" : idCuentasBancarias,"referencia" : referencia,"numPagos" : numPagos,"importeNumPagos" : importePago,		        			
+		        			"numQuincenas" : numQuincenas,"idQuincenaInicio" : idQuincenaInicio, "anioQuincena" : anioQuincena, "idCuentasBancarias" : idCuentasBancarias,"referencia" : referencia,"numPagos" : numPagos,"importeNumPagos" : importePago,		        			
 		        			"banco" : banco,"nombreTarjetahabiente" : nombreTarjetahabiente,"red" : red,"tipoTarjeta" : tipoTarjeta,"numTarjeta" : numTarjeta,"mesVencimiento" : mesVencimiento, "anioVencimiento" : anioVencimiento, "tipoDonativo" : tipoDonativo,        			
 		        			"mesInicioAportacion" : mesInicioAportacion,
 		        			"email" : $("#correoDon").val(), "celular" : $("#celularDon").val(),  "telefono1" : $("#tel1Don").val(), "telefono2" : $("#tel2Don").val(),

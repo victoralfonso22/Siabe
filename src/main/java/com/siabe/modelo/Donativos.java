@@ -53,6 +53,7 @@ public class Donativos {
     private int numQuincenas;
     private int idQuincenaInicio;
     private String quincenaInicio;
+    private String anioQuincena;
     
     private int idCuentaBancaria;
     private String cuentaBancaria;
@@ -120,7 +121,7 @@ public class Donativos {
 			int sector, String sectoDon, String descripcionDonativo, int idCampania, String campania,
 			int medioAutorizacionDonativo, String medioAutorizacionDon, String observacionMedioAutorizacion,
 			int medioCobro, String medioCobroDon, String numPersonal, String dependenciaAdscripcion, double donativoTotal,
-			double donativoQuincenal, int numQuincenas, int idQuincenaInicio, String quincenaInicio,
+			double donativoQuincenal, int numQuincenas, int idQuincenaInicio, String quincenaInicio, String anioQuincena,
 			int idCuentaBancaria, String cuentaBancaria, String referencia, int numPagos, double importeNumPagos,
 			String banco, String nombreTarjetahabiente, String red, String tipoTarjeta, String numTarjeta,
 			int mesVencimiento, int anioVencimiento, String tipoDonativo, int mesInicioAportacion, String email, String celular,
@@ -164,6 +165,7 @@ public class Donativos {
 		this.numQuincenas = numQuincenas;
 		this.idQuincenaInicio = idQuincenaInicio;
 		this.quincenaInicio = quincenaInicio;
+		this.anioQuincena = anioQuincena;
 		this.idCuentaBancaria = idCuentaBancaria;
 		this.cuentaBancaria = cuentaBancaria;
 		this.referencia = referencia;
@@ -611,6 +613,18 @@ public class Donativos {
 
 	public void setQuincenaInicio(String quincenaInicio) {
 		this.quincenaInicio = quincenaInicio;
+	}
+
+
+
+	public String getAnioQuincena() {
+		return anioQuincena;
+	}
+
+
+
+	public void setAnioQuincena(String anioQuincena) {
+		this.anioQuincena = anioQuincena;
 	}
 
 

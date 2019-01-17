@@ -1,6 +1,7 @@
 package com.siabe.controller;
 
 import java.security.Principal;
+import java.time.Year;
 
 import com.siabe.modelo.Usuario;
 import com.siabe.servicio.PermisosMenuServicio;
@@ -53,8 +54,10 @@ public class Controlador {
 
 	@RequestMapping(value = { "/inicio" }, method = RequestMethod.GET)
     public String welcomePage(Model model , Principal principal) {     
+		
 	//	User loginedUser = (User) ((Authentication) principal).getPrincipal();
 	//	String userInfo = UtilidadesWeb.toString(loginedUser);
+		model.addAttribute("anio", "Sistema integral de administración de becas (Siabe) "+Year.now()+".");
         model.addAttribute("usuario", principal.getName());
         
         

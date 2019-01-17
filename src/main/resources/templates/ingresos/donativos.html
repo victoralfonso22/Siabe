@@ -62,7 +62,7 @@
 								class="form-control selectTextFormulario donativosRequired selectInicial">
 								<option disabled selected value="">Selecciona periodo</option>
 								<option th:each="periodo : ${periodos}"
-									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre +' / '+ periodo.tBeca}"></option>
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
 							</select>
 						</div>
 
@@ -169,7 +169,7 @@
 							</select>
 						</div>
 
-						<div class="col-xs-4">
+						<!--  <div class="col-xs-4">
 							<label for="idCampaniaDon">Campaña</label><br> <select
 								id="idCampaniaDon"  disabled
 								class="form-control selectTextFormulario selectInicial donativosRequired">
@@ -178,8 +178,16 @@
 									th:value="${campania.idCampana}" th:text="${campania.nombre}"></option>
 								
 							</select>
+						</div> -->
+						<div class="col-xs-4">
+							<label for="idCampaniaDon">Campaña</label><br> <select
+								id="idCampaniaDon"  required
+								class="form-control selectTextFormulario selectInicial donativosRequired">
+								<option selected value="1">Adopta un Becario</option>
+								<option value="2">Siempre Universitarios</option>
+								
+							</select>
 						</div>
-
 
 
 					</div>
@@ -248,25 +256,50 @@
 					<br/>
 					<br/>
 					<div class="row ">
-						<div class="col-xs-4">
+						<div class="col-xs-3">
 							<label for="donaQnaDon">Donativo quincenal</label><br>
 							<input type="text" id="donaQnaDon" maxlength="10"
 								onkeypress="return filterFloat(event,this)"
 								class="form-control selectTextFormulario vacias mcNominaDonClass  ">
 						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-3">
 							<label for="numQuincenasDon">Número de quincenas</label><br>
 							<input type="text" id="numQuincenasDon"
 								placeholder="" 
 								class="form-control selectTextFormulario vacias  mcNominaDonClass " onkeypress="return valida(event)">
 						</div>
 
-						<div class="col-xs-4">
+						<div class="col-xs-3">
 							<label for="quincenaInicioDon">Quincena de inicio de aportación</label><br>
 							<input type="text" id="quincenaInicioDon" onkeyup="autocompletarQuincenaDon();" placeholder="Escribe y selecciona una opción"
 								class="form-control selectTextFormulario vacias  mcNominaDonClass "  onblur="this.value=$('#valQuincenaHidden').val();">
 								<input	type="hidden" id="idQuincenaHidden"> 
 								<input type="hidden" id="valQuincenaHidden">
+						</div>
+						
+						<div class="col-xs-3">
+							<label for="anioQuincena">Año quincena </label><br> <select
+								id="anioQuincena" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+								<option value="2008">2008</option>
+								<option value="2009">2009</option>
+								<option value="2010">2010</option>
+								<option value="2011">2011</option>
+								<option value="2012">2012</option>
+								<option value="2013">2013</option>
+								<option value="2014">2014</option>
+								<option value="2015">2015</option>
+								<option value="2016">2016</option>
+								<option value="2017">2017</option>
+								<option value="2018">2018</option>
+								<option selected value="2019">2019</option>
+								<option value="2020">2020</option>
+								<option value="2021">2021</option>
+								<option value="2022">2022</option>
+								<option value="2023">2023</option>								
+								
+							</select>
+		
 						</div>
 					</div>		
 									
@@ -651,7 +684,7 @@
 								class="form-control selectTextFormulario patrocRequired selectInicial">
 								<option disabled selected value="">Selecciona periodo</option>
 								<option th:each="periodo : ${periodos}"
-									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre +' / '+ periodo.tBeca}"></option>
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
 							</select>
 						</div>
 
@@ -966,6 +999,7 @@
 					<input type="hidden" id="quincenaInicioDonH">
 					<input type="hidden" id="idQuincenaHiddenH">
 					<input type="hidden" id="valQuincenaHiddenH">
+					<input type="hidden" id="anioQuincenaH">
 					
 			
 					<input type="hidden" id="cscBanDonH">

@@ -19,14 +19,41 @@
 			<div>
 				<h1 class="h1Class">Regiones</h1>
 			</div>
+			
+			<div class="table-responsive valoresCentrados">
+			<table class="table tabla" th:fragment="tablaRegiones" id="tablaRegiones">
+				<tr>
+					<th>#</th>
+					<th>Nombre</th>
+					<th>Abreviatura</th>					
+				</tr>
+					<th:block th:each="regiones,iterationStatus : ${regiones}" >
+				<tr class="tdSencillo"  title="Click para editar región" th:onclick="|modificarRegionModal('${regiones.idRegion}','${regiones.nombre}','${regiones.abreviatura}');|">							
+				<td th:text="${iterationStatus.count}" th:id="${'conta'+regiones.idRegion}"></td>
+				
+					<td  style="text-align: left;" th:text="${regiones.nombre}" ></td>
+					<td  th:text="${regiones.abreviatura}" ></td>
+					
+				</tr>
+				</th:block>
+				<tr style="cursor:pointer;" th:onclick="|nuevaRegionModal();|">
+					<td colspan=6><img  alt="Agregar" src="/imagenes/mas.png"> Agregar región principal</td>
+				</tr>
+			</table>
+			</div>
+			
+			
 			<br/>
 			<div class="table-responsive valoresCentrados">
-			
+			<br/><br/>
+			<table class="table tabla"  >
+			<tr><th>Región por periodo</th>
+			</tr></table>
 			<select id="idPeriodoSelect" required  class="form-control selectText" >
 					<option disabled selected value=""> Selecciona un periodo</option>
                          <option th:each="periodo : ${periodos}"
                             th:value="${periodo.idPeriodo}"
-                            th:text="${periodo.nombre +' / '+ periodo.tBeca}"></option>
+                            th:text="${periodo.nombre}"></option>
                   </select>
             <br/>
             <br/>      
@@ -37,7 +64,7 @@
 			</div>
 		</form>
 		
-		<!-- Modal alta de periodo -->
+		<!-- Modal alta de region principal -->
 		
 		<div id="guardarRegionModal" class="modal" role="dialog">
        <div class="modal-dialog">
@@ -45,7 +72,7 @@
            <div class="modal-content">
                <div class="modal-header">
                   <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                  <h4 class="modal-title divRespuesta">Nueva región</h4>
+                  <h4 class="modal-title divRespuesta">Nueva región principal</h4>
                </div>
                <div class="modal-body">
                		<form id="regionForm">
@@ -72,43 +99,30 @@
    </div>		
    
    
-   <!-- Modal modificacion de periodo -->
-   
-   <div id="modificarRegionModal" class="modal" role="dialog">
+   <!-- Modal alta de region a periodo -->
+		
+		<div id="guardarRegionPeriodoModal" class="modal" role="dialog">
        <div class="modal-dialog">
            <!-- Modal content-->
            <div class="modal-content">
                <div class="modal-header">
                   <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                  <h4 class="modal-title divRespuesta">Modificar region</h4>
+                  <h4 class="modal-title divRespuesta">Nueva región</h4>
                </div>
                <div class="modal-body">
-               		<form id="regionFormM">
+               		<form id="regionFormRP">
                		<div>
-               		<input type="hidden" id="idRegion" />
-               		<input type="hidden" id="nombreA" />
-               		<input type="hidden" id="abreviaturaA" />
-               		<input type="hidden" id="idPeriodoA" />               		
-               		<input type="hidden" id="estatusA" />
-               		<div class="valoresCentrados">               		
-               		<span class="etiquetaSpan">Nombre</span>
-               		<input placeholder="Nombre" type="text" style="text-align: center !important;" class="form-control" required minlength="5" id="nombreM"/>
-               		<br/>
-               		<span class="etiquetaSpan">Abreviatura</span>
-               		<input placeholder="abreviatura" class="form-control" style="text-align: center !important;" type="text" required id="abreviaturaM"/>
-               		<br/>               		
-               		<span class="etiquetaSpan">Periodo</span>
-               		<select id="idPeriodoM" required  class="form-control selectText">					
-                         <option style="text-align: center !important;" th:each="periodo : ${periodos}"
-                            th:value="${periodo.idPeriodo}"
-                            th:text="${periodo.nombre}"></option>
-                  </select>
-					<br/>
-					<span class="etiquetaSpan">Estatus</span>
-					<select id="estatusM" name="estatusM" required  class="form-control selectText">
-					     <option style="text-align: center !important;" th:text="Activo" th:value="1"></option>
-                         <option style="text-align: center !important;" th:text="Inactivo" th:value="0"></option>
-                  </select>
+               		<input type="hidden" id="idPeriodoRP" />
+               		<div class="valoresCentrados" th:fragment="nuevaRegionPeriodo" id="nuevaRegionPeriodo">
+               		
+               		<select
+								id="idRegionRP"  
+								class="form-control selectTextFormulario">
+								<option disabled selected value="">Selecciona región</option>
+								<option th:each="regions : ${regionesModal}"
+									th:value="${regions.idRegion}" th:text="${regions.nombre}"></option>
+								
+							</select>
                   
                		</div>
                		
@@ -116,7 +130,55 @@
                		<br/>
                		<div id="respuestaPass"></div>
                	<br/>
-                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('modificarRegionModal');">Cancelar</button>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('guardarRegionPeriodoModal');">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>
+   
+   
+   <!-- Modal modificacion de periodo -->
+   
+   <div id="modificarRegionPeriodoModal" class="modal" role="dialog">
+       <div class="modal-dialog">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title divRespuesta">Modificar estatus region</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="regionFormModalM">
+               		<div>
+               		<input type="hidden" id="idRegionMP" />
+               		<input type="hidden" id="idPeriodoMP" />
+               		<input type="hidden" id="estatusA" />
+               		        		
+               		<div class="valoresCentrados">               		
+               		<span class="etiquetaSpan">Región</span>
+               		<label id="nombreMP"></label>
+               		<br/>
+               		<br/>
+               		<span class="etiquetaSpan">Estatus</span>
+               		<select
+								id="estatusM"  
+								class="form-control selectTextFormulario">
+								<option value="1">Activo</option>
+								<option value="0">Inactivo</option>
+								
+							</select>
+               		<br/>               		
+                  
+               		</div>
+               		
+               		</div>
+               		<br/>
+               		<div id="respuestaPass"></div>
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="cerrarModal('modificarRegionPeriodoModal');">Cancelar</button>
                    <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Guardar</button>
                    </form>
                    

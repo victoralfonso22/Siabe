@@ -80,7 +80,7 @@ public class QuincenasDAO extends JdbcDaoSupport {
 	public List<Quincenas> autocompletarQuincena(String termino) {
 		
 		
-		String	sql = QuincenasMapa.BASE_SQL + " where (nombre like '%"+termino+"%') or (anio like '%"+termino+"%') order by id,nombre,anio limit 10; ";
+		String	sql = QuincenasMapa.BASE_SQL + " where (nombre like '%"+termino+"%') or (anio like '%"+termino+"%') order by id,nombre,anio limit 24; ";
 	
 		
 		try {

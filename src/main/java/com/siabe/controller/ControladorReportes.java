@@ -63,7 +63,7 @@ public class ControladorReportes {
 	
 	@RequestMapping("/reportes/actualizaPeriodoRepGen")
 	public String actualizaSelPeriodos(Model model, Principal principal,@RequestParam int idTipoBeca) {
-		model.addAttribute("periodos", periodoServicio.todosPeridoIdBeca(idTipoBeca));
+		model.addAttribute("periodos", periodoServicio.todosPerido());
 		
 		if(principal == null) {
 		return "/login";	

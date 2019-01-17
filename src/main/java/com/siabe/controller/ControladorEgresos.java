@@ -55,7 +55,7 @@ public class ControladorEgresos {
 		return "/egresos/beneficiarios";
 	}
 	
-	@RequestMapping("/egresos/actualizaPeriodos")
+	/*@RequestMapping("/egresos/actualizaPeriodos")
 	public String actualizaSelPeriodos(Model model, Principal principal,@RequestParam int idTipoBeca) {
 		model.addAttribute("periodos", periodoServicio.todosPeridoIdBeca(idTipoBeca));
 		
@@ -64,7 +64,7 @@ public class ControladorEgresos {
 		}else {
 		return "/egresos/beneficiarios :: #idPeriodo";
 		}
-	}
+	}*/
 	
 	/*@RequestMapping("/egresos/actualizaRegion")
 	public String actualizaSelRegiones(Model model, Principal principal,@RequestParam int idPeriodo) {

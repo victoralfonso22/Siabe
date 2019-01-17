@@ -30,19 +30,36 @@ public class RegionesServicio {
 		return regionesDAO.regresarRegionesPeriodoActivaNoId(idPeriodo, idRegion);
 	}
 	
-	public String insertRegion(String nombre, String abreviatura, int idPeriodo) {
-		return regionesDAO.insertaRegion(nombre, abreviatura, idPeriodo);
+	public String insertRegion(String nombre, String abreviatura) {
+		return regionesDAO.insertaRegion(nombre, abreviatura);
+	}
+	
+	public String insertRegionPeriodoN(int idRegion, int idPeriodo) {
+		return regionesDAO.insertaRegionPeridoN(idRegion, idPeriodo);
 	}
 	
 	public List<Regiones> todosRegiones(){
 		return regionesDAO.obtenerRegiones();
 	}
 	
-	public String regionesActualizaDatos(int idRegion, String nombre, String abreviatura, int idPeriodo, int estatus) {
-		return regionesDAO.actualizaDatos(idRegion, nombre, abreviatura, idPeriodo, estatus);
+	public List<Regiones> todosRegionesPrincipales(){
+		return regionesDAO.obtenerRegionesPrincipales();
+	}
+	
+	public List<Regiones> todosRegionesNoPeriodo(int idPeriodo){
+		return regionesDAO.obtenerRegionesNoPeriodo(idPeriodo);
+	}
+	
+	public String regionesActualizaDatos(int idRegion, String nombre, String abreviatura) {
+		return regionesDAO.actualizaDatos(idRegion, nombre, abreviatura);
+	}
+	
+	public String regionesActualizaDatosTR(int estatus, int idPeriodo, int idRegion) {
+		return regionesDAO.actualizaDatosTR(estatus, idPeriodo, idRegion);
 	}
 	
 	public List<Regiones> autocompletarRegiones(int idPeriodo, String termino){
 		return regionesDAO.autocompletarRegion(idPeriodo, termino);
 	}
+
 }

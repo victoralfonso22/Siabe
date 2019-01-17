@@ -27,21 +27,19 @@
 					<th>Nombre</th>
 					<th>Fecha inicio</th>
 					<th>Fecha final</th>			
-					<th>Tipo beca</th>
+					<!-- <th>Tipo beca</th> -->
 					<th>Estatus</th>
 				</tr>
 					<th:block th:each="periodo,iterationStatus : ${periodos}" >
-				<tr class="tdSencillo"  title="Click para editar periodo" th:onclick="|modificaPeriodoModal('${periodo.nombre}','${periodo.fecha_inicio}','${periodo.fecha_final}','${periodo.idTipoBeca}','${periodo.estatus}','${periodo.idPeriodo}');|">							
+				<tr class="tdSencillo"  title="Click para editar periodo" th:onclick="|modificaPeriodoModal('${periodo.nombre}','${periodo.fecha_inicio}','${periodo.fecha_final}','${periodo.estatus}','${periodo.idPeriodo}');|">							
 				<td th:text="${iterationStatus.count}" th:id="${'conta'+periodo.idPeriodo}"></td>
 				
 					<td  style="text-align: left;" th:text="${periodo.nombre}" ></td>
 					<td  th:text="${periodo.fecha_inicio}" ></td>
 					<td  th:text="${periodo.fecha_final}" ></td>				
-					<td  th:text="${periodo.tBeca}" ></td>					
+				<!--	<td  th:text="${periodo.tBeca}" ></td> -->					
 					<td th:if="${periodo.estatus} == 1" th:text="Activo" ></td>
 					<td th:unless="${periodo.estatus} == 1" class="inactivo"  th:text="Inactivo" ></td>
-					
-				<!-- 	<td th:id="${'name'+periodo.idPeriodo}"><img  alt="Editar" src="/imagenes/editar.png"></td> -->
 					
 				</tr>
 				</th:block>
@@ -60,7 +58,7 @@
            <div class="modal-content">
                <div class="modal-header">
                   <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                  <h4 class="modal-title divRespuesta">Nuevo periodo</h4>
+                  <h4 class="modal-title divRespuesta">Nuevo periodo </h4>
                </div>
                <div class="modal-body">
                		<form id="periodoForm">
@@ -74,12 +72,12 @@
                		<br/>
                		<input placeholder="fecha final" class="form-control" style="text-align: center !important;" type="date" required id="fecha_final"/>
 					<br/>					
-					<select id="tBecaSeleccionado" name="tBecaSeleccionado" required  class="form-control selectText">
+				<!--	<select id="tBecaSeleccionado" name="tBecaSeleccionado" required  class="form-control selectText">
 					<option disabled selected value=""> Selecciona un tipo de beca </option>
                          <option th:each="tBeca : ${tBeca}"
                             th:value="${tBeca.idTipoBeca}"
                             th:text="${tBeca.nombre}"></option>
-                  </select>
+                  </select> -->
                   
                		</div>
                		
@@ -105,7 +103,7 @@
            <div class="modal-content">
                <div class="modal-header">
                   <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-                  <h4 class="modal-title divRespuesta">Modificar periodo</h4>
+                  <h4 class="modal-title divRespuesta">Modificar periodo beneficiario</h4>
                </div>
                <div class="modal-body">
                		<form id="periodoFormM">
@@ -114,7 +112,7 @@
                		<input type="hidden" id="nombreA" />
                		<input type="hidden" id="fecha_inicioA" />
                		<input type="hidden" id="fecha_finalA" />
-               		<input type="hidden" id="tBecaSeleccionadoA" />
+               		<!--<input type="hidden" id="tBecaSeleccionadoA" />-->
                		<input type="hidden" id="estatusA" />
                		<div class="valoresCentrados">               		
                		<span class="etiquetaSpan">Nombre</span>
@@ -127,11 +125,12 @@
                		<input placeholder="fecha final" class="form-control" style="text-align: center !important;" type="date" required id="fecha_finalM"/>
                		<br/>
                		<span class="etiquetaSpan">Tipo de beca</span>
-               		<select id="tBecaSeleccionadoM" name="tBecaSeleccionadoM" required  class="form-control">					
+               	<!--	<select id="tBecaSeleccionadoM" name="tBecaSeleccionadoM" required  class="form-control">					
                          <option style="text-align: center !important;" th:each="tBeca : ${tBeca}"
                             th:value="${tBeca.idTipoBeca}"
                             th:text="${tBeca.nombre}"></option>
-                  </select>
+                  </select> -->
+                 
 					<br/>
 					<span class="etiquetaSpan">Estatus</span>
 					<select id="estatusM" name="estatusM" required  class="form-control">

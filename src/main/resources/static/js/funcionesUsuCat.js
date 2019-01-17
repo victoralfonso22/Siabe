@@ -267,29 +267,177 @@ function cambiaPermiso(idMenu,idUsuario, estatus){
 
 /**************************************************CATALOGOS************************************************************************/
 
-/*************************************PERIODOS************************************************/
-function nuevoPeriodoModal() {
+/*************************************PERIODOS DONANTES************************************************/
+function nuevoPeriodoDonanteModal() {
     $("#nombre").val('');
     $("#fecha_inicio").val('');
-    $("#fecha_final").val('');
-    $("#tBecaSeleccionado").val('');
-    $("#guardarPeriodoModal").show();
+    $("#fecha_final").val('');    
+    $("#guardarPeriodoDonanteModal").show();
 }
 
-function modificaPeriodoModal(nombre,fecha_inicio,fecha_final, tBeca,estatus, idPeriodo) {    
+function modificaPeriodoDonanteModal(nombre,fecha_inicio,fecha_final, estatus, idPeriodo) {    
     $("#idPeriodo").val(idPeriodo);
     
     $("#nombreM").val(nombre);
     $("#fecha_inicioM").val(fecha_inicio);
-    $("#fecha_finalM").val(fecha_final);
-    $("#tBecaSeleccionadoM").val(tBeca);
+    $("#fecha_finalM").val(fecha_final);    
     $("#estatusM").val(estatus);
     
     $("#nombreA").val(nombre);
     $("#fecha_inicioA").val(fecha_inicio);
-    $("#fecha_finalA").val(fecha_final);
-    $("#tBecaSeleccionadoA").val(tBeca);
+    $("#fecha_finalA").val(fecha_final);    
     $("#estatusA").val(estatus);
+    $("#modificarPeriodoDonanteModal").show();
+    //alert(tBeca+" "+estatus);
+}
+
+$("#periodoDonanteForm").submit(function(event) {
+		    // Prevent the form from submitting via the browser.
+		    event.preventDefault();
+
+		    nombre = $("#nombre").val();
+	
+		    fecha_inicio = $("#fecha_inicio").val();
+	
+		    fecha_final = $("#fecha_final").val();
+		    
+		    cerrarModal('guardarPeriodoDonanteModal');
+		    $("#postResultDiv").html("<div class='loader'></div>");
+		    ajaxPostPeriodoDonante(nombre,fecha_inicio,fecha_final);
+		    
+		});
+
+function ajaxPostPeriodoDonante(nombre,fecha_inicio,fecha_final){
+	
+    var parametrosUpdate = {"nombre" : nombre, "fecha_inicio": fecha_inicio, "fecha_final" : fecha_final};
+  
+	// DO POST
+	$.ajax({
+	    		type : "POST",
+			url :"ajaxPeriodoDonante",
+			data : parametrosUpdate,
+			success : function(result) {
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
+			    }
+			    
+				$("#postResultDiv").show();
+				if(result == "Done"){
+					$("#postResultDiv").html("<p class='divRespuesta'>! Periodo donante guardado !<br></p>");
+				}else{
+					$("#postResultDiv").html("<strong>Error</strong>");
+				}
+				$("#postResultDiv").delay(6000).hide(600);
+				
+				console.log(result);
+				$("#periodos").load("refreshTablaPeriodoDonante");
+			},
+			error : function(jqXHR,e) {
+			    	alert(e);
+				if (jqXHR.status != 200) {
+				window.location = "/error";
+				}else{
+					window.location = "/login?session=false";
+				}
+
+				console.log("ERROR: ", e);				
+			}
+		});
+	
+
+}
+
+
+$("#periodoDonanteFormM").submit(function(event) {
+    // Prevent the form from submitting via the browser.
+    event.preventDefault();
+
+    idPeriodo = $("#idPeriodo").val();
+    
+    nombre = $("#nombreM").val();
+
+    fecha_inicio = $("#fecha_inicioM").val();
+
+    fecha_final = $("#fecha_finalM").val();
+    
+    estatus = $("#estatusM").val();
+    
+    nombreA = $("#nombreA").val();
+
+    fecha_inicioA = $("#fecha_inicioA").val();
+
+    fecha_finalA = $("#fecha_finalA").val();
+    
+    estatusA = $("#estatusA").val();
+//    alert(nombre +' '+ $("#fecha_inicio").val() +' '+ $("#fecha_final").val());
+    
+    cerrarModal('modificarPeriodoDonanteModal');
+    if(nombre != nombreA || fecha_inicio != fecha_inicioA || fecha_final != fecha_finalA || estatus != estatusA){
+	
+	 $("#postResultDiv").html("<div class='loader'></div>");
+	var parametrosUpdate = {"nombre" : nombre, "fecha_inicio": fecha_inicio, "fecha_final" : fecha_final, "estatus" : estatus, "idPeriodo" : idPeriodo};
+	  
+	// DO POST
+	$.ajax({
+	    		type : "POST",
+			url :"ajaxPeriodoDonanteModificar",
+			data : parametrosUpdate,
+			success : function(result) {
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
+			    }
+			    
+				$("#postResultDiv").show();
+				if(result == "Done"){
+					$("#postResultDiv").html("<p class='divRespuesta'>! Periodo donante modificado !<br></p>");
+				}else{
+					$("#postResultDiv").html("<strong>Error</strong>");
+				}
+				$("#postResultDiv").delay(6000).hide(600);
+				
+				console.log(result);
+				$("#periodos").load("refreshTablaPeriodoDonante");
+			},
+			error : function(jqXHR,e) {
+			    	alert(e);
+				if (jqXHR.status != 200) {
+				window.location = "/error";
+				}else{
+					window.location = "/login?session=false";
+				}
+
+				console.log("ERROR: ", e);				
+			}
+		});
+   
+    }
+});
+
+
+/*************************************PERIODOS ************************************************/
+function nuevoPeriodoModal() {
+    $("#nombre").val('');
+    $("#fecha_inicio").val('');
+    $("#fecha_final").val('');
+ //   $("#tBecaSeleccionado").val('');
+    $("#guardarPeriodoModal").show();
+}
+
+function modificaPeriodoModal(nombre,fecha_inicio,fecha_final,estatus, idPeriodo) {    
+    $("#idPeriodo").val(idPeriodo);
+    $("#nombreM").val(nombre);
+    $("#fecha_inicioM").val(fecha_inicio);
+    $("#fecha_finalM").val(fecha_final);
+  //  $("#tBecaSeleccionadoM").val(tBeca);
+    $("#estatusM").val(estatus);
+  //  $("#periodoDonSelM").val(idPeriodoDonante);
+    
+    $("#nombreA").val(nombre);
+    $("#fecha_inicioA").val(fecha_inicio);
+    $("#fecha_finalA").val(fecha_final);
+   // $("#tBecaSeleccionadoA").val(tBeca);
+    $("#estatusA").val(estatus);
+   // $("#periodoDonSelA").val(idPeriodoDonante)
     $("#modificarPeriodoModal").show();
     //alert(tBeca+" "+estatus);
 }
@@ -304,21 +452,23 @@ $("#periodoForm").submit(function(event) {
 	
 		    fecha_final = $("#fecha_final").val();
 		    
-		    tBeca = $("#tBecaSeleccionado").val();
+	//	    tBeca = $("#tBecaSeleccionado").val();
+		    
+//		    periodoDonante = $("#periodoDonSel").val();
 		//    alert(nombre +' '+ $("#fecha_inicio").val() +' '+ $("#fecha_final").val());
-		    if(tBeca == 0){
-			$('#tBecaSeleccionado').attr('required', 'required');			
+		 //   if(tBeca == 0){
+		//	$('#tBecaSeleccionado').attr('required', 'required');			
 			 
-		    }else{
+		 //   }else{
 		    cerrarModal('guardarPeriodoModal');
 		    $("#postResultDiv").html("<div class='loader'></div>");
-		    ajaxPostPeriodo(nombre,fecha_inicio,fecha_final,tBeca);
-		    }
+		    ajaxPostPeriodo(nombre,fecha_inicio,fecha_final);
+		//    }
 		});
 
-function ajaxPostPeriodo(nombre,fecha_inicio,fecha_final,tBeca){
+function ajaxPostPeriodo(nombre,fecha_inicio,fecha_final){
 	
-    var parametrosUpdate = {"nombre" : nombre, "fecha_inicio": fecha_inicio, "fecha_final" : fecha_final, "idTipoBeca" : tBeca};
+    var parametrosUpdate = {"nombre" : nombre, "fecha_inicio": fecha_inicio, "fecha_final" : fecha_final};
   
 	// DO POST
 	$.ajax({
@@ -369,7 +519,9 @@ $("#periodoFormM").submit(function(event) {
 
     fecha_final = $("#fecha_finalM").val();
     
-    tBeca = $("#tBecaSeleccionadoM").val();
+ //   tBeca = $("#tBecaSeleccionadoM").val();
+    
+ //   periodoDonante = $("#periodoDonSelM").val();
     
     estatus = $("#estatusM").val();
     
@@ -379,16 +531,18 @@ $("#periodoFormM").submit(function(event) {
 
     fecha_finalA = $("#fecha_finalA").val();
     
-    tBecaA = $("#tBecaSeleccionadoA").val();
+ //   tBecaA = $("#tBecaSeleccionadoA").val();
+    
+//    periodoDonanteA = $("#periodoDonSelA").val();
     
     estatusA = $("#estatusA").val();
 //    alert(nombre +' '+ $("#fecha_inicio").val() +' '+ $("#fecha_final").val());
     
     cerrarModal('modificarPeriodoModal');
-    if(nombre != nombreA || fecha_inicio != fecha_inicioA || fecha_final != fecha_finalA || tBeca != tBecaA || estatus != estatusA){
+    if(nombre != nombreA || fecha_inicio != fecha_inicioA || fecha_final != fecha_finalA || estatus != estatusA ){
 	
 	 $("#postResultDiv").html("<div class='loader'></div>");
-	var parametrosUpdate = {"nombre" : nombre, "fecha_inicio": fecha_inicio, "fecha_final" : fecha_final, "idTipoBeca" : tBeca, "estatus" : estatus, "idPeriodo" : idPeriodo};
+	var parametrosUpdate = {"nombre" : nombre, "fecha_inicio": fecha_inicio, "fecha_final" : fecha_final, "estatus" : estatus, "idPeriodo" : idPeriodo};
 	  
 	// DO POST
 	$.ajax({
@@ -608,7 +762,8 @@ function  asignaDependencia(idRegion){
 				
 				console.log(result);
 			},
-			error : function(jqXHR,e) {			
+			error : function(jqXHR,e) {
+				alert(e);
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
@@ -622,13 +777,35 @@ function  asignaDependencia(idRegion){
 }
 
 
-function nuevaRegionModal(idPeriodo) {
+function nuevaRegionModal() {
    // alert(idPeriodo);
     $("#nombre").val('');    
     $("#abreviatura").val('');    
-    $("#idPeriodo").val(idPeriodo);    
+   // $("#idPeriodo").val(idPeriodo);    
     $("#guardarRegionModal").show();
 }
+
+
+function nuevaRegionPeriodoModal(idPeriodo) {
+	 
+	
+	var datos = {
+			idPeriodo : idPeriodo
+		}
+	
+		$("#nuevaRegionPeriodo").load("refreshModalRegionesPeriodo", datos,function( response, status, xhr ) {			  
+			  if(response.includes("Sesión inactiva")){				 
+				 window.location = "/login?session=false";
+				    }
+			if(xhr.status==200 && xhr.statusText== "parsererror"){
+				window.location = "/login?session=false";
+			}
+		});
+	   // $("#idPeriodo").val(idPeriodo);    
+	$("#idPeriodoRP").val(idPeriodo);  
+	    $("#guardarRegionPeriodoModal").show();
+	}
+
 
 function cambiaRelacionRegion(idRegionHijo){
     idRegionPadre = $("#regionPadre").val();
@@ -679,7 +856,7 @@ $("#regionForm").submit(function(event) {
     cerrarModal('guardarRegionModal');
     $("#postResultDiv").html("<div class='loader'></div>");
     
-    var parametrosUpdate = {"nombre" : nombre, "abreviatura" : abreviatura, "idPeriodo" : idPeriodo};
+    var parametrosUpdate = {"nombre" : nombre, "abreviatura" : abreviatura};
     
 	// DO POST
 	$.ajax({
@@ -700,8 +877,9 @@ $("#regionForm").submit(function(event) {
 				$("#postResultDiv").delay(6000).hide(600);
 				
 				console.log(result);
-				$("#idPeriodoSelect").val(idPeriodo).trigger('change');
+				//$("#idPeriodoSelect").val(idPeriodo).trigger('change');
 				//$("#tBecas").load("refreshTablatBeca");
+				$("#tablaRegiones").load("refreshTablaRegionesPrin");
 			},
 			error : function(jqXHR,e) {
 			    	alert(e);
@@ -718,22 +896,87 @@ $("#regionForm").submit(function(event) {
 
 });
 
+$("#regionFormRP").submit(function(event) {
+    // Prevent the form from submitting via the browser.
+    event.preventDefault();
 
-function modificarRegionModal(idRegion,nombre, abreviatura, idPeriodo, estatus) {
+    idRegion = $("#idRegionRP").val();
+    idPeriodo = $("#idPeriodoRP").val();
+
+    //alert(idRegion+" per "+idPeriodo);
+    cerrarModal('guardarRegionPeriodoModal');
+    $("#postResultDiv").html("<div class='loader'></div>");
+    
+    var parametrosUpdate = {"idRegion" : idRegion, "idPeriodo" : idPeriodo};
+    
+	// DO POST
+	$.ajax({
+	    		type : "POST",
+			url :"ajaxRegionPeriodoN",
+			data : parametrosUpdate,
+			success : function(result) {
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
+			    }
+			    
+				$("#postResultDiv").show();
+				if(result == "Done"){
+					$("#postResultDiv").html("<p class='divRespuesta'>! Región guardada !<br></p>");
+				}else{
+					$("#postResultDiv").html("<strong>Error</strong>");
+				}
+				$("#postResultDiv").delay(6000).hide(600);
+				
+				console.log(result);
+				$("#idPeriodoSelect").val(idPeriodo).trigger('change');
+				//$("#tBecas").load("refreshTablatBeca");
+				//$("#tablaRegionesPeriodo").load("tablaRegionesPeriodo");
+			},
+			error : function(jqXHR,e) {
+			    	alert(jqXHR.statusText);
+				if (jqXHR.status != 200) {
+				window.location = "/error";
+				}else{
+					window.location = "/login?session=false";
+				}
+
+				console.log("ERROR: ", e);				
+			}
+		});
+    
+
+});
+
+
+function modificarRegionModal(idRegion,nombre, abreviatura) {
     $("#idRegion").val(idRegion);
     
     $("#nombreM").val(nombre);
     $("#abreviaturaM").val(abreviatura);    
-    $("#idPeriodoM").val(idPeriodo);
-    $("#estatusM").val(estatus);
+    //$("#idPeriodoM").val(idPeriodo);
+    //$("#estatusM").val(estatus);
     
     $("#nombreA").val(nombre);
     $("#abreviaturaA").val(abreviatura);    
-    $("#idPeriodoA").val(idPeriodo);
-    $("#estatusA").val(estatus);  
+    //$("#idPeriodoA").val(idPeriodo);
+    //$("#estatusA").val(estatus);  
     
     $("#modificarRegionModal").show();
 }
+
+
+function modificarRegionPeriodoModal(idRegion,nombre, idPeriodo,estatus) {
+    $("#idRegionMP").val(idRegion);
+   // alert(estatus);
+    $("#nombreMP").text(nombre);
+    $("#idPeriodoMP").val(idPeriodo);
+    $("#estatusA").val(estatus);  
+    
+    $("#estatusM").val(estatus);  
+    
+    $("#modificarRegionPeriodoModal").show();
+}
+
 
 $("#regionFormM").submit(function(event) {
     // Prevent the form from submitting via the browser.
@@ -743,21 +986,17 @@ $("#regionFormM").submit(function(event) {
     
     nombre = $("#nombreM").val();
     abreviatura = $("#abreviaturaM").val();
-    idPeriodo = $("#idPeriodoM").val();    
-    estatus = $("#estatusM").val();
-    
+  
     nombreA = $("#nombreA").val();
-    abreviaturaA = $("#abreviaturaA").val();
-    idPeriodoA = $("#idPeriodoA").val();    
-    estatusA = $("#estatusA").val();
+    abreviaturaA = $("#abreviaturaA").val();  
 //    alert(nombre +' '+ $("#fecha_inicio").val() +' '+ $("#fecha_final").val());
     
     cerrarModal('modificarRegionModal');
    // alert(nombre +" "+nombreA +" "+ abreviatura +" "+ abreviaturaA +" "+ idPeriodo +" "+ idPeriodoA +" "+ estatus +" "+ estatusA);
-    if(nombre != nombreA || abreviatura != abreviaturaA || idPeriodo != idPeriodoA || estatus != estatusA){
+    if(nombre != nombreA || abreviatura != abreviaturaA ){
 	
 	 $("#postResultDiv").html("<div class='loader'></div>");
-	var parametrosUpdate = {"nombre" : nombre, "abreviatura": abreviatura, "idPeriodo" : idPeriodo, "estatus" : estatus, "idRegion" : idRegion};
+	var parametrosUpdate = {"nombre" : nombre, "abreviatura": abreviatura, "idRegion" : idRegion};
 	  
 	// DO POST
 	$.ajax({
@@ -777,9 +1016,70 @@ $("#regionFormM").submit(function(event) {
 				}
 				$("#postResultDiv").delay(6000).hide(600);
 				
+				//$("#idPeriodoSelect").val(idPeriodo).trigger('change');
+				console.log(result);
+				$("#tablaRegiones").load("refreshTablaRegionesPrin");
+			},
+			error : function(jqXHR,e) {
+			    	alert(e);
+				if (jqXHR.status != 200) {
+				window.location = "/error";
+				}else{
+					window.location = "/login?session=false";
+				}
+
+				console.log("ERROR: ", e);				
+			}
+		});
+   
+    }
+});
+
+
+
+
+
+$("#regionFormModalM").submit(function(event) {
+    // Prevent the form from submitting via the browser.
+    event.preventDefault();
+
+    idRegion = $("#idRegionMP").val();
+    
+    idPeriodo = $("#idPeriodoMP").val();
+    
+    estatus = $("#estatusM").val();
+    
+    estatusA = $("#estatusA").val();
+  
+
+    cerrarModal('modificarRegionPeriodoModal');
+   // alert(nombre +" "+nombreA +" "+ abreviatura +" "+ abreviaturaA +" "+ idPeriodo +" "+ idPeriodoA +" "+ estatus +" "+ estatusA);
+    if(estatus != estatusA){
+	
+	 $("#postResultDiv").html("<div class='loader'></div>");
+	var parametrosUpdate = {"estatus" : estatus, "idPeriodo": idPeriodo, "idRegion" : idRegion};
+	  
+	// DO POST
+	$.ajax({
+	    		type : "POST",
+			url :"ajaxRegionPeriodoModificar",
+			data : parametrosUpdate,
+			success : function(result) {
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
+			    }
+			    
+				$("#postResultDiv").show();
+				if(result == "Done"){
+					$("#postResultDiv").html("<p class='divRespuesta'>! Región modificada !<br></p>");
+				}else{
+					$("#postResultDiv").html("<strong>Error</strong>");
+				}
+				$("#postResultDiv").delay(6000).hide(600);
+				
 				$("#idPeriodoSelect").val(idPeriodo).trigger('change');
 				console.log(result);
-				//$("#periodos").load("refreshTablaPeriodo");
+				//$("#tablaRegiones").load("refreshTablaRegionesPrin");
 			},
 			error : function(jqXHR,e) {
 			    	alert(e);
