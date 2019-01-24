@@ -18,6 +18,10 @@ public class TipoBecaMapa implements RowMapper<TipoBeca> {
 	public static final String UPDATE_SQL //
 	= "update tipo_beca set ";
 
+	public static final String BASE_SQL_TB_BENEFICIARIO //
+	= "SELECT tb.* FROM view_beneficiarios vn join tipo_beca tb on tb.id = vn.id_tipo_beca ";
+
+	
 	@Override
 	public TipoBeca mapRow(ResultSet rs, int rowNum) throws SQLException {
 

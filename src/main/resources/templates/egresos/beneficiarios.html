@@ -42,17 +42,29 @@
 				
 				
 				
+				
 				<br />
-				<br />
-				<div id="becaAlta" style="z-index: 10;">
+				<div id="periodoAlta" style="z-index: 10;">
 				
 							<label for="idPeriodo">Periodo</label><br> <select onchange="cambiaPeriodo('idPeriodo','idRegion');"
 								id="idPeriodo" 
-								class="form-control selectTextFormulario becasRequired">
+								class="form-control selectText div50">
 								<option disabled selected value="">Selecciona periodo</option>
 								<option th:each="periodo : ${periodos}"
 									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
 							</select>
+							
+							<br>
+							<br>
+				</div>
+				<div id="becaAlta" style="display:none;">			
+							<label>Tipo de beca &nbsp;</label><br/>
+					<select id="becaSeleccionada" required 
+						class="form-control selectText  ">						
+						<option th:each="tBeca : ${tbecas}" th:value="${tBeca.idTipoBeca}"
+							th:text="${tBeca.nombre}"></option>
+					</select>
+					
 				</div>
 				<div id="completeCambio" style="display: none;"><label for="idBene">Nombre de beneficiario </label><br> <input type="text"
 								id="idBene" class="form-control selectTextFormulario div50"
@@ -60,6 +72,30 @@
 								 >
 				</div> 			
 				<br />
+				<div th:fragment="periodoTBecaMod" id="periodoTBecaMod">
+				<div id="periodoModif" style="z-index: 10;  display:none;">
+				
+							<label for="idPeriodoModif">Periodo</label><br> <select 
+								id="idPeriodoModif" onchange="actualizaInputsBenMod();" 
+								class="form-control selectText div50">
+								<option th:each="periodo : ${periodosMof}"
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+							</select>
+							
+							<br>
+							<br>
+				</div>
+				<div id="becaModif" style="display:none;" >			
+							<label>Tipo de beca &nbsp;</label><br/>
+					<select id="becaSeleccionadaModif" onchange="actualizaInputsBenMod();"   
+						class="form-control selectText  ">						
+						<option th:each="tBeca : ${tbecasMod}" th:value="${tBeca.idTipoBeca}"
+							th:text="${tBeca.nombre}"></option>
+					</select>
+					
+				</div>
+				</div>
+				<br/>
 				<!-- Datos para dar de alta a beneficiario -->
 				<div id="datosBecas" class="text-center" style="display: none;">
 					<br />
@@ -69,17 +105,8 @@
 					<br />
 					<!-- Primera fila de datos periodo,matricula -->
 					<div class="row ">
-						<div class="col-xs-4 ">
-							<label>Tipo de beca &nbsp;</label><br/>
-					<select id="becaSeleccionada" required 
-						class="form-control selectText  div50">
-						<option disabled selected value="">Selecciona beca...</option>
-						<option th:each="tBeca : ${tbecas}" th:value="${tBeca.idTipoBeca}"
-							th:text="${tBeca.nombre}"></option>
-					</select>
-						</div>
-
-						<div class="col-xs-4 ">
+						
+						<div class="col-xs-3 ">
 							<label for="matricula ">Matricula</label><br> <input
 								type="text" id="matricula" minlength="9" title="ej. S17000000"
 								placeholder="ej. S17000000" 
@@ -87,22 +114,18 @@
 								pattern="[Ss]{1}[0-9]{8}">
 						</div>
 
-						<!-- Segunda fila de datos nombre,ap paterno, ap materno -->
-					</div>
-					<br />
-					<br />
-					<div class="row ">
-						<div class="col-xs-4">
+						
+						<div class="col-xs-3">
 							<label for="nombres">Nombre (s)</label><br> <input
 								type="text" id="nombres"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" minlength="3" title="Solo letras"
 								class="form-control selectTextFormulario vacias  becasRequired ">
 						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-3">
 							<label for="aPaterno">Apellido paterno</label><br> <input minlength="3"
 								type="text" id="aPaterno"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" title="Solo letras"
 								class="form-control selectTextFormulario vacias becasRequired">
 						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-3">
 							<label for="aMaterno">Apellido materno</label><br> <input
 								type="text" id="aMaterno"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" minlength="3" title="Solo letras"
 								class="form-control selectTextFormulario vacias ">
@@ -658,7 +681,7 @@
 					<br />
 					<!-- Primera fila de datos periodo,matricula -->
 					<div class="row ">
-						<div class="col-xs-3 ">
+						<!-- <div class="col-xs-3 ">
 							<label for="idPeriodoD">Periodo</label><br> <select onchange="cambiaPeriodo('idPeriodoD','idRegionD');"
 								id="idPeriodoD" 
 								class="form-control selectTextFormulario depRequired">
@@ -666,18 +689,18 @@
 								<option th:each="periodo : ${periodos}"
 									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
 							</select>
-						</div>					
-						<div class="col-xs-3">
+						</div>-->					
+						<div class="col-xs-4">
 							<label for="nombresD">Nombre (s)</label><br> <input
 								type="text" id="nombresD"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" minlength="3" title="Solo letras"
 								class="form-control selectTextFormulario vacias  depRequired ">
 						</div>
-						<div class="col-xs-3">
+						<div class="col-xs-4">
 							<label for="aPaternoD">Apellido paterno</label><br> <input
 								type="text" id="aPaternoD"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" minlength="3" title="Solo letras"
 								class="form-control selectTextFormulario vacias depRequired">
 						</div>
-						<div class="col-xs-3">
+						<div class="col-xs-4">
 							<label for="aMaternoD">Apellido materno</label><br> <input
 								type="text" id="aMaternoD"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+" minlength="3" title="Solo letras"
 								class="form-control selectTextFormulario vacias">
@@ -1162,6 +1185,7 @@
 				
 			<input type="hidden" id="tBecaH">				
 			<input type="hidden" id="idPeriodoH">
+			<input type="hidden" id="idTipoBecaH">
 			<input type="hidden" id="matriculaH">			
 			<input type="hidden" id="nombresH">
 			<input type="hidden" id="aPaternoH">
@@ -1258,6 +1282,7 @@
 			<input type="hidden" id="observacionesH">		     
 			<input type="hidden" id="benefactorH">		
 			<input type="hidden" id="idBeneficiario">			
+			<input type="hidden" id="nombreCompletoBeneH">			
 				
 				
 

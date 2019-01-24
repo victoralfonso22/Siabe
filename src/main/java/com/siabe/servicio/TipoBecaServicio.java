@@ -30,4 +30,8 @@ public class TipoBecaServicio {
 	public String actualizarTipoBeca(int idTipoBeca, String nombre) {
 		return tipoBecaDAO.actualizaTipoBeca(idTipoBeca, nombre);
 	}
+	
+	public List<TipoBeca> tipoBecaXBeneficiario(String beneficiario, int idPeriodo){
+		return tipoBecaDAO.obtenerTiposBecaXBeneficiario(beneficiario, idPeriodo);
+	}
 }

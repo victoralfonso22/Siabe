@@ -75,4 +75,17 @@ public class TipoBecaDAO extends JdbcDaoSupport {
 
 	}
 
+	
+	public List<TipoBeca> obtenerTiposBecaXBeneficiario(String beneficiario, int idPeriodo) {
+
+		String sql = TipoBecaMapa.BASE_SQL_TB_BENEFICIARIO + " WHERE vn.nombre_completo_bene = '"+beneficiario+"' and vn.id_periodo = "+idPeriodo+" group by tb.id";
+		try {
+			return this.getJdbcTemplate().query(sql, new TipoBecaMapa());
+
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
 }

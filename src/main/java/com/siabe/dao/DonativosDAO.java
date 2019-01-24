@@ -153,14 +153,14 @@ public class DonativosDAO extends JdbcDaoSupport {
 
 	}
 
-	public String actualizaDatosDonantes(int idPeriodo, String razonSocial, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String adscripcion,  String tipoDonante, int idRegion, 
+	public String actualizaDatosDonantes( String razonSocial, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String adscripcion,  String tipoDonante, int idRegion, 
 			int sector, int idCampania, int medioAutorizacionDonativo, String observacionesMedioAutorizacion, int medioCobro, String numPersonal, String dependenciaAdscripcion, double donativoTotal, double donativoQuincenal,
 			int numQuincenas, int idQuincenaInicio, String anioQuincena, int idCuentasBancarias, String referencia, int numPagos, double importeNumPagos, String banco, String nombreTarjetahabiente, String red, String tipoTarjeta,
 			String numTarjeta,int mesVencimiento, int anioVencimiento, String tipoDonativo, int mesInicioAportacion, String email, String celular, String telefono1, String telefono2,String calle,String numE, 
 			String numI, String col, String loc, String mun, String edo, int cp, String calleFiscal, String numEFiscal, String numIFiscal, String colFiscal, 
 			String locFiscal, String munFiscal, String edoFiscal, String cpFiscal, String rfc, String observaciones, int idUsuario, int idDonativo) {
 
-		String sql = DonativosMapa.UPDATE_SQL + " id_periodo = ?,razon_social = ?, nombres = ?, apellido_paterno = ?,apellido_materno = ?,estatus = ?,motivo_estatus = ?," + 
+		String sql = DonativosMapa.UPDATE_SQL + " razon_social = ?, nombres = ?, apellido_paterno = ?,apellido_materno = ?,estatus = ?,motivo_estatus = ?," + 
 				"			adscripcion = ?,tipo_donante = ?, id_region = ?, sector = ?,	id_campania = ?, medio_autorizacion_donativo = ?,observaciones_medio_autorizacion = ?," + 
 				"			medio_cobro = ?,num_personal = ?,dependencia_adscripcion = ?,donativo_total = ?,donativo_quincenal = ?,num_quincenas = ?,id_quincena_inicio = ?, anio_quincena = ?, id_cuentas_bancarias = ?,referencia = ?," + 
 				"			num_pagos = ?,importe_num_pagos = ?,banco = ?,nombre_tarjetahabiente = ?,red = ?,tipo_tarjeta = ?,num_tarjeta = ?,mes_vencimiento = ?,anio_vencimiento = ?,tipo_donativo = ?," + 
@@ -169,7 +169,7 @@ public class DonativosDAO extends JdbcDaoSupport {
 				"			observaciones = ? where id =?;";
 		
 		//System.out.println(sql);
-		Object[] params = new Object[] { idPeriodo,  razonSocial.trim(),  nombre.trim(),  apellidoPaterno.trim(),  apellidoMaterno.trim() , estatus,  motivoEstatus,  adscripcion,   tipoDonante,  idRegion, 
+		Object[] params = new Object[] {  razonSocial.trim(),  nombre.trim(),  apellidoPaterno.trim(),  apellidoMaterno.trim() , estatus,  motivoEstatus,  adscripcion,   tipoDonante,  idRegion, 
 				 sector,  idCampania,  medioAutorizacionDonativo,  observacionesMedioAutorizacion,  medioCobro,  numPersonal,  dependenciaAdscripcion,  donativoTotal,  donativoQuincenal,
 				 numQuincenas,  idQuincenaInicio, anioQuincena, idCuentasBancarias,  referencia,  numPagos,  importeNumPagos,  banco,  nombreTarjetahabiente,  red,  tipoTarjeta,  numTarjeta,
 				 mesVencimiento,  anioVencimiento,  tipoDonativo,  mesInicioAportacion,  email,  celular,  telefono1,  telefono2,
@@ -195,18 +195,18 @@ public class DonativosDAO extends JdbcDaoSupport {
 
 	}
 	
-	public String actualizaDatosPatrocinadores(int idPeriodo, String razonSocial, String nombre, String apellidoPaterno, String apellidoMaterno, String adscripcion, int idRegion, int sector, 
+	public String actualizaDatosPatrocinadores( String razonSocial, String nombre, String apellidoPaterno, String apellidoMaterno, String adscripcion, int idRegion, int sector, 
 			 String descripcionDonativo, String email, String celular, String telefono1, String telefono2,String calle,String numE, String numI, String col, String loc, String mun, 
 			 String edo, int cp, String calleFiscal, String numEFiscal, String numIFiscal, String colFiscal, String locFiscal, String munFiscal, String edoFiscal, String cpFiscal,
 			 String rfc, String observaciones, int idUsuario, int idDonativo) {
 
-		String sql = DonativosMapa.UPDATE_SQL + " id_periodo = ?,razon_social = ?, nombres = ?, apellido_paterno = ?,apellido_materno = ?," + 
+		String sql = DonativosMapa.UPDATE_SQL + " razon_social = ?, nombres = ?, apellido_paterno = ?,apellido_materno = ?," + 
 				"	adscripcion = ?, id_region = ?, sector = ?, descripcion_donativo = ?, email = ?,celular = ?, telefono1 = ?,telefono2 = ?,calle = ?,num_exterior = ?,num_interior = ?,colonia = ?, localidad = ?, municipio = ?, estado = ?, cp = ?," + 
 				"	calle_fiscal = ?,num_exterior_fiscal = ?,num_interior_fiscal = ?,colonia_fiscal = ?, localidad_fiscal = ?, municipio_fiscal = ?, estado_fiscal = ?, cp_fiscal = ?, rfc=?," + 
 				"	observaciones = ? where id =?;";
 		
 		//System.out.println(sql);
-		Object[] params = new Object[] { idPeriodo,  razonSocial.trim(),  nombre.trim(),  apellidoPaterno.trim(),  apellidoMaterno.trim(),  adscripcion,  idRegion,  sector, 
+		Object[] params = new Object[] {  razonSocial.trim(),  nombre.trim(),  apellidoPaterno.trim(),  apellidoMaterno.trim(),  adscripcion,  idRegion,  sector, 
 				  descripcionDonativo,  email,  celular,  telefono1,  telefono2, calle, numE,  numI,  col,  loc,  mun, 
 				  edo,  cp,  calleFiscal,  numEFiscal,  numIFiscal,  colFiscal,  locFiscal,  munFiscal,  edoFiscal,  cpFiscal,
 				  rfc,  observaciones,  idDonativo};
@@ -230,11 +230,17 @@ public class DonativosDAO extends JdbcDaoSupport {
 
 	}
 	
-	public List<Donativos> autocompletarDonativosTipoDonativo(int tipoDonativo, String termino) {
+	public List<Donativos> autocompletarDonativosTipoDonativo(int tipoDonativo, String termino, int idPeriodo) {
 		
-	
-		String	sql = DonativosMapa.BASE_SQL + " where nombre_completo_don like '%"+termino+"%' and donativo_tipo = "+tipoDonativo+" ; ";
-		
+		String	sql = "";
+		if(idPeriodo ==0) {
+		sql = DonativosMapa.BASE_SQL + " vd\r\n" + 
+				"  join (SELECT nombre_completo_don, max(id_periodo) id_periodo  from view_donativos WHERE (nombre_completo_don LIKE '%"+termino+"%') OR (rfc LIKE  '%"+termino+"%') OR (razon_social LIKE  '%"+termino+"%')  group by nombre_completo_don  limit 25 )a\r\n" + 
+				"  on a.nombre_completo_don = vd.nombre_completo_don and a.id_periodo = vd.id_periodo"
+				+ " where vd.donativo_tipo = "+tipoDonativo+"; ";
+		}else {
+			sql = DonativosMapa.BASE_SQL + " where nombre_completo_don = '"+termino+"' and id_periodo = "+idPeriodo+";"; 
+		}
 		//System.out.println(sql);
 		
 		try {

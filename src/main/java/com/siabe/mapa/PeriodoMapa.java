@@ -30,6 +30,12 @@ public class PeriodoMapa implements RowMapper<Periodo> {
 	
 	/*public static final String UPDATE_SQL_DB //
 	= "update trPeriodoDonPeriodoBen set ";*/
+	
+	public static final String BASE_SQL_PERIODOS_BENEFICIARIO //
+	= "SELECT p.* FROM view_beneficiarios vn JOIN periodos p ON p.id = vn.id_periodo ";
+	
+	public static final String BASE_SQL_PERIODOS_DONANTE //
+	= "SELECT p.* FROM view_donativos vn JOIN periodos p ON p.id = vn.id_periodo ";
 
 	@Override
 	public Periodo mapRow(ResultSet rs, int rowNum) throws SQLException {

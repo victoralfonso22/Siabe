@@ -166,6 +166,9 @@ public class ControladorRestCatalogo {
 				if (regionesPeriodo.get(i).getEstatus() != 1) {
 					estatus = "Inactivo";
 					claseTD = "inactivo";
+				}else {
+					estatus = "Activo";
+					claseTD = "";
 				}
 
 				response += "<tr class=\"tdSencillo\" title='Click para editar región' style='cursor: pointer;' onclick=\"modificarRegionPeriodoModal("

@@ -27,13 +27,21 @@ public class PeriodoServicio {
 		return periodoDAO.obtenerPeriodos();
 	}
 	
+	public List<Periodo> todosPeridosActivos(){
+		return periodoDAO.obtenerPeriodosActivos();
+	}
+	
 	/*public List<Periodo> todosPeridoBD(){
 		return periodoDAO.obtenerPeriodosBenDona();
 	}
+	*/
+	public List<Periodo> periodosXBeneficiario(String beneficiario){
+		return periodoDAO.obtenerPeriodosXBeneficiario(beneficiario);
+	}
 	
-	public List<Periodo> todosPeridoIdBeca(int idTipoBeca){
-		return periodoDAO.obtenerPeriodosIdBeca(idTipoBeca);
-	}*/
+	public List<Periodo> periodosXDonante(String donante){
+		return periodoDAO.obtenerPeriodosXDonante(donante);
+	}
 	
 	public String periodoActualizaEstatus(int id, int estatus) {
 		return periodoDAO.actualizaEstatusUsuario(id, estatus);

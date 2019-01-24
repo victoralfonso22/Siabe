@@ -69,21 +69,17 @@ public class ControladorIngresos {
 	}
 	
 	@RequestMapping("/ingresos/actualizaPeriodosDon")
-	public String actualizaSelPeriodos(Model model, Principal principal) {
-		model.addAttribute("periodos", periodoServicio.todosPerido());
+	public String actualizaSelPeriodos(Model model, Principal principal,@RequestParam String nombreCompletoDon) {
+		model.addAttribute("periodosMof", periodoServicio.periodosXDonante(nombreCompletoDon));	
 		
 		if(principal == null) {
 		return "/login";	
 		}else {
-		return "/ingresos/donativos :: #idPeriodoDon";
+		return "/ingresos/donativos :: #periodoModfDF";
 		}
 	}
 	
-	/*@RequestMapping("/egresos/actualizaRegion")
-	public String actualizaSelRegiones(Model model, Principal principal,@RequestParam int idPeriodo) {
-		model.addAttribute("regiones", regionesServicio.regresaRegionesPeriodo(idPeriodo));
-		return "/egresos/beneficiarios :: #idRegion";
-	}*/
+
 	
 	
 

@@ -67,14 +67,14 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 	
 
 	
-	public String insertaBeneficiarioBecas(int idPeriodo, String matricula, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String tipoBecario, String adscripcion, int idRegion, 
+	public String insertaBeneficiarioBecas(int idPeriodo, int idTipoBeca,String matricula, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String tipoBecario, String adscripcion, int idRegion, 
 			int idCarrera, int periodoActual, double promedioGeneral, int edad, String genero, String lenguaIndigena, String discapacidad, String estadoCivil, String lugarNacimiento, Date fechaNacimiento,
 			String breveHistoria, int integrantesFamiliares, double ingresosFamiliares, String calleVivFam, String numEVivFam, String numIVivFam, String colVivFam, String locVivFam, String munVivFam, String edoVivFam,
 			int cpVivFam, String enlaceMaps, int mismoVivFam, String calleEst, String numEEst, String numIEst, String colEst, String locEst, String munEst, String edoEst, String cpEst, String celular, String telDomicilio,
 			String tipoTelRef, String numTelRef, String parentescoRef, String observacionesRef, String email, String facebook, String facebook2, String facebook3, int formaPago, String banco, String cuentaDeposito, 
 			String tarjetaDeposito, String claveReferenciado, String vigenciaReferenciado, double montoBeca, String finalidadApoyo, String observaciones, String idBenefactor, int idUsuario) {
 		
-		String sql = BeneficiariosMapa.INSERT_SQL_BECAS + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
+		String sql = BeneficiariosMapa.INSERT_SQL_BECAS + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
 															+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
 															+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
 															+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
@@ -82,7 +82,7 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 															+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
 															+ "?)";
 
-		Object[] params = new Object[] { idPeriodo, matricula.toUpperCase().trim(), nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
+		Object[] params = new Object[] { idPeriodo, idTipoBeca, matricula.toUpperCase().trim(), nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
 				 idCarrera,  periodoActual,  promedioGeneral,  edad,  genero,  lenguaIndigena,  discapacidad,  estadoCivil,  lugarNacimiento.trim(),  fechaNacimiento,
 				 breveHistoria.trim(),  integrantesFamiliares,  ingresosFamiliares,  calleVivFam,  numEVivFam,  numIVivFam,  colVivFam,  locVivFam,  munVivFam,  edoVivFam,
 				 cpVivFam,  enlaceMaps.trim(),  mismoVivFam,  calleEst.trim(),  numEEst,  numIEst,  colEst.trim(),  locEst.trim(),  munEst.trim(),  edoEst.trim(),  cpEst,  celular,  telDomicilio,
@@ -114,7 +114,7 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 	
 	 
 	
-	public String insertaBeneficiarioDeportivas(int idPeriodo, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String tipoBecario, String adscripcion, int idRegion, 
+	public String insertaBeneficiarioDeportivas(int idPeriodo, int idTipoBeca, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String tipoBecario, String adscripcion, int idRegion, 
 			String escuelaDeportiva, Date fechaIngEscDep, String nivelEduCursa, String turno, String tipoInstitucion, int grado, String nombreEdu, String calleEdu, String numExtEdu, String numIntEdu, String colEdu, String locEdu, 
 			String munEdu, String edoEdu, int cpEdu, String telEdu, double promedioGeneral, int edad, String genero, String lugarNacimiento, Date fechaNacimiento,
 			String breveHistoria, int integrantesFamiliares, double ingresosFamiliares, String calleVivFam, String numEVivFam, String numIVivFam, String colVivFam, String locVivFam, String munVivFam, String edoVivFam,
@@ -122,7 +122,7 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 			String tipoTelRef, String numTelRef, String parentescoRef, String observacionesRef, String email, String facebook, String facebook2, String facebook3, String ocupacionTutor, int hermanosInscritos,
 			String escuelaHermanosInscritos, double montoBeca, String observaciones, int idUsuario) {
 		
-		String sql = BeneficiariosMapa.INSERT_SQL_DEPORTIVAS + " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
+		String sql = BeneficiariosMapa.INSERT_SQL_DEPORTIVAS + " (?, ? ,?, ?, ?, ?, ?, ?, ?, ?, ?,"
 																	+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
 																	+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
 																	+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
@@ -130,7 +130,7 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 																	+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 																	
 
-		Object[] params = new Object[] { idPeriodo, nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus.trim(),  tipoBecario,  adscripcion,  idRegion, 
+		Object[] params = new Object[] { idPeriodo, idTipoBeca, nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus.trim(),  tipoBecario,  adscripcion,  idRegion, 
 				 escuelaDeportiva,  fechaIngEscDep,  nivelEduCursa,  turno,  tipoInstitucion,  grado,  nombreEdu.trim(), calleEdu.trim(),  numExtEdu.trim(),  numIntEdu.trim(),  colEdu.trim(),  locEdu.trim(), 
 				 munEdu.trim(),  edoEdu.trim(),  cpEdu,  telEdu.trim(),  promedioGeneral,  edad,  genero,  lugarNacimiento.trim(),  fechaNacimiento,
 				 breveHistoria,  integrantesFamiliares,  ingresosFamiliares,  calleVivFam.trim(),  numEVivFam,  numIVivFam,  colVivFam,  locVivFam.trim(),  munVivFam.trim(),  edoVivFam.trim(),
@@ -165,21 +165,21 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 
 	}
 
-	public String actualizaDatosBecas(int idPeriodo, String matricula, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String tipoBecario, String adscripcion, int idRegion, 
+	public String actualizaDatosBecas(String matricula, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String tipoBecario, String adscripcion, int idRegion, 
 			int idCarrera, int periodoActual, double promedioGeneral, int edad, String genero, String lenguaIndigena, String discapacidad, String estadoCivil, String lugarNacimiento, Date fechaNacimiento,
 			String breveHistoria, int integrantesFamiliares, double ingresosFamiliares, String calleVivFam, String numEVivFam, String numIVivFam, String colVivFam, String locVivFam, String munVivFam, String edoVivFam,
 			int cpVivFam, String enlaceMaps, int mismoVivFam, String calleEst, String numEEst, String numIEst, String colEst, String locEst, String munEst, String edoEst, String cpEst, String celular, String telDomicilio,
 			String tipoTelRef, String numTelRef, String parentescoRef, String observacionesRef, String email, String facebook, String facebook2, String facebook3, int formaPago, String banco, String cuentaDeposito, 
 			String tarjetaDeposito, String claveReferenciado, String vigenciaReferenciado, double montoBeca, String finalidadApoyo, String observaciones, int idBeneficiario, int idUsuario) {
 
-		String sql = BeneficiariosMapa.UPDATE_SQL + " id_periodo = ?,matricula=?, nombre=?, apellido_paterno=?,apellido_materno=?,estatus=?,motivo_estatus=?,tipo_becario=?,adscripcion=?, id_region=?, id_carrera=?, periodo_actual=?,promedio_general=?," + 
+		String sql = BeneficiariosMapa.UPDATE_SQL + " matricula=?, nombre=?, apellido_paterno=?,apellido_materno=?,estatus=?,motivo_estatus=?,tipo_becario=?,adscripcion=?, id_region=?, id_carrera=?, periodo_actual=?,promedio_general=?," + 
 				"edad=?,genero=?,lengua_indigena=?,discapacidad=?,estado_civil=?,lugar_nacimiento=?,fecha_nacimiento=?,breve_historia=?,integrantes_familiares=?,ingresos_familiares=?,calle_viv_fam=?,numE_viv_fam=?,numI_viv_fam=?," + 
 				"col_viv_fam=?,loc_viv_fam=?,mun_viv_fam=?,edo_viv_fam=?,cp_viv_fam=?,enlace_maps=?,mismo_vivienda_fam=?,calle_est=?,numE_est=?,numI_est=?,col_est=?,loc_est=?,mun_est=?,edo_est=?,cp_est=?,celular=?,tel_domicilio=?," + 
 				"tipo_tel_ref=?,num_tel_ref=?,parentesco_ref=?,observaciones_ref=?,email=?,facebook=?,facebook2=?,facebook3=?,forma_pago=?,banco=?,cuenta_deposito=?,tarjeta_deposito=?,clave_referenciado=?,vigencia_referenciado=?," + 
 				"monto_beca=?,finalidad_apoyo=?,observaciones=?  where id =?;";
 		
 		//System.out.println(sql);
-		Object[] params = new Object[] { idPeriodo, matricula.toUpperCase().trim(), nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
+		Object[] params = new Object[] { matricula.toUpperCase().trim(), nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
 				 idCarrera,  periodoActual,  promedioGeneral,  edad,  genero,  lenguaIndigena,  discapacidad,  estadoCivil,  lugarNacimiento.trim(),  fechaNacimiento,
 				 breveHistoria.trim(),  integrantesFamiliares,  ingresosFamiliares,  calleVivFam,  numEVivFam,  numIVivFam,  colVivFam,  locVivFam,  munVivFam,  edoVivFam,
 				 cpVivFam,  enlaceMaps.trim(),  mismoVivFam,  calleEst.trim(),  numEEst,  numIEst,  colEst.trim(),  locEst.trim(),  munEst.trim(),  edoEst.trim(),  cpEst,  celular,  telDomicilio,
@@ -205,7 +205,7 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 
 	}
 	
-	public String actualizaDatosDeportivas(int idPeriodo, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String tipoBecario, String adscripcion, int idRegion, 
+	public String actualizaDatosDeportivas(String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String tipoBecario, String adscripcion, int idRegion, 
 			String escuelaDeportiva, Date fechaIngEscDep, String nivelEduCursa, String turno, String tipoInstitucion, int grado, String nombreEdu,String calleEdu, String numExtEdu, String numIntEdu, String colEdu, String locEdu, 
 			String munEdu, String edoEdu, int cpEdu, String telEdu, double promedioGeneral, int edad, String genero, String lugarNacimiento, Date fechaNacimiento,
 			String breveHistoria, int integrantesFamiliares, double ingresosFamiliares, String calleVivFam, String numEVivFam, String numIVivFam, String colVivFam, String locVivFam, String munVivFam, String edoVivFam,
@@ -213,14 +213,14 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 			String tipoTelRef, String numTelRef, String parentescoRef, String observacionesRef, String email, String facebook, String facebook2, String facebook3, String ocupacionTutor, int hermanosInscritos,
 			String escuelaHermanosInscritos, double montoBeca, String observaciones, int idBeneficiario, int idUsuario) {
 
-		String sql = BeneficiariosMapa.UPDATE_SQL + " id_periodo=?, nombre=?, apellido_paterno=?,apellido_materno=?,estatus=?,motivo_estatus=?,tipo_becario=?,adscripcion=?, id_region=?, escuela_deportiva=?,fecha_ing_escuela_dep=?,nivel_edu_cursa=?,"+ 
+		String sql = BeneficiariosMapa.UPDATE_SQL + " nombre=?, apellido_paterno=?,apellido_materno=?,estatus=?,motivo_estatus=?,tipo_becario=?,adscripcion=?, id_region=?, escuela_deportiva=?,fecha_ing_escuela_dep=?,nivel_edu_cursa=?,"+ 
 				"turno=?,tipo_institucion=?,grado=?,nombre_edu=?,calle_edu=?,numE_edu=?,numIedu=?,col_edu=?,loc_edu=?,mun_edu=?,edo_edu=?,cp_edu=?,tel_edu=?,promedio_general=?,edad=?,genero=?,lugar_nacimiento=?,fecha_nacimiento=?,breve_historia=?," + 
 				"integrantes_familiares=?,ingresos_familiares=?,calle_viv_fam=?,numE_viv_fam=?,numI_viv_fam=?,col_viv_fam=?,loc_viv_fam=?,mun_viv_fam=?,edo_viv_fam=?,cp_viv_fam=?,enlace_maps=?,nombre_tutor=?,parentesco_tutor=?," + 
 				"celular=?,tel_domicilio=?,tipo_tel_ref=?,num_tel_ref=?,parentesco_ref=?,observaciones_ref=?,email=?,facebook=?,facebook2=?,facebook3=?,ocupacion_tutor=?,hermanos_inscritos=?,escuela_hermano=?,monto_beca=?," + 
 				"observaciones=? where id =?;";
 		
 		//System.out.println(sql);
-		Object[] params = new Object[] { idPeriodo, nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
+		Object[] params = new Object[] { nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
 				 escuelaDeportiva,  fechaIngEscDep,  nivelEduCursa,  turno,  tipoInstitucion,  grado,  nombreEdu.trim() ,calleEdu.trim(),  numExtEdu,  numIntEdu,  colEdu.trim(),  locEdu.trim(), 
 				 munEdu.trim(),  edoEdu.trim(),  cpEdu,  telEdu,  promedioGeneral,  edad,  genero,  lugarNacimiento.trim(),  fechaNacimiento,
 				 breveHistoria.trim(),  integrantesFamiliares,  ingresosFamiliares,  calleVivFam.trim(),  numEVivFam,  numIVivFam.trim(),  colVivFam.trim(),  locVivFam.trim(),  munVivFam.trim(),  edoVivFam.trim(),
@@ -263,12 +263,19 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 	}
 	
 	
-	public List<Beneficiarios> autocompletarBeneficiarios(String termino) {
+	public List<Beneficiarios> autocompletarBeneficiarios(String termino, int idPeriodo, int idTipoBeca) {
 		
+		String	sql = "";
 		
-		String	sql = BeneficiariosMapa.BASE_SQL + " WHERE (nombre_completo_bene LIKE '%"+termino+"%') OR (matricula LIKE  '%"+termino+"%') order by nombre_completo_bene; ";
-	
-		
+		if(idPeriodo == 0 && idTipoBeca == 0) {
+		sql = BeneficiariosMapa.BASE_SQL + " vn\r\n" + 
+				"join (SELECT nombre_completo_bene, matricula, max(id_periodo) id_periodo, id_tipo_beca  from view_beneficiarios WHERE (nombre_completo_bene LIKE '%"+termino+"%') OR (matricula LIKE  '%"+termino+"%')  group by nombre_completo_bene  limit 25 )a\r\n" + 
+				"on a.nombre_completo_bene = vn.nombre_completo_bene  and a.id_periodo = vn.id_periodo and a.id_tipo_beca = vn.id_tipo_beca";
+				
+		}else {
+			sql= BeneficiariosMapa.BASE_SQL +" where nombre_completo_bene = '"+termino+"' and id_periodo = "+idPeriodo+" and id_tipo_beca = "+idTipoBeca+";";
+		}
+		System.out.println(sql);
 		try {
 			return this.getJdbcTemplate().query(sql, new BeneficiariosMapa());
 

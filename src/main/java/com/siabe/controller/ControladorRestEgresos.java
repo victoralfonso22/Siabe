@@ -70,7 +70,7 @@ public class ControladorRestEgresos {
 
 
 	@PostMapping(value = "/egresos/ajaxAgregarBeneficiarioBeca")
-	public String postAjaxtBeca(@RequestParam int idPeriodo, @RequestParam String matricula, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno , 
+	public String postAjaxtBeca(@RequestParam int idPeriodo, @RequestParam int idTipoBeca, @RequestParam String matricula, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno , 
 			@RequestParam int estatus, @RequestParam String motivoEstatus, @RequestParam String tipoBecario, @RequestParam String adscripcion, @RequestParam int idRegion, @RequestParam 
 			int idCarrera, @RequestParam int periodoActual, @RequestParam double promedioGeneral, @RequestParam int edad, @RequestParam String genero, @RequestParam String lenguaIndigena, 
 			@RequestParam String discapacidad, @RequestParam String estadoCivil, @RequestParam String lugarNacimiento, @RequestParam String fechaNacimiento, @RequestParam
@@ -89,7 +89,7 @@ public class ControladorRestEgresos {
 		
 		Date dateBirth = formatter.parse(fechaNacimiento);
 		
-		String response = beneficiariosServicio.insertaBeneficiarioBeca(idPeriodo, matricula, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, tipoBecario, adscripcion, idRegion, 
+		String response = beneficiariosServicio.insertaBeneficiarioBeca(idPeriodo,idTipoBeca, matricula, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, tipoBecario, adscripcion, idRegion, 
 				idCarrera, periodoActual, promedioGeneral, edad, genero, lenguaIndigena, discapacidad, estadoCivil, lugarNacimiento, dateBirth, breveHistoria, integrantesFamiliares, 
 				ingresosFamiliares, calleVivFam, numEVivFam, numIVivFam, colVivFam, locVivFam, munVivFam, edoVivFam, cpVivFam, enlaceMaps, mismoVivFam, calleEst, numEEst, numIEst, colEst, locEst, 
 				munEst, edoEst, cpEst, celular, telDomicilio, tipoTelRef, numTelRef, parentescoRef, observacionesRef, email, facebook, facebook2, facebook3, formaPago, banco, cuentaDeposito, 
@@ -101,7 +101,7 @@ public class ControladorRestEgresos {
 	}
 	
 	@PostMapping(value = "/egresos/ajaxAgregarBeneficiarioDeportiva")
-	public String postAjaxtBeca(@RequestParam int idPeriodo, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno , @RequestParam int estatus, 
+	public String postAjaxtBeca(@RequestParam int idPeriodo, @RequestParam int idTipoBeca,  @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno , @RequestParam int estatus, 
 			@RequestParam String motivoEstatus, @RequestParam String tipoBecario, @RequestParam String adscripcion, @RequestParam int idRegion, @RequestParam 
 			String escuelaDeportiva, @RequestParam String fechaIngEscDep, @RequestParam String nivelEduCursa, @RequestParam String turno, @RequestParam String tipoInstitucion, @RequestParam int grado, 
 			@RequestParam String nombreEdu, @RequestParam String calleEdu, @RequestParam String numExtEdu, @RequestParam String numIntEdu, @RequestParam String colEdu, @RequestParam String locEdu, @RequestParam 
@@ -121,7 +121,7 @@ public class ControladorRestEgresos {
 		
 		Date dateBirth = formatter.parse(fechaNacimiento);
 		 
-		 String response = beneficiariosServicio.insertaBeneficiarioDeportiva(idPeriodo, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, tipoBecario, adscripcion, idRegion, escuelaDeportiva, 
+		 String response = beneficiariosServicio.insertaBeneficiarioDeportiva(idPeriodo,idTipoBeca, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, tipoBecario, adscripcion, idRegion, escuelaDeportiva, 
 				 dateIn, nivelEduCursa, turno, tipoInstitucion, grado, nombreEdu, calleEdu, numExtEdu, numIntEdu, colEdu, locEdu, munEdu, edoEdu, cpEdu, telEdu, promedioGeneral, edad, genero,
 				lugarNacimiento, dateBirth, breveHistoria, integrantesFamiliares, ingresosFamiliares, calleVivFam, numEVivFam, numIVivFam, colVivFam, locVivFam, munVivFam, edoVivFam, cpVivFam,
 				enlaceMaps, nombreTutor, parentescoTutor, celular, telDomicilio, tipoTelRef, numTelRef, parentescoRef, observacionesRef, email, facebook, facebook2, facebook3, ocupacionTutor,
@@ -132,15 +132,19 @@ public class ControladorRestEgresos {
 
 	}
 	
-	@RequestMapping(value = "/egresos/autocompleteBeneficiarioMod", method = RequestMethod.GET)
-	public  @ResponseBody Map<String,Beneficiarios> postAjaxAutocompleteBeneMod(@RequestParam String term) {		
+	@RequestMapping(value = "/egresos/autocompleteBeneficiarioMod", method = RequestMethod.POST)
+	public  @ResponseBody Map<String,Beneficiarios> postAjaxAutocompleteBeneMod(@RequestParam String term, @RequestParam int idPeriodo, @RequestParam int idTipoBeca) {		
 
-		List<Beneficiarios> beneficiario = beneficiariosServicio.autocompletarBeneficiarios(term); 
+		List<Beneficiarios> beneficiario = beneficiariosServicio.autocompletarBeneficiarios(term,idPeriodo,idTipoBeca); 
 		
 		Map<String,Beneficiarios> response = new TreeMap<String,Beneficiarios>();
 		
 		for(int b = 0; b < beneficiario.size() ;b++) {
+			if(idPeriodo == 0 && idTipoBeca == 0) {
 			response.put(beneficiario.get(b).getNombre(), beneficiario.get(b));
+			}else {
+			response.put("1", beneficiario.get(b));			
+			}
 		}
 		
 		return response;
@@ -148,8 +152,9 @@ public class ControladorRestEgresos {
 	}
 	
 	@PostMapping(value = "/egresos/ajaxModificarBeneficiarioBeca")
-	public String postAjaxtBecaModificar(@RequestParam int idPeriodo, @RequestParam String matricula, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno , 
-			@RequestParam int estatus, @RequestParam String motivoEstatus, @RequestParam String tipoBecario, @RequestParam String adscripcion, @RequestParam int idRegion, @RequestParam 
+	//public String postAjaxtBecaModificar(@RequestParam int idPeriodo, @RequestParam int idTipoBeca, @RequestParam String matricula, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno , 
+	public String postAjaxtBecaModificar( @RequestParam String matricula, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno ,
+	@RequestParam int estatus, @RequestParam String motivoEstatus, @RequestParam String tipoBecario, @RequestParam String adscripcion, @RequestParam int idRegion, @RequestParam 
 			int idCarrera, @RequestParam int periodoActual, @RequestParam double promedioGeneral, @RequestParam int edad, @RequestParam String genero, @RequestParam String lenguaIndigena, 
 			@RequestParam String discapacidad, @RequestParam String estadoCivil, @RequestParam String lugarNacimiento, @RequestParam String fechaNacimiento, @RequestParam
 			String breveHistoria, @RequestParam int integrantesFamiliares, @RequestParam double ingresosFamiliares, @RequestParam String calleVivFam, @RequestParam String numEVivFam, @RequestParam String numIVivFam,
@@ -167,7 +172,7 @@ public class ControladorRestEgresos {
 		
 		Date dateBirth = formatter.parse(fechaNacimiento);
 		
-		String response = beneficiariosServicio.actualizaDatosBecas(idPeriodo, matricula, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, tipoBecario, adscripcion, idRegion, 
+		String response = beneficiariosServicio.actualizaDatosBecas( matricula, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, tipoBecario, adscripcion, idRegion, 
 				idCarrera, periodoActual, promedioGeneral, edad, genero, lenguaIndigena, discapacidad, estadoCivil, lugarNacimiento, dateBirth, breveHistoria, integrantesFamiliares, 
 				ingresosFamiliares, calleVivFam, numEVivFam, numIVivFam, colVivFam, locVivFam, munVivFam, edoVivFam, cpVivFam, enlaceMaps, mismoVivFam, calleEst, numEEst, numIEst, colEst, locEst, 
 				munEst, edoEst, cpEst, celular, telDomicilio, tipoTelRef, numTelRef, parentescoRef, observacionesRef, email, facebook, facebook2, facebook3, formaPago, banco, cuentaDeposito, 
@@ -179,7 +184,8 @@ public class ControladorRestEgresos {
 	}
 	
 	@PostMapping(value = "/egresos/ajaxModificarBeneficiarioDeportiva")
-	public String postAjaxtDeportivaModificar(@RequestParam int idPeriodo, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno , @RequestParam int estatus, 
+	//public String postAjaxtDeportivaModificar(@RequestParam int idPeriodo, @RequestParam int idTipoBeca, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno , @RequestParam int estatus, 
+			public String postAjaxtDeportivaModificar( @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno , @RequestParam int estatus,
 			@RequestParam String motivoEstatus, @RequestParam String tipoBecario, @RequestParam String adscripcion, @RequestParam int idRegion, @RequestParam 
 			String escuelaDeportiva, @RequestParam String fechaIngEscDep, @RequestParam String nivelEduCursa, @RequestParam String turno, @RequestParam String tipoInstitucion, @RequestParam int grado, 
 			@RequestParam String nombreEdu, @RequestParam String calleEdu, @RequestParam String numExtEdu, @RequestParam String numIntEdu, @RequestParam String colEdu, @RequestParam String locEdu, @RequestParam 
@@ -199,7 +205,7 @@ public class ControladorRestEgresos {
 		
 		Date dateBirth = formatter.parse(fechaNacimiento);
 		 
-		 String response = beneficiariosServicio.actualizaDatosDeportivas(idPeriodo, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, tipoBecario, adscripcion, idRegion, escuelaDeportiva, 
+		 String response = beneficiariosServicio.actualizaDatosDeportivas(nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, tipoBecario, adscripcion, idRegion, escuelaDeportiva, 
 				 dateIn, nivelEduCursa, turno, tipoInstitucion, grado, nombreEdu, calleEdu, numExtEdu, numIntEdu, colEdu, locEdu, munEdu, edoEdu, cpEdu, telEdu, promedioGeneral, edad, genero,
 				lugarNacimiento, dateBirth, breveHistoria, integrantesFamiliares, ingresosFamiliares, calleVivFam, numEVivFam, numIVivFam, colVivFam, locVivFam, munVivFam, edoVivFam, cpVivFam,
 				enlaceMaps, nombreTutor, parentescoTutor, celular, telDomicilio, tipoTelRef, numTelRef, parentescoRef, observacionesRef, email, facebook, facebook2, facebook3, ocupacionTutor,

@@ -42,11 +42,32 @@
 				
 				</div>
 				<br/>
-				<div id="completeCambio" style="display: none;"><label id="lblAutoDon" for="idDon">Nombre de donante</label><br> <input type="text"
+				<div id="periodoInicio">
+							<label for="idPeriodoDon">Periodo</label><br> <select onchange="cambiaPeriodoDon();" required
+								id="idPeriodoDon" 	class="form-control selectTextFormulario selectInicial div50">
+								<option disabled selected value="">Selecciona periodo</option>
+								<option th:each="periodo : ${periodos}"
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+							</select>
+				</div>
+				<div id="completeCambio" style="display: none;">
+				<div ><label id="lblAutoDon" for="idDon">Nombre de donante</label><br> <input type="text"
 								id="idDon" class="form-control selectTextFormulario div50"
 								onkeyup="autocompletarDonanteMod();" >
 				</div> 			
-				<br />
+				<br>
+				<div th:fragment="periodoModfDF" id="periodoModfDF" >
+							<div id="periodoModfD" style="display:none;">
+							<label for="idPeriodoModif">Periodo</label><br> <select onchange="actualizaInputsDonMod();" 
+								id="idPeriodoModif" 	class="form-control selectText  div50">
+									<option th:each="periodo : ${periodosMof}"
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+							</select>
+							</div>
+				</div>				
+				
+				</div>
+				
 				<!-- Datos para dar de alta a beneficiario -->
 				<div id="donante" class="text-center" >
 					<br />
@@ -55,27 +76,18 @@
 
 					<br />
 					<!-- Primera fila de datos periodo,matricula -->
-					<div class="row ">
-						<div class="col-xs-5 ">
-							<label for="idPeriodoDon">Periodo</label><br> <select onchange="cambiaPeriodoDon('idPeriodoDon','idRegionDon');"
-								id="idPeriodoDon" 
-								class="form-control selectTextFormulario donativosRequired selectInicial">
-								<option disabled selected value="">Selecciona periodo</option>
-								<option th:each="periodo : ${periodos}"
-									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
-							</select>
-						</div>
-
-						<div class="col-xs-7 ">
+					
+						
+						<div >
 							<label for="razonSocialDon">Denominación o Razón Social</label><br> <input
 								type="text" id="razonSocialDon" minlength="3" 
 								placeholder="" 
-								class="form-control selectTextFormulario vacias  donativosRequired " maxlength="100"
+								class="form-control selectTextFormulario vacias  donativosRequired div50" maxlength="100"
 								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
 						</div>
 
 						<!-- Segunda fila de datos nombre,ap paterno, ap materno -->
-					</div>
+					
 					<br />
 					<br />
 					<div class="row ">
@@ -145,7 +157,7 @@
 						<div class="col-xs-4">
 							<label for="idRegionDon">Región</label><br> <input type="text"
 								id="idRegionDon" disabled
-								onkeyup="autocompletarRegionDon('idPeriodoDon','idRegionDon','idRegionHiddenDon','valRegionHiddenDon','idCampaniaDon');"
+								onkeyup="autocompletarRegionDon('idRegionDon','idRegionHiddenDon','valRegionHiddenDon','idCampaniaDon');"
 								onblur="this.value=$('#valRegionHiddenDon').val();"
 								class="form-control selectTextFormulario vacias deshab donativosRequired"> 
 								<input type="hidden" id="idRegionHiddenDon"> 
@@ -677,27 +689,19 @@
 
 					<br />
 					<!-- Primera fila de datos periodo,matricula -->
-					<div class="row ">
-						<div class="col-xs-5 ">
-							<label for="idPeriodoP">Periodo</label><br> <select onchange="cambiaPeriodo('idPeriodoP','idRegionP');"
-								id="idPeriodoP" 
-								class="form-control selectTextFormulario patrocRequired selectInicial">
-								<option disabled selected value="">Selecciona periodo</option>
-								<option th:each="periodo : ${periodos}"
-									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
-							</select>
-						</div>
+					
+					
 
-						<div class="col-xs-7 ">
+						<div class="">
 							<label for="razonSocialP">Denominación o Razón Social</label><br> <input
 								type="text" id="razonSocialP" minlength="3" 
 								placeholder="" 
-								class="form-control selectTextFormulario vacias  patrocRequired " maxlength="100"
+								class="form-control selectTextFormulario vacias  patrocRequired div50" maxlength="100"
 								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
 						</div>
 
 						<!-- Segunda fila de datos nombre,ap paterno, ap materno -->
-					</div>
+				
 					<br />
 					<br />
 					<div class="row ">
@@ -735,7 +739,7 @@
 						<div class="col-xs-4">
 							<label for="idRegionP">Región</label><br> <input type="text"
 								id="idRegionP" 
-								onkeyup="autocompletarRegionDon('idPeriodoP','idRegionP','idRegionHiddenP','valRegionHiddenP','');"
+								onkeyup="autocompletarRegionDon('idRegionP','idRegionHiddenP','valRegionHiddenP','');"
 								onblur="this.value=$('#valRegionHiddenP').val();"
 								class="form-control selectTextFormulario vacias deshab patrocRequired"> 
 								<input type="hidden" id="idRegionHiddenP"> 
@@ -1051,7 +1055,7 @@
 				<input type="hidden" id="idBeneficiarioDonH">
 				<input type="hidden" id="idBeneficiarioHiddenH">
 				<input type="hidden" id="valBeneficiarioHiddenH">	
-				
+				<input type="hidden" id="nombreCompletoDonH">				
 
 				<div id="divBotonGuardar">
 					<br> <br> <br>

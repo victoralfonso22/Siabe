@@ -106,6 +106,19 @@ public class PeriodoDAO extends JdbcDaoSupport {
 
 	}
 	
+	public List<Periodo> obtenerPeriodosActivos() {
+
+		String sql = PeriodoMapa.BASE_SQL +" where estatus = 1 order by nombre";
+		try {
+			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
+
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
 	/*public List<Periodo> obtenerPeriodosBenDona() {
 
 		String sql = PeriodoMapa.BASE_SQL_TB_PD +" order by p.nombre, p.id_tipo_beca";
@@ -121,10 +134,10 @@ public class PeriodoDAO extends JdbcDaoSupport {
 	
 	
 	
-	/*public List<Periodo> obtenerPeriodosIdBeca(int idTipoBeca) {
+	public List<Periodo> obtenerPeriodosXBeneficiario(String beneficiario) {
 
-		String sql = PeriodoMapa.BASE_SQL + " where tb.id = ?";
-		Object[] params = new Object[] { idTipoBeca };
+		String sql = PeriodoMapa.BASE_SQL_PERIODOS_BENEFICIARIO + " WHERE vn.nombre_completo_bene = ? GROUP BY p.id";
+		Object[] params = new Object[] { beneficiario };
 		PeriodoMapa mapper = new PeriodoMapa();
 		try {
 			return this.getJdbcTemplate().query(sql, params, mapper);
@@ -133,7 +146,21 @@ public class PeriodoDAO extends JdbcDaoSupport {
 			return null;
 		}
 
-	}*/
+	}
+	
+	public List<Periodo> obtenerPeriodosXDonante(String donante) {
+
+		String sql = PeriodoMapa.BASE_SQL_PERIODOS_DONANTE + " WHERE vn.nombre_completo_don = ? GROUP BY p.id";
+		Object[] params = new Object[] { donante };
+		PeriodoMapa mapper = new PeriodoMapa();
+		try {
+			return this.getJdbcTemplate().query(sql, params, mapper);
+			
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
 
 
 	public String actualizaEstatusUsuario(int id, int estatus) {
