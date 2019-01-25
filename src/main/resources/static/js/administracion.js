@@ -22,9 +22,11 @@ function checkIds(id){
 	if($("#"+id).val() == '1'){
 		$("#donBene").text("Beneficiario");		
 		$("#lblTotal").text("Monto apoyo");
+		$("#etiquetaTab").text("Beneficiario");
 	}else if($("#"+id).val() == '0'){
 		$("#donBene").text("Donante");
 		$("#lblTotal").text("Donativo total");
+		$("#etiquetaTab").text("Donantes");
 	}
 }
 
@@ -111,6 +113,16 @@ function autocompleteDonBeneAS() {
 					$("#idBenefactorHiddenCF").val(ui.item.valueD);
 				}
 				$("#valBenefactorHiddenCF").val(this.valueD);
+			}
+			
+			if( $('input:radio[name=altaCambio]:checked').val() ==1){
+				$("#donBene").text("Beneficiario");		
+				$("#lblTotal").text("Monto apoyo");
+				$("#etiquetaTab").text("Donantes");
+			}else {
+				$("#donBene").text("Donante");
+				$("#lblTotal").text("Donativo total");
+				$("#etiquetaTab").text("Beneficiarios");
 			}
 			
 			$("#labels").show();

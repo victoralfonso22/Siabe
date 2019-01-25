@@ -78,10 +78,9 @@
 			<table class="table tabla" id="registrosAs" >
 				<tr>
 					<th>#</th>
-					<th th:if="${asig} == 1"><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Donantes</label></th>
-					<th th:unless="${asig} == 1"><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Beneficiarios</label></th>
-					<th><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Saldo</label></th>
-					<th><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Monto a asignar</label></th>
+					<th ><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Donantes</label></th>					
+					<th><label  style="color:#fff; font-weight: normal;">Saldo</label></th>
+					<th><label  style="color:#fff; font-weight: normal;">Monto a asignar</label></th>
 					<th>Seleccionar</th>
 				</tr>
 					<th:block th:each="registrosTabla,iterationStatus : ${registrosTab}" >

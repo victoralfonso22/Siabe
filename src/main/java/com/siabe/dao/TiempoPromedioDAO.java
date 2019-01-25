@@ -65,7 +65,9 @@ String sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' 
 	
 	public List<TiempoPromedio> obtenerTiemposPromedioIdPeriodo(int idPeriodo) {
 
-		String sql = TiempoPromedioMapa.BASE_SQL + " where id_periodo = ?; ";
+		String sql = TiempoPromedioMapa.BASE_SQL + " where id_periodo = ? order by area,carrera; ";
+		
+		
 		
 		Object[] params = new Object[] { idPeriodo };
 		TiempoPromedioMapa mapper = new TiempoPromedioMapa();
@@ -81,7 +83,7 @@ String sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' 
 	
 	public List<TiempoPromedio> obtenerTiemposPromedioRegion(int idRegion) {
 
-		String sql = TiempoPromedioMapa.BASE_SQL + " where id_region = ?; ";
+		String sql = TiempoPromedioMapa.BASE_SQL + " where id_region = ? order by area,carrera; ";
 		
 		Object[] params = new Object[] { idRegion };
 		TiempoPromedioMapa mapper = new TiempoPromedioMapa();
@@ -113,9 +115,9 @@ String sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' 
 	public List<TiempoPromedio> tiemposPromedioIdPeriodoIdRegionInput(int idPeriodo, int idRegion, String termino) {
 		String sql;
 		if(idRegion != 0) {
-		sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' and id_periodo = "+idPeriodo+" and id_region = "+idRegion+"; ";
+		sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' and id_periodo = "+idPeriodo+" and id_region = "+idRegion+" order by area,carrera; ";
 		}else {
-			sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' and id_periodo = "+idPeriodo+" ; ";
+			sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' and id_periodo = "+idPeriodo+" order by area,carrera; ";
 		}
 		
 		try {

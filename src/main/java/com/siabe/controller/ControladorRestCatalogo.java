@@ -171,7 +171,7 @@ public class ControladorRestCatalogo {
 					claseTD = "";
 				}
 
-				response += "<tr class=\"tdSencillo\" title='Click para editar región' style='cursor: pointer;' onclick=\"modificarRegionPeriodoModal("
+				response += "<tr class=\"tdSencillo\" title='Click para editar estatus de región' style='cursor: pointer;' onclick=\"modificarRegionPeriodoModal("
 						+ regionesPeriodo.get(i).getIdRegion() + ",'" + regionesPeriodo.get(i).getNombre() + "'," + idPeriodo + ","
 						+ regionesPeriodo.get(i).getEstatus() + ");\">" + "<td>" + a + "</td>" + "<td>"
 						+ regionesPeriodo.get(i).getNombre() + "</td>" + "<td>"
