@@ -1181,7 +1181,7 @@ function autocompletarBeneficiarioMod() {
 			
 			$("#becaSeleccionada").val(ui.item.tBeca).trigger('change');
 			
-			
+			$("#idBene").val('');
 			
 			if(ui.item.tBeca == 1 || ui.item.tBeca == 2 || ui.item.tBeca == 3){
 				

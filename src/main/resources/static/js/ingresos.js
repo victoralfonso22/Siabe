@@ -965,8 +965,8 @@ function autocompletarDonanteMod() {
 			
 			$("#tDonativo").val(ui.item.idDonativoTipo).trigger('change');
 			if($("#tDonativo").val()==1){
-				
 				$("#idRegionDon").prop('disabled',false);
+				$("#idCampaniaDon").prop('disabled',false);
 				$("#idRegionDon").attr("placeholder","Escribe y selecciona una opción");
 			}else{
 				$("#idRegionP").prop('disabled',false);
@@ -975,7 +975,7 @@ function autocompletarDonanteMod() {
 			}
 
 			
-			
+			$("#idDon").val('');
 		//	$("#idPeriodoDon").val(ui.item.idPeriodo).trigger('change');
 			if($("#tDonativo").val() == 1){
 				
@@ -1011,8 +1011,10 @@ function autocompletarDonanteMod() {
 				$("#valRegionHiddenDon").val(ui.item.region);
 								
 				$("#sectorDon").val(ui.item.sector);
+				
+				$("#idCampaniaDon").val(ui.item.idCampania);
 			
-				var datos = {
+				/*var datos = {
 						idRegion : $("#idRegionHiddenDon").val()
 					}
 				$("#idCampaniaDon").load("actualizaCampanias", datos,function( response, status, xhr ) {			  
@@ -1023,7 +1025,7 @@ function autocompletarDonanteMod() {
 					if(xhr.status==200 && xhr.statusText== "parsererror"){
 						window.location = "/login?session=false";
 					}
-				});
+				});*/
 				
 				
 				
@@ -1304,6 +1306,7 @@ function actualizaInputsDonMod(){
 			if($("#tDonativo").val()==1){
 			
 				$("#idRegionDon").prop('disabled',false);
+				$("#idCampaniaDon").prop('disabled',false);
 				$("#idRegionDon").attr("placeholder","Escribe y selecciona una opción");
 			}else{
 			
@@ -1348,7 +1351,8 @@ function actualizaInputsDonMod(){
 				$("#valRegionHiddenDon").val(data[1].region);
 								
 				$("#sectorDon").val(data[1].sector);
-			
+				$("#idCampaniaDon").val(data[1].idCampania);
+			/*
 				var datos = {
 						idRegion : $("#idRegionHiddenDon").val()
 					}
@@ -1360,7 +1364,7 @@ function actualizaInputsDonMod(){
 					if(xhr.status==200 && xhr.statusText== "parsererror"){
 						window.location = "/login?session=false";
 					}
-				});
+				});*/
 				
 				
 				
