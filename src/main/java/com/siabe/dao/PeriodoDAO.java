@@ -28,7 +28,7 @@ public class PeriodoDAO extends JdbcDaoSupport {
 	}
 
 	public Periodo regresarPeriodo(int idPeriodo) {	
-		String sql = PeriodoMapa.BASE_SQL + " where p.id = ? ; ";
+		String sql = PeriodoMapa.BASE_SQL + " where id = ? ; ";
 		Object[] params = new Object[] { idPeriodo };
 		PeriodoMapa mapper = new PeriodoMapa();
 		try {

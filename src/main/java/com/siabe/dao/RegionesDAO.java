@@ -117,6 +117,21 @@ public String insertaRegionPeridoN(int idRegion, int idPeriodo) {
 
 	}
 	
+	public List<Regiones> obtenerRegionesTP() {
+
+		String sql = RegionesMapa.BASE_SQL_REG;
+		try {
+			return this.getJdbcTemplate().query(sql, new RegionesMapa());
+
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+	
+	
 	public List<Regiones> obtenerRegionesPrincipales() {
 
 		String sql = RegionesMapa.BASE_SQL_REGION_PRINCIPAL;

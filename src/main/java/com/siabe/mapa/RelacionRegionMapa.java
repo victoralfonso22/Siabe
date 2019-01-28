@@ -10,10 +10,10 @@ import org.springframework.jdbc.core.RowMapper;
 public class RelacionRegionMapa implements RowMapper<RelacionRegion> {
 
 	public static final String BASE_SQL //
-			= "Select id, id_region_padre, id_region_hijo, estatus From relacion_dependencia_region ";
+			= "Select id, id_region_padre, id_region_hijo, id_periodo, estatus From relacion_dependencia_region ";
 	
 	public static final String INSERT_SQL //
-	= "INSERT INTO relacion_dependencia_region (id_region_padre, id_region_hijo, estatus) values ";
+	= "INSERT INTO relacion_dependencia_region (id_region_padre, id_region_hijo, id_periodo, estatus) values ";
 	
 	public static final String UPDATE_SQL //
 	= "update relacion_dependencia_region set ";
@@ -24,9 +24,10 @@ public class RelacionRegionMapa implements RowMapper<RelacionRegion> {
 		int idRelacionRegion = rs.getInt("id");
 		int idRegionPadre = rs.getInt("id_region_padre");
 		int idRegionHijo = rs.getInt("id_region_hijo");
+		int idPeriodo = rs.getInt("id_periodo");
 		int estatus = rs.getInt("estatus");
 		
-		return new RelacionRegion(idRelacionRegion, idRegionPadre, idRegionHijo, estatus);
+		return new RelacionRegion(idRelacionRegion, idRegionPadre, idRegionHijo, idPeriodo, estatus);
 	}
 
 }

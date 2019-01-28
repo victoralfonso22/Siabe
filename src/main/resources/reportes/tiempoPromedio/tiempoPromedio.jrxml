@@ -30,7 +30,7 @@
 	<field name="nivel" class="java.lang.String"/>
 	<field name="modalidad" class="java.lang.String"/>
 	<field name="plan" class="java.lang.Integer"/>
-	<field name="periodoPromedio" class="java.lang.Double"/>
+	<field name="periodoPromedio" class="java.lang.Integer"/>
 	<field name="facultad" class="java.lang.String"/>
 	<field name="area" class="java.lang.String"/>
 	<field name="region" class="java.lang.String"/>

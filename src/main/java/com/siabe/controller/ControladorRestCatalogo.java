@@ -262,7 +262,7 @@ public class ControladorRestCatalogo {
 
 		for (int b = 0; b < regionesPeriodoDependenciaNoId.size(); b++) {
 			RelacionRegion relacionHijo = relacionRegionServicio.verificarRelacionRegion(idRegion,
-					regionesPeriodoDependenciaNoId.get(b).getIdRegion());
+					regionesPeriodoDependenciaNoId.get(b).getIdRegion(), idPeriodo);
 			if (relacionHijo != null) {
 				if (relacionHijo.getEstatus() == 1) {
 					estilo = "tdSencilloPermiso";
@@ -287,8 +287,8 @@ public class ControladorRestCatalogo {
 
 	@PostMapping(value = "/catalogos/ajaxRegionesDependienteInsert")
 	public String postAjaxtRegionesDependientesInserta(@RequestParam int idRegionPadre,
-			@RequestParam int idRegionHijo) {
-		RelacionRegion relacionHijo = relacionRegionServicio.verificarRelacionRegion(idRegionPadre, idRegionHijo);
+			@RequestParam int idRegionHijo, @RequestParam int idPeriodo) {
+		RelacionRegion relacionHijo = relacionRegionServicio.verificarRelacionRegion(idRegionPadre, idRegionHijo, idPeriodo);
 		if (relacionHijo != null) {
 			if (relacionHijo.getEstatus() == 1) {
 				return relacionRegionServicio.actualizarRelacionRegion(relacionHijo.getIdRelacion(), 0);
@@ -296,7 +296,7 @@ public class ControladorRestCatalogo {
 				return relacionRegionServicio.actualizarRelacionRegion(relacionHijo.getIdRelacion(), 1);
 			}
 		} else {
-			return relacionRegionServicio.insertRelacionRegion(idRegionPadre, idRegionHijo);
+			return relacionRegionServicio.insertRelacionRegion(idRegionPadre, idRegionHijo, idPeriodo);
 		}
 
 	}

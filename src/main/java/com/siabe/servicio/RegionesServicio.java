@@ -41,6 +41,10 @@ public class RegionesServicio {
 	public List<Regiones> todosRegiones(){
 		return regionesDAO.obtenerRegiones();
 	}
+
+	public List<Regiones> todosRegionesTP(){
+		return regionesDAO.obtenerRegionesTP();
+	}
 	
 	public List<Regiones> todosRegionesPrincipales(){
 		return regionesDAO.obtenerRegionesPrincipales();

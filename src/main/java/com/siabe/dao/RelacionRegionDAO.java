@@ -52,11 +52,11 @@ public class RelacionRegionDAO extends JdbcDaoSupport {
 	
 	
 
-	public String insertaRelacionRegion(int idRegionPadre, int idRegionHijo) {
+	public String insertaRelacionRegion(int idRegionPadre, int idRegionHijo, int idPeriodo) {
 		
-		String sql = RelacionRegionMapa.INSERT_SQL + "(?,?,1)";
+		String sql = RelacionRegionMapa.INSERT_SQL + "(?,?,?,1)";
 
-		Object[] params = new Object[] { idRegionPadre , idRegionHijo};			
+		Object[] params = new Object[] { idRegionPadre , idRegionHijo, idPeriodo};			
 		try {			
 			this.getJdbcTemplate().update(sql, params);
 			
@@ -66,12 +66,12 @@ public class RelacionRegionDAO extends JdbcDaoSupport {
 		}
 	}
 	
-	public RelacionRegion verificarRelacionRegion(int idRegionPadre, int idRegionHijo) {
-		String sql = RelacionRegionMapa.BASE_SQL + " where id_region_padre = ? and id_region_hijo = ? ; ";
+	public RelacionRegion verificarRelacionRegion(int idRegionPadre, int idRegionHijo, int idPeriodo) {
+		String sql = RelacionRegionMapa.BASE_SQL + " where id_region_padre = ? and id_region_hijo = ? and id_periodo = ? ; ";
 		
 	//	System.out.println(RelacionRegionMapa.BASE_SQL + " where id_region_padre = "+idRegionPadre+" and id_region_hijo = "+idRegionHijo+" ; ");
 		
-		Object[] params = new Object[] { idRegionPadre , idRegionHijo };
+		Object[] params = new Object[] { idRegionPadre , idRegionHijo , idPeriodo};
 		RelacionRegionMapa mapper = new RelacionRegionMapa();
 		try {
 			RelacionRegion periodoInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);

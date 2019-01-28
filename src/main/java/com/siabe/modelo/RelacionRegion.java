@@ -5,6 +5,7 @@ public class RelacionRegion {
 	private int idRelacion;
     private int idRegionPadre;
     private int idRegionHijo;
+    private int idPeriodo;
     private int estatus;
     
     
@@ -12,10 +13,11 @@ public class RelacionRegion {
     	
     }
  
-    public RelacionRegion(int idRelacion, int idRegionPadre, int idRegionHijo, int estatus) {
+    public RelacionRegion(int idRelacion, int idRegionPadre, int idRegionHijo, int idPeriodo, int estatus) {
         this.idRelacion = idRelacion;
         this.idRegionPadre = idRegionPadre;
         this.idRegionHijo = idRegionHijo;
+        this.setIdPeriodo(idPeriodo);
         this.estatus = estatus;
     }
 
@@ -50,5 +52,14 @@ public class RelacionRegion {
 	public void setEstatus(int estatus) {
 		this.estatus = estatus;
 	}
- 
+
+	public int getIdPeriodo() {
+		return idPeriodo;
+	}
+
+	public void setIdPeriodo(int idPeriodo) {
+		this.idPeriodo = idPeriodo;
+	}
+
+	
 }

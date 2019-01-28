@@ -202,7 +202,7 @@ public class ControladorCatalogo {
 	public String tiemposPromedio(Model model, Principal principal) {
 		
 		model.addAttribute("periodos", periodoServicio.todosPerido());
-		model.addAttribute("regiones", regionesServicio.todosRegiones());
+		model.addAttribute("regiones", regionesServicio.todosRegionesTP());
 		model.addAttribute("areas", tiempoPromedioServicio.todosAreas());
 		model.addAttribute("facultades", tiempoPromedioServicio.todosFacultades());
 		

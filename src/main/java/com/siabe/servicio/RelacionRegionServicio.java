@@ -19,8 +19,8 @@ public class RelacionRegionServicio {
 		return relacionRegionDAO.regresarRelacionRegion(idRegionPadre);
 	}
 	
-	public String insertRelacionRegion(int idRegionPadre, int idRegionHijo) {
-		return relacionRegionDAO.insertaRelacionRegion(idRegionPadre, idRegionHijo);
+	public String insertRelacionRegion(int idRegionPadre, int idRegionHijo, int idPeriodo) {
+		return relacionRegionDAO.insertaRelacionRegion(idRegionPadre, idRegionHijo, idPeriodo);
 	}
 	
 	public List<RelacionRegion> todosRelacionRegionPadre(int idRegionPadre){
@@ -31,7 +31,7 @@ public class RelacionRegionServicio {
 		return relacionRegionDAO.actualizaTipoBeca(idRelacionRegion, estatus);
 	}
 	
-	public RelacionRegion verificarRelacionRegion(int idRegionPadre, int idRegionHijo) {
-		return relacionRegionDAO.verificarRelacionRegion(idRegionPadre, idRegionHijo);
+	public RelacionRegion verificarRelacionRegion(int idRegionPadre, int idRegionHijo, int idPeriodo) {
+		return relacionRegionDAO.verificarRelacionRegion(idRegionPadre, idRegionHijo, idPeriodo);
 	}
 }

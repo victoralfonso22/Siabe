@@ -810,7 +810,7 @@ function nuevaRegionPeriodoModal(idPeriodo) {
 function cambiaRelacionRegion(idRegionHijo){
     idRegionPadre = $("#regionPadre").val();
    
-    var parametrosPermisos = {"idRegionPadre": idRegionPadre , "idRegionHijo": idRegionHijo};    
+    var parametrosPermisos = {"idRegionPadre": idRegionPadre , "idRegionHijo": idRegionHijo, "idPeriodo" : $("#idPeriodoSelect").val()};    
     
 	$.ajax({
 	    		type : "POST",
