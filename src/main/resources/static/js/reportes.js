@@ -11,10 +11,13 @@ function autocompletarBeneficiarioNom() {
 	$("#idBeneNom").autocomplete({
 		source : function(request, response) {
 			$.ajax({
+				type : "POST",
 				url : "/egresos/autocompleteBeneficiarioMod",
 				dataType : "json",
 				data : {
-					term : request.term
+					term : request.term,
+					idPeriodo : 0,
+					idTipoBeca : 0
 				//	idPeriodo : $("#idPeriodo").val()
 				},
 				success : function(data) {

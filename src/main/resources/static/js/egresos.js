@@ -123,7 +123,7 @@ $("#becaSeleccionada").change(function(event) {
 
 	tipoBeca = $("#becaSeleccionada").val();
 
-if(tipoBeca == 1 || tipoBeca == 2 || tipoBeca == 3){
+if(tipoBeca == 1 || tipoBeca == 2 || tipoBeca == 3 || tipoBeca == 5){
 		
 		$("#datosBecas").show();
 		$("#datosBecasDeportivas").hide();
@@ -788,7 +788,7 @@ $("#beneficiarioForm").submit(function(event) {
     	
     	tBeca = $("#becaSeleccionada").val();
         
-        if(tBeca== 1 || tBeca == 2 || tBeca == 3){
+        if(tBeca== 1 || tBeca == 2 || tBeca == 3 || tBeca == 5){
         	
        // 	if($("#idBenefactorHidden").val() == ''){
        // 		idBenefactorAsignado = null;
@@ -850,7 +850,7 @@ $("#beneficiarioForm").submit(function(event) {
     	
     	tBeca = $("#becaSeleccionadaModif").val();
         
-		        if(tBeca== 1 || tBeca == 2 || tBeca == 3){
+		        if(tBeca== 1 || tBeca == 2 || tBeca == 3 || tBeca == 5){
 		        	
 		        	
 		        	if( $("#matriculaH").val() != $("#matricula").val() || $("#nombresH").val() != $("#nombres").val() || $("#aPaternoH").val() !=  $("#aPaterno").val() ||
@@ -1183,7 +1183,7 @@ function autocompletarBeneficiarioMod() {
 			
 			$("#idBene").val('');
 			
-			if(ui.item.tBeca == 1 || ui.item.tBeca == 2 || ui.item.tBeca == 3){
+			if(ui.item.tBeca == 1 || ui.item.tBeca == 2 || ui.item.tBeca == 3 || ui.item.tBeca == 5){
 				
 				
 							
@@ -1583,7 +1583,7 @@ function actualizaInputsBenMod(){
 			
 			
 			
-			if(data[1].idTipoBeca == 1 || data[1].idTipoBeca == 2 || data[1].idTipoBeca == 3){
+			if(data[1].idTipoBeca == 1 || data[1].idTipoBeca == 2 || data[1].idTipoBeca == 3 || data[1].idTipoBeca == 5){
 				
 				
 			

@@ -269,7 +269,9 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 		
 		if(idPeriodo == 0 && idTipoBeca == 0) {
 		sql = BeneficiariosMapa.BASE_SQL + " vn\r\n" + 
-				"join (SELECT nombre_completo_bene, matricula, max(id_periodo) id_periodo, id_tipo_beca  from view_beneficiarios WHERE (nombre_completo_bene LIKE '%"+termino+"%') OR (matricula LIKE  '%"+termino+"%')  group by nombre_completo_bene  limit 25 )a\r\n" + 
+				"join (select vn2.id, b.nombre_completo_bene, b.matricula, b.id_periodo, min(vn2.id_tipo_beca) id_tipo_beca from\r\n" + 
+				"(SELECT nombre_completo_bene, matricula, max(id_periodo) id_periodo  from view_beneficiarios WHERE (nombre_completo_bene LIKE '%"+termino+"%') OR (matricula LIKE '%"+termino+"%')  group by nombre_completo_bene limit 25)b\r\n" + 
+				"join view_beneficiarios vn2 on vn2.id_periodo = b.id_periodo and vn2.nombre_completo_bene = b.nombre_completo_bene group by b.nombre_completo_bene )a\r\n" + 
 				"on a.nombre_completo_bene = vn.nombre_completo_bene  and a.id_periodo = vn.id_periodo and a.id_tipo_beca = vn.id_tipo_beca";
 				
 		}else {
