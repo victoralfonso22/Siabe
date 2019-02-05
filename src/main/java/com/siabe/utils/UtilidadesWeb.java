@@ -4,11 +4,13 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.stream.IntStream;
 
@@ -188,16 +190,16 @@ public class UtilidadesWeb {
     	            }
     	        }
 
-    	        System.out.println("pass : " + passw);
+    	        System.out.println("pass : " + passw.trim());
     	        
     	        PasswordEncryptado passwordEncryptado = new PasswordEncryptado();
     	        
-    	        usuarioServicio.usuarioActualizaPassword(passwordEncryptado.encrytePassword(passw), id);
+    	        usuarioServicio.usuarioActualizaPassword(passwordEncryptado.encrytePassword(passw.trim()), id);
     	      
     	        String mensaje = "<div style='font-family: \"calibri\", Garamond, 'Comic Sans MS';'><p>Hola, <b>"+nombre+"</b></p>";
     	        
     	        mensaje+="<p>Usuario : <b style='color:#337AB7;'>"+usuario+"</b></p>";
-    	        mensaje+="<p>Nueva contraseña : <b style='color:#337AB7;'>"+passw+"</b></p>";
+    	        mensaje+="<p>Nueva contraseña : <b style='color:#337AB7;'>"+passw.trim()+"</b></p>";
     	        
     	        mensaje+="<br/>Te sugerimos que cambies esta nueva contraseña por una que recuerdes, para realizarlo debes ir a SIABE->Menú->Usuarios->Cambio de password";
     	        
@@ -217,6 +219,13 @@ public class UtilidadesWeb {
     	        
     	        return "Done";
     	    }
+    
+    
+    public String formatoMoneda2(Double num) {
+    	NumberFormat format = NumberFormat.getCurrencyInstance(Locale.getDefault());
+        String currency = format.format(num);
+        return currency;
+    }
 
 
    

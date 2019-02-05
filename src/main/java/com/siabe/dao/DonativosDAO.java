@@ -301,6 +301,25 @@ public List<Donativos> autocompletarBenefactorNoPatrocinador(String termino, int
 
 	}
 	
+	public double sumaDonativoDonanteBeneficiario(int idDonante, int idBeneficiario) {
+		String sql = "";
+		
+		if(idDonante == 0 && idBeneficiario != 0) {
+			sql = DonativosMapa.SUMDONATIVO_SQL_TRDONBENASIG + " where id_beneficiario = "+idBeneficiario+";";
+		}else if(idBeneficiario == 0 && idDonante != 0 ) {
+			sql = DonativosMapa.SUMDONATIVO_SQL_TRDONBENASIG + " where id_donante = "+idDonante+";";
+		}
+		
+		System.out.println(sql);
+		
+		try {
+			return this.getJdbcTemplate().queryForObject(sql, Double.class);
+
+		} catch (EmptyResultDataAccessException e) {
+			return 0;
+		}
+	}
+	
 	/*
 public List<Donativos> reporteGeneral(int idTipoBeca,int idPeriodo, int idRegion) {
 		String idPString = "";

@@ -45,8 +45,8 @@ public class TiempoPromedioServicio {
 		return tiempoPromedioDAO.tiemposPromedioIdPeriodoIdRegion(idPeriodo, idRegion);
 	}
 	
-	public List<TiempoPromedio> todosTiemposPromedioPeriodoRegionInput(int idPeriodo,int idRegion, String termino){
-		return tiempoPromedioDAO.tiemposPromedioIdPeriodoIdRegionInput(idPeriodo, idRegion, termino);
+	public List<TiempoPromedio> todosTiemposPromedioPeriodoRegionInput(int idPeriodo,int idRegion, String termino, int carrera, int facultad, int area){
+		return tiempoPromedioDAO.tiemposPromedioIdPeriodoIdRegionInput(idPeriodo, idRegion, termino, carrera, facultad, area);
 	}
 	
 	public String insertCarrera(int idFacultad, int idArea, int idRegion,String nombre, String nivel, String modalidad, int plan, int periodoPromedio, int idPeriodo) {

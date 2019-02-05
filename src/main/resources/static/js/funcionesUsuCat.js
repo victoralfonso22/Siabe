@@ -155,7 +155,7 @@ function ajaxPostPassword(pass,id_user_pass){
 			    
 				$("#postResultDiv").show();
 				if(result == "Done"){
-					$("#postResultDiv").html("<p class='divRespuesta'>! Password guardado ! <br></p>");
+					$("#postResultDiv").html("<p class='divRespuesta'>! Password guardado, el cambio se verá reflejado cuando inicie sesión de nuevo ! <br></p>");
 				}else{
 					$("#postResultDiv").html("<strong>Error</strong>");
 				}
@@ -1614,6 +1614,10 @@ $("#peridoTSeleccionado").change(function(event) {
 			    	$("#regionesTiempoPeriodo").html("");
 			    }else{
 			    $("#buscarTiempoPromedio").show();
+			    $("#opcionesBusca").show();
+			    $("#car").prop("checked", false);
+			    $("#fac").prop("checked", false);
+			    $("#are").prop("checked", false);
 				$("#regionesTiempoPeriodo").html(result);
 				tablaTiempoPromerdioP(idPeriodo);
 				$("#buscarTiempoPromedio").val('');
@@ -1672,8 +1676,24 @@ $.ajax({
 function verTiempoPromerdio() {
 	//alert(idRegion);
 	// DO POST	
-
-	var parametrosPermisos = {"idRegion": $("#idRegionTiempo").val(), "idPeriodo": $("#peridoTSeleccionado").val(), "buscarInput" : $("#buscarTiempoPromedio").val()};  
+	carrera = 0;
+	facultad = 0;
+	area= 0;
+	if($("#car").is(':checked')){
+		carrera = 1;
+	}
+	if($("#fac").is(':checked')){
+		facultad = 1;
+	}
+	if($("#are").is(':checked')){
+		area = 1;
+	}
+	
+	if(carrera ==0 && facultad == 0 && area ==0){
+		$("#buscarTiempoPromedio").val("");
+	}
+	
+	var parametrosPermisos = {"idRegion": $("#idRegionTiempo").val(), "idPeriodo": $("#peridoTSeleccionado").val(), "buscarInput" : $("#buscarTiempoPromedio").val(), "carrera" : carrera, "facultad" : facultad, "area" : area};  
 	
 	$.ajax({
 	    		type : "POST",

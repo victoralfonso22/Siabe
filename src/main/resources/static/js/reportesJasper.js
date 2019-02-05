@@ -88,6 +88,20 @@ function reporteTiempoPromedio(tipo,idSpan,divClass){
 	$("div."+divClass).hide(600);
 	$("#divLogosReportes").show();
 	$("#divLogosReportes").css('position','inherit !important');
+	
+	carrera = 0;
+	facultad = 0;
+	area= 0;
+	if($("#car").is(':checked')){
+		carrera = 1;
+	}
+	if($("#fac").is(':checked')){
+		facultad = 1;
+	}
+	if($("#are").is(':checked')){
+		area = 1;
+	}
+	
 	if($("#idRegionTiempo").val() != null){
 		idRegion= $("#idRegionTiempo").val();
 	}else{
@@ -101,11 +115,11 @@ function reporteTiempoPromedio(tipo,idSpan,divClass){
 
 	
 	if(tipo == 1){
-	generarReporte("reporteTiempoPromedio?type=pdf&idPeriodo="+$("#peridoTSeleccionado").val()+"&idRegion="+idRegion+"&inputBusca="+$("#buscarTiempoPromedio").val()+"",idSpan,divClass);
+	generarReporte("reporteTiempoPromedio?type=pdf&idPeriodo="+$("#peridoTSeleccionado").val()+"&idRegion="+idRegion+"&inputBusca="+$("#buscarTiempoPromedio").val()+"&carrera="+carrera+"&facultad="+facultad+"&area="+area,idSpan,divClass);
 	}else if(tipo == 2){
-		generarReporte("reporteTiempoPromedio?type=vnd.openxmlformats-officedocument.spreadsheetml.sheet&idPeriodo="+$("#peridoTSeleccionado").val()+"&idRegion="+idRegion+"&inputBusca="+$("#buscarTiempoPromedio").val()+"",idSpan,divClass);
+		generarReporte("reporteTiempoPromedio?type=vnd.openxmlformats-officedocument.spreadsheetml.sheet&idPeriodo="+$("#peridoTSeleccionado").val()+"&idRegion="+idRegion+"&inputBusca="+$("#buscarTiempoPromedio").val()+"&carrera="+carrera+"&facultad="+facultad+"&area="+area,idSpan,divClass);
 	}else if(tipo == 3){
-		generarReporte("reporteTiempoPromedio?type=html&idPeriodo="+$("#peridoTSeleccionado").val()+"&idRegion="+idRegion+"&inputBusca="+$("#buscarTiempoPromedio").val()+"",idSpan,divClass);
+		generarReporte("reporteTiempoPromedio?type=html&idPeriodo="+$("#peridoTSeleccionado").val()+"&idRegion="+idRegion+"&inputBusca="+$("#buscarTiempoPromedio").val()+"&carrera="+carrera+"&facultad="+facultad+"&area="+area,idSpan,divClass);
 	}
 	
 }

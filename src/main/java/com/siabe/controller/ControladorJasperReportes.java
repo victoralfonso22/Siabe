@@ -47,7 +47,7 @@ import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 import net.sf.jasperreports.export.SimplePdfReportConfiguration;
 import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 import net.sf.jasperreports.export.type.HtmlSizeUnitEnum;
-import net.sf.jasperreports.view.JasperViewer;
+
 import net.sf.jasperreports.export.SimpleHtmlReportConfiguration;
 
 @Controller
@@ -71,7 +71,9 @@ public class ControladorJasperReportes {
 	/*********************TIEMPOS PROMEDIO**************************************/
 	@RequestMapping(value = "/catalogos/reporteTiempoPromedio")
 	public void reportesTiemposPromedio(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam("type") String type, @RequestParam("idPeriodo") int idPeriodo, @RequestParam("idRegion") int idRegion,@RequestParam("inputBusca") String inputBusca) throws Exception {
+			@RequestParam("type") String type, @RequestParam("idPeriodo") int idPeriodo, @RequestParam("idRegion") int idRegion,@RequestParam("inputBusca") String inputBusca, @RequestParam("carrera") int carrera,
+			@RequestParam("facultad") int facultad, @RequestParam("area") int area)
+					throws Exception {
 
 		System.out.println("Escribe type " + type);
 		
@@ -83,7 +85,7 @@ public class ControladorJasperReportes {
 		}
 		
 //data source
-		JRDataSource dataSource = new JRBeanCollectionDataSource(tiempoPromedioServicio.todosTiemposPromedioPeriodoRegionInput(idPeriodo, idRegion, inputBusca));
+		JRDataSource dataSource = new JRBeanCollectionDataSource(tiempoPromedioServicio.todosTiemposPromedioPeriodoRegionInput(idPeriodo, idRegion, inputBusca,carrera,facultad,area));
 		
 //compile jrxml template and get report
 		JasperReport report;

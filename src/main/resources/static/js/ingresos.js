@@ -1095,6 +1095,16 @@ function autocompletarDonanteMod() {
 					$("#municipioFDon").val(ui.item.munFiscal);
 					$("#estadoFDon").val(ui.item.edoFiscal);
 					$("#cpFDon").val(ui.item.cpFiscal);
+
+					if($("#calleDon").val() == $("#calleFDon").val() && $("#nExteriorDon").val() == $("#nExteriorFDon").val() &&
+							$("#nInteriorDon").val() == $("#nInteriorFDon").val() && 	$("#colDon").val() == $("#colFDon").val() &&
+							$("#localidadDon").val() == $("#localidadFDon").val() && $("#municipioDon").val() == $("#municipioFDon").val() &&
+							$("#estadoDon").val() == $("#estadoFDon").val() && $("#cpDon").val() == $("#cpFDon").val() ){
+						$('input:radio[name=mismoDF]')[1].checked = true;
+					}
+					
+					
+					
 					$("#rfcFDon").val(ui.item.rfc);
 				$("#observacionesDon").val(ui.item.observaciones);
 			     
@@ -1153,6 +1163,17 @@ function autocompletarDonanteMod() {
 					$("#municipioFP").val(ui.item.munFiscal);
 					$("#estadoFP").val(ui.item.edoFiscal);
 					$("#cpFP").val(ui.item.cpFiscal);
+					
+					
+					if($("#calleP").val() == $("#calleFP").val() && $("#nExteriorP").val() == $("#nExteriorFP").val() &&
+							$("#nInteriorP").val() == $("#nInteriorFP").val() && 	$("#colP").val() == $("#colFP").val() &&
+							$("#localidadP").val() == $("#localidadFP").val() && $("#municipioP").val() == $("#municipioFP").val() &&
+							$("#estadoP").val() == $("#estadoFP").val() && $("#cpP").val() == $("#cpFP").val() ){
+						$('input:radio[name=mismoDFP]')[1].checked = true;
+					}
+					
+					
+					
 					$("#rfcFP").val(ui.item.rfc);
 				$("#observacionesP").val(ui.item.observaciones);
 			    
@@ -1434,6 +1455,16 @@ function actualizaInputsDonMod(){
 					$("#municipioFDon").val(data[1].munFiscal);
 					$("#estadoFDon").val(data[1].edoFiscal);
 					$("#cpFDon").val(data[1].cpFiscal);
+					
+					if($("#calleDon").val() == $("#calleFDon").val() && $("#nExteriorDon").val() == $("#nExteriorFDon").val() &&
+							$("#nInteriorDon").val() == $("#nInteriorFDon").val() && 	$("#colDon").val() == $("#colFDon").val() &&
+							$("#localidadDon").val() == $("#localidadFDon").val() && $("#municipioDon").val() == $("#municipioFDon").val() &&
+							$("#estadoDon").val() == $("#estadoFDon").val() && $("#cpDon").val() == $("#cpFDon").val() ){
+						$('input:radio[name=mismoDF]')[1].checked = true;
+					}
+					
+					
+					
 					$("#rfcFDon").val(data[1].rfc);
 				$("#observacionesDon").val(data[1].observaciones);
 			     
@@ -1492,6 +1523,16 @@ function actualizaInputsDonMod(){
 					$("#municipioFP").val(data[1].munFiscal);
 					$("#estadoFP").val(data[1].edoFiscal);
 					$("#cpFP").val(data[1].cpFiscal);
+					
+					
+					if($("#calleP").val() == $("#calleFP").val() && $("#nExteriorP").val() == $("#nExteriorFP").val() &&
+							$("#nInteriorP").val() == $("#nInteriorFP").val() && 	$("#colP").val() == $("#colFP").val() &&
+							$("#localidadP").val() == $("#localidadFP").val() && $("#municipioP").val() == $("#municipioFP").val() &&
+							$("#estadoP").val() == $("#estadoFP").val() && $("#cpP").val() == $("#cpFP").val() ){
+						$('input:radio[name=mismoDFP]')[1].checked = true;
+					}
+					
+					
 					$("#rfcFP").val(data[1].rfc);
 				$("#observacionesP").val(data[1].observaciones);
 			    

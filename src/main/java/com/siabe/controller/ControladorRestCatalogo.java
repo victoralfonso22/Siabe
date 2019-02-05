@@ -536,12 +536,12 @@ public class ControladorRestCatalogo {
 	
 	
 	@PostMapping(value = "/catalogos/ajaxTiempoRegionSelect")
-	public String postAjaxtTiempoRegionT(@RequestParam int idRegion, @RequestParam int idPeriodo, @RequestParam String buscarInput) {
+	public String postAjaxtTiempoRegionT(@RequestParam int idRegion, @RequestParam int idPeriodo, @RequestParam String buscarInput, @RequestParam int carrera, @RequestParam int facultad, @RequestParam int area) {
 		String response = "";
 
 
 			List<TiempoPromedio> tiempoPromedioR = new ArrayList<TiempoPromedio>(
-					tiempoPromedioServicio.todosTiemposPromedioPeriodoRegionInput(idPeriodo, idRegion, buscarInput));
+					tiempoPromedioServicio.todosTiemposPromedioPeriodoRegionInput(idPeriodo, idRegion, buscarInput, carrera, facultad, area));
 
 			response += "<br/><br/>"
 					+ "<table class=\"table tabla\"  id=\"tableTiempoPeriodo\">"

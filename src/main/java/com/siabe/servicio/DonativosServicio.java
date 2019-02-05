@@ -92,6 +92,10 @@ public class DonativosServicio {
 	public List<Donativos> autocompletarDonativosTodos(String termino, int idPeriodo){
 		return donativosDAO.autocompletarDonativosTodos(termino, idPeriodo);
 	}
+	
+	public double sumaDonativoDonanteBeneficiario(int idDonante, int idBeneficiario) {
+		return donativosDAO.sumaDonativoDonanteBeneficiario(idDonante, idBeneficiario);
+	}
 	/*
 	public List<Donativos> reporteGeneral(int idTipoBeca, int idPeriodo, int idRegion){
 		return beneficiariosDAO.reporteGeneral(idTipoBeca, idPeriodo, idRegion);

@@ -112,14 +112,34 @@ String sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' 
 
 	}
 	
-	public List<TiempoPromedio> tiemposPromedioIdPeriodoIdRegionInput(int idPeriodo, int idRegion, String termino) {
+	public List<TiempoPromedio> tiemposPromedioIdPeriodoIdRegionInput(int idPeriodo, int idRegion, String termino, int carrera, int facultad, int area) {
 		String sql;
-		if(idRegion != 0) {
-		sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' and id_periodo = "+idPeriodo+" and id_region = "+idRegion+" order by area,carrera; ";
-		}else {
-			sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' and id_periodo = "+idPeriodo+" order by area,carrera; ";
+		String term = "";
+		
+		if(carrera == 1 && facultad == 1 && area == 1) {
+			term = "(carrera like '%"+termino+"%' or facultad like '%"+termino+"%' or area like '%"+termino+"%') and ";
+		}else if(carrera == 0 && facultad == 1 && area == 1) {
+			term = "(facultad like '%"+termino+"%' or area like '%"+termino+"%') and ";
+		}else if(carrera == 1 && facultad == 0 && area == 1) {
+			term = "(carrera like '%"+termino+"%' or area like '%"+termino+"%') and ";
+		}else if(carrera == 1 && facultad == 1 && area == 0) {
+			term = "(carrera like '%"+termino+"%' or facultad like '%"+termino+"%') and ";
+		}else if (carrera == 1 && facultad == 0 && area == 0) {
+			term = " carrera like '%"+termino+"%' and ";
+		}else if(carrera == 0 && facultad == 1 && area == 0) {
+			term = " facultad like '%"+termino+"%' and ";
+		}else if(carrera == 0 && facultad == 0 && area == 1) {
+			term = " area like '%"+termino+"%' and ";
 		}
 		
+		if(idRegion != 0) {
+		//sql = TiempoPromedioMapa.BASE_SQL + " where (carrera like '%"+termino+"%' or facultad like '%"+termino+"%' or area like '%"+termino+"%') and id_periodo = "+idPeriodo+" and id_region = "+idRegion+" order by area,carrera; ";
+			sql = TiempoPromedioMapa.BASE_SQL + " where "+term+" id_region = "+idRegion+" order by area,carrera; ";
+		}else {
+			sql = TiempoPromedioMapa.BASE_SQL + " where "+term+" id_periodo = "+idPeriodo+" order by area,carrera; ";
+		}
+		
+		System.out.println(sql);
 		try {
 			return this.getJdbcTemplate().query(sql, new TiempoPromedioMapa());
 

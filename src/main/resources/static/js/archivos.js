@@ -144,6 +144,9 @@ function cambiaPeriodoCF(){
 	
 	$("#subirYMostrarCF").hide();
 	
+	$("#benefactorCF").val("");
+	$("#idBenefactorHiddenCF").val("");
+	$("#valBenefactorHiddenCF").val("");
 	if($("#idPeriodoCF").val() > 0){
 	$("#benefactorCF").prop('disabled',false);
 	}else{

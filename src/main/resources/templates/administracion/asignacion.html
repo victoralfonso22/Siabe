@@ -56,16 +56,22 @@
 								<input	type="hidden" id="idBenefactorHiddenCF"> 
 								<input type="hidden" id="valBenefactorHiddenCF">
 						</div>
-
+			<input type="hidden" id="identificador"/>
 			</div>
 			
 			
 			<br/>
-			<br/>
-			<div id="labels" style="display:none;">
-			<label id="lblTotal" >Monto apoyo</label>			 
-			<label>Monto asignado</label>
-			<label>Saldo</label>
+			<br/>	
+			<input type="hidden" id="valorAsig" th:value="${donativoAsignado}" />
+			<div id="labelsD" style="display:none;">
+			<label >Donativo total : </label><span class="etiquetaSpan" id="spDonativoTotal"></span>&nbsp&nbsp&nbsp&nbsp			
+			<label >Donativo asignado : </label><span class="etiquetaSpan" id="spDonativoAsignado" th:text="${donativoAsignado}"></span>&nbsp&nbsp&nbsp&nbsp
+			<label>Saldo : </label><span class="etiquetaSpan" id="spDSaldo"></span>&nbsp&nbsp&nbsp&nbsp
+			</div>
+			<div id="labelsB" style="display:none;">			
+			<label >Monto de beca/apoyo : </label><span class="etiquetaSpan" id="spMontoBeca"></span>&nbsp&nbsp&nbsp&nbsp
+			<label >Monto asignado : <span class="etiquetaSpan" id="spMontoAsignado" th:text="${donativoAsignado}"></span></label>&nbsp&nbsp&nbsp&nbsp
+			<label>Saldo : <span class="etiquetaSpan" id="spBSaldo"></span></label>
 			</div>
 			<br/>
 			<br/>
@@ -78,30 +84,37 @@
 			<table class="table tabla" id="registrosAs" >
 				<tr>
 					<th>#</th>
-					<th ><label id="etiquetaTab" style="color:#fff; font-weight: normal;">Donantes</label></th>					
+					<th ><label id="etiquetaTab" style="color:#fff; font-weight: normal;"></label></th>		
+					<th style="display:none;" id="thTipoBeca"><label style="color:#fff; font-weight: normal;">Tipo beca</label></th>					
 					<th><label  style="color:#fff; font-weight: normal;">Saldo</label></th>
 					<th><label  style="color:#fff; font-weight: normal;">Monto a asignar</label></th>
 					<th>Seleccionar</th>
 				</tr>
 					<th:block th:each="registrosTabla,iterationStatus : ${registrosTab}" >
-				<tr class="tdSencillo" >							
+				<tr class="" th:classappend="${registrosTabla.clase} ? tdSencilloPermiso : tdSencillo"  >							
 					<td th:text="${iterationStatus.count}" ></td>
-					<td  th:text="${registrosTabla.nombre+' '+registrosTabla.apellidoPaterno+' '+registrosTabla.apellidoMaterno}" ></td>
-					<td  th:if="${asig} == 1" th:text="${registrosTabla.donativoTotal}" ></td>
-					<td  th:unless="${asig} == 1" th:text="${registrosTabla.montoBeca}" ></td>
+					<td  th:text="${registrosTabla.nombreCompleto}" ></td>
+					
+					<td th:if="${asig} == 1" class="col-xs-2" style="display:none;"></td>
+								
+					<td th:unless="${asig} == 1" class="col-xs-2" th:text="${registrosTabla.tipoBeca}"></td>
+					
+					
+					<td  th:text="${registrosTabla.saldo}" ></td>
+					
 					
 					<td th:if="${asig} == 1" class="col-xs-2"><input
-								type="text" th:id="${'montoAsig'+registrosTabla.idDonativo}" disabled minlength="2" maxlength="10"
-								onkeypress="return filterFloat(event,this)"
-								class="form-control "></td>
+								type="text" th:id="${'montoAsig'+registrosTabla.idDonante}" disabled minlength="2" maxlength="10"
+								onkeypress="return filterFloat(event,this)" th:value="${registrosTabla.donativoAsignado}"
+								class="form-control " th:onblur="|guardaDonativo(this.value,1,${registrosTabla.idDonante});|"></td>
 								
 					<td th:unless="${asig} == 1" class="col-xs-2"><input
 								type="text" th:id="${'montoAsig'+registrosTabla.idBeneficiario}" disabled minlength="2" maxlength="10"
-								onkeypress="return filterFloat(event,this)"
-								class="form-control "></td>
+								onkeypress="return filterFloat(event,this)" th:value="${registrosTabla.donativoAsignado}"
+								class="form-control " th:onblur="|guardaDonativo(this.value,2,${registrosTabla.idBeneficiario});|"></td>
 								
-					<td th:if="${asig} == 1"><input type="checkbox" th:id="${registrosTabla.idDonativo}" th:onclick="deshabilitaMonto(${registrosTabla.idDonativo});"></td>
-					<td th:unless="${asig} == 1"><input type="checkbox" th:id="${registrosTabla.idBeneficiario}" th:onclick="deshabilitaMonto('${registrosTabla.idBeneficiario}');"></td>				
+					<td th:if="${asig} == 1"><input type="checkbox" th:id="${registrosTabla.idDonante}" th:onclick="|deshabilitaMonto('${registrosTabla.idDonante}');|"></td>
+					<td th:unless="${asig} == 1"><input type="checkbox" th:id="${registrosTabla.idBeneficiario}" th:onclick="|deshabilitaMonto('${registrosTabla.idBeneficiario}');|"></td>				
 					
 				</tr>
 				</th:block>
