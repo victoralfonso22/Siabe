@@ -320,6 +320,43 @@ public List<Donativos> autocompletarBenefactorNoPatrocinador(String termino, int
 		}
 	}
 	
+	
+	public String insertaDonativoDonanteBeneficiario(int idDonante, int idBeneficiario, double donativo) {
+		String sql ="";
+		String sql2 ="";
+		String sql3 ="";
+		
+		sql = DonativosMapa.BASEID_SQL_TRDONBENASIG + " where id_donante = "+idDonante+" and id_beneficiario = "+idBeneficiario+";";
+		
+		sql2 = DonativosMapa.INSERT_SQL_TRDONBENASIG + " ("+idDonante+", "+idBeneficiario+", "+donativo+")";
+		
+		sql3 = DonativosMapa.UPDATE_SQL_TRDONBENASIG +" donativo = "+donativo+" where id_donante = "+idDonante+" and id_beneficiario = "+idBeneficiario+";";
+		
+		System.out.println(sql);
+		System.out.println(sql2);
+		System.out.println(sql3);
+		try {
+			int id = this.getJdbcTemplate().queryForObject(sql, Integer.class);
+			System.out.println("id "+id);
+			
+			
+			if(id==0) {
+				this.getJdbcTemplate().update(sql2);
+			}else if(id==1){
+				this.getJdbcTemplate().update(sql3);
+			}
+		
+
+			return "Done";
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}catch(IncorrectResultSizeDataAccessException ex) {
+			return "MasFilas";
+		}catch(DataIntegrityViolationException exx) {
+			return "Duplicado";
+		}
+	}
+	
 	/*
 public List<Donativos> reporteGeneral(int idTipoBeca,int idPeriodo, int idRegion) {
 		String idPString = "";

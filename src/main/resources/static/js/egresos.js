@@ -668,7 +668,7 @@ function autocompletarCarrera(idRegionHidden,idAreaHidden,idFacHidden,valNivelHi
 
 
 $("#periodoActual").blur(function(event) {	
-	var pRebasa = $("#pPromedio").val()-$("#periodoActual").val();
+	var pRebasa = $("#periodoActual").val()-$("#pPromedio").val();
 	$('#pRebasa').val(pRebasa);
 });
 

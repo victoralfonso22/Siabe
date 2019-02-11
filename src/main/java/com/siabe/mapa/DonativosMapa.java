@@ -38,11 +38,17 @@ public class DonativosMapa implements RowMapper<Donativos> {
 	public static final String UPDATE_SQL_TRDONBEN //
 	= "update trDonantesBeneficiarios set ";
 	
+	public static final String BASE_SQL_TRDONBENASIG //
+	= "SELECT * from trDonantesBeneficiarios ";
+	
+	public static final String BASEID_SQL_TRDONBENASIG //
+	= "SELECT ifnull(count(id),0) from trDonantesBeneficiarios ";
+	
 	public static final String INSERT_SQL_TRDONBENASIG //
 	= "insert into trDonantesBeneficiarios (id_donante,id_beneficiario,donativo) values ";
 	
 	public static final String UPDATE_SQL_TRDONBENASIG //
-	= "insert into trDonantesBeneficiarios (donativo) values ";
+	= "update trDonantesBeneficiarios set ";
 	
 	public static final String SUMDONATIVO_SQL_TRDONBENASIG //
 	= "select ifnull(sum(donativo),0) from trDonantesBeneficiarios ";

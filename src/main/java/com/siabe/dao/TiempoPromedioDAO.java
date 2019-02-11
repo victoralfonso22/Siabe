@@ -134,7 +134,7 @@ String sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' 
 		
 		if(idRegion != 0) {
 		//sql = TiempoPromedioMapa.BASE_SQL + " where (carrera like '%"+termino+"%' or facultad like '%"+termino+"%' or area like '%"+termino+"%') and id_periodo = "+idPeriodo+" and id_region = "+idRegion+" order by area,carrera; ";
-			sql = TiempoPromedioMapa.BASE_SQL + " where "+term+" id_region = "+idRegion+" order by area,carrera; ";
+			sql = TiempoPromedioMapa.BASE_SQL + " where "+term+" id_region = "+idRegion+" and id_periodo = "+idPeriodo+" order by area,carrera; ";
 		}else {
 			sql = TiempoPromedioMapa.BASE_SQL + " where "+term+" id_periodo = "+idPeriodo+" order by area,carrera; ";
 		}

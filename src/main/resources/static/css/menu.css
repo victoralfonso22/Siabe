@@ -464,6 +464,11 @@ th{
 	    padding:10px;
 }
 
+.divisionFormFormulario{
+	    background: #337AB7;
+	    height:30px;
+}
+
 .div50{
 	width: 50% !important;
 }

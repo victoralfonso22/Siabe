@@ -105,6 +105,10 @@ public class BeneficiariosServicio {
 		return beneficiariosDAO.autocompletarBeneficiariosNoDepor(termino,idPeriodo);
 	}
 	
+	public List<Beneficiarios> autocompletarBeneficiariosNoDeporAsig(String termino, int idPeriodo){
+		return beneficiariosDAO.autocompletarBeneficiariosNoDeporAsig(termino, idPeriodo);
+	}
+	
 	public List<Beneficiarios> reporteGeneral(int idTipoBeca, int idPeriodo, int idRegion){
 		return beneficiariosDAO.reporteGeneral(idTipoBeca, idPeriodo, idRegion);
 	}

@@ -96,6 +96,10 @@ public class DonativosServicio {
 	public double sumaDonativoDonanteBeneficiario(int idDonante, int idBeneficiario) {
 		return donativosDAO.sumaDonativoDonanteBeneficiario(idDonante, idBeneficiario);
 	}
+	
+	public String insertaDonativoDonanteBeneficiario(int idDonante, int idBeneficiario, double donativo) {
+		return donativosDAO.insertaDonativoDonanteBeneficiario(idDonante, idBeneficiario, donativo);
+	}
 	/*
 	public List<Donativos> reporteGeneral(int idTipoBeca, int idPeriodo, int idRegion){
 		return beneficiariosDAO.reporteGeneral(idTipoBeca, idPeriodo, idRegion);

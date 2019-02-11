@@ -316,6 +316,22 @@ public List<Beneficiarios> autocompletarBeneficiariosNoDepor(String termino, int
 		}
 
 	}
+
+public List<Beneficiarios> autocompletarBeneficiariosNoDeporAsig(String termino, int idPeriodo) {
+	
+	
+	String	sql = BeneficiariosMapa.BASE_SQL + " WHERE id_periodo = "+idPeriodo+" and id_tipo_beca in(1,2,3) and (nombre_completo_bene LIKE '%"+termino+"%' OR matricula LIKE  '%"+termino+"%') order by nombre_completo_bene ; ";
+	
+	System.out.println(sql);
+	
+	try {
+		return this.getJdbcTemplate().query(sql, new BeneficiariosMapa());
+
+	} catch (EmptyResultDataAccessException e) {
+		return null;
+	}
+
+}
 	
 	
 public List<Beneficiarios> reporteGeneral(int idTipoBeca,int idPeriodo, int idRegion) {

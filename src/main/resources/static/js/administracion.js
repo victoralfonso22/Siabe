@@ -37,7 +37,7 @@ function checkIds(id){
 function autocompleteDonBeneAS() {
 	
 	if( $('input:radio[name=altaCambio]:checked').val() ==1){
-		tipo = "/egresos/autocompleteBeneficiarioNoDeporA";
+		tipo = "/egresos/autocompleteBeneficiarioNoDeporAAsig";
 	}else{
 		tipo ="/ingresos/autocompleteBenefactorNoPatrocinadorA";
 	}
@@ -61,7 +61,7 @@ function autocompleteDonBeneAS() {
 						
 						return {
 							
-								label: item.nombreCompletoBene,
+								label: item.nombreCompletoBene+" "+item.tipoBeca ,
 								value : item.idBeneficiario,
 								montoBeca : item.montoBeca
 											
@@ -215,13 +215,16 @@ function autocompleteDonBeneAS() {
 	});
 }
 
-function deshabilitaMonto(id){
+function deshabilitaMonto(tipo,id){
 	
 	
 	if($("#"+id).is(':checked')){
+		if($("#montoAsig"+id).val() == "" || $("#montoAsig"+id).val() == "$0.00"){
 		$("#montoAsig"+id).val("");
+		}
 		$("#montoAsig"+id).prop('disabled',false);		
-	  } else {		  
+	  } else {
+		  guardaDonativo(0,tipo,id);
 		  $("#montoAsig"+id).val("$0.00");
 		  $("#montoAsig"+id).prop('disabled',true);
 	  }
@@ -229,6 +232,18 @@ function deshabilitaMonto(id){
 }
 
 function guardaDonativo(donativo,tipo,id){
+	if(donativo==""){
+		$("#montoAsig"+id).val("$0.00");
+		  $("#montoAsig"+id).prop('disabled',true);
+		 // alert()
+		  document.getElementById(id).checked = false;
+		  donativo=0;
+	}else{
+		don = donativo.replace("$","").replace(",","");
+		
+		donativo = parseFloat(don).format(2,3);
+		
+	}
 	
 	if (tipo == 1){
 		idBeneficiario = $("#identificador").val();
@@ -239,25 +254,83 @@ function guardaDonativo(donativo,tipo,id){
 	}
 	
 	
-var parametrosPermisos = {"idRegion": $("#idRegionTiempo").val(), "idPeriodo": $("#peridoTSeleccionado").val(), "buscarInput" : $("#buscarTiempoPromedio").val(), "carrera" : carrera, "facultad" : facultad, "area" : area};  
+	if(tipo == 1){						    		
+		donaAsig = $("#spDonativoAsignado").val().replace("$","").replace(",","");						    		
+		donativoDonanteAsig = donativo + parseFloat(donaAsig).format(2,3);
+		
+		donaTotal = $("#spDonativoTotal").val().replace("$","").replace(",","");	
+		
+		saldo = donaTotal - donativoDonanteAsig;
+		
+	}else{
+		donaAsig = $("#spMontoAsignado").val().replace("$","").replace(",","");						    		
+		donativoBeneficiarioAsig = donativo + parseFloat(donaAsig).format(2,3);
+		
+		donaTotal = $("#spMontoBeca").val().replace("$","").replace(",","");	
+		
+		saldo = donaTotal - donativoBeneficiarioAsig;
+		
+	}
+	
+	if(saldo>=0){
+	
+var parametrosPermisos = {"idDonante": idDonante, "idBeneficiario": idBeneficiario, "donativo" : donativo};  
 	
 	$.ajax({
-	    		type : "POST",
-			url :"ajaxTiempoRegionSelect",
+	    	type : "POST",
+			url :"registraDonativoAsig",
 			data : parametrosPermisos,
 			success : function(result) {	
 			  //  alert(result);
 			    if(result.includes("Sesión inactiva")){
 				window.location = "/login?session=false";
-			    }else if(result == 'Nada'){
-			    	$("#tablaTiempoPeriodo").html("");
-			    }else{
-				$("#tablaTiempoPeriodo").html(result);
-			    }
+			    }else if(result == "Done"){
+			    
+			    
+			    var datos = {
+						idPeriodo : $("#idPeriodoAs").val(),
+						tipoAsig : tipo
+					}
+				$("#registros").load("/administracion/actualizaRegistrosAsig", datos,function( response, status, xhr ) {
+				  if(response.includes("Sesión inactiva")){				 
+						 window.location = "/login?session=false";
+						    }else{
+						    	
+						    	if( $('input:radio[name=altaCambio]:checked').val() ==1){
+									$("#etiquetaTab").text("Donantes");
+									$("#thTipoBeca").hide();
+									$("#tdTipoBeca").hide();
+								}else{
+									$("#etiquetaTab").text("Beneficiarios");
+									$("#thTipoBeca").show();
+									$("#tdTipoBeca").show();
+								}
+						    	
+						    	if(tipo == 1){						    		
+						   
+						    		$("#spDonativoAsignado").val("$ "+parseFloat(donativoDonante).format(2,3));
+						    	}else{
+						    							    		
+						    		$("#spMontoAsignado").val("$ "+parseFloat(donativoBeneficiario).format(2,3));
+						    	}	
+						    	
+						    }
+					  
+					if(xhr.status==200 && xhr.statusText== "parsererror"){
+						window.location = "/login?session=false";
+					}
+				}); 
+			    
+			}else if(result == "DonativoExeD"){
+				alert("El donativo que trata de asignar excede el saldo disponible del donante");
+			}else if(result == "DonativoExeB"){
+				alert("El donativo que trata de asignar excede el saldo disponible del beneficiario");
+			}
 				
 				console.log(result);
 			},
-			error : function(jqXHR,e) {			
+			error : function(jqXHR,e) {	
+				alert(jqXHR.responseText);
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
@@ -266,7 +339,14 @@ var parametrosPermisos = {"idRegion": $("#idRegionTiempo").val(), "idPeriodo": $
 				console.log("ERROR: ", e);				
 			}
 		});
+	}else{
+		if(tipo==1){
+			alert("El Donativo asignado no puede ser mayor al Donativo total");
+		}else{
+			alert("El Monto asignado no puede ser mayor al Monto de beca/apoyo");
+		}
+		
+	}
 	
-	
-	alert("d "+donativo+" t "+tipo+" id "+id);
+	//
 }

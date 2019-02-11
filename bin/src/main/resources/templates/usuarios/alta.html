@@ -20,7 +20,7 @@
 				<h1 class="h1Class">Alta de usuario</h1>
 			</div>
 			
-			<div th:if="${NomC != null}" th:utext="${NomC}"></div>
+			<!-- <div th:if="${NomC != null}" th:utext="${NomC}"></div> -->
 			<div class="col-sm-7 valoresCentrados">
 			<label for="nombreCompleto">Nombre completo: &nbsp;</label>
 				<input type="text" class="form-control inputWidth" required minlength="6" id="nombreCompleto" name="nombreCompleto"/>
@@ -34,6 +34,12 @@
 			<span class="espaciosLineas"></span>
 			<label for="password">Contraseña: &nbsp;</label>
 				<input type="password" class="form-control" required  minlength="4" id="password" name="password"/>
+				
+			</div>
+			<div class="col-sm-7 valoresCentrados">
+			<label for="nombreCompleto">Correo electrónico: &nbsp;</label><input type="text" style="text-align: center !important;" class="form-control inputWidth" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}" 
+               		required  id="correo"/>
+               		<span class="espaciosLineas"></span>
 				
 			</div>
 			
