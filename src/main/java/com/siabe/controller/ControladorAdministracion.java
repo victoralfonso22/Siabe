@@ -103,7 +103,7 @@ public class ControladorAdministracion {
 				relacionDonantesBeneficiarios.setTipoBeca("");
 				relacionDonantesBeneficiarios.setSaldo(utilidadesWeb.formatoMoneda2(d.get(i).getDonativoTotal() - donativosServicio.sumaDonativoDonanteBeneficiario(d.get(i).getIdDonativo(), 0)));
 				relacionDonantesBeneficiarios.setDonativoAsignado(utilidadesWeb.formatoMoneda2(donativosServicio.donativoDonanteBeneficiario(d.get(i).getIdDonativo(), id)));
-				if(donativosServicio.sumaDonativoDonanteBeneficiario(d.get(i).getIdDonativo(), 0) > 0) {
+				if(donativosServicio.donativoDonanteBeneficiario(d.get(i).getIdDonativo(), id) > 0) {
 				//	relacionDonantesBeneficiarios.setClase("tdSencilloPermiso");
 					relacionDonantesBeneficiarios.setClase(true);
 				}else {
@@ -128,7 +128,7 @@ public class ControladorAdministracion {
 				relacionDonantesBeneficiarios.setTipoBeca(b.get(i).getTipoBeca());
 				relacionDonantesBeneficiarios.setSaldo(utilidadesWeb.formatoMoneda2(b.get(i).getMontoBeca() - donativosServicio.sumaDonativoDonanteBeneficiario(0, b.get(i).getIdBeneficiario())));
 				relacionDonantesBeneficiarios.setDonativoAsignado(utilidadesWeb.formatoMoneda2(donativosServicio.donativoDonanteBeneficiario(id,  b.get(i).getIdBeneficiario())));
-				if(donativosServicio.sumaDonativoDonanteBeneficiario(0, b.get(i).getIdBeneficiario()) > 0) {
+				if(donativosServicio.donativoDonanteBeneficiario(id, b.get(i).getIdBeneficiario()) > 0) {
 					relacionDonantesBeneficiarios.setClase(true);
 				}else {
 					relacionDonantesBeneficiarios.setClase(false);

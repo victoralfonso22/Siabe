@@ -128,11 +128,11 @@ if(tipoBeca == 1 || tipoBeca == 2 || tipoBeca == 3 || tipoBeca == 5){
 		$("#datosBecas").show();
 		$("#datosBecasDeportivas").hide();
 		$("#benefactor").prop('disabled',false);
-		if( $('input:radio[name=altaCambio]:checked').val() ==1){
-		$("#divBenficiarioAsig").show();
+		/*if( $('input:radio[name=altaCambio]:checked').val() ==1){
+		$("#divBenficiarioAsig").hide();
 		}else{
 			$("#divBenficiarioAsig").hide();
-		}
+		}*/
 		$('input.becasRequired').prop('required', true);
 		$('select.becasRequired').prop('required', true);
 		$('textarea.becasRequired').prop('required', true);

@@ -48,7 +48,7 @@ public class ReporteDinamicoBeneficiariosGeneral extends BaseReporteBeneficiario
 		  		 * the report
 		  		 */
 		  		DynamicReportBuilder drb = new DynamicReportBuilder();
-		  		drb.setTitle("November 2006 sales report")					//defines the title of the report
+		  		drb.setTitle("November 2006 sales report"+ tipoB)					//defines the title of the report
 		  			.setSubtitle("The items in this report correspond "
 		  					+"to the main products: DVDs, Books, Foods and Magazines")
 		  			 //.setDetailHeight(17)						//defines the height for each record of the report

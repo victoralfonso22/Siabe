@@ -42,6 +42,7 @@ public abstract class BaseReporteBeneficiariosGeneral extends TestCase {
     public int idTipoBeca;
     public int idPeriodo;
     public int idRegion;
+    public String tipoB;
     
     protected JasperReport jr;
     protected final Map<String, Object> params = new HashMap<String, Object>();
@@ -51,7 +52,9 @@ public abstract class BaseReporteBeneficiariosGeneral extends TestCase {
 
     public void testReport() throws Exception {
         dr = buildReport();
-
+        
+        
+        
 			/*
               Get a JRDataSource implementation
 			 */

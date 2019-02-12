@@ -238,12 +238,13 @@ public class ControladorJasperReportes {
 	@RequestMapping(value = "/reportes/reporteBeneficiariosGeneral")
 	public void reporteBeneficiariosGeneral(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("valores") String valores , @RequestParam("idTipoBeca") int idTipoBeca ,@RequestParam("idPeriodo") int idPeriodo ,@RequestParam("idRegion") int idRegion ,
-			@RequestParam("type") String type) throws Exception {
+			@RequestParam("type") String type, @RequestParam("tipoB") String tipoB) throws Exception {
 		reporteDinamicoBeneficiariosGeneral.cadena = valores;
 		
 		reporteDinamicoBeneficiariosGeneral.idTipoBeca = idTipoBeca;
 		reporteDinamicoBeneficiariosGeneral.idPeriodo = idPeriodo;
 		reporteDinamicoBeneficiariosGeneral.idRegion = idRegion;
+		reporteDinamicoBeneficiariosGeneral.tipoB = tipoB;
 		
 		reporteDinamicoBeneficiariosGeneral.testReport();
 

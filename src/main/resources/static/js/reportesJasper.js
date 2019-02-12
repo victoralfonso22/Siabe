@@ -196,11 +196,11 @@ function beneficiariosGeneral(tipo,idSpan,divClass){
 
 	
 	if(tipo == 1){
-	generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=pdf",idSpan,divClass);
+	generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=pdf"+"&tipoB="+$("#idBecaGeneral").text(),idSpan,divClass);
 	}else if(tipo == 2){
-		generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=vnd.openxmlformats-officedocument.spreadsheetml.sheet",idSpan,divClass);
+		generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=vnd.openxmlformats-officedocument.spreadsheetml.sheet"+"&tipoB="+$("#idBecaGeneral").text(),idSpan,divClass);
 	}else if(tipo == 3){
-		generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=html",idSpan,divClass);
+		generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=html"+"&tipoB="+$("#idBecaGeneral").text(),idSpan,divClass);
 	}
 	
 	}else{
