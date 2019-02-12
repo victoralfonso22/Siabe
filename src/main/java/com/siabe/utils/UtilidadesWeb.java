@@ -44,6 +44,36 @@ public class UtilidadesWeb {
 	
 	@Autowired 
 	private JavaMailSender sender;
+	
+	
+	
+	private static final String CHAR_LIST = 
+	        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+	    private static final int RANDOM_STRING_LENGTH = 10;
+	     
+
+	    public String generateRandomString(){
+	         
+	        StringBuffer randStr = new StringBuffer();
+	        for(int i=0; i<RANDOM_STRING_LENGTH; i++){
+	            int number = getRandomNumber();
+	            char ch = CHAR_LIST.charAt(number);
+	            randStr.append(ch);
+	        }
+	        return randStr.toString();
+	    }
+	
+	    private int getRandomNumber() {
+	        int randomInt = 0;
+	        Random randomGenerator = new Random();
+	        randomInt = randomGenerator.nextInt(CHAR_LIST.length());
+	        if (randomInt - 1 == -1) {
+	            return randomInt;
+	        } else {
+	            return randomInt - 1;
+	        }
+	    }
+	
  
     public static String toString(User user) {
         StringBuilder sb = new StringBuilder();
@@ -176,9 +206,9 @@ public class UtilidadesWeb {
     	        MimeMessageHelper helper = new MimeMessageHelper(message,true,"UTF-8");
     	        
     	        String passw = "";
-    	        Random rnd = new Random();
+    	      //  Random rnd = new Random();
 
-    	        for (int i = 0; i < 7; i++)
+    	       /* for (int i = 0; i < 7; i++)
     	        {
     	            if(i < 4)
     	            {
@@ -186,10 +216,12 @@ public class UtilidadesWeb {
     	            }
     	            else
     	            {
-    	                passw += (char)(rnd.nextInt(91) + 65);
+    	                passw += (char)(rnd.nextInt(100));
     	            }
-    	        }
-
+    	        }*/
+    	        
+    	        passw = generateRandomString();
+    	        
     	        System.out.println("pass : " + passw.trim());
     	        
     	        PasswordEncryptado passwordEncryptado = new PasswordEncryptado();

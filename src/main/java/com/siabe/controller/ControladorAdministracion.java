@@ -86,9 +86,7 @@ public class ControladorAdministracion {
 	}
 	
 	@RequestMapping("/administracion/actualizaRegistrosAsig")
-	public String actualizaRegistrosAsig(Model model, Principal principal,@RequestParam int idPeriodo, @RequestParam int tipoAsig) {
-	//	model.addAttribute("periodos", periodoServicio.todosPeridoIdBeca(idTipoBeca));
-		
+	public String actualizaRegistrosAsig(Model model, Principal principal,@RequestParam int idPeriodo, @RequestParam int tipoAsig, @RequestParam int id) {
 		
 		List<RelacionDonantesBeneficiarios> r = new ArrayList<RelacionDonantesBeneficiarios>();
 		List<Donativos> d = donativosServicio.regresaDonantesPeriodoActivas(idPeriodo);
@@ -104,7 +102,7 @@ public class ControladorAdministracion {
 				relacionDonantesBeneficiarios.setNombreCompleto(d.get(i).getNombreCompletoDon());	
 				relacionDonantesBeneficiarios.setTipoBeca("");
 				relacionDonantesBeneficiarios.setSaldo(utilidadesWeb.formatoMoneda2(d.get(i).getDonativoTotal() - donativosServicio.sumaDonativoDonanteBeneficiario(d.get(i).getIdDonativo(), 0)));
-				relacionDonantesBeneficiarios.setDonativoAsignado(utilidadesWeb.formatoMoneda2(donativosServicio.sumaDonativoDonanteBeneficiario(d.get(i).getIdDonativo(), 0)));
+				relacionDonantesBeneficiarios.setDonativoAsignado(utilidadesWeb.formatoMoneda2(donativosServicio.donativoDonanteBeneficiario(d.get(i).getIdDonativo(), id)));
 				if(donativosServicio.sumaDonativoDonanteBeneficiario(d.get(i).getIdDonativo(), 0) > 0) {
 				//	relacionDonantesBeneficiarios.setClase("tdSencilloPermiso");
 					relacionDonantesBeneficiarios.setClase(true);
@@ -129,7 +127,7 @@ public class ControladorAdministracion {
 				relacionDonantesBeneficiarios.setNombreCompleto(b.get(i).getNombreCompletoBene());		
 				relacionDonantesBeneficiarios.setTipoBeca(b.get(i).getTipoBeca());
 				relacionDonantesBeneficiarios.setSaldo(utilidadesWeb.formatoMoneda2(b.get(i).getMontoBeca() - donativosServicio.sumaDonativoDonanteBeneficiario(0, b.get(i).getIdBeneficiario())));
-				relacionDonantesBeneficiarios.setDonativoAsignado(utilidadesWeb.formatoMoneda2(donativosServicio.sumaDonativoDonanteBeneficiario(0,  b.get(i).getIdBeneficiario())));
+				relacionDonantesBeneficiarios.setDonativoAsignado(utilidadesWeb.formatoMoneda2(donativosServicio.donativoDonanteBeneficiario(id,  b.get(i).getIdBeneficiario())));
 				if(donativosServicio.sumaDonativoDonanteBeneficiario(0, b.get(i).getIdBeneficiario()) > 0) {
 					relacionDonantesBeneficiarios.setClase(true);
 				}else {

@@ -53,6 +53,10 @@ public class DonativosMapa implements RowMapper<Donativos> {
 	public static final String SUMDONATIVO_SQL_TRDONBENASIG //
 	= "select ifnull(sum(donativo),0) from trDonantesBeneficiarios ";
 	
+	public static final String DONATIVO_SQL_TRDONBENASIG //
+	= "select ifnull(donativo,0) from trDonantesBeneficiarios ";
+	
+	
 	@Override
 	public Donativos mapRow(ResultSet rs, int rowNum) throws SQLException {
 		

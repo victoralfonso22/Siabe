@@ -310,7 +310,7 @@ public List<Donativos> autocompletarBenefactorNoPatrocinador(String termino, int
 			sql = DonativosMapa.SUMDONATIVO_SQL_TRDONBENASIG + " where id_donante = "+idDonante+";";
 		}
 		
-		System.out.println(sql);
+	//	System.out.println(sql);
 		
 		try {
 			return this.getJdbcTemplate().queryForObject(sql, Double.class);
@@ -318,6 +318,21 @@ public List<Donativos> autocompletarBenefactorNoPatrocinador(String termino, int
 		} catch (EmptyResultDataAccessException e) {
 			return 0;
 		}
+	}
+	
+	public double donativoDonanteBeneficiario(int idDonante, int idBeneficiario) {
+		
+		String sql = DonativosMapa.DONATIVO_SQL_TRDONBENASIG + " where id_donante = "+idDonante+" and id_beneficiario = "+idBeneficiario+";";
+		
+		
+		//System.out.println(sql);
+		
+		try {
+			return this.getJdbcTemplate().queryForObject(sql, Double.class);
+
+		} catch (EmptyResultDataAccessException e) {
+			return 0;
+		}	
 	}
 	
 	
@@ -332,12 +347,12 @@ public List<Donativos> autocompletarBenefactorNoPatrocinador(String termino, int
 		
 		sql3 = DonativosMapa.UPDATE_SQL_TRDONBENASIG +" donativo = "+donativo+" where id_donante = "+idDonante+" and id_beneficiario = "+idBeneficiario+";";
 		
-		System.out.println(sql);
-		System.out.println(sql2);
-		System.out.println(sql3);
+	//	System.out.println(sql);
+	//	System.out.println(sql2);
+	//	System.out.println(sql3);
 		try {
 			int id = this.getJdbcTemplate().queryForObject(sql, Integer.class);
-			System.out.println("id "+id);
+	//		System.out.println("id "+id);
 			
 			
 			if(id==0) {

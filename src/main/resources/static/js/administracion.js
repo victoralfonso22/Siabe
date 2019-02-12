@@ -180,7 +180,8 @@ function autocompleteDonBeneAS() {
 			$("#registros").show();		
 			var datos = {
 					idPeriodo : $("#idPeriodoAs").val(),
-					tipoAsig : reg
+					tipoAsig : reg,
+					id : ui.item.value
 				}
 			$("#registros").load("/administracion/actualizaRegistrosAsig", datos,function( response, status, xhr ) {
 			  if(response.includes("Sesión inactiva")){				 
@@ -231,7 +232,16 @@ function deshabilitaMonto(tipo,id){
 	
 }
 
+
+function replaceAll( text, busca, reemplaza ){
+  while (text.toString().indexOf(busca) != -1)
+      text = text.toString().replace(busca,reemplaza);
+  return text;
+}
+
+
 function guardaDonativo(donativo,tipo,id){
+	bandera = true;
 	if(donativo==""){
 		$("#montoAsig"+id).val("$0.00");
 		  $("#montoAsig"+id).prop('disabled',true);
@@ -239,40 +249,68 @@ function guardaDonativo(donativo,tipo,id){
 		  document.getElementById(id).checked = false;
 		  donativo=0;
 	}else{
-		don = donativo.replace("$","").replace(",","");
+		don = replaceAll(donativo,"$","");		
+		dona = replaceAll(don,",","");
+		//don = donativo.replace("$","").replace(",","");
 		
-		donativo = parseFloat(don).format(2,3);
+		donativo = parseFloat(dona);
 		
 	}
 	
+	iden = $("#identificador").val();
+	
 	if (tipo == 1){
 		idBeneficiario = $("#identificador").val();
-		idDonante = id;
+		idDonante = id;		
 	}else{
 		idBeneficiario = id;
 		idDonante = $("#identificador").val();
 	}
 	
+	hide = replaceAll($("#montoAsigHidden"+id).val(),"$","");
+	mtHide = replaceAll(hide,",","");
 	
-	if(tipo == 1){						    		
-		donaAsig = $("#spDonativoAsignado").val().replace("$","").replace(",","");						    		
-		donativoDonanteAsig = donativo + parseFloat(donaAsig).format(2,3);
-		
-		donaTotal = $("#spDonativoTotal").val().replace("$","").replace(",","");	
-		
-		saldo = donaTotal - donativoDonanteAsig;
-		
-	}else{
-		donaAsig = $("#spMontoAsignado").val().replace("$","").replace(",","");						    		
-		donativoBeneficiarioAsig = donativo + parseFloat(donaAsig).format(2,3);
-		
-		donaTotal = $("#spMontoBeca").val().replace("$","").replace(",","");	
-		
-		saldo = donaTotal - donativoBeneficiarioAsig;
-		
+	montoHide = parseFloat(mtHide);
+	
+	
+	if(donativo == montoHide){
+		bandera = false;
 	}
 	
-	if(saldo>=0){
+	
+	if(tipo == 1){				
+		
+		donaAsig = replaceAll($("#spMontoAsignado").text(),"$","");		
+		donaAsig = replaceAll(donaAsig,",","");
+		donativoBeneficiarioAsig = (parseFloat(donativo) + parseFloat(donaAsig));
+		
+		donaTotal = replaceAll($("#spMontoBeca").text(),"$","");
+		donaTotal = replaceAll(donaTotal,",","");
+		
+		//donaTotal = parseFloat(donaT).format(2,3);
+		
+		saldo = (parseFloat(donaTotal) - parseFloat(donativoBeneficiarioAsig));
+		
+	//	alert(saldo +" / "+ donaTotal +" / "+ donativoBeneficiarioAsig);
+		
+	}else{
+		
+		donaAsig = replaceAll($("#spDonativoAsignado").text(),"$","");		
+		donaAsig = replaceAll(donaAsig,",","");
+						    		
+		donativoDonanteAsig =  (parseFloat(donativo) + parseFloat(donaAsig));
+		
+		donaTotal = replaceAll($("#spDonativoTotal").text(),"$","");
+		donaTotal = replaceAll(donaTotal,",","");
+		
+		//donaTotal = parseFloat(donaT).format(2,3);
+		
+		saldo = (parseFloat(donaTotal) - parseFloat(donativoDonanteAsig));
+		
+	//	alert(saldo +" / "+ donaTotal +" / "+ donativoDonanteAsig);
+	}
+	
+	if(saldo>=0 && bandera){
 	
 var parametrosPermisos = {"idDonante": idDonante, "idBeneficiario": idBeneficiario, "donativo" : donativo};  
 	
@@ -289,7 +327,8 @@ var parametrosPermisos = {"idDonante": idDonante, "idBeneficiario": idBeneficiar
 			    
 			    var datos = {
 						idPeriodo : $("#idPeriodoAs").val(),
-						tipoAsig : tipo
+						tipoAsig : tipo,
+						id : iden
 					}
 				$("#registros").load("/administracion/actualizaRegistrosAsig", datos,function( response, status, xhr ) {
 				  if(response.includes("Sesión inactiva")){				 
@@ -306,12 +345,15 @@ var parametrosPermisos = {"idDonante": idDonante, "idBeneficiario": idBeneficiar
 									$("#tdTipoBeca").show();
 								}
 						    	
-						    	if(tipo == 1){						    		
-						   
-						    		$("#spDonativoAsignado").val("$ "+parseFloat(donativoDonante).format(2,3));
+						    	if(tipo == 1){						 
+						    //		alert(donativoBeneficiarioAsig);
+						    		$("#spMontoAsignado").text("$ "+parseFloat(donativoBeneficiarioAsig).format(2,3));
+						    		$("#spBSaldo").text("$ "+parseFloat(saldo).format(2,3));
+						    		
 						    	}else{
-						    							    		
-						    		$("#spMontoAsignado").val("$ "+parseFloat(donativoBeneficiario).format(2,3));
+						    		$("#spDonativoAsignado").text("$ "+parseFloat(donativoDonanteAsig).format(2,3));		
+						    		$("#spDSaldo").text("$ "+parseFloat(saldo).format(2,3));
+						    		
 						    	}	
 						    	
 						    }
@@ -339,7 +381,8 @@ var parametrosPermisos = {"idDonante": idDonante, "idBeneficiario": idBeneficiar
 				console.log("ERROR: ", e);				
 			}
 		});
-	}else{
+	}else if(saldo<0 && bandera){
+	//	$("#montoAsig"+id).val("");
 		if(tipo==1){
 			alert("El Donativo asignado no puede ser mayor al Donativo total");
 		}else{
