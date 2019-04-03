@@ -36,6 +36,9 @@ public class BeneficiariosMapa implements RowMapper<Beneficiarios> {
 	public static final String BASE_SQL_ID //
 	= "SELECT id from view_beneficiarios ";
 	
+	public static final String BASE_SQL_ID_COUNT //
+	= "SELECT COUNT(id) from view_beneficiarios ";
+	
 	@Override
 	public Beneficiarios mapRow(ResultSet rs, int rowNum) throws SQLException {
 		

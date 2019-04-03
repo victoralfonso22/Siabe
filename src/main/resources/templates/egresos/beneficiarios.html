@@ -376,11 +376,13 @@
 					</div>
 					<br> <br>
 
-					<div class="divisionForm"></div>
+						
+					<h4 class="subDivi">Domicilio vivienda familiar</h4>
+					
+					
+					
 					<br />
-					<br />
-
-					<h3>Domicilio vivienda familiar</h3>
+					
 					<div class="row ">
 						<div class="col-xs-3">
 							<label for="calle">Calle</label><br> <input type="text"
@@ -445,9 +447,14 @@
 
 					</div>
 					<br> <br>
-
-					<h3>Domicilio (lugar donde estudia)</h3>
-					<br /> <label style="font-weight: bold;">¿El domicilio
+					
+						<h4 class="subDivi">Domicilio (lugar donde estudia)</h4>
+					
+					
+					<br />
+					
+					
+					<label style="font-weight: bold;">¿El domicilio
 						donde estudia, es el mismo a la vivienda familiar? &nbsp;</label> <input
 						type="radio" name="mismoDomicilio" onclick="checkIdsDom('siMD');"
 						id="siMD" value="1" checked> Si&nbsp;&nbsp;&nbsp; <input
@@ -563,8 +570,6 @@
 
 					</div>
 					<br>
-					<div class="divisionForm"></div>
-					<br>
 					<div class="row ">
 						<div class="col-xs ">
 							<label for="correo">Correo electrónico </label><br> <input
@@ -575,8 +580,7 @@
 
 					</div>
 					<br>
-					<div class="divisionForm"></div>
-					<br> <label class="etiquetaSpan">Facebook </label><br> <br />
+					<label class="etiquetaSpan">Facebook </label><br> <br />
 					<div class="row ">
 						<div class="col-xs-4">
 							<input type="text" id="face1"  placeholder="usuario 1"
@@ -608,19 +612,19 @@
 					<div class="row ">
 						<div class="col-xs-4">
 							<label for="banco">Banco </label><br> <input type="text"
-								id="banco"  class="form-control selectTextFormulario vacias  becasRequired ">
+								id="banco"  class="form-control selectTextFormulario vacias  becasRequired5 ">
 						</div>
 
 						<div class="col-xs-4" id="ncta">
 							<label for="numCuenta">Número de cuenta</label><br> <input
 								type="text" id="numCuenta" pattern="[0-9]+" title="solo dígitos"
-								class="form-control selectTextFormulario vacias  becasRequired " onkeypress="return valida(event)">
+								class="form-control selectTextFormulario vacias  becasRequired5 " onkeypress="return valida(event)">
 						</div>
 
 						<div class="col-xs-4" id="ntar">
 							<label for="numTarjeta">Número de tarjeta</label><br> <input
 								type="text" id="numTarjeta" pattern="[0-9]{16}" title="16 dígitos" maxlength="16"
-								class="form-control selectTextFormulario vacias  becasRequired " onkeypress="return valida(event)">
+								class="form-control selectTextFormulario vacias  becasRequired5 " onkeypress="return valida(event)">
 						</div>
 
 
@@ -640,28 +644,40 @@
 					</div>
 					<br>
 
+					
+					<br />
+					<div class="divisionFormFormulario">
+					<h3>Observaciones generales</h3>
+					</div>
+					
 					<div class="row ">
 						<div class="col-xs-4">
 							<label for="montoApoyo">Monto de apoyo</label><br> <input
 								type="text" id="montoApoyo" minlength="2" maxlength="10"
 								onkeypress="return filterFloat(event,this)"
-								class="form-control selectTextFormulario vacias becasRequired  ">
+								class="form-control selectTextFormulario vacias becasRequired5  ">
 						</div>
-
+						
 						<div class="col-xs-4" id="fApoyo" style="display: none">
 							<label for="finalidadApoyo">Finalidad del apoyo</label><br>
 							<input type="text" id="finalidadApoyo"
 								class="form-control selectTextFormulario vacias   ">
 						</div>
-						<div class="col-xs-4">
+					</div>
+					
+					<div class="row ">
+					
+					
+					
+					<div class="col-xs-12">
 							<label for="observaciones">Observaciones</label><br> <input
 								type="text" id="observaciones"
 								class="form-control selectTextFormulario vacias ">
 						</div>
-
+						
+						
 					</div>
-					<br> <br>
-
+					
 					<div class="row " id="divBenficiarioAsig" style="display:none;">
 						<div class="col-xs ">
 							<label for="benefactor">Benefactor(a) asignado(a)</label><br>
@@ -789,70 +805,22 @@
 				
 
 					</div>
-					<br /> <br />
-
-					<!-- Quinta fila de datos nivel, modalidad y carrera -->
-					<div class="row ">
 					
-					<div class="col-xs-3">
-							<label for="nivelED">Nivel educativo que cursa</label><br> <select
-								id="nivelED" 
-								class="form-control selectTextFormulario vacias  depRequired ">
-								<option selected value="1">Primaria</option>
-								<option value="2">Secundaria</option>
-								<option value="3">Preparatoria</option>
-							</select>
-						</div>
-						
-						<div class="col-xs-3">
-							<label for="turnoD">Turno</label><br> <select
-								id="turnoD" 
-								class="form-control selectTextFormulario vacias depRequired  ">
-								<option selected value="1">Matutino</option>
-								<option value="2">Vespertino</option>
-								<option value="3">Sabatino</option>
-							</select>
-						</div>
-						
-						<div class="col-xs-3">
-							<label for="tipoID">Tipo de institución</label><br> <select
-								id="tipoID" 
-								class="form-control selectTextFormulario vacias depRequired  ">
-								<option selected value="1">Pública</option>
-								<option value="2">Privada</option>
-								
-							</select>
-						</div>
-						
-						<div class="col-xs-3">
-							<label for="gradoD">Grado</label><br>
-							<input type="number" id="gradoD" maxlength="2" min="1" max="6" 
-								pattern="[0-9]" onkeypress="return valida(event)"
-								class="form-control selectTextFormulario vacias depRequired  ">
-						</div>
-						
-					</div>
-
 					<br>
 					<br>
 
 					<!-- Sexta fila de datos Periodo actual (semestre), modalidad y carrera -->
 					<div class="row ">
 						
-						<div class="col-xs-3">
-							<label for="pGeneralD">Promedio general</label><br> <input
-								type="number" id="pGeneralD" maxlength="4" min="1" max="10" step="any"
-								onkeypress="return filterFloat(event,this)"
-								class="form-control selectTextFormulario vacias  depRequired ">
-						</div>
 						
-						<div class="col-xs-3">
+						
+						<div class="col-xs-4">
 							<label for="edadD">Edad</label><br> <input type="text"
 								id="edadD" maxlength="2" 
 								onkeypress="return valida(event)"
 								class="form-control selectTextFormulario vacias depRequired  ">
 						</div>
-						<div class="col-xs-3">
+						<div class="col-xs-4">
 							<label for="generoD">Género</label><br> <select id="generoD"
 								 class="form-control selectTextFormulario vacias   depRequired">
 								<option selected value="1">Masculino</option>
@@ -860,7 +828,7 @@
 							</select>
 						</div>
 						
-						<div class="col-xs-3">
+						<div class="col-xs-4">
 							<label for="lNacimientoD">Lugar de nacimiento</label><br> <input
 								type="text" id="lNacimientoD" minlength="4" 
 								class="form-control selectTextFormulario vacias depRequired">
@@ -904,89 +872,15 @@
 						</div>
 					</div>
 					
-					<br />
-					<div class="divisionFormFormulario">
-					<h3>Datos académicos</h3>
-					</div>
-					<br />
-					
-					<h3>Institución Educativa</h3>
-					<div class="row ">
-						<div class="col-xs-3">
-							<label for="nombreIED">Nombre</label><br> <input type="text"
-								id="nombreIED" minlength="4" 
-								class="form-control selectTextFormulario vacias depRequired  ">
-						</div>
-						<div class="col-xs-3">
-							<label for="calleIED">Calle</label><br> <input type="text"
-								id="calleIED" minlength="4" 
-								class="form-control selectTextFormulario vacias  depRequired ">
-						</div>
-
-
-						<div class="col-xs-3">
-							<label for="nExteriorIED">No. Ext</label><br> <input
-								type="text" id="nExteriorIED" 
-								class="form-control selectTextFormulario vacias  depRequired ">
-						</div>
-						
-						<div class="col-xs-3">
-							<label for="nInteriorIED">No. Int</label><br> <input
-								type="text" id="nInteriorIED" 
-								class="form-control selectTextFormulario vacias   ">
-						</div>
-						
-
-					</div>
-					
 					
 					<br> <br>
-					<div class="row ">
-						<div class="col-xs-3">
-							<label for="colIED">Colonia o fraccionamiento </label><br> <input
-								type="text" id="colIED" 
-								class="form-control selectTextFormulario vacias  depRequired ">
-						</div>
-						<div class="col-xs-3">
-							<label for="localidadIED">Localidad </label><br> <input
-								type="text" id="localidadIED" minlength="4" 
-								class="form-control selectTextFormulario vacias depRequired  ">
-						</div>
 
-						<div class="col-xs-3">
-							<label for="municipioIED">Municipio</label><br> <input
-								type="text" id="municipioIED" 
-								class="form-control selectTextFormulario vacias  depRequired ">
-						</div>
-						<div class="col-xs-3">
-							<label for="estadoIED">Estado</label><br> <input type="text"
-								id="estadoIED"  class="form-control selectTextFormulario vacias depRequired  ">
-						</div>
-
-					</div>
-					<br> <br>
-					<div class="row ">
-					<div class="col-xs-4">
-							<label for="cpIED">C. P.</label><br> <input type="text" id="cpIED"
-								 class="form-control selectTextFormulario vacias depRequired  "
-								minlength="5" maxlength="5" onkeypress="return valida(event)">
-						</div>
-						
-						<div class="col-xs-4">
-							<label for="telIED">Teléfono</label><br> <input
-								type="text" id="telIED" 
-								class="form-control selectTextFormulario vacias  depRequired" minlength="10"
-								maxlength="10" onkeypress="return valida(event)">
-						</div>					
-					</div>
+					
+					
+					<h4 class="subDivi">Domicilio vivienda familiar</h4>
+					
 					
 					<br />
-					<div class="divisionForm"></div>
-					
-					<br />
-					
-
-					<h3>Domicilio vivienda familiar</h3>
 					<div class="row ">
 						<div class="col-xs-3">
 							<label for="calleD">Calle</label><br> <input type="text"
@@ -1049,11 +943,13 @@
 						</div>
 
 					</div>
-					<br>
-					<div class="divisionForm"></div>
-					<br>
-					<h3>Información del padre, madre o tutor</h3>
+					
 					<br />
+					<div class="divisionFormFormulario">
+					<h3>Información del padre, madre o tutor</h3>
+					</div>
+					<br />
+					
 					<div class="row ">
 						<div class="col-xs-3">
 							<label for="tutorND">Nombre y apellidos</label><br> <input type="text"
@@ -1155,8 +1051,7 @@
 						</div>
 
 					</div>
-					<br>
-					<div class="divisionForm"></div>
+					
 					<br> <label style="font-weight: bold;">El beneficiario tiene hermanos inscritos en las escuelas deportivas </label><br>
 					<input type="radio" name="hermanosEscuelas" onclick="checkIdsHED('hesD');"id="hesD" value="1" checked> No&nbsp;&nbsp;&nbsp; 
 					<input type="radio"	name="hermanosEscuelas" onclick="checkIdsHED('henD');" id="henD" value="0"> Si <br /> <br />
@@ -1167,7 +1062,155 @@
 						</div>
 
 					</div>
-					<br>
+					
+					
+					
+					
+					<br />
+					<div class="divisionFormFormulario">
+					<h3>Datos académicos</h3>
+					</div>
+					
+					
+					<br> <br>
+
+					
+					
+					<h4 class="subDivi">Institución Educativa</h4>
+					
+					
+					<br />
+					<div class="row ">
+						<div class="col-xs-3">
+							<label for="nombreIED">Nombre</label><br> <input type="text"
+								id="nombreIED" minlength="4" 
+								class="form-control selectTextFormulario vacias depRequired  ">
+						</div>
+						<div class="col-xs-3">
+							<label for="calleIED">Calle</label><br> <input type="text"
+								id="calleIED" minlength="4" 
+								class="form-control selectTextFormulario vacias  depRequired ">
+						</div>
+
+
+						<div class="col-xs-3">
+							<label for="nExteriorIED">No. Ext</label><br> <input
+								type="text" id="nExteriorIED" 
+								class="form-control selectTextFormulario vacias  depRequired ">
+						</div>
+						
+						<div class="col-xs-3">
+							<label for="nInteriorIED">No. Int</label><br> <input
+								type="text" id="nInteriorIED" 
+								class="form-control selectTextFormulario vacias   ">
+						</div>
+						
+
+					</div>
+					
+					
+					<br> <br>
+					<div class="row ">
+						<div class="col-xs-3">
+							<label for="colIED">Colonia o fraccionamiento </label><br> <input
+								type="text" id="colIED" 
+								class="form-control selectTextFormulario vacias  depRequired ">
+						</div>
+						<div class="col-xs-3">
+							<label for="localidadIED">Localidad </label><br> <input
+								type="text" id="localidadIED" minlength="4" 
+								class="form-control selectTextFormulario vacias depRequired  ">
+						</div>
+
+						<div class="col-xs-3">
+							<label for="municipioIED">Municipio</label><br> <input
+								type="text" id="municipioIED" 
+								class="form-control selectTextFormulario vacias  depRequired ">
+						</div>
+						<div class="col-xs-3">
+							<label for="estadoIED">Estado</label><br> <input type="text"
+								id="estadoIED"  class="form-control selectTextFormulario vacias depRequired  ">
+						</div>
+
+					</div>
+					<br> <br>
+					<div class="row ">
+					<div class="col-xs-4">
+							<label for="cpIED">C. P.</label><br> <input type="text" id="cpIED"
+								 class="form-control selectTextFormulario vacias depRequired  "
+								minlength="5" maxlength="5" onkeypress="return valida(event)">
+						</div>
+						
+						<div class="col-xs-4">
+							<label for="telIED">Teléfono</label><br> <input
+								type="text" id="telIED" 
+								class="form-control selectTextFormulario vacias  depRequired" minlength="10"
+								maxlength="10" onkeypress="return valida(event)">
+						</div>	
+						
+						<div class="col-xs-4">
+							<label for="nivelED">Nivel educativo que cursa</label><br> <select
+								id="nivelED" 
+								class="form-control selectTextFormulario vacias  depRequired ">
+								<option selected value="1">Primaria</option>
+								<option value="2">Secundaria</option>
+								<option value="3">Preparatoria</option>
+							</select>
+						</div>				
+					</div>
+					
+					<br /> <br />
+
+					<!-- Quinta fila de datos nivel, modalidad y carrera -->
+					<div class="row ">
+					
+					
+						
+						<div class="col-xs-3">
+							<label for="turnoD">Turno</label><br> <select
+								id="turnoD" 
+								class="form-control selectTextFormulario vacias depRequired  ">
+								<option selected value="1">Matutino</option>
+								<option value="2">Vespertino</option>
+								<option value="3">Sabatino</option>
+							</select>
+						</div>
+						
+						<div class="col-xs-3">
+							<label for="tipoID">Tipo de institución</label><br> <select
+								id="tipoID" 
+								class="form-control selectTextFormulario vacias depRequired  ">
+								<option selected value="1">Pública</option>
+								<option value="2">Privada</option>
+								
+							</select>
+						</div>
+						
+						<div class="col-xs-3">
+							<label for="gradoD">Grado</label><br>
+							<input type="number" id="gradoD" maxlength="2" min="1" max="6" 
+								pattern="[0-9]" onkeypress="return valida(event)"
+								class="form-control selectTextFormulario vacias depRequired  ">
+						</div>
+						
+						<div class="col-xs-3">
+							<label for="pGeneralD">Promedio general</label><br> <input
+								type="number" id="pGeneralD" maxlength="4" min="1" max="10" step="any"
+								onkeypress="return filterFloat(event,this)"
+								class="form-control selectTextFormulario vacias  depRequired ">
+						</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<br />
+					<div class="divisionFormFormulario">
+					<h3>Observaciones generales</h3>
+					</div>
+					
 
 					<div class="row ">
 						<div class="col-xs-5">

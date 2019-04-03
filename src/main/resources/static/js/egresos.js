@@ -158,6 +158,17 @@ if(tipoBeca == 1 || tipoBeca == 2 || tipoBeca == 3 || tipoBeca == 5){
 		$('select.depRequired').prop('required', true);
 		$('textarea.depRequired').prop('required', true);
 	}
+
+	if(tipoBeca == 4 || tipoBeca == 5){
+		$('input.becasRequired5').prop('required', false);
+		$('select.becasRequired5').prop('required', false);
+		$('textarea.becasRequired5').prop('required', false);
+
+	}else{
+		$('input.becasRequired5').prop('required', true);
+		$('select.becasRequired5').prop('required', true);
+		$('textarea.becasRequired5').prop('required', true);
+	}
 	
 	if($("#becaSeleccionada").val() == 3){
 		$("#fApoyo").show();
@@ -166,6 +177,8 @@ if(tipoBeca == 1 || tipoBeca == 2 || tipoBeca == 3 || tipoBeca == 5){
 		$("#fApoyo").hide();
 		$("#fApoyo").prop('required', false);
 	}
+	
+	
 });
 
 
@@ -758,6 +771,13 @@ function checkIdsFP(id){
 		$("#vigencia").val('');
 		
 	}
+	
+	if($("#becaSeleccionada").val() == 5){
+		$("#numCuenta").prop('required',false);
+		$("#numTarjeta").prop('required',false);
+		$("#clavePago").prop('required',false);
+		$("#vigencia").prop('required',false);
+	}
 }
 
 
@@ -795,6 +815,12 @@ $("#beneficiarioForm").submit(function(event) {
       //  	}else{
         		idBenefactorAsignado = $("#idBenefactorHidden").val();
        /// 	}
+        		
+        	if(tBeca == 5){
+        		if($("#montoApoyo").val()==""){
+        		 $("#montoApoyo").val(0);
+        		}
+        	}
         	
         	_url= "ajaxAgregarBeneficiarioBeca";
         	
@@ -964,7 +990,7 @@ $("#beneficiarioForm").submit(function(event) {
 				window.location = "/login?session=false";
 			    }
 			    
-			    if(result != "Duplicado"){
+			    if(result == "Done"){
 			    
 				$("#postResultDiv").show();
 				if(result == "Done"){
@@ -989,13 +1015,13 @@ $("#beneficiarioForm").submit(function(event) {
 				$('input:radio[name="hermanosEscuelas"][value="1"]').prop('checked', true);
 				*/
 				
-			    }else{
+			    }else if (result == "Duplicado"){
 			    	$("#postResultDiv").delay(1000).hide(100);
-			    	alert("La matrícula ya se encuentra registrada en este periodo");
+			    	alert("La matrícula ya se encuentra registrada en este periodo y con este tipo de beca");
 			    }
 			},
 			error : function(jqXHR,e) {
-			    //	alert(jqXHR.responseText);
+			    alert(jqXHR.responseText);
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{

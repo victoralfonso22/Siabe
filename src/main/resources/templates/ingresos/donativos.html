@@ -228,9 +228,197 @@
 					</div>
 					
 					</div>
+					
+				
+				
+					<br />
+					<div class="divisionFormFormulario">
+					<h3>Datos de contacto</h3>
+					</div>
 					<br />
 					
-					<div class="divisionForm"></div>
+					<div class="row ">
+						<div class="col-xs-6 ">
+							<label for="correoDon">Correo electrónico </label><br> <input
+								type="text" id="correoDon" 
+								pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+						<div class="col-xs-6">
+							<label for="celularDon">Celular </label><br> <input type="text"
+								id="celularDon" minlength="10" maxlength="10"
+								onkeypress="return valida(event)" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+						
+					</div> 
+					<br>
+					<br>
+					<div class="row ">
+
+						<div class="col-xs-6">
+							<label for="tel1Don">Teléfono 1</label><br> <input
+								type="text" id="tel1Don" 
+								class="form-control selectTextFormulario vacias " minlength="10"
+								maxlength="10" onkeypress="return valida(event)">
+						</div>
+						
+						<div class="col-xs-6">
+							<label for="tel2don">Teléfono 2</label><br> <input
+								type="text" id="tel2Don" 
+								class="form-control selectTextFormulario vacias " minlength="10"
+								maxlength="10" onkeypress="return valida(event)">
+						</div>
+
+					</div> 
+					<br>
+
+					
+					<br> <br>
+					
+					<h4 class="subDivi">Domicilio particular</h4>
+					
+					<br />
+							
+
+			
+					<div class="row ">
+						<div class="col-xs-3">
+							<label for="calleDon">Calle</label><br> <input type="text"
+								id="calleDon" minlength="4" 
+								class="form-control selectTextFormulario vacias donativosRequired  ">
+						</div>
+						
+						<div class="col-xs-3">
+							<label for="nExteriorDon">No. Ext</label><br> <input
+								type="text" id="nExteriorDon" 
+								class="form-control selectTextFormulario vacias donativosRequired  ">
+						</div>
+
+						<div class="col-xs-3">
+							<label for="nInteriorDon">No. Int</label><br> <input
+								type="text" id="nInteriorDon" 
+								class="form-control selectTextFormulario vacias   ">
+						</div>
+						
+
+						<div class="col-xs-3">
+							<label for="colDon">Colonia o fraccionamiento </label><br> <input
+								type="text" id="colDon" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+
+					</div>
+					<br> <br>
+					<div class="row ">
+						<div class="col-xs-3">
+							<label for="localidadDon">Localidad </label><br> <input
+								type="text" id="localidadDon" minlength="4" 
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+
+						<div class="col-xs-3">
+							<label for="municipioDon">Municipio</label><br> <input
+								type="text" id="municipioDon" 
+								class="form-control selectTextFormulario vacias donativosRequired  ">
+						</div>
+						<div class="col-xs-3">
+							<label for="estadoDon">Estado</label><br> <input type="text"
+								id="estadoDon"  class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+
+						<div class="col-xs-3">
+							<label for="cpDon">C. P.</label><br> <input type="text" id="cpDon"
+								 class="form-control selectTextFormulario vacias  donativosRequired "
+								minlength="5" maxlength="5" onkeypress="return valida(event)">
+						</div>
+
+					</div>
+				
+					<br> <br>
+					
+					<h4 class="subDivi">Domicilio fiscal</h4>
+					
+					
+					<br />
+							
+
+					<label>¿Mismo que Domicilio particular?</label><br/>
+					<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFS');"	id="mismoDFS" value="0" checked> No&nbsp;&nbsp;&nbsp; 
+					<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFN');" id="mismoDFN" value="1"> Si <br /> <br />
+					<br /> 
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="calleFDon">Calle</label><br> <input type="text"
+								id="calleFDon" minlength="4"
+								class="form-control selectTextFormulario vacias  donativosRequired " >
+						</div>
+						
+						<div class="col-xs-4">
+							<label for="nExteriorFDon">No. Ext</label><br> <input
+								type="text" id="nExteriorFDon" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+						
+						<div class="col-xs-4">
+							<label for="nInteriorFDon">No. Int</label><br> <input
+								type="text" id="nInteriorFDon" 
+								class="form-control selectTextFormulario vacias   " >
+						</div>
+						
+					</div>
+					<br> <br>
+					<div class="row ">
+					
+					<div class="col-xs-4">
+							<label for="colFDon">Colonia o fraccionamiento </label><br> <input
+								type="text" id="colFDon" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+					
+					
+						<div class="col-xs-4">
+							<label for="localidadFDon">Localidad </label><br> <input
+								type="text" id="localidadFDon" minlength="4" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+
+						<div class="col-xs-4">
+							<label for="municipioFDon">Municipio</label><br> <input
+								type="text" id="municipioFDon" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+						
+
+					</div>
+					<br> <br>
+					<div class="row ">
+						<div class="col-xs-4">
+							<label for="estadoFDon">Estado</label><br> <input type="text"
+								id="estadoFDon" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+
+						<div class="col-xs-4">
+							<label for="cpFDon">C. P.</label><br> <input type="text"
+								id="cpFDon" class="form-control selectTextFormulario vacias donativosRequired  "
+								minlength="5" maxlength="5" 
+								onkeypress="return valida(event)">
+						</div>
+						<div class="col-xs-4">
+							<label for="rfcFDon">RFC </label><br> <input
+								type="text" id="rfcFDon" minlength="10" maxlength="13" 
+								class="form-control selectTextFormulario vacias   donativosRequired" >
+						</div>
+
+						
+
+					</div>
+
+					<br />
+					<div class="divisionFormFormulario">
+					<h3>Información del donativo</h3>
+					</div>
 					<br />
 					
 					<label for="medioCobroDon">Medio de cobro (aportación)</label><br> <select
@@ -472,196 +660,24 @@
 									
 					</div>
 							
-				
-					<br>
 
-					<div class="divisionForm"></div>
+
+				
 					<br />
-					
-					<div class="row ">
-						<div class="col-xs-6 ">
-							<label for="correoDon">Correo electrónico </label><br> <input
-								type="text" id="correoDon" 
-								pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
-								class="form-control selectTextFormulario vacias  donativosRequired ">
-						</div>
-						<div class="col-xs-6">
-							<label for="celularDon">Celular </label><br> <input type="text"
-								id="celularDon" minlength="10" maxlength="10"
-								onkeypress="return valida(event)" 
-								class="form-control selectTextFormulario vacias  donativosRequired ">
-						</div>
-						
-					</div> 
-					<br>
-					<br>
-					<div class="row ">
-
-						<div class="col-xs-6">
-							<label for="tel1Don">Teléfono 1</label><br> <input
-								type="text" id="tel1Don" 
-								class="form-control selectTextFormulario vacias " minlength="10"
-								maxlength="10" onkeypress="return valida(event)">
-						</div>
-						
-						<div class="col-xs-6">
-							<label for="tel2don">Teléfono 2</label><br> <input
-								type="text" id="tel2Don" 
-								class="form-control selectTextFormulario vacias " minlength="10"
-								maxlength="10" onkeypress="return valida(event)">
-						</div>
-
-					</div> 
-					<br>
-
-					<div class="divisionForm"></div>
-					<br />					
-
-					<h2>Domicilio particular</h2>
-					<div class="row ">
-						<div class="col-xs-3">
-							<label for="calleDon">Calle</label><br> <input type="text"
-								id="calleDon" minlength="4" 
-								class="form-control selectTextFormulario vacias donativosRequired  ">
-						</div>
-						
-						<div class="col-xs-3">
-							<label for="nExteriorDon">No. Ext</label><br> <input
-								type="text" id="nExteriorDon" 
-								class="form-control selectTextFormulario vacias donativosRequired  ">
-						</div>
-
-						<div class="col-xs-3">
-							<label for="nInteriorDon">No. Int</label><br> <input
-								type="text" id="nInteriorDon" 
-								class="form-control selectTextFormulario vacias   ">
-						</div>
-						
-
-						<div class="col-xs-3">
-							<label for="colDon">Colonia o fraccionamiento </label><br> <input
-								type="text" id="colDon" 
-								class="form-control selectTextFormulario vacias  donativosRequired ">
-						</div>
-
+					<div class="divisionFormFormulario">
+					<h3>Observaciones generales</h3>
 					</div>
-					<br> <br>
-					<div class="row ">
-						<div class="col-xs-3">
-							<label for="localidadDon">Localidad </label><br> <input
-								type="text" id="localidadDon" minlength="4" 
-								class="form-control selectTextFormulario vacias  donativosRequired ">
-						</div>
-
-						<div class="col-xs-3">
-							<label for="municipioDon">Municipio</label><br> <input
-								type="text" id="municipioDon" 
-								class="form-control selectTextFormulario vacias donativosRequired  ">
-						</div>
-						<div class="col-xs-3">
-							<label for="estadoDon">Estado</label><br> <input type="text"
-								id="estadoDon"  class="form-control selectTextFormulario vacias  donativosRequired ">
-						</div>
-
-						<div class="col-xs-3">
-							<label for="cpDon">C. P.</label><br> <input type="text" id="cpDon"
-								 class="form-control selectTextFormulario vacias  donativosRequired "
-								minlength="5" maxlength="5" onkeypress="return valida(event)">
-						</div>
-
-					</div>
-				
-					<br> <br>
-
-					<h2>Domicilio fiscal</h2>
-					<br /> 
-					<label>¿Mismo que Domicilio particular?</label><br/>
-					<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFS');"	id="mismoDFS" value="0" checked> No&nbsp;&nbsp;&nbsp; 
-					<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFN');" id="mismoDFN" value="1"> Si <br /> <br />
-					<br /> 
-					<div class="row ">
-						<div class="col-xs-4">
-							<label for="calleFDon">Calle</label><br> <input type="text"
-								id="calleFDon" minlength="4"
-								class="form-control selectTextFormulario vacias  donativosRequired " >
-						</div>
-						
-						<div class="col-xs-4">
-							<label for="nExteriorFDon">No. Ext</label><br> <input
-								type="text" id="nExteriorFDon" 
-								class="form-control selectTextFormulario vacias   donativosRequired" >
-						</div>
-						
-						<div class="col-xs-4">
-							<label for="nInteriorFDon">No. Int</label><br> <input
-								type="text" id="nInteriorFDon" 
-								class="form-control selectTextFormulario vacias   " >
-						</div>
-						
-					</div>
-					<br> <br>
-					<div class="row ">
-					
-					<div class="col-xs-4">
-							<label for="colFDon">Colonia o fraccionamiento </label><br> <input
-								type="text" id="colFDon" 
-								class="form-control selectTextFormulario vacias   donativosRequired" >
-						</div>
-					
-					
-						<div class="col-xs-4">
-							<label for="localidadFDon">Localidad </label><br> <input
-								type="text" id="localidadFDon" minlength="4" 
-								class="form-control selectTextFormulario vacias   donativosRequired" >
-						</div>
-
-						<div class="col-xs-4">
-							<label for="municipioFDon">Municipio</label><br> <input
-								type="text" id="municipioFDon" 
-								class="form-control selectTextFormulario vacias   donativosRequired" >
-						</div>
-						
-
-					</div>
-					<br> <br>
-					<div class="row ">
-						<div class="col-xs-4">
-							<label for="estadoFDon">Estado</label><br> <input type="text"
-								id="estadoFDon" 
-								class="form-control selectTextFormulario vacias   donativosRequired" >
-						</div>
-
-						<div class="col-xs-4">
-							<label for="cpFDon">C. P.</label><br> <input type="text"
-								id="cpFDon" class="form-control selectTextFormulario vacias donativosRequired  "
-								minlength="5" maxlength="5" 
-								onkeypress="return valida(event)">
-						</div>
-						<div class="col-xs-4">
-							<label for="rfcFDon">RFC </label><br> <input
-								type="text" id="rfcFDon" minlength="10" maxlength="13" 
-								class="form-control selectTextFormulario vacias   donativosRequired" >
-						</div>
-
-						
-
-					</div>
-
-				
-					<br>
-					<div class="divisionForm"></div>
-					
-					<br>
+					<br />
 
 					<div class="row ">
-						<div class="col-xs-8">
+						<div class="col-xs-12">
 							<label for="observacionesDon">Observaciones</label><br> <input
 								type="text" id="observacionesDon"
 								class="form-control selectTextFormulario vacias   ">
 						</div>
 
 
-						<div class="col-xs-4" id="divBeneAsignado"  >
+						<div class="col-xs-4" id="divBeneAsignado" style="display:none;" >
 							<label for="idBeneficiarioDon">Beneficiario asignado</label><br>
 							<input type="text" disabled id="idBeneficiarioDon" onblur="valorBlur('idBeneficiarioDon','idBeneficiarioHidden','valBeneficiarioHidden');" onkeyup="autocompleteBeneficiarioDon();" 
 							 
@@ -684,9 +700,9 @@
 
 				<div id="patrocinadores" class="text-center" style="display: none;">
 					<br />
-
-					<div class="divisionForm"></div>
-
+					<div class="divisionFormFormulario">
+					<h3>Datos generales</h3>
+					</div>
 					<br />
 					<!-- Primera fila de datos periodo,matricula -->
 					
@@ -768,8 +784,11 @@
 								maxlength="3000" minlength="10" ></textarea>
 						</div>
 					</div>
-					<br/>
-					<br/>
+				<br />
+					<div class="divisionFormFormulario">
+					<h3>Datos de contacto</h3>
+					</div>
+					<br />
 			
 					
 					<div class="row ">
@@ -801,12 +820,11 @@
 						</div>
 
 					</div>
-					<br>
-
-					<div class="divisionForm"></div>
-					<br />					
-
-					<h2>Domicilio particular</h2>
+					<br> <br>
+					
+					<h4 class="subDivi">Domicilio particular</h4>
+					
+					<br />
 					<div class="row ">
 						<div class="col-xs-3">
 							<label for="calleP">Calle</label><br> <input type="text"
@@ -861,9 +879,12 @@
 					</div>
 				
 					<br> <br>
+					
+					<h4 class="subDivi">Domicilio fiscal</h4>
+					
+					<br />
 
-					<h2>Domicilio fiscal</h2>
-					<br /> 
+			
 					<label>¿Mismo que domicilio particular?</label><br/>
 					<input	type="radio" name="mismoDFP" onclick="checkMismoDFP('mismoDFSP');"	id="mismoDFSP" value="0" checked> No&nbsp;&nbsp;&nbsp; 
 					<input	type="radio" name="mismoDFP" onclick="checkMismoDFP('mismoDFNP');" id="mismoDFNP" value="1"> Si <br /> <br />
@@ -939,13 +960,14 @@
 					</div>
 
 				
-					<br>
-					<div class="divisionForm"></div>
-					
-					<br>
+					<br />
+					<div class="divisionFormFormulario">
+					<h3>Observaciones generales</h3>
+					</div>
+					<br />
 
 					<div class="row ">
-						<div class="col-xs-8">
+						<div class="col-xs-12">
 							<label for="observacionesP">Observaciones</label><br> <input
 								type="text" id="observacionesP"
 								class="form-control selectTextFormulario vacias   ">

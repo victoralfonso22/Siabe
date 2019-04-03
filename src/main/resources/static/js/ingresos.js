@@ -32,7 +32,7 @@ $("#tDonativo").change(function() {
 		$('input:radio[name=mismoDF]')[0].checked = true;
 		$("#medioCobroDon").val(1).trigger('change');
 		
-		$("#divBeneAsignado").show();
+		$("#divBeneAsignado").hide();
 		$("#divBotonGuardar").show();		
 		
 		$("#idRegionDon").prop('disabled',true);

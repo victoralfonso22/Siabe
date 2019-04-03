@@ -91,6 +91,10 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 		
 		try {
 			
+			if(getCountIdBeneficiario(matricula.toUpperCase(),idPeriodo,idTipoBeca) > 0) {
+				return "Duplicado";
+			}else {
+			
 		this.getJdbcTemplate().update(sql, params);
 		
 		if(idBenefactor != "") {
@@ -101,13 +105,17 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 			String sqlInsertaRelacion = DonativosMapa.INSERT_SQL_TRDONBEN + " ("+idBenefactor+","+getIdBeneficiario(matricula.toUpperCase(),idPeriodo)+")";
 			this.getJdbcTemplate().update(sqlInsertaRelacion);
 		}
+		
+			
 			
 		return "Done";
+		}
 		} catch (EmptyResultDataAccessException e) {
 			return "Error";
 		}catch(IncorrectResultSizeDataAccessException ex) {
 			return "MasFilas";
-		}catch(DataIntegrityViolationException exx) {
+		}
+		catch(DataIntegrityViolationException exx) {
 			return "Duplicado";
 		}
 	}
@@ -362,6 +370,21 @@ public int getIdBeneficiario(String matricula, int idPeriodo) {
 	
 	
 	String	sql = BeneficiariosMapa.BASE_SQL_ID + " WHERE matricula = '"+matricula+"' and id_periodo = "+idPeriodo+"; ";
+
+	
+	try {
+		return this.getJdbcTemplate().queryForObject(sql, Integer.class);
+
+	} catch (EmptyResultDataAccessException e) {
+		return 0;
+	}
+
+}
+
+public int getCountIdBeneficiario(String matricula, int idPeriodo, int idTipoBeca) {
+	
+	
+	String	sql = BeneficiariosMapa.BASE_SQL_ID_COUNT + " WHERE matricula = '"+matricula+"' and id_periodo = "+idPeriodo+" AND id_tipo_beca = "+idTipoBeca+"; ";
 
 	
 	try {
