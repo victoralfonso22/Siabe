@@ -24,11 +24,8 @@
 
 			<div class="valoresCentrados">
 
-			<br/> <input
-						type="radio" name="altaCambio" onclick="checkIds('donan');"
-						id="donan" value="1" checked> Donantes&nbsp;&nbsp;&nbsp; <input
-						type="radio" name="altaCambio" onclick="checkIds('benen');"
-						id="benen" value="0"> Beneficiarios <br /> <br />		
+			<br/> <label class="customradio">Donantes <input type="radio" name="altaCambio" onclick="checkIds('donan');" id="donan" value="1" checked> <span class="radiomark"></span></label> 
+			<label class="customradio">Beneficiarios<input	type="radio" name="altaCambio" onclick="checkIds('benen');" id="benen" value="0"> <span class="radiomark"></span></label><br /> <br />		
        
 			
 			
@@ -117,8 +114,8 @@
 								
 								<input type="hidden" th:id="${'montoAsigHidden'+registrosTabla.idBeneficiario}" th:value="${registrosTabla.donativoAsignado}"></td>
 								
-					<td th:if="${asig} == 1"><input type="checkbox" th:id="${registrosTabla.idDonante}" th:checked="${registrosTabla.clase}" th:onclick="|deshabilitaMonto(1,'${registrosTabla.idDonante}');|"></td>
-					<td th:unless="${asig} == 1"><input type="checkbox" th:id="${registrosTabla.idBeneficiario}" th:checked="${registrosTabla.clase}" th:onclick="|deshabilitaMonto(2,'${registrosTabla.idBeneficiario}');|"></td>				
+					<td th:if="${asig} == 1">  <label class="customcheck"><input type="checkbox" th:id="${registrosTabla.idDonante}" th:checked="${registrosTabla.clase}" th:onclick="|deshabilitaMonto(1,'${registrosTabla.idDonante}');|"> <span class="checkmark"></span></label></td>
+					<td th:unless="${asig} == 1"><label class="customcheck"><input type="checkbox" th:id="${registrosTabla.idBeneficiario}" th:checked="${registrosTabla.clase}" th:onclick="|deshabilitaMonto(2,'${registrosTabla.idBeneficiario}');|"><span class="checkmark"></span></label></td>				
 					
 				</tr>
 				</th:block>

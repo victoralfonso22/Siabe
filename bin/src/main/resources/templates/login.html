@@ -8,10 +8,12 @@
     <title>Siabe</title>	
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" type="image/x-icon" href="/imagenes/favicon.ico" /> 
-	<link type="text/css" rel="stylesheet" href="/css/bootstrap-3.3.7/css/bootstrap.min.css" />	
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap-3.3.7/css/bootstrap.min.css" />
 	
-	<script src="/js/jquery-3.3.1.min.js"></script>    
+	
+	<script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/css/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/login.js"></script>    
 </head>
 <body class="container" >
 	<!-- <th:block th:include="/default/menu"></th:block> -->
@@ -29,36 +31,88 @@
 		<h5 class="text-center" style="font-size: 20px">(Sistema integral de administración de becas)</h5>
 		<!-- /login?error=true -->
       <div th:if="${#request.getParameter('error') == 'true'}"
-            style="color:red;margin:10px 0px;">
-         Login Failed!!!<br />
-         Reason :
-         <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
+            style="color:red;margin:10px 0px; text-align: center;">
+         <p style="font-weight: bold;">Login incorrecto!!!</p><br />
+         Motivos :<br />
+         <div th:if="${param.error}">
+			<p style="color: red; font-weight: bold; text-align: center;">El usuario o la contraseña son incorrectas, por favor verifique de nuevo!</p>
+	
+		</div>
+         <!-- <span th:if="${#session!= null and #session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION') != null}"
             th:utext="${#session.getAttribute('SPRING_SECURITY_LAST_EXCEPTION').message}">
                 Static summary
-         </span>
+         </span> -->
            
       </div>
       <div th:if="${#request.getParameter('session') == 'false'}"
-            style="color:red;margin:10px 0px;">
+            style="text-align:center; margin: 0 auto; color:red;margin:10px 0px; font-size:16px; font-weight: bold;">
          Sesión inactiva<br />
          Vuelva a loguearse.
            
       </div>
-		<div th:if="${param.error}">
-			<p style="color: red">El usuario o la contraseña son incorrectas, por favor verifique de nuevo!</p>
-	
-		</div>
+		
 		<form name='f' th:action="@{/j_spring_security_check}" method='POST'>
 			<div class="form-group">
-				<label for="username">Usuario: </label>
-				<input type="text" class="form-control" style="font-size: 17px;	color: #000;	text-align: center; font-weight: bold;" required id="username" name="username"/>
+				<label for="username">Correo: </label>
+				<div class="input-group ">
+				<span class="input-group-addon" style="color: #284E97 !important;"><span class="glyphicon glyphicon-user"></span></span>
+				<input type="text" class="glyphicon glyphicon-user form-control" style="font-size: 17px;color: #000;text-align: center; font-weight: 600; width: 100% !important;	position: initial !important;font-family: inherit !important;" required id="username" name="username"/>
+				</div>
 			</div>
 			<div class="form-group">
 				<label for="password">Contraseña: </label>
-				<input type="password" class="form-control" style="font-size: 17px;	color: #000;	text-align: center; font-weight: bold;" required id="password" name="password"/>
+				 <div class="input-group ">
+				<span class="input-group-addon" style="color: #284E97 !important;"><span class="glyphicon glyphicon-asterisk"></span></span>
+				<input  type="password" class="form-control material-icons" style="font-size: 17px;	color: #000;	text-align: center; font-weight: 6000; width: 100% !important;	position: initial !important;font-family: inherit !important;" required id="password" name="password"/>
+				</div>
 			</div>
+			
 			<button type="submit" class="btn btn-primary btn-block">Acceder</button>
+			
 		</form>
+		<br/>
+		<div>
+		<span class="text-center" style="cursor:pointer; text-align:center !important; display: inline-block; width: 100%;" onclick="$('#recuperarUserContra').show();">¿Olvidaste tu usuario o contraseña?</span>
+		</div>
 	</div>
+	
+	<div id="recuperarUserContra" class="modal" role="dialog">
+       <div class="modal-dialog">
+           <!-- Modal content-->
+           <div class="modal-content">
+               <div class="modal-header">
+                  <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                  <h4 class="modal-title text-center">Usuario y nueva contraseña</h4>
+               </div>
+               <div class="modal-body">
+               		<form id="rescueUPForm">
+               		<div class="" style="width:100%; text-align:center; display:inline-block;">
+         
+               		<div style="width:100%; padding: 0px 50px;">            		
+               		<span style="font-size:14px;color: #284E97;font-weight: bold;">Usuario o correo registrado </span><br/>
+               		<input  type="text" style="text-align: center !important;" class="form-control" 
+               		required minlength="5" id="recuperacion"/>
+               		<br/>
+               		
+               		</div>
+               		
+               		</div>
+               		<br/>
+               		<div class="progress" id="resultUP" style="display:none;">
+							    <div class="progress-bar progress-bar-striped active" id="respuestaUP" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:15%">							     
+							    </div>
+							 </div>
+               		
+               	<br/>
+                   <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="$('#recuperarUserContra').hide();">Cancelar</button>
+                   <button type="submit" id="btn-confirm" class="btn btn-primary pull-right">Enviar</button>
+                   </form>
+                   
+               </div>
+           </div>
+       </div>
+   </div>
+	
+	
 </body>
 </html>

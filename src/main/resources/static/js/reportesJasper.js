@@ -208,3 +208,4 @@ function beneficiariosGeneral(tipo,idSpan,divClass){
 	}
 
 }
+

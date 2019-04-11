@@ -18,6 +18,10 @@ public class RegionesServicio {
 		return regionesDAO.regresarRegion(idRegion);
 	}
 	
+	public Regiones regresaRegionUnica(int idRegion) {
+		return regionesDAO.regresarRegionUnica(idRegion);
+	}
+	
 	public List<Regiones> regresaRegionesPeriodo(int idPeriodo) {
 		return regionesDAO.regresarRegionesPeriodo(idPeriodo);
 	}

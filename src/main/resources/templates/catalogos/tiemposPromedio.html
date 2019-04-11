@@ -65,7 +65,10 @@
 			<div style="display: none;" id="opcionesBusca">
 			<span>Buscar por: </span>
 			<br/> 
-			<input type="checkbox" id="car" onclick="verTiempoPromerdio();"> Carrera &nbsp&nbsp<input type="checkbox" id="fac" onclick="verTiempoPromerdio();"> Facultad &nbsp&nbsp<input type="checkbox" id="are" onclick="verTiempoPromerdio();"> Área &nbsp&nbsp</br>
+			
+			<label class="customcheck">Carrera<input type="checkbox" id="car" onclick="verTiempoPromerdio();"> <span class="checkmark"></span></label>
+			<label class="customcheck">Facultad<input type="checkbox" id="fac" onclick="verTiempoPromerdio();">  <span class="checkmark"></span></label>
+			<label class="customcheck">Área<input type="checkbox" id="are" onclick="verTiempoPromerdio();">  <span class="checkmark"></span></label></br>
 			</div>
 			<input class="form-control selectText widthAutocompletar" style="display:none;" type='text' placeholder='Buscar' onkeyup="verTiempoPromerdio();" id='buscarTiempoPromedio'></input>
 			
@@ -269,8 +272,8 @@
                		<form id="nuevaAreaForm">
                		<div class="valoresCentrados">
                		
-               		<input type="radio" id="nuevaAr" name="areasModal" onclick="checkIds('nuevaAr');" value='N' checked>&nbsp;Nueva</input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               		<input type="radio" id="modificacionAr" name="areasModal" onclick="checkIds('modificacionAr');" value='M'>&nbsp;Modificar</input>
+               		<label class="customradio">Nueva <input type="radio" id="nuevaAr" name="areasModal" onclick="checkIds('nuevaAr');" value='N' checked><span class="radiomark"></span></label>
+               		<label class="customradio">Modificar<input type="radio" id="modificacionAr" name="areasModal" onclick="checkIds('modificacionAr');" value='M'><span class="radiomark"></span></label>
                		<br><br>
                		<select id="idAreaNM" class="form-control selectText" style="display:none">
 					<option disabled selected value=""> Selecciona area...</option>
@@ -310,8 +313,8 @@
                		<form id="nuevaFacultadForm">
                		<div class="valoresCentrados">
                		
-               		<input type="radio" id="nuevaFacd" name="facultadesModal" onclick="checkIdsFac('nuevaFacd');" value='N' checked>&nbsp;Nueva</input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               		<input type="radio" id="modificarFacd" name="facultadesModal" onclick="checkIdsFac('modificarFacd');" value='M'>&nbsp;Modificar</input>
+               		<label class="customradio">Nueva<input type="radio" id="nuevaFacd" name="facultadesModal" onclick="checkIdsFac('nuevaFacd');" value='N' checked><span class="radiomark"></span></label>
+               		<label class="customradio">Modificar<input type="radio" id="modificarFacd" name="facultadesModal" onclick="checkIdsFac('modificarFacd');" value='M'><span class="radiomark"></span></label>
                		<br><br>
                		<select id="idFacNM" required  class="form-control selectText" style="display:none">
 					<option disabled selected value=""> Selecciona facultad...</option>

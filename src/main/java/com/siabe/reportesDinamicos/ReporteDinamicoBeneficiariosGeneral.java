@@ -5,16 +5,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.siabe.servicio.PeriodoServicio;
+import com.siabe.servicio.RegionesServicio;
+import com.siabe.servicio.TipoBecaServicio;
 
 import ar.com.fdvs.dj.domain.DynamicReport;
 import ar.com.fdvs.dj.domain.Style;
 import ar.com.fdvs.dj.domain.builders.ColumnBuilder;
 import ar.com.fdvs.dj.domain.builders.DynamicReportBuilder;
 import ar.com.fdvs.dj.domain.constants.Border;
-
+import ar.com.fdvs.dj.domain.constants.Font;
 import ar.com.fdvs.dj.domain.constants.HorizontalAlign;
 import ar.com.fdvs.dj.domain.constants.Transparency;
 import ar.com.fdvs.dj.domain.constants.VerticalAlign;
@@ -23,13 +26,34 @@ import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
 @Service
 public class ReporteDinamicoBeneficiariosGeneral extends BaseReporteBeneficiariosGeneral {
 	
+	@Autowired
+	TipoBecaServicio tipoBecaServicio;
 	
+	@Autowired
+	PeriodoServicio periodoServicio;
+	
+	@Autowired
+	RegionesServicio regionesServicio;
 	
 	public String cadena;
+	public String periodo = "";
+	public String region = "";
 	
 	public DynamicReport buildReport() throws Exception {
 		
 		
+		
+		tipoB = tipoBecaServicio.regresaTipoBeca(idTipoBeca).getNombre();
+		
+		if(idPeriodo != 0) {
+			periodo = periodoServicio.regresaPeriodo(idPeriodo).getNombre();
+			tipoB = tipoB+" 	Periodo : "+periodo;
+		}
+		
+		if(idRegion != 0) {
+			region = regionesServicio.regresaRegionUnica(idRegion).getNombre();
+			tipoB = tipoB+" 	Región : "+region;
+		}
 
 		Style detailStyle = new Style();
 		  			detailStyle.setBorder(Border.THIN());detailStyle.setBorderColor(Color.BLACK);detailStyle.setStretchWithOverflow(true);detailStyle.setPadding(5);
@@ -40,17 +64,20 @@ public class ReporteDinamicoBeneficiariosGeneral extends BaseReporteBeneficiario
 		  		headerStyle.setBorder(Border.THIN());headerStyle.setBorderColor(Color.BLACK);
 		  
 		  		Style titleStyle = new Style();
+		  		titleStyle.setFont(Font.VERDANA_BIG_BOLD);
+		  		
 		  		Style subtitleStyle = new Style();
 		  		Style amountStyle = new Style(); amountStyle.setHorizontalAlign(HorizontalAlign.RIGHT);
-		  
+		  		
+		  		
 		  		/**
 		  		 * Creates the DynamicReportBuilder and sets the basic options for
 		  		 * the report
 		  		 */
 		  		DynamicReportBuilder drb = new DynamicReportBuilder();
-		  		drb.setTitle("November 2006 sales report"+ tipoB)					//defines the title of the report
-		  			.setSubtitle("The items in this report correspond "
-		  					+"to the main products: DVDs, Books, Foods and Magazines")
+		  		drb.setTitle("Beca : "+tipoB)					//defines the title of the report
+		  			.setSubtitle("	")
+		  			
 		  			 //.setDetailHeight(17)						//defines the height for each record of the report
 		  			
 		  			.setMargins(5, 5, 5, 5)							//define the margin space for each side (top, bottom, left and right)

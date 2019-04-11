@@ -25,7 +25,19 @@ public class RegionesDAO extends JdbcDaoSupport {
 	}
 
 	public Regiones regresarRegion(int idRegion) {	
-		String sql = RegionesMapa.BASE_SQL + " where id = ? ; ";
+		String sql = RegionesMapa.BASE_SQL + " where r.id = ? ; ";
+		Object[] params = new Object[] { idRegion };
+		RegionesMapa mapper = new RegionesMapa();
+		try {
+			Regiones periodoInfo = this.getJdbcTemplate().queryForObject(sql, params, mapper);
+			return periodoInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public Regiones regresarRegionUnica(int idRegion) {	
+		String sql = RegionesMapa.BASE_SQL_REG + " where id = ? ; ";
 		Object[] params = new Object[] { idRegion };
 		RegionesMapa mapper = new RegionesMapa();
 		try {

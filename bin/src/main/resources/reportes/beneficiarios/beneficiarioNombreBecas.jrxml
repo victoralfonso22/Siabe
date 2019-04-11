@@ -1,0 +1,1806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="beneficiarioNombreBeca" pageWidth="842" pageHeight="1800" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c120e502-33ba-412e-85c8-d5574a3d8918">
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<parameter name="imagenFuv" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{baseImagen}.toString()+"imagenes/FUV /nuevo imagotipo limpio.png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imagenUV" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{baseImagen}.toString()+"imagenes/MATRIZ LIS UV COLOR LEMA .png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tipoBeca" class="java.lang.String"/>
+	<parameter name="periodo" class="java.lang.String"/>
+	<parameter name="matricula" class="java.lang.String"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<parameter name="apellidoPaterno" class="java.lang.String"/>
+	<parameter name="apellidoMaterno" class="java.lang.String"/>
+	<parameter name="estatus" class="java.lang.Integer"/>
+	<parameter name="motivoEstatus" class="java.lang.String"/>
+	<parameter name="tipoBecario" class="java.lang.String"/>
+	<parameter name="adscripcion" class="java.lang.String"/>
+	<parameter name="region" class="java.lang.String"/>
+	<parameter name="carrera" class="java.lang.String"/>
+	<parameter name="nivel" class="java.lang.String"/>
+	<parameter name="modalidad" class="java.lang.String"/>
+	<parameter name="facultad" class="java.lang.String"/>
+	<parameter name="area" class="java.lang.String"/>
+	<parameter name="escuelaDeportiva" class="java.lang.String"/>
+	<parameter name="fechaIngEscDep" class="java.lang.String"/>
+	<parameter name="nivelEduCursa" class="java.lang.String"/>
+	<parameter name="turno" class="java.lang.String"/>
+	<parameter name="tipoInstitucion" class="java.lang.String"/>
+	<parameter name="grado" class="java.lang.Integer"/>
+	<parameter name="nombreEdu" class="java.lang.String"/>
+	<parameter name="calleEdu" class="java.lang.String"/>
+	<parameter name="numExtEdu" class="java.lang.String"/>
+	<parameter name="numIntEdu" class="java.lang.String"/>
+	<parameter name="colEdu" class="java.lang.String"/>
+	<parameter name="locEdu" class="java.lang.String"/>
+	<parameter name="munEdu" class="java.lang.String"/>
+	<parameter name="edoEdu" class="java.lang.String"/>
+	<parameter name="cpEdu" class="java.lang.Integer"/>
+	<parameter name="telEdu" class="java.lang.String"/>
+	<parameter name="periodoActual" class="java.lang.Integer"/>
+	<parameter name="promedioGeneral" class="java.lang.Double"/>
+	<parameter name="edad" class="java.lang.Integer"/>
+	<parameter name="genero" class="java.lang.String"/>
+	<parameter name="lenguaIndigena" class="java.lang.String"/>
+	<parameter name="discapacidad" class="java.lang.String"/>
+	<parameter name="estadoCivil" class="java.lang.String"/>
+	<parameter name="lugarNacimiento" class="java.lang.String"/>
+	<parameter name="fechaNacimiento" class="java.util.Date"/>
+	<parameter name="breveHistoria" class="java.lang.String"/>
+	<parameter name="integrantesFamiliares" class="java.lang.Integer"/>
+	<parameter name="ingresosFamiliares" class="java.lang.Double"/>
+	<parameter name="calleVivFam" class="java.lang.String"/>
+	<parameter name="numEVivFam" class="java.lang.String"/>
+	<parameter name="numIVivFam" class="java.lang.String"/>
+	<parameter name="colVivFam" class="java.lang.String"/>
+	<parameter name="locVivFam" class="java.lang.String"/>
+	<parameter name="munVivFam" class="java.lang.String"/>
+	<parameter name="edoVivFam" class="java.lang.String"/>
+	<parameter name="cpVivFam" class="java.lang.Integer"/>
+	<parameter name="enlaceMaps" class="java.lang.String"/>
+	<parameter name="mismoVivFam" class="java.lang.Integer"/>
+	<parameter name="calleEst" class="java.lang.String"/>
+	<parameter name="numEEst" class="java.lang.String"/>
+	<parameter name="numIEst" class="java.lang.String"/>
+	<parameter name="colEst" class="java.lang.String"/>
+	<parameter name="locEst" class="java.lang.String"/>
+	<parameter name="munEst" class="java.lang.String"/>
+	<parameter name="edoEst" class="java.lang.String"/>
+	<parameter name="cpEst" class="java.lang.String"/>
+	<parameter name="nombreTutorl" class="java.lang.String"/>
+	<parameter name="parentescoTutor" class="java.lang.String"/>
+	<parameter name="celular" class="java.lang.String"/>
+	<parameter name="telDomicilio" class="java.lang.String"/>
+	<parameter name="tipoTelRef" class="java.lang.String"/>
+	<parameter name="numTelRef" class="java.lang.String"/>
+	<parameter name="parentescoRef" class="java.lang.String"/>
+	<parameter name="observacionesRef" class="java.lang.String"/>
+	<parameter name="email" class="java.lang.String"/>
+	<parameter name="facebook" class="java.lang.String"/>
+	<parameter name="facebook2" class="java.lang.String"/>
+	<parameter name="facebook3" class="java.lang.String"/>
+	<parameter name="ocupacionTutor" class="java.lang.String"/>
+	<parameter name="hermanosInscritos" class="java.lang.Integer"/>
+	<parameter name="escuelaHermanosInscritos" class="java.lang.String"/>
+	<parameter name="formaPago" class="java.lang.Integer"/>
+	<parameter name="banco" class="java.lang.String"/>
+	<parameter name="cuentaDeposito" class="java.lang.String"/>
+	<parameter name="tarjetaDeposito" class="java.lang.String"/>
+	<parameter name="claveReferenciado" class="java.lang.String"/>
+	<parameter name="vigenciaReferenciado" class="java.lang.String"/>
+	<parameter name="montoBeca" class="java.lang.Double"/>
+	<parameter name="finalidadApoyo" class="java.lang.String"/>
+	<parameter name="observaciones" class="java.lang.String"/>
+	<parameter name="idBenefactor" class="java.lang.Integer"/>
+	<parameter name="idTipoBeca" class="java.lang.Integer"/>
+	<parameter name="baseImagen" class="java.lang.String"/>
+	<parameter name="periodoPromedio" class="java.lang.Integer"/>
+	<parameter name="periodoRebasa" class="java.lang.Integer"/>
+	<parameter name="fechaNacimientoFormat" class="java.lang.String"/>
+	<parameter name="ingresosFamiliaresFormat" class="java.lang.String"/>
+	<parameter name="montoBecaFormat" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83" splitType="Stretch">
+			<image isLazy="true" onErrorType="Blank">
+				<reportElement x="0" y="0" width="70" height="77" uuid="96196024-fcd5-48ed-a8bd-ea9116a66f09"/>
+				<imageExpression><![CDATA["http://siabe/imagenes/logoFUV.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="180" y="0" width="400" height="43" uuid="355213ca-809a-4ed0-b21d-c72022683db6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos beneficiario]]></text>
+			</staticText>
+			<image isLazy="true" onErrorType="Blank">
+				<reportElement x="710" y="0" width="70" height="77" uuid="96196024-fcd5-48ed-a8bd-ea9116a66f09"/>
+				<imageExpression><![CDATA["http://siabe/imagenes/logoUV.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="1238" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" x="10" y="210" width="30" height="20" forecolor="#0976DB" uuid="a6c5e4c9-2f11-4e7c-bb2b-478c78877026">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Región]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="40" y="210" width="130" height="20" uuid="5bbb8226-38ba-4b34-92dd-6d4fd4946b8f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{region}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="210" width="30" height="20" forecolor="#0976DB" uuid="f991df67-fa70-48c1-85d3-ce5637bf91a8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Área]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="310" y="210" width="190" height="20" uuid="5a13d7cb-55a5-42c7-a1b2-2072ca3873dd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{area}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="560" y="210" width="50" height="20" forecolor="#0976DB" uuid="6f211ca7-8bf6-4b40-8772-caee948eb141">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Facultad]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="610" y="210" width="160" height="20" uuid="66d170fb-273a-4337-a966-f53338e9da3d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{facultad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="10" y="247" width="30" height="20" forecolor="#0976DB" uuid="149c9bfc-d232-4292-983b-796218a0c323">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nivel]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="40" y="247" width="100" height="20" uuid="decb00d5-fd18-44c0-8d38-9c30efa84eca"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nivel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="280" y="247" width="50" height="20" forecolor="#0976DB" uuid="93c01cfc-0f88-4880-b694-56b5c0ca819f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modalidad]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="329" y="247" width="100" height="20" uuid="68baf49b-a9c6-42ab-a12d-53b8872e8576"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{modalidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="295" y="167" width="191" height="21" uuid="812e4e1c-a62e-486b-bcfe-b89d97964cd9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos académicos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="523" y="247" width="87" height="20" forecolor="#0976DB" uuid="5565dde4-dd08-4097-b907-c14889981633">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Programa educativo]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="610" y="247" width="160" height="20" uuid="4a592ee4-df10-4e40-87b9-ae953ed49265"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{carrera}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="53" y="44" width="190" height="20" uuid="551fe0a4-6982-453b-add3-156bbd1fa794"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tipoBeca}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="273" y="44" width="50" height="20" forecolor="#0976DB" uuid="e816d024-d87d-425a-bdf0-c4791c8e0801">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbb7e755-0947-4e41-8f27-4ef0c57e98a8"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="44" width="50" height="20" forecolor="#0976DB" uuid="be6187db-7afe-4b27-abac-1645229c9fc3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6ff2bd3-10b9-48db-9297-330d01935c8a"/>
+					<printWhenExpression><![CDATA[new Boolean($P{idTipoBeca}!=4)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Matricula]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="193" y="119" width="70" height="20" forecolor="#0976DB" uuid="6f206429-f5d8-4b3f-9451-25a2be9dfd0c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motivo estatus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="84" width="80" height="20" forecolor="#0976DB" uuid="0f12f2f2-b646-4551-8a40-a0e70947b62f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="671adffd-c05b-41d5-9568-11b85f9c5788"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido paterno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="570" y="84" width="80" height="20" forecolor="#0976DB" uuid="fe2d14ce-169d-4b08-8085-8a61e830ae9e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ac07724-001f-4b50-9900-96196a408c2f"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellido materno]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="423" y="119" width="60" height="20" forecolor="#0976DB" uuid="fa73b6c1-3965-4471-ab19-30fae06a7740">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo becario]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="323" y="44" width="190" height="20" uuid="1233127e-78fb-4190-ac3b-8ae14083a721"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{periodo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="650" y="44" width="120" height="20" uuid="f128f770-8afd-462b-8568-1ac2cd71f8af">
+					<printWhenExpression><![CDATA[new Boolean($P{idTipoBeca}!=4)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="43" y="119" width="120" height="20" uuid="39432641-6598-4534-a987-8cf2d4f63b33"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{estatus}==1? "Activo":"Incativo")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="53" y="84" width="120" height="20" uuid="850e36cf-3321-4d8d-8f49-d6e1343f6eee"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="84" width="120" height="20" uuid="2cbf70c6-07f1-430c-86df-e1188d5bf6ad"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{apellidoPaterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="650" y="84" width="120" height="20" uuid="66ed6d49-cfde-48ae-9308-673f8174df2a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{apellidoMaterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="263" y="119" width="120" height="20" uuid="4836d587-3e05-4e63-b47d-ae191050d6a7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{motivoEstatus}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="483" y="119" width="100" height="20" uuid="fe717061-b9dc-4ce5-b6f3-f05c636c8ae1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{tipoBecario}.equals("1")? "Nuevo":"Refrendo")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="610" y="119" width="60" height="20" forecolor="#0976DB" uuid="d3870ecb-45a4-44de-81fc-523fbcd1b66a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Adscripción]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="670" y="119" width="100" height="20" uuid="8c954941-578d-4819-b67c-b4764cc66797"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{adscripcion}.equals("1")? "Comité regional":"Unidad de Becas (oficina)")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="288" y="9" width="191" height="21" uuid="1aafd832-7d90-489d-8c90-5b4203f87096"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Datos generales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="44" width="50" height="20" forecolor="#0976DB" uuid="2da46963-bff3-4558-b37e-82063f4dd273">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2481b900-2f5e-4c2b-9eb7-7d7077c07ad4"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo beca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="84" width="50" height="20" forecolor="#0976DB" uuid="8cb5e0df-d360-4680-8eb1-002b781aa442">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre(s)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="119" width="40" height="20" forecolor="#0976DB" uuid="eb0b1ac8-d4b4-4058-8bea-e11f8f976486">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="033b25cc-1172-49c5-8e41-d2f8a13b72ad"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estatus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="10" y="284" width="110" height="20" forecolor="#0976DB" uuid="1b140fc4-208e-4f7f-86f9-7ef61d29adac">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo actual (semestre)]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="123" y="284" width="40" height="20" uuid="57a3f259-2300-4e0f-9aa2-73889fd95747"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{periodoActual}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="178" y="284" width="169" height="20" forecolor="#0976DB" uuid="604af709-d1fa-489e-b082-bc9c2c78b112">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo promedo (semestre estándar)]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="347" y="284" width="39" height="20" uuid="65a0fbae-05eb-4e31-b84f-101c77cac0a5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{periodoPromedio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="405" y="284" width="100" height="20" forecolor="#0976DB" uuid="be50ea01-354d-4383-90e5-4355f7c8e979">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodos que rebasa]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="505" y="284" width="25" height="20" uuid="6779c37d-0984-4930-89b9-6a3d8d63b15a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{periodoRebasa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="560" y="284" width="180" height="20" forecolor="#0976DB" uuid="ffe6ef95-211c-4459-898b-fb220bb053e9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo de ingreso al Programa de Becas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="10" y="320" width="80" height="20" forecolor="#0976DB" uuid="422346d0-6a95-46b3-a3a4-8912b015e5a4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Promedio general]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="90" y="320" width="40" height="20" uuid="0cfdf419-093b-4577-aa3b-b40e18626e13"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{promedioGeneral}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="160" y="320" width="30" height="20" forecolor="#0976DB" uuid="aa9143a6-60ed-4516-ae44-68e9f4875cda">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="193" y="320" width="50" height="20" uuid="699651b4-c57c-4357-a6c9-51e85ab5e83f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{edad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="270" y="320" width="38" height="20" forecolor="#0976DB" uuid="9aa0299d-46bb-4734-8ebf-3c4dfac21a9b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Género]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="311" y="320" width="77" height="20" uuid="611fbd3e-cb7c-40e9-b2bb-df573f084df0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{genero}.equals("1")? "Masculino":"Femenino")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="415" y="320" width="73" height="20" forecolor="#0976DB" uuid="35e2852d-e15e-46e3-90f0-4e9c9085c80c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lengua Indígena]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="488" y="320" width="90" height="20" uuid="1115f605-ebc9-4cc9-8453-d093266c35d3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lenguaIndigena}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="670" y="320" width="100" height="20" uuid="9294695c-5449-40cf-9386-cc2953fccc68"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{discapacidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="607" y="320" width="63" height="20" forecolor="#0976DB" uuid="57d1edbc-99f9-4255-a6ac-6b4627a25492">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Discapacidad]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="0" y="584" width="780" height="156" uuid="e9b64c4a-a737-475f-95df-35e459bb9b35"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dotted" lineColor="#0976DB"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement positionType="Float" x="0" y="0" width="780" height="21" uuid="70f98e48-ea14-4746-b6cc-ac62fb36f6fb"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Domicilio vivienda familiar]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="9" y="40" width="31" height="20" forecolor="#0976DB" uuid="b9e10efe-a848-4d55-a588-d30bc16100d9">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Calle]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="40" y="40" width="180" height="20" uuid="8e0af1ff-a2b4-4215-b9ed-929039bc2b60"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{calleVivFam}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="240" y="40" width="38" height="20" forecolor="#0976DB" uuid="4d94ee02-d3a9-4744-bf60-75eaf731400c">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[No. Ext.]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="278" y="40" width="69" height="20" uuid="b2d4fab0-642d-43dc-8b3f-fe04a12405b3"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{numEVivFam}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="413" y="40" width="69" height="20" uuid="2badcf70-fedd-44e8-aae7-c17fa2a89aab"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{numIVivFam}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="375" y="40" width="38" height="20" forecolor="#0976DB" uuid="a51d1af6-d9b6-49d8-8d3a-a510a312eca8">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[No. Int.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="505" y="40" width="125" height="20" forecolor="#0976DB" uuid="6cae793b-fef4-428b-991e-adddee84e673">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Colonia o Fraccionamiento]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="630" y="40" width="140" height="20" uuid="698615af-ffdc-4faa-8971-a4e27fd3e960"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{colVivFam}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="10" y="80" width="50" height="20" forecolor="#0976DB" uuid="9d6d6859-27a0-4255-9929-6cdb0ac9c8b1">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Localidad]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="60" y="80" width="140" height="20" uuid="ba4e663a-b1b1-4d56-9df1-aa9801432102"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{locVivFam}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="223" y="80" width="50" height="20" forecolor="#0976DB" uuid="909c4338-121c-4907-b18d-f497adfd96f1">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Municipio]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="273" y="80" width="140" height="20" uuid="3a342e46-7246-4871-81d8-927f8062c8c0"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{munVivFam}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="440" y="80" width="39" height="20" forecolor="#0976DB" uuid="fe1c2e65-974c-45a9-a83b-074ad41a2aab">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Estado]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="479" y="80" width="140" height="20" uuid="15c8d981-f137-47b1-8cc4-4db651293cd1"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{edoVivFam}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="641" y="80" width="29" height="20" forecolor="#0976DB" uuid="0cd2c0f3-dbaa-452f-928f-25b287a11574">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[C.P.]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="670" y="80" width="100" height="20" uuid="95835eea-e7c0-4946-b904-b80c8d372281"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{cpVivFam}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="15" y="121" width="65" height="20" forecolor="#0976DB" uuid="519429fe-ce07-4aa0-89fe-50ed4532f625">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Enlace maps]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="80" y="121" width="690" height="20" uuid="d4bc2ad5-4390-4566-af7b-61e9ce4a80f8"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{enlaceMaps}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement positionType="Float" x="10" y="356" width="50" height="20" forecolor="#0976DB" uuid="398eaca2-c2c3-4021-bfd0-1b88bc543fdb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado civil]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="356" width="100" height="20" uuid="e3bc54fc-d93b-4b26-bf1e-dbd0a4afc6cc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{estadoCivil}.equals("1")? "Soltero":"Casado")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="200" y="356" width="95" height="20" forecolor="#0976DB" uuid="d73e5ed7-b3ff-48c6-9c92-e519ba11a7fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lugar de nacimiento]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="295" y="356" width="205" height="20" uuid="1802df5e-60f8-4822-9815-b106cb62679f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lugarNacimiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="530" y="356" width="100" height="20" forecolor="#0976DB" uuid="2abff680-60e7-4380-ac0a-7185de787d24">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de nacimiento]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="630" y="356" width="140" height="20" uuid="d050d3e5-3412-4096-8da8-1473c7263de8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fechaNacimientoFormat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="311" y="406" width="150" height="20" forecolor="#0976DB" uuid="95534f4e-e34b-4fe0-86a2-57ee9231f102">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Breve historia del beneficiario]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="3" y="436" width="747" height="90" uuid="d2dce751-38e4-4134-9f25-61993717ade2"/>
+				<textElement textAlignment="Left" verticalAlignment="Justified">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{breveHistoria}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="118" y="540" width="99" height="20" forecolor="#0976DB" uuid="ab8be807-31e8-46de-ac51-23b93023a853">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Integrantes familiares]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="217" y="540" width="140" height="20" uuid="34b49704-2898-4324-af78-d519d361300e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{integrantesFamiliares}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="431" y="540" width="139" height="20" forecolor="#0976DB" uuid="d76ec6f8-4139-43e8-a48f-1180a9633f43">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ingresos familiares reportados]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="570" y="540" width="140" height="20" uuid="d8f7b143-0b76-4de6-b2ce-c317453ce7ef"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["$ "+$P{ingresosFamiliaresFormat}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="0" y="780" width="780" height="141" uuid="46f3d36d-9e4e-495b-bd4a-affa7609a2b7"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dotted" lineColor="#0976DB"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement positionType="Float" x="0" y="0" width="780" height="21" uuid="d4feb73c-d981-4e35-8c80-89e80cb94281"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Domicilio (lugar donde estudia)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="9" y="40" width="31" height="20" forecolor="#0976DB" uuid="ad3cbf08-d7d4-44b9-b297-7f8de8ea48a4">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Calle]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="40" y="40" width="180" height="20" uuid="1dee15a6-32be-48c8-9dea-af1c7191c11e"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{calleEst}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="240" y="40" width="38" height="20" forecolor="#0976DB" uuid="562cb4a4-8a19-4742-b43c-5df0edaf5e35">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[No. Ext.]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="278" y="40" width="69" height="20" uuid="39151b1a-953a-4d8e-a504-e9a0115c0db8"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{numEEst}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="413" y="40" width="69" height="20" uuid="2b55fdb7-8b6f-4a09-99f4-77bc5392f50b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{numIEst}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="375" y="40" width="38" height="20" forecolor="#0976DB" uuid="a58718e1-2ae6-4ef3-9e99-4d58c1996bfb">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[No. Int.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="505" y="40" width="125" height="20" forecolor="#0976DB" uuid="b491b211-6a34-4389-8f8b-57e69629f73b">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Colonia o Fraccionamiento]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="630" y="40" width="140" height="20" uuid="33b0209f-8827-4dc7-8305-b00e815128c5"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{colEst}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="10" y="80" width="50" height="20" forecolor="#0976DB" uuid="97f404ce-ab2e-43e7-b8c4-c2bb14d5ff60">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Localidad]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="60" y="80" width="140" height="20" uuid="9b54f359-68d9-4206-bd52-4ff13b1b373b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{locEst}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="223" y="80" width="50" height="20" forecolor="#0976DB" uuid="104b90dc-a287-4def-9e6d-faaeaac293a0">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Municipio]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="273" y="80" width="140" height="20" uuid="bf31769e-0ad7-49b9-b8b2-d153508e5769"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{munEst}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="440" y="80" width="39" height="20" forecolor="#0976DB" uuid="cac4d9dd-6e67-4f74-937c-2669b2071cd2">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Estado]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="479" y="80" width="140" height="20" uuid="843a7760-5b58-4b9b-96ae-f9c4c52b4170"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{edoEst}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="641" y="80" width="29" height="20" forecolor="#0976DB" uuid="bf896806-ee8b-4346-84fb-201a39932999">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[C.P.]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="670" y="80" width="100" height="20" uuid="3838e632-66ed-4da5-a2f8-37bb023e052d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{cpEst}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="10" y="151" width="40" height="20" forecolor="#0976DB" uuid="2f31592e-9750-4530-9f1f-8a4b6a617eb9">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Celular]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="50" y="151" width="80" height="20" uuid="74beef91-120e-4219-8e10-3fcd5cda5dfa"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{celular}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="170" y="152" width="90" height="20" forecolor="#0976DB" uuid="b712afb2-f214-43b2-97c2-d653d53ab512">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Teléfono domicilio]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="260" y="152" width="80" height="20" uuid="233f393a-624e-44ef-aee1-f7c4bfe25fc3"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{telDomicilio}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="10" y="191" width="110" height="20" forecolor="#0976DB" uuid="be7d5b7a-8ae6-4b27-9c38-56a9a33c8f24">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Teléfono de referencia]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="261" y="192" width="40" height="20" forecolor="#0976DB" uuid="2a5bc402-5a32-4dff-a146-09d93790e5ac">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Número]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="301" y="192" width="80" height="20" uuid="2627db21-8a99-4377-9e2b-36392a05f89e"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{numTelRef}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="400" y="192" width="51" height="20" forecolor="#0976DB" uuid="05592f99-f0af-4b3e-b3cc-e3aa51b0460d">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Parentesco]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="451" y="192" width="80" height="20" uuid="378f0144-b228-4750-a359-aa97428310b2"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{parentescoRef}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="550" y="192" width="69" height="20" forecolor="#0976DB" uuid="605311fd-8652-4895-9662-e3bc04ea265f">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Observaciones]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="619" y="192" width="150" height="20" uuid="3a695f1a-e4ea-44d5-8cd8-2ddcfc44a1fc"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{observacionesRef}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="11" y="230" width="90" height="20" forecolor="#0976DB" uuid="fbcee8a3-5771-4a10-a2f0-dec177d37615">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Correo electrónico]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="101" y="230" width="115" height="20" uuid="cadd8eff-0d46-4407-a299-ae2b5bd2b5a5"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{email}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="230" y="231" width="59" height="20" forecolor="#0976DB" uuid="08c68157-0da2-4a05-818a-41f684e65a7b">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Facebook 1]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="289" y="231" width="101" height="20" uuid="04b96542-f3d8-48d6-aa35-369bde198e3c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{facebook}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="489" y="231" width="101" height="20" uuid="61d38c2a-e24e-4e18-9778-e0bccf15e171"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{facebook2}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="430" y="231" width="58" height="20" forecolor="#0976DB" uuid="a91830ff-3124-4ff8-879a-08e518014c32">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Facebook 2]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="669" y="230" width="101" height="20" uuid="e28e42d9-50be-4c72-922b-080c78afc0e4"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{facebook3}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="609" y="230" width="60" height="20" forecolor="#0976DB" uuid="347b4115-a985-4819-823c-a4ebfd1ffd93">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Facebook 3]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="13" y="291" width="47" height="20" forecolor="#0976DB" uuid="4c703bb5-cabb-4f31-b948-3bf6ecfe6dda">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Banco]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="60" y="291" width="130" height="20" uuid="09c3c1d2-24c0-4cbd-9484-a65a3e3c416e"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{banco}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="220" y="291" width="87" height="20" forecolor="#0976DB" uuid="9a6476e4-f794-4dc1-aa6b-0b6660dc3c78">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+						<printWhenExpression><![CDATA[new Boolean($P{formaPago}==1)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Número de cuenta]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="307" y="291" width="133" height="20" uuid="846b5347-2012-4de6-80d8-697e34547650">
+						<printWhenExpression><![CDATA[new Boolean($P{formaPago}==1)]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{cuentaDeposito}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="513" y="291" width="97" height="20" forecolor="#0976DB" uuid="6b196275-a768-450f-a63d-70b332d5e216">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+						<printWhenExpression><![CDATA[new Boolean($P{formaPago}==1)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Número de tarjeta]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="610" y="291" width="160" height="20" uuid="3eebffc6-e790-4152-a64c-7a456cf88e71">
+						<printWhenExpression><![CDATA[new Boolean($P{formaPago}==1)]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{tarjetaDeposito}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="227" y="291" width="87" height="20" forecolor="#0976DB" uuid="749f423a-810f-480a-b8f0-529148ea0a54">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+						<printWhenExpression><![CDATA[new Boolean($P{formaPago}==0)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Clave de pago]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="314" y="291" width="133" height="20" uuid="edc2a6f3-7f33-4a88-a820-31559a9a8df2">
+						<printWhenExpression><![CDATA[new Boolean($P{formaPago}==0)]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{claveReferenciado}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="520" y="291" width="97" height="20" forecolor="#0976DB" uuid="8a9cf3fa-c8b7-4db9-b502-3b484a42bbb1">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+						<printWhenExpression><![CDATA[new Boolean($P{formaPago}==0)]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Vigencia]]></text>
+				</staticText>
+				<textField>
+					<reportElement positionType="Float" x="617" y="291" width="160" height="20" uuid="8b58c6be-c691-4d07-bb1b-35ff047ca262">
+						<printWhenExpression><![CDATA[new Boolean($P{formaPago}==0)]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{vigenciaReferenciado}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" x="120" y="191" width="123" height="20" uuid="416c7fda-9e49-4e1b-a7e6-f294127857b7"/>
+					<textElement textAlignment="Justified" verticalAlignment="Middle">
+						<font fontName="Calibri" size="10"/>
+						<paragraph leftIndent="5"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($P{tipoTelRef}.equals("1")? "Celular":($P{tipoTelRef}.equals("2")? "Casa":"Oficina"))]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement x="12" y="1039" width="77" height="20" forecolor="#0976DB" uuid="600597cf-2fb3-4514-9071-3e2cdbc8fbaf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Forma de pago]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="1039" width="100" height="20" uuid="4394b10b-afa3-4437-87ce-d335b9b30ae0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{formaPago}.equals("1")? "Depósito o transferencia":"Pago referenciado")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="12" y="1120" width="118" height="20" forecolor="#0976DB" uuid="1af3093d-7559-4a9f-8147-03575f7d8381">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monto de beca o apoyo]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="130" y="1120" width="140" height="20" uuid="8ed5dd2f-59b0-4a09-9d0b-925d4acd363b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA["$ "+$P{montoBecaFormat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="329" y="1120" width="93" height="20" forecolor="#0976DB" uuid="c53b7fcc-d0a4-4ea3-b6a4-19d2d4a5cef9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+					<printWhenExpression><![CDATA[new Boolean($P{idTipoBeca}==3)]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Finalidad del apoyo]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="422" y="1120" width="268" height="20" uuid="10107f9c-d831-4fa8-94fb-b6866595785a">
+					<printWhenExpression><![CDATA[new Boolean($P{idTipoBeca}==3)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{finalidadApoyo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="13" y="1160" width="76" height="20" forecolor="#0976DB" uuid="13f93013-4d54-44ce-8e9b-755bac500935">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="89" y="1160" width="225" height="20" uuid="59fb0609-053b-4fce-bb30-ee56730f0774"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{observaciones}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="460" y="1160" width="75" height="20" forecolor="#0976DB" uuid="f971405e-c0bf-42f9-9ed1-59ecff4d8105">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Benefactor(a) asignado(a)]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="536" y="1160" width="233" height="20" uuid="53c9e667-39e1-41fb-b864-f885bc6c8f4b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="10"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idBenefactor}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="922" width="780" height="1" forecolor="#0976DB" uuid="88e93550-9ba2-4d9e-b018-03ebddf8888e"/>
+			</line>
+			<line>
+				<reportElement x="0" y="770" width="780" height="1" forecolor="#0976DB" uuid="6abc1d99-eda9-49ba-8ab7-97abf0ad7525"/>
+			</line>
+			<line>
+				<reportElement x="0" y="580" width="780" height="1" forecolor="#0976DB" uuid="83293181-20e7-4edc-8807-30eb7d98a153"/>
+			</line>
+			<line>
+				<reportElement x="0" y="160" width="780" height="1" forecolor="#0976DB" uuid="8a32eeba-c706-4ac7-8358-2b22b603e310"/>
+			</line>
+		</band>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="740" y="0" width="40" height="17" forecolor="#0976DB" uuid="c986858c-6a79-47d4-8135-85099f757d44"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="690" y="0" width="50" height="17" uuid="f329961e-2725-4ac4-a310-06104cd72b14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

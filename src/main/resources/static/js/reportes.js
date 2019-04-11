@@ -5,6 +5,13 @@ function buscarBeneficiarioNombre(){
 	$("#buscarBeneficiarioModal").show();
 }
 
+function buscarBenDonNombre(){
+	$("#iconosReporteBenNom").hide();
+	$("#idBeneNom").val('');
+	$("#idBeneNomHidden").val('');
+	$("#buscarBenDonModal").show();
+}
+
 
 function autocompletarBeneficiarioNom() {
 
@@ -95,12 +102,17 @@ $("#idBecaGeneral").change(function(){
 		}
 	});
 	
+	$("#generales").show();
+	
 	if($("#idBecaGeneral").val() == 4){
-		$("#generales").hide();
-		$("#deportivas").show();
+		$(".apoyo").hide();
+		$(".deportivas").show();
+	}else if($("#idBecaGeneral").val() == 3){
+		$(".apoyo").show();
+		$(".deportivas").hide();
 	}else{
-		$("#generales").show();
-		$("#deportivas").hide();
+		$(".apoyo").hide();
+		$(".deportivas").hide();
 	}
 });
 

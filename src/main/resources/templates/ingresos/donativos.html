@@ -25,8 +25,9 @@
 				<!-- Select del tipo de beca para mostrar datos a llenar -->
 				<div id="tMovimientoDonante">
 				<label style="font-weight: bold; font-size: 20px;">Tipo de movimiento &nbsp;</label><br/> 
-				<input	type="radio" name="altaCambioDon" onclick="checkInicioDonante('altaDon');"	id="altaDon" value="1" checked> Alta&nbsp;&nbsp;&nbsp; 
-				<input	type="radio" name="altaCambioDon" onclick="checkInicioDonante('cambioDon');" id="cambioDon" value="0"> Cambio <br /> <br />
+				
+				<label class="customradio">Alta<input	type="radio" name="altaCambioDon" onclick="checkInicioDonante('altaDon');"	id="altaDon" value="1" checked><span class="radiomark"></span></label> 
+				<label class="customradio">Cambio<input	type="radio" name="altaCambioDon" onclick="checkInicioDonante('cambioDon');" id="cambioDon" value="0"><span class="radiomark"></span></label> <br /> <br />
 				</div>
 				
 				
@@ -344,8 +345,9 @@
 							
 
 					<label>¿Mismo que Domicilio particular?</label><br/>
-					<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFS');"	id="mismoDFS" value="0" checked> No&nbsp;&nbsp;&nbsp; 
-					<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFN');" id="mismoDFN" value="1"> Si <br /> <br />
+					
+					<label class="customradio">No<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFS');"	id="mismoDFS" value="0" checked><span class="radiomark"></span></label> 
+					<label class="customradio">Si<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFN');" id="mismoDFN" value="1"><span class="radiomark"></span></label> <br /> <br />
 					<br /> 
 					<div class="row ">
 						<div class="col-xs-4">
@@ -886,8 +888,9 @@
 
 			
 					<label>¿Mismo que domicilio particular?</label><br/>
-					<input	type="radio" name="mismoDFP" onclick="checkMismoDFP('mismoDFSP');"	id="mismoDFSP" value="0" checked> No&nbsp;&nbsp;&nbsp; 
-					<input	type="radio" name="mismoDFP" onclick="checkMismoDFP('mismoDFNP');" id="mismoDFNP" value="1"> Si <br /> <br />
+					
+					<label class="customradio">No<input	type="radio" name="mismoDFP" onclick="checkMismoDFP('mismoDFSP');"	id="mismoDFSP" value="0" checked><span class="radiomark"></span></label> 
+					<label class="customradio">Si<input	type="radio" name="mismoDFP" onclick="checkMismoDFP('mismoDFNP');" id="mismoDFNP" value="1"><span class="radiomark"></span></label> <br /> <br />
 					<br /> 
 					<div class="row ">
 						<div class="col-xs-4">

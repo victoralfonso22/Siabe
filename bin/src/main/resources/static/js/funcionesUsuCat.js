@@ -14,7 +14,8 @@ $( document ).ready(function() {
     	var formData = {
     		nombre : $("#nombreCompleto").val(),
     		usuario :  $("#username").val(),
-    		password :  $("#password").val()
+    		password :  $("#password").val(),
+    		correo :  $("#correo").val()
     		
     	}
     	
@@ -40,7 +41,7 @@ $( document ).ready(function() {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -56,6 +57,7 @@ $( document ).ready(function() {
     	$("#username").val("");
     	$("#nombreCompleto").val("");
     	$("#password").val("");
+    	$("#correo").val("");
     }
     
 
@@ -82,7 +84,7 @@ function desactivarUsuario(id, estatus){
 			    $("#postResultDiv").html("<p class='divRespuesta'>! Usuario activado ! <br></p>");
 			    
 			}else{				
-				window.location = "/sesionExpirada";
+				window.location = "/login?session=false";
 			}
 			$("#postResultDiv").delay(6000).hide(600);
 			console.log(result);
@@ -93,7 +95,7 @@ function desactivarUsuario(id, estatus){
 			if (jqXHR.status != 200) {
 			window.location = "/error";
 			}else{
-				window.location = "/sesionExpirada";
+				window.location = "/login?session=false";
 			}
 
 			console.log("ERROR: ", e);				
@@ -115,10 +117,6 @@ function cambiarPassword(id,usuario,nombre){
 
 }
 
-
-function cerrarModal(id){
-    $("#"+id).hide();
-}
 
 	// SUBMIT FORM
 $("#passForm").submit(function(event) {
@@ -151,8 +149,8 @@ function ajaxPostPassword(pass,id_user_pass){
 			url :"ajaxPassword",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -169,7 +167,7 @@ function ajaxPostPassword(pass,id_user_pass){
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -194,8 +192,8 @@ $("#usuarioSeleccionado").change(function(event) {
 			url :"ajaxPermisos",
 			data : parametrosPermisos,
 			success : function(result) {			    
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }else if(result == 'Nada'){
 			    	$("#tablaPermisos").html("");
 			    }else{
@@ -215,7 +213,7 @@ $("#usuarioSeleccionado").change(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 				//alert(e);
 				console.log("ERROR: ", e);				
@@ -246,7 +244,7 @@ function cambiaPermiso(idMenu,idUsuario, estatus){
 			$("#postResultDiv").html("<p class='divRespuesta'>! Permiso cambiado ! <br></p>");			
 			
 		}else{				
-			window.location = "/sesionExpirada";
+			window.location = "/login?session=false";
 		}
 		$("#postResultDiv").delay(6000).hide(600);
 		console.log(result);
@@ -258,7 +256,7 @@ function cambiaPermiso(idMenu,idUsuario, estatus){
 		if (jqXHR.status != 200) {
 		window.location = "/error";
 		}else{
-			window.location = "/sesionExpirada";
+			window.location = "/login?session=false";
 		}
 
 		console.log("ERROR: ", e);				
@@ -328,8 +326,8 @@ function ajaxPostPeriodo(nombre,fecha_inicio,fecha_final,tBeca){
 			url :"ajaxPeriodo",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -348,7 +346,7 @@ function ajaxPostPeriodo(nombre,fecha_inicio,fecha_final,tBeca){
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -398,8 +396,8 @@ $("#periodoFormM").submit(function(event) {
 			url :"ajaxPeriodoModificar",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -418,7 +416,7 @@ $("#periodoFormM").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -454,8 +452,8 @@ $("#tipoBecaForm").submit(function(event) {
 			url :"ajaxtBeca",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -475,7 +473,7 @@ $("#tipoBecaForm").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -516,8 +514,8 @@ $("#tipoBecaFormM").submit(function(event) {
 			url :"ajaxtBecaModificar",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -537,7 +535,7 @@ $("#tipoBecaFormM").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -564,8 +562,8 @@ $("#idPeriodoSelect").change(function(event) {
 			data : parametrosPermisos,
 			success : function(result) {	
 			  //  alert(result);
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }else if(result == 'Nada'){
 			    	$("#regionesPeriodo").html("");
 			    }else{
@@ -578,7 +576,7 @@ $("#idPeriodoSelect").change(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}			
 				console.log("ERROR: ", e);				
 			}
@@ -600,8 +598,8 @@ function  asignaDependencia(idRegion){
 			data : parametrosPermisos,
 			success : function(result) {	
 			  //  alert(result);
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }else if(result == 'Nada'){
 			    	$("#tablaDependencia").html("");
 			    }else{
@@ -614,7 +612,7 @@ function  asignaDependencia(idRegion){
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}			
 				console.log("ERROR: ", e);				
 			}
@@ -643,8 +641,8 @@ function cambiaRelacionRegion(idRegionHijo){
 			data : parametrosPermisos,
 			success : function(result) {	
 			  //  alert(result);
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    $("#postResultDiv").show();
 				if(result == "Done"){
@@ -663,7 +661,7 @@ function cambiaRelacionRegion(idRegionHijo){
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}			
 				console.log("ERROR: ", e);				
 			}
@@ -689,8 +687,8 @@ $("#regionForm").submit(function(event) {
 			url :"ajaxRegion",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -710,7 +708,7 @@ $("#regionForm").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -767,8 +765,8 @@ $("#regionFormM").submit(function(event) {
 			url :"ajaxRegionModificar",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -788,7 +786,7 @@ $("#regionFormM").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -814,8 +812,8 @@ $("#idPeriodoCampana").change(function(event) {
 			data : parametrosPermisos,
 			success : function(result) {	
 			  //  alert(result);
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }else if(result == 'Nada'){
 			    	$("#regionesPeriodo").html("");
 			    }else{
@@ -828,7 +826,7 @@ $("#idPeriodoCampana").change(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}			
 				console.log("ERROR: ", e);				
 			}
@@ -845,8 +843,8 @@ function verCampanas(idRegion){
 			data : parametrosPermisos,
 			success : function(result) {	
 			  //  alert(result);
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }else if(result == 'Nada'){
 			    	$("#tablaCampanas").html("");
 			    }else{
@@ -859,7 +857,7 @@ function verCampanas(idRegion){
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}			
 				console.log("ERROR: ", e);				
 			}
@@ -892,8 +890,8 @@ function modificarCampanaModal(nombre, idRegion, estatus, idCampana){
 			url :"ajaxCampanaRegionM",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }else if(result == 'Nada'){
 			    	$("#idRegionM").html("");
 			    }else{
@@ -908,7 +906,7 @@ function modificarCampanaModal(nombre, idRegion, estatus, idCampana){
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -938,8 +936,8 @@ $("#campanaForm").submit(function(event) {
 			url :"ajaxCampana",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -959,7 +957,7 @@ $("#campanaForm").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -995,8 +993,8 @@ $("#campanaFormM").submit(function(event) {
 			url :"ajaxCampanaModificar",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -1016,7 +1014,7 @@ $("#campanaFormM").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -1051,8 +1049,8 @@ $("#tipoDonativoForm").submit(function(event) {
 			url :"ajaxtDonativo",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -1071,7 +1069,7 @@ $("#tipoDonativoForm").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -1112,8 +1110,8 @@ $("#tipoDonativoFormM").submit(function(event) {
 			url :"ajaxtDonativoModificar",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -1132,7 +1130,7 @@ $("#tipoDonativoFormM").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -1175,8 +1173,8 @@ $("#tipoMedioCobroForm").submit(function(event) {
 			url :"ajaxmCobro",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -1195,7 +1193,7 @@ $("#tipoMedioCobroForm").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -1262,8 +1260,8 @@ $("#tipoMedioCobroFormM").submit(function(event) {
 			url :"ajaxmCobroModificar",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -1282,7 +1280,7 @@ $("#tipoMedioCobroFormM").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -1306,15 +1304,20 @@ $("#peridoTSeleccionado").change(function(event) {
 	    		type : "POST",
 			url :"ajaxTiempoPeriodoSelect",
 			data : parametrosPermisos,
-			success : function(result) {	
+			success : function(result) {
+				$("#logosReportes").show();
+				$("#logosAgregar").show();
 			  //  alert(result);
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }else if(result == 'Nada'){
 			    	$("#regionesTiempoPeriodo").html("");
 			    }else{
+			    $("#buscarTiempoPromedio").show();
 				$("#regionesTiempoPeriodo").html(result);
-				$("#tablaTiempoPeriodo").html("");
+				tablaTiempoPromerdioP(idPeriodo);
+				$("#buscarTiempoPromedio").val('');
+				
 			    }
 				
 				console.log(result);
@@ -1323,7 +1326,7 @@ $("#peridoTSeleccionado").change(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}			
 				console.log("ERROR: ", e);				
 			}
@@ -1333,19 +1336,53 @@ $("#peridoTSeleccionado").change(function(event) {
 });
 
 
-function verTiempoPromerdio(idRegion) {
+function tablaTiempoPromerdioP(idPeriodo){
+	
+var parametrosPermisos = { "idPeriodo": idPeriodo};    
 
+$.ajax({
+    		type : "POST",
+		url :"ajaxTiempoPeriodoTablaP",
+		data : parametrosPermisos,
+		success : function(result) {	
+		  //  alert(result);
+		    if(result.includes("Sesión inactiva")){
+			window.location = "/login?session=false";
+		    }else if(result == 'Nada'){
+		    	$("#tablaTiempoPeriodo").html("");
+		    }else{
+			$("#tablaTiempoPeriodo").html(result);
+		    }
+			
+			console.log(result);
+		},
+		error : function(jqXHR,e) {			
+			if (jqXHR.status != 200) {
+			window.location = "/error";
+			}else{
+				window.location = "/login?session=false";
+			}			
+			console.log("ERROR: ", e);				
+		}
+	});
+	
+}
+
+
+function verTiempoPromerdio() {
+	//alert(idRegion);
 	// DO POST	
-	var parametrosPermisos = {"idRegion": idRegion};    
-	    
+
+	var parametrosPermisos = {"idRegion": $("#idRegionTiempo").val(), "idPeriodo": $("#peridoTSeleccionado").val(), "buscarInput" : $("#buscarTiempoPromedio").val()};  
+	
 	$.ajax({
 	    		type : "POST",
 			url :"ajaxTiempoRegionSelect",
 			data : parametrosPermisos,
 			success : function(result) {	
 			  //  alert(result);
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }else if(result == 'Nada'){
 			    	$("#tablaTiempoPeriodo").html("");
 			    }else{
@@ -1358,63 +1395,50 @@ function verTiempoPromerdio(idRegion) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}			
 				console.log("ERROR: ", e);				
 			}
 		});
-};
+}
 
-function nuevoTiempoPeriodoModal(idRegion) {
+function nuevoTiempoPeriodoModal() {
+	idRegion = $("#idRegionTiempo").val();
     $("#carrera").val('');   
     $("#nivel").val('');
     $("#modalidad").val('');
     $("#plan").val('');
     $("#pPromedio").val('');
+
     $("#idRegionN").val(idRegion);
-    $("#idArea").val('');
-    $("#idFac").val('');
+
+    //regionesPeriodoSlt($("#peridoTSeleccionado").val(),'idRegionAlta',idRegion,'regionAl','idArea','areaAl','idFac','facAl',0);
+        
+   $("#idRegionAlta").val('');
+   $("#idArea").val('');
+   $("#idFac").val('');
     
     $("#nuevoTiempoPeriodoModal").show();
+
 }
 
+function nuevoAreaModal() {
 
-$("#idArea").change(function(event) {
+	$("#nuevaAr").prop("checked", true);
+	$("#nuevaAr").trigger('click');
+	$("#areaNuevaTxt").val("");
     
-    idArea = $("#idArea").val();
+    $("#nuevoAreaModal").show();
 
-	// DO POST	
-	var parametrosPermisos = {"idArea": idArea};    
-	    
-	$.ajax({
-	    		type : "POST",
-			url :"ajaxTiempoPeriodoArea",
-			data : parametrosPermisos,
-			success : function(result) {	
-			  //  alert(result);
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
-			    }else if(result == 'Nada'){
-			    	$("#idFac").html("");
-			    }else{
-				$("#idFac").html(result);
-			    }
-				
-				console.log(result);
-				//$("#idRegion").val(idRegion).trigger('change');
-			},
-			error : function(jqXHR,e) {			
-				if (jqXHR.status != 200) {
-				window.location = "/error";
-				}else{
-					window.location = "/sesionExpirada";
-				}			
-				console.log("ERROR: ", e);				
-			}
-		});
-	
+}
 
-});
+function nuevoFacultadModal(){
+	$("#nuevaFacd").prop("checked", true);
+	$("#nuevaFacd").trigger('click');
+	$("#facultadNuevaTxt").val("");
+    
+    $("#nuevoFacultadModal").show();
+}
 
 
 function asignarFacModificar(idArea, idFacultad){
@@ -1429,8 +1453,8 @@ function asignarFacModificar(idArea, idFacultad){
 			data : parametrosPermisos,
 			success : function(result) {	
 			  //  alert(result);
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }else if(result == 'Nada'){
 			    	$("#idFacM").html("");
 			    }else{
@@ -1444,16 +1468,13 @@ function asignarFacModificar(idArea, idFacultad){
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}			
 				console.log("ERROR: ", e);				
 			}
 		});
-	
 
 }
-
-
 
 $("#timepoPeriodoForm").submit(function(event) {
     // Prevent the form from submitting via the browser.
@@ -1464,14 +1485,22 @@ $("#timepoPeriodoForm").submit(function(event) {
     modalidad = $("#modalidad").val();
     plan = $("#plan").val();
     pPromedio = $("#pPromedio").val();
-    idRegion = $("#idRegionN").val();
+    idArea = $("#idArea").val();
+    idRegionAntes = $("#idRegionN").val();
+    idRegionAlta = $("#idRegionAlta").val();
+    if(idRegionAntes != idRegionAlta){
+    	idRegion = idRegionAlta;
+    }else{
+    	idRegion = idRegionAntes;
+    }
     idFac = $("#idFac").val();
+    idPeriodo = $("#peridoTSeleccionado").val();
     
 
     cerrarModal('nuevoTiempoPeriodoModal');
     $("#postResultDiv").html("<div class='loader'></div>");
     
-    var parametrosUpdate = {"carrera" : carrera,"nivel" : nivel, "modalidad" : modalidad, "plan" : plan, "pPromedio": pPromedio, "idRegion" : idRegion, "idFac" : idFac};
+    var parametrosUpdate = {"carrera" : carrera,"nivel" : nivel, "modalidad" : modalidad, "plan" : plan, "pPromedio": pPromedio, "idRegion" : idRegion, "idFac" : idFac, "idArea" : idArea, "idPeriodo" : idPeriodo};
     
 	// DO POST
 	$.ajax({
@@ -1479,8 +1508,8 @@ $("#timepoPeriodoForm").submit(function(event) {
 			url :"ajaxtPromedio",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
@@ -1500,7 +1529,7 @@ $("#timepoPeriodoForm").submit(function(event) {
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -1511,7 +1540,7 @@ $("#timepoPeriodoForm").submit(function(event) {
 });
 
 
-function modificarTiempoPromedio(carrera,nivel,modalidad, plan, pPromedio, idFacultad, idArea,idRegion, idCarrera){
+function modificarTiempoPromedio(carrera,nivel,modalidad, plan, pPromedio, idFacultad, idArea,idRegion, idCarrera, estatus){
     $("#carreraA").val(carrera);
     $("#carreraM").val(carrera);
     
@@ -1530,7 +1559,7 @@ function modificarTiempoPromedio(carrera,nivel,modalidad, plan, pPromedio, idFac
     $("#idRegionA").val(idRegion);
     $("#idRegionM").val(idRegion);
     
-    asignarFacModificar(idArea, idFacultad);
+    //asignarFacModificar(idArea, idFacultad);
     
     $("#idAreaA").val(idArea);
     $("#idAreaM").val(idArea);
@@ -1538,17 +1567,25 @@ function modificarTiempoPromedio(carrera,nivel,modalidad, plan, pPromedio, idFac
     $("#idFacA").val(idFacultad);
     $("#idFacM").val(idFacultad);
     
+    $("#estatusA").val(estatus);
+    $("#estatusM").val(estatus);
+        
     $("#idCarreraA").val(idCarrera);
+
+    
+    //regionesPeriodoSlt($("#peridoTSeleccionado").val(),"idRegionM",idRegion,"regionMl","idAreaM","areaMl","idFacM","facMl",idArea);
+    
+  //  areasRegionesSlt("idAreaM",idRegion,"areaMl",idArea,"idFacM","facMl");
+    
+  //  facultadesAreasSlt("idFacM",idArea,"facMl",idFacultad,idRegion);
     
     $("#modificartPromedio").show();
 }
 
 
 $("#tPromedioFormM").submit(function(event) {
-    // Prevent the form from submitting via the browser.
+
     event.preventDefault();
-    
-    
     
     carrera = $("#carreraM").val();
     carreraAnterior = $("#carreraA").val();
@@ -1574,44 +1611,49 @@ $("#tPromedioFormM").submit(function(event) {
     idFacultad = $("#idFacM").val();
     idFacultadAnterior = $("#idFacA").val();
     
+    estatus = $("#estatusM").val();
+    estatusAnterior = $("#estatusA").val();
+    
     id = $("#idCarreraA").val();
     
-    
-    if(nombre === nombreAnterior  && numCuenta === numCuentaAnterior &&  sucursal === sucursalAnterior && clabe === clabeAnterior){
-	cerrarModal('modificarmCobroModal');
+	cerrarModal('modificartPromedio');    
+    if(carrera === carreraAnterior && nivel === nivelAnterior &&  modalidad === modalidadAnterior && plan === planAnterior && 
+    		pPromedio === pPromedioAnterior && idRegion === idRegionActual && idArea === idAreaAnterior && idFacultad === idFacultadAnterior && estatus === estatusAnterior){
+
     }else{
-    cerrarModal('modificarmCobroModal');
+
     $("#postResultDiv").html("<div class='loader'></div>");
     
-    var parametrosUpdate = {"nombre" : nombre ,"numCuenta" : numCuenta, "sucursal" : sucursal, "clabe" : clabe, "idCuentaBancaria" : id};
+    var parametrosUpdate = {"idFacultad" : idFacultad, "idRegion" : idRegion, "carrera" : carrera ,"nivel" : nivel, "modalidad" : modalidad, "plan" : plan, "pPromedio" : pPromedio ,"estatus" : estatus,"idArea" : idArea, "idCarrera" : id};
     
 	// DO POST
 	$.ajax({
 	    		type : "POST",
-			url :"ajaxmCobroModificar",
+			url :"ajaxtPromedioModificar",
 			data : parametrosUpdate,
 			success : function(result) {
-			    if(result.includes("expirado")){
-				window.location = "/sesionExpirada";
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
 			    }
 			    
 				$("#postResultDiv").show();
 				if(result == "Done"){
-					$("#postResultDiv").html("<p class='divRespuesta'>! Cuenta bancaria modificada !<br></p>");
+					$("#postResultDiv").html("<p class='divRespuesta'>! Periodo promedio modificado !<br></p>");
 				}else{
 					$("#postResultDiv").html("<strong>Error</strong>");
 				}
 				$("#postResultDiv").delay(6000).hide(600);
 				
 				console.log(result);
-				$("#cuentasBancarias").load("refreshTablamCobro");
+				verTiempoPromerdio();
+				//$("#cuentasBancarias").load("refreshTablamCobro");
 			},
 			error : function(jqXHR,e) {
 			    	alert(e);
 				if (jqXHR.status != 200) {
 				window.location = "/error";
 				}else{
-					window.location = "/sesionExpirada";
+					window.location = "/login?session=false";
 				}
 
 				console.log("ERROR: ", e);				
@@ -1622,19 +1664,352 @@ $("#tPromedioFormM").submit(function(event) {
 });
 
 
+$("#nuevaAreaForm").submit(function(event) {
+    // Prevent the form from submitting via the browser.
+    event.preventDefault();
 
-/****************************************************************************VALIDACION SOLO NUMEROS*********************************************************************/
-
-function valida(e){
-    tecla = (document.all) ? e.keyCode : e.which;
-
-    //Tecla de retroceso para borrar, siempre la permite
-    if (tecla==8){
-        return true;
+    if($("#nuevaAr").is(':checked')){
+    //	alert('Nueva');
+    	idAreaModifica = 0;
+    	tipo = 'N';
+    	nuevoNombreArea = $("#areaNuevaTxt").val();
+    }else if($("#modificacionAr").is(':checked')){
+    	idAreaModifica = $("#idAreaNM").val();    	
+    	nuevoNombreArea = $("#areaNuevaTxt").val();
+    	tipo = 'M';
+    //	alert('Modificacion');    	
     }
-        
-    // Patron de entrada, en este caso solo acepta numeros
-    patron =/[0-9]/;
-    tecla_final = String.fromCharCode(tecla);
-    return patron.test(tecla_final);
+    
+    cerrarModal('nuevoAreaModal');
+    $("#postResultDiv").html("<div class='loader'></div>");
+    
+    var parametrosUpdate = {"tipo" : tipo, "nombreArea" : nuevoNombreArea, "idAreaModifica" : idAreaModifica};
+    
+	// DO POST
+	$.ajax({
+	    		type : "POST",
+			url :"ajaxAreaTPro",
+			data : parametrosUpdate,
+			success : function(result) {
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
+			    }
+			    
+				$("#postResultDiv").show();
+				if(result == "Done"){
+					$("#postResultDiv").html("<p class='divRespuesta'>! Área guardada / modificada !<br></p>");
+				}else{
+					$("#postResultDiv").html("<strong>Error</strong>");
+				}
+				$("#postResultDiv").delay(6000).hide(600);
+				idPeriodo = $("#peridoTSeleccionado").val();
+				console.log(result);
+				//$("#idRegionTiempo").val($("#idRegionTiempo").val()).trigger('change');
+				$("#idArea").load("refreshAreaNuevaTiemposPromedio");
+				$("#idAreaM").load("refreshAreaModificarTiempoPromedio");
+				$("#idAreaNM").load("refreshAreaNMTiempoPromedio");
+				verTiempoPromerdio();
+				
+			},
+			error : function(jqXHR,e) {
+			    	alert(e);
+				if (jqXHR.status != 200) {
+				window.location = "/error";
+				}else{
+					window.location = "/login?session=false";
+				}
+
+				console.log("ERROR: ", e);				
+			}
+		});
+    
+
+});
+
+$("#nuevaFacultadForm").submit(function(event) {
+    // Prevent the form from submitting via the browser.
+    event.preventDefault();
+
+    if($("#nuevaFacd").is(':checked')){
+    //	alert('Nueva');
+    	idFacModifica = 0;
+    	tipo = 'N';
+    	
+    }else if($("#modificarFacd").is(':checked')){
+    	idFacModifica = $("#idFacNM").val();
+    	tipo = 'M';
+    //	alert('Modificacion');    	
+    }
+    nuevoNombreFac = $("#facultadNuevaTxt").val();
+    cerrarModal('nuevoFacultadModal');
+    $("#postResultDiv").html("<div class='loader'></div>");
+    
+    var parametrosUpdate = {"tipo" : tipo, "nombreFac" : nuevoNombreFac, "idFacModifica" : idFacModifica};
+    
+	// DO POST
+	$.ajax({
+	    		type : "POST",
+			url :"ajaxFacTPro",
+			data : parametrosUpdate,
+			success : function(result) {
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
+			    }
+			    
+				$("#postResultDiv").show();
+				if(result == "Done"){
+					$("#postResultDiv").html("<p class='divRespuesta'>! Facultad guardada / modificada !<br></p>");
+				}else{
+					$("#postResultDiv").html("<strong>Error</strong>");
+				}
+				$("#postResultDiv").delay(6000).hide(600);
+				idPeriodo = $("#peridoTSeleccionado").val();
+				console.log(result);
+				//$("#idRegionTiempo").val($("#idRegionTiempo").val()).trigger('change');
+				$("#idFac").load("refreshFacNuevaTiemposPromedio");
+				$("#idFacM").load("refreshFacModificarTiempoPromedio");
+				$("#idFacNM").load("refreshFacNMTiempoPromedio");
+				verTiempoPromerdio();
+				
+			},
+			error : function(jqXHR,e) {
+			    	alert(e);
+				if (jqXHR.status != 200) {
+				window.location = "/error";
+				}else{
+					window.location = "/login?session=false";
+				}
+
+				console.log("ERROR: ", e);				
+			}
+		});
+    
+
+});
+
+
+/*
+$("#areaRegionForm").submit(function(event) {
+    // Prevent the form from submitting via the browser.
+    event.preventDefault();
+    
+
+    idRegion = $("#idRegionN").val();
+    idRegionAlta = $("#idRegionAlta").val();
+    if(idRegionAntes != idRegionAlta){
+    	idRegion = idRegionAlta;
+    }else{
+    	idRegion = idRegionAntes;
+    }
+    idFac = $("#idFac").val();
+    idPeriodo = $("#peridoTSeleccionado").val();
+    
+
+    cerrarModal('nuevoTiempoPeriodoModal');
+    $("#postResultDiv").html("<div class='loader'></div>");
+    
+    var parametrosUpdate = {"carrera" : carrera,"nivel" : nivel, "modalidad" : modalidad, "plan" : plan, "pPromedio": pPromedio, "idRegion" : idRegion, "idFac" : idFac, "idPeriodo" : idPeriodo};
+    
+	// DO POST
+	$.ajax({
+	    		type : "POST",
+			url :"ajaxtPromedio",
+			data : parametrosUpdate,
+			success : function(result) {
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
+			    }
+			    
+				$("#postResultDiv").show();
+				if(result == "Done"){
+					$("#postResultDiv").html("<p class='divRespuesta'>! Tiempo periodo guardado !<br></p>");
+				}else{
+					$("#postResultDiv").html("<strong>Error</strong>");
+				}
+				$("#postResultDiv").delay(6000).hide(600);
+				
+				console.log(result);
+				$("#idRegionTiempo").val(idRegion).trigger('change');
+				//$("#cuentasBancarias").load("refreshTablamCobro");
+			},
+			error : function(jqXHR,e) {
+			    	alert(e);
+				if (jqXHR.status != 200) {
+				window.location = "/error";
+				}else{
+					window.location = "/login?session=false";
+				}
+
+				console.log("ERROR: ", e);				
+			}
+		});
+    
+
+});
+
+*/
+
+
+function checkIds(id){
+	if($("#"+id).val() == 'N'){
+		$("#idAreaNM").hide();
+		$("#areaNuevaTxt").attr("placeholder","Nueva área");
+		$("#idAreaNM").val('');
+		$("#idAreaNM").prop('required',false);
+	}else if($("#"+id).val() == 'M'){
+		$("#idAreaNM").show();
+		$("#areaNuevaTxt").attr("placeholder","Nuevo nombre del área");
+		$("#idAreaNM").prop('required',true);
+	}
 }
+
+function checkIdsFac(id){
+	if($("#"+id).val() == 'N'){
+		$("#idFacNM").hide();
+		$("#facultadNuevaTxt").attr("placeholder","Nueva facultad");
+		$("#idFacNM").val('');
+		$("#idFacNM").prop('required',false);
+	}else if($("#"+id).val() == 'M'){
+		$("#idFacNM").show();
+		$("#facultadNuevaTxt").attr("placeholder","Nuevo nombre de la facultad");
+		$("#idFacNM").prop('required',true);
+	}
+}
+
+
+/****************************************************************************QUINCENAS*********************************************************************************************************/
+
+function nuevaQuincenaModal(){
+	$("#numQuincena").val('');
+	$("#nombre").val('');
+	$("#anio").val('');
+	
+	$("#nuevaQuincenaModal").show();
+}
+
+$("#quincenaForm").submit(function(event) {
+    // Prevent the form from submitting via the browser.
+    event.preventDefault();
+
+    numQuincena = $("#numQuincena").val();
+    nombre = $("#nombre").val();
+    anio = $("#anio").val();
+    
+    cerrarModal('nuevaQuincenaModal');
+    $("#postResultDiv").html("<div class='loader'></div>");
+    
+    var parametrosUpdate = {"numQuincena" : numQuincena, "nombre" : nombre, "anio" : anio};
+    
+	// DO POST
+	$.ajax({
+	    		type : "POST",
+			url :"ajaxQuincenas",
+			data : parametrosUpdate,
+			success : function(result) {
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
+			    }
+			    
+				$("#postResultDiv").show();
+				if(result == "Done"){
+					$("#postResultDiv").html("<p class='divRespuesta'>! Quincena guardada !<br></p>");
+				}else{
+					$("#postResultDiv").html("<strong>Error</strong>");
+				}
+				$("#postResultDiv").delay(6000).hide(600);
+			
+				console.log(result);
+				$("#quincenasF").load("actualizaTablaQuincenas");
+			
+				
+			},
+			error : function(jqXHR,e) {
+			    	alert(e);
+				if (jqXHR.status != 200) {
+				window.location = "/error";
+				}else{
+					window.location = "/login?session=false";
+				}
+
+				console.log("ERROR: ", e);				
+			}
+		});
+    
+
+});
+
+
+function modificarQuincenaModal(idQuincena,numQuincena,nombre,anio){
+	
+	$("#numQuincenaM").val(numQuincena);
+	$("#nombreM").val(nombre);
+	$("#anioM").val(anio);
+	
+	$("#numQuincenaA").val(numQuincena);
+	$("#nombreA").val(nombre);
+	$("#anioA").val(anio);
+	
+	$("#idQuincenaA").val(idQuincena);
+	
+	$("#modificarQuincenaModal").show();
+	
+}
+
+
+$("#quincenaFormM").submit(function(event) {
+    // Prevent the form from submitting via the browser.
+    event.preventDefault();
+    
+    numQuincena = $("#numQuincenaM").val();
+    numQuincenaAnterior = $("#numQuincenaA").val();
+    
+    nombre = $("#nombreM").val();
+    nombreAnterior = $("#nombreA").val();
+    
+    anio = $("#anioM").val();
+    anioAnterior = $("#anioA").val();
+    
+    
+    id = $("#idQuincenaA").val(); 
+    
+    cerrarModal('modificarQuincenaModal');
+    if(numQuincena !== numQuincenaAnterior || nombre !== nombreAnterior || anio !== anioAnterior){
+    $("#postResultDiv").html("<div class='loader'></div>");
+    
+    var parametrosUpdate = {"numQuincena" : numQuincena,"nombre" : nombre , "anio" : anio,  "idQuincena" : id};
+    
+	// DO POST
+	$.ajax({
+	    		type : "POST",
+			url :"ajaxQuincenasModificar",
+			data : parametrosUpdate,
+			success : function(result) {
+			    if(result.includes("Sesión inactiva")){
+				window.location = "/login?session=false";
+			    }
+			    
+				$("#postResultDiv").show();
+				if(result == "Done"){
+					$("#postResultDiv").html("<p class='divRespuesta'>! Quincena modificada !<br></p>");
+				}else{
+					$("#postResultDiv").html("<strong>Error</strong>");
+				}
+				$("#postResultDiv").delay(6000).hide(600);
+				
+				console.log(result);
+				$("#quincenasF").load("actualizaTablaQuincenas");
+			},
+			error : function(jqXHR,e) {
+			    	alert(e);
+				if (jqXHR.status != 200) {
+				window.location = "/error";
+				}else{
+					window.location = "/login?session=false";
+				}
+
+				console.log("ERROR: ", e);				
+			}
+		});
+    
+    }
+});

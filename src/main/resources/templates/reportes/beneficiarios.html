@@ -17,7 +17,7 @@
 	<div class="container bordeContainer">
 		<form class="form-inline" onSubmit="return false;" id="beneficiarioForm">
 			<div>
-				<h1 class="h1Class">Beneficiarios</h1>
+				<h1 class="h1Class">Reportes beneficiarios</h1>
 			</div>
 
 			<div class="valoresCentrados">
@@ -251,14 +251,14 @@
 								<br/> 
 							
 							<div id="generales" style="display:none;">
-							<label>Seleccion de datos</label>
-							<br>
-							<label><input type="checkbox" id="checkTodos" name="checkPrincipal" />Marcar/Desmarcar Todos</label>
-							<br>
-							<br>
-							<table class="tablaModal">
+							<!--  <label>Seleccion de datos</label>
+							<br>-->
+							<label class="customcheck" style="font-weight:bold; clear: both;">Marcar/Desmarcar Todos<input type="checkbox" id="checkTodos" name="checkPrincipal" /><span class="checkmark"></span></label>
+							
+							
+							<table class="tablaModalReporte" style="text-align:left !important;">
 							<tr>
-							<td colspan=8>
+							<td colspan=8 style="text-align:center !important; border: 0px;">
 								<br />
 								<div class="divisionFormFormulario">
 								<h3>Datos académicos</h3>
@@ -267,55 +267,65 @@
 							</td>
 							</tr>
 							<tr>
-							<td><input type="checkbox" name="general" class="chk" value="matricula as Matricula">Matricula</td>
-							<td><input type="checkbox" name="general" class="chk" value="nombre as Nombre">Nombre(s)</td>
-							<td><input type="checkbox" name="general" class="chk" value="apellidoPaterno as Apellido paterno">Apellido paterno</td>
-							<td><input type="checkbox" name="general"  class="chk" value="apellidoMaterno as Apellido materno">Apellido materno</td>
-							<td><input type="checkbox" name="general"  class="chk" value="estatusBene as Estatus">Estatus</td>
-							<td><input type="checkbox" name="general"  class="chk" value="motivoEstatus as Motivo inactivación">Motivo inactivación</td>
-							<td><input type="checkbox" name="general"  class="chk" value="tipoBene as Tipo becario">Tipo becario</td>
-							<td><input type="checkbox" name="general"  class="chk" value="adscripcionBene as Adscripción">Adscripción</td>
-							</tr>
 							
-							<tr>
-							<td><input type="checkbox" name="general"  class="chk" value="region as Región">Región</td>
-							<td><input type="checkbox" name="general"  class="chk" value="area as Área">Área</td>
-							<td><input type="checkbox" name="general"  class="chk" value="facultad as Facultad">Facultad</td>
-							<td><input type="checkbox" name="general"  class="chk" value="nivel as Nivel">Nivel</td>
-							<td><input type="checkbox" name="general"  class="chk" value="modalidad as Modalidad">Modalidad</td>
-							<td><input type="checkbox" name="general"  class="chk" value="carrera as Programa educativo">Programa educativo</td>
-							<td><input type="checkbox" name="general"  class="chk" value="escuelaDeportivaBene as Escuela deportiva">Escuela deportiva</td>
-							<td><input type="checkbox" name="general"  class="chk" value="fechaIngEscDep as Fecha de ingreso a la escuela deportiva">Fecha de ingreso a la escuela deportiva</td>
-							</tr>
 							
-							<tr>
-							<td><input type="checkbox" name="general"  class="chk" value="nivelEducativoBene as Nivel educativo que cursa">Nivel educativo que cursa</td>
-							<td><input type="checkbox" name="general"  class="chk" value="turnoBene as Turno">Turno</td>
-							<td><input type="checkbox" name="general"  class="chk" value="tipoInstitucionBene as Tipo_ institucion">Tipo institución</td>							
-							<td><input type="checkbox" name="general"  class="chk" value="grado as Grado">Grado</td>
-							<td><input type="checkbox" name="general"  class="chk" value="nombreEdu as Nombre de la institución educativa">Nombre de la institución educativa</td>
-							<td><input type="checkbox" name="general"  class="chk" value="calleEdu as Calle institución educativa">Calle institución educativa</td>
-							<td><input type="checkbox" name="general"  class="chk" value="numExtEdu as No. Ext. institución educativa">No. Ext. institución educativa</td>
-							<td><input type="checkbox" name="general"  class="chk" value="numIntEdu as No._Int._institución_educativa">No. Int. institución educativa</td>
+          					
+							<td ><label class="customcheck">Matrícula<input type="checkbox" name="general" class="chk" value="matricula as Matricula"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Nombre(s)<input type="checkbox" name="general" class="chk" value="nombre as Nombre"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Apellido paterno<input type="checkbox" name="general" class="chk" value="apellidoPaterno as Apellido paterno"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Apellido materno<input type="checkbox" name="general"  class="chk" value="apellidoMaterno as Apellido materno"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Estatus<input type="checkbox" name="general"  class="chk" value="estatusBene as Estatus"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Motivo inactivación<input type="checkbox" name="general"  class="chk" value="motivoEstatus as Motivo inactivación"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Tipo becario<input type="checkbox" name="general"  class="chk" value="tipoBene as Tipo becario"><span class="checkmark"></span></label></td>
 							</tr>
 							
 							<tr>
 							
-							<td><input type="checkbox" name="general"  class="chk" value="colEdu as Colonia_o_fraccionamiento_institución_educativa">Colonia o fraccionamiento institución educativa</td>
-							<td><input type="checkbox" name="general"  class="chk" value="locEdu as Localidad_institución_educativa">Localidad institución educativa</td>
-							<td><input type="checkbox" name="general"  class="chk" value="munEdu as Municipio_institución_educativa">Municipio institución educativa</td>
-							<td><input type="checkbox" name="general"  class="chk" value="edoEdu as Estado_institución_educativa">Estado institución educativa</td>
-							<td><input type="checkbox" name="general"  class="chk" value="cpEdu as C.P_institución_educativa">C.P institución educativa</td>
-							<td><input type="checkbox" name="general"  class="chk" value="telEdu as Teléfono_institución_educativa">Teléfono institución educativa</td>
-							<td><input type="checkbox" name="general"  class="chk" value="periodoActual as Periodo_actual">Periodo actual</td>
-							<td><input type="checkbox" name="general"  class="chk" value="periodoPromedio as Periodo_promedio">Periodo promedio</td>
+							<td><label class="customcheck">Adscripción<input type="checkbox" name="general"  class="chk" value="adscripcionBene as Adscripción"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Región<input type="checkbox" name="general"  class="chk" value="region as Región"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Área<input type="checkbox" name="general"  class="chk" value="area as Área"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Facultad<input type="checkbox" name="general"  class="chk" value="facultad as Facultad"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Nivel<input type="checkbox" name="general"  class="chk" value="nivel as Nivel"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Modalidad<input type="checkbox" name="general"  class="chk" value="modalidad as Modalidad"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Programa educativo<input type="checkbox" name="general"  class="chk" value="carrera as Programa educativo"><span class="checkmark"></span></label></td>
 							</tr>
 							
 							<tr>
-							<td><input type="checkbox" name="general"  class="chk" value="periodoRebasa as Periodo_que_rebasa">Periodos que rebasa</td>
-							<td><input type="checkbox" name="general"  class="chk" value="promedioGeneral as Promedio general">Promedio general</td>
+							
+							<td ><label class="customcheck">Escuela deportiva<input type="checkbox" name="general"  class="chk" value="escuelaDeportivaBene as Escuela deportiva"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Fecha de ingreso a la escuela deportiva<input type="checkbox" name="general"  class="chk" value="fechaIngEscDep as Fecha de ingreso a la escuela deportiva"><span class="checkmark"></span></label></td>
+							
+							<td ><label class="customcheck">Nivel educativo que cursa<input type="checkbox" name="general"  class="chk" value="nivelEducativoBene as Nivel educativo que cursa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Turno<input type="checkbox" name="general"  class="chk" value="turnoBene as Turno"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Tipo institución<input type="checkbox" name="general"  class="chk" value="tipoInstitucionBene as Tipo_ institucion"><span class="checkmark"></span></label></td>							
+							<td ><label class="customcheck">Grado<input type="checkbox" name="general"  class="chk" value="grado as Grado"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Nombre de la institución educativa<input type="checkbox" name="general"  class="chk" value="nombreEdu as Nombre de la institución educativa"><span class="checkmark"></span></label></td>
+							</tr>
+							
+							<tr>
+							
+							<td ><label class="customcheck">Calle institución educativa<input type="checkbox" name="general"  class="chk" value="calleEdu as Calle institución educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">No. Ext. institución educativa<input type="checkbox" name="general"  class="chk" value="numExtEdu as No. Ext. institución educativa">&nbsp;&nbsp;<span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">No. Int. institución educativa<input type="checkbox" name="general"  class="chk" value="numIntEdu as No._Int._institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Colonia o fraccionamiento institución educativa<input type="checkbox" name="general"  class="chk" value="colEdu as Colonia_o_fraccionamiento_institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Localidad institución educativa<input type="checkbox" name="general"  class="chk" value="locEdu as Localidad_institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Municipio institución educativa<input type="checkbox" name="general"  class="chk" value="munEdu as Municipio_institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Estado institución educativa<input type="checkbox" name="general"  class="chk" value="edoEdu as Estado_institución_educativa"><span class="checkmark"></span></label></td>
 							
 							</tr>
+							
+							<tr>
+							
+							<td ><label class="customcheck">C.P institución educativa<input type="checkbox" name="general"  class="chk" value="cpEdu as C.P_institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Teléfono institución educativa<input type="checkbox" name="general"  class="chk" value="telEdu as Teléfono_institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Periodo actual<input type="checkbox" name="general"  class="chk" value="periodoActual as Periodo_actual"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Periodo promedio<input type="checkbox" name="general"  class="chk" value="periodoPromedio as Periodo_promedio"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Periodos que rebasa<input type="checkbox" name="general"  class="chk" value="periodoRebasa as Periodo_que_rebasa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Promedio general<input type="checkbox" name="general"  class="chk" value="promedioGeneral as Promedio general"><span class="checkmark"></span></label></td>
+							
+							</tr>
+							
+							
 							
 							<tr>
 							<td colspan=8>
@@ -329,52 +339,52 @@
 							
 							
 							<tr>
-							<td><input type="checkbox" name="general"  class="chk" value="edad as Edad">Edad</td>
-							<td><input type="checkbox" name="general"  class="chk" value="generoBene as Género">Género</td>
-							<td><input type="checkbox" name="general"  class="chk" value="lenguaIndigena as Lengua indigena">Lengua_indigena</td>
-							<td><input type="checkbox" name="general"  class="chk" value="discapacidad as Discapacidad">Discapacidad</td>
-							<td><input type="checkbox" name="general"  class="chk" value="edoCivilBene as Estado civil">Estado civil</td>
-							<td><input type="checkbox" name="general"  class="chk" value="lugarNacimiento as Lugar nacimiento">Lugar nacimiento</td>
-							<td><input type="checkbox" name="general"  class="chk" value="fechaNacimiento as Fecha nacimiento">Fecha nacimiento</td>
-							<td><input type="checkbox" name="general"  class="chk" value="breveHistoria as Breve historia">Breve historia</td>
+							<td ><label class="customcheck">Edad<input type="checkbox" name="general"  class="chk" value="edad as Edad"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Género<input type="checkbox" name="general"  class="chk" value="generoBene as Género"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Lengua_indigena<input type="checkbox" name="general"  class="chk" value="lenguaIndigena as Lengua indigena"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Discapacidad<input type="checkbox" name="general"  class="chk" value="discapacidad as Discapacidad"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Estado civil<input type="checkbox" name="general"  class="chk" value="edoCivilBene as Estado civil"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Lugar nacimiento<input type="checkbox" name="general"  class="chk" value="lugarNacimiento as Lugar nacimiento"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Fecha nacimiento<input type="checkbox" name="general"  class="chk" value="fechaNacimiento as Fecha nacimiento"><span class="checkmark"></span></label></td>
+							
 							</tr>
 							
 							<tr>
+							<td ><label class="customcheck">Breve historia<input type="checkbox" name="general"  class="chk" value="breveHistoria as Breve historia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Integrantes familiares<input type="checkbox" name="general"  class="chk" value="integrantesFamiliares as Integrantes familiares"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Ingresos familiares<input type="checkbox" name="general"  class="chk" value="ingresosFamiliares as Ingresos familiares"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Calle vivienda familiar<input type="checkbox" name="general"  class="chk" value="calleVivFam as Calle vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">No. Ext. vivienda familiar<input type="checkbox" name="general"  class="chk" value="numEVivFam as No. Ext. vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">No. Int. vivienda familiar<input type="checkbox" name="general"  class="chk" value="numIVivFam as No. Int. vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Colonia o fraccionamiento vivienda familiar<input type="checkbox" name="general"  class="chk" value="colVivFam as Colonia o fraccionamiento vivienda familiar"><span class="checkmark"></span></label></td>
 							
-							<td><input type="checkbox" name="general"  class="chk" value="integrantesFamiliares as Integrantes familiares">Integrantes familiares</td>
-							<td><input type="checkbox" name="general"  class="chk" value="ingresosFamiliares as Ingresos familiares">Ingresos familiares</td>
-							<td><input type="checkbox" name="general"  class="chk" value="calleVivFam as Calle vivienda familiar">Calle vivienda familiar</td>
-							<td><input type="checkbox" name="general"  class="chk" value="numEVivFam as No. Ext. vivienda familiar">No. Ext. vivienda familiar</td>
-							<td><input type="checkbox" name="general"  class="chk" value="numIVivFam as No. Int. vivienda familiar">No. Int. vivienda familiar</td>
-							<td><input type="checkbox" name="general"  class="chk" value="colVivFam as Colonia o fraccionamiento vivienda familiar">Colonia o fraccionamiento vivienda familiar</td>
-							<td><input type="checkbox" name="general"  class="chk" value="locVivFam as Localidad vivienda familiar">Localidad vivienda familiar</td>
-							<td><input type="checkbox" name="general"  class="chk" value="munVivFam as Municipio vivienda familiar">Municipio vivienda familiar</td>
+							</tr>
+							
+							<tr>
+							<td ><label class="customcheck">Localidad vivienda familiar<input type="checkbox" name="general"  class="chk" value="locVivFam as Localidad vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Municipio vivienda familiar<input type="checkbox" name="general"  class="chk" value="munVivFam as Municipio vivienda familiar"><span class="checkmark"></span></label></td>
+						
+							<td ><label class="customcheck">Estado vivienda familiar<input type="checkbox" name="general"  class="chk" value="edoVivFam as Estado vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">C.P institución vivienda familiar<input type="checkbox" name="general"  class="chk" value="cpVivFam as C.P vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Enlace maps<input type="checkbox" name="general"  class="chk" value="enlaceMaps as Enlace maps"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Calle donde estudia<input type="checkbox" name="general"  class="chk" value="calleEst as Calle donde estudia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">No. Ext. donde estudia<input type="checkbox" name="general"  class="chk" value="numEEst as No. Ext. donde estudia"><span class="checkmark"></span></label></td>
+							
+							
+							</tr>
+							
+							<tr>
+							<td ><label class="customcheck">No. Int. donde estudia<input type="checkbox" name="general"  class="chk" value="numIEst as No. Int. donde estudia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Colonia o fraccionamiento donde estudia<input type="checkbox" name="general"  class="chk" value="colEst as Colonia o fraccionamiento donde estudia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Localidad donde estudia<input type="checkbox" name="general"  class="chk" value="locEst as Localidad donde estudia"><span class="checkmark"></span></label></td>
+						
+							<td ><label class="customcheck">Municipio donde estudia<input type="checkbox" name="general"  class="chk" value="munEst as Municipio donde estudia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Estado donde estudia<input type="checkbox" name="general"  class="chk" value="edoEst as Estado donde estudia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">C.P donde estudia<input type="checkbox" name="general"  class="chk" value="cpEst as C.P donde estudia">		<span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Nombre tutor<input type="checkbox" name="general"  class="chk" value="nombreTutor as Nombre tutor"><span class="checkmark"></span></label></td>		
 						
 							</tr>
 							
-							<tr>
-							
-							<td><input type="checkbox" name="general"  class="chk" value="edoVivFam as Estado vivienda familiar">Estado vivienda familiar</td>
-							<td><input type="checkbox" name="general"  class="chk" value="cpVivFam as C.P vivienda familiar">C.P institución vivienda familiar</td>
-							<td><input type="checkbox" name="general"  class="chk" value="enlaceMaps as Enlace maps">Enlace maps</td>
-							<td><input type="checkbox" name="general"  class="chk" value="calleEst as Calle donde estudia">Calle donde estudia</td>
-							<td><input type="checkbox" name="general"  class="chk" value="numEEst as No. Ext. donde estudia">No. Ext. donde estudia</td>
-							<td><input type="checkbox" name="general"  class="chk" value="numIEst as No. Int. donde estudia">No. Int. donde estudia</td>
-							<td><input type="checkbox" name="general"  class="chk" value="colEst as Colonia o fraccionamiento donde estudia">Colonia o fraccionamiento donde estudia</td>
-							<td><input type="checkbox" name="general"  class="chk" value="locEst as Localidad donde estudia">Localidad donde estudia</td>
-							
-							
-							</tr>
-							
-							<tr>
-							
-							<td><input type="checkbox" name="general"  class="chk" value="munEst as Municipio donde estudia">Municipio donde estudia</td>
-							<td><input type="checkbox" name="general"  class="chk" value="edoEst as Estado donde estudia">Estado donde estudia</td>
-							<td><input type="checkbox" name="general"  class="chk" value="cpEst as C.P donde estudia">C.P donde estudia</td>		
-							<td><input type="checkbox" name="general"  class="chk" value="nombreTutor as Nombre tutor">Nombre tutor</td>		
-							<td><input type="checkbox" name="general"  class="chk" value="parentescoTutor as Parentesco tutor">Parentesco tutor</td>
-							</tr>
-							
 							
 							
 							<tr>
@@ -389,26 +399,26 @@
 							
 							
 							<tr>
-							
-							<td><input type="checkbox" name="general"  class="chk" value="celular as Celular">Celular</td>		
-							<td><input type="checkbox" name="general"  class="chk" value="telDomicilio as Teléfono domicilio">Teléfono domicilio</td>		
-							<td><input type="checkbox" name="general"  class="chk" value="tipoTelRefBene as Tipo teléfono de referencia">Tipo teléfono de referencia</td>
-							<td><input type="checkbox" name="general"  class="chk" value="numTelRef as Numero teléfono de referencia">Número teléfono de referencia</td>							
-							<td><input type="checkbox" name="general"  class="chk" value="parentescoRef as Parentesco_teléfono de referencia">Parentesco teléfono de referencia</td>
-							<td><input type="checkbox" name="general"  class="chk" value="observacionesRef as Estado donde estudia">Observaciones teléfono de referencia</td>
-							<td><input type="checkbox" name="general"  class="chk" value="email as Correo electrónico">Correo electrónico</td>
+							<td ><label class="customcheck">Parentesco tutor<input type="checkbox" name="general"  class="chk" value="parentescoTutor as Parentesco tutor"><span class="checkmark"></span></label></td>							
+							<td ><label class="customcheck">Celular<input type="checkbox" name="general"  class="chk" value="celular as Celular"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Teléfono domicilio<input type="checkbox" name="general"  class="chk" value="telDomicilio as Teléfono domicilio"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Tipo teléfono de referencia<input type="checkbox" name="general"  class="chk" value="tipoTelRefBene as Tipo teléfono de referencia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Número teléfono de referencia<input type="checkbox" name="general"  class="chk" value="numTelRef as Numero teléfono de referencia"><span class="checkmark"></span></label></td>							
+							<td ><label class="customcheck">Parentesco teléfono de referencia<input type="checkbox" name="general"  class="chk" value="parentescoRef as Parentesco_teléfono de referencia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Observaciones teléfono de referencia<input type="checkbox" name="general"  class="chk" value="observacionesRef as Estado donde estudia"><span class="checkmark"></span></label></td>
 							
 							</tr>
 							
 							<tr>
 							
+							<td ><label class="customcheck">Correo electrónico<input type="checkbox" name="general"  class="chk" value="email as Correo electrónico"><span class="checkmark"></span></label></td>
 									
-							<td><input type="checkbox" name="general"  class="chk" value="facebook as Facebook">Facebook</td>		
-							<td><input type="checkbox" name="general"  class="chk" value="facebook2 as Facebook 2">Facebook 2</td>
-							<td><input type="checkbox" name="general"  class="chk" value="facebook3 as Facebook 3">Facebook 3</td>		
-							<td><input type="checkbox" name="general"  class="chk" value="ocupacionTutor as Ocupacion tutor">Ocupacion tutor</td>		
-							<td><input type="checkbox" name="general"  class="chk" value="hermanosInscritosBene as Hermanos inscritos en escuelas deportivas">Hermanos inscritos en escuelas deportivas</td>
-							<td><input type="checkbox" name="general"  class="chk" value="escuelaHermanosInscritos as En qué escuela">En qué escuela</td>							
+							<td ><label class="customcheck">Facebook<input type="checkbox" name="general"  class="chk" value="facebook as Facebook"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Facebook 2<input type="checkbox" name="general"  class="chk" value="facebook2 as Facebook 2"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Facebook 3<input type="checkbox" name="general"  class="chk" value="facebook3 as Facebook 3"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Ocupacion tutor<input type="checkbox" name="general"  class="chk" value="ocupacionTutor as Ocupacion tutor"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Hermanos inscritos en escuelas deportivas<input type="checkbox" name="general"  class="chk" value="hermanosInscritosBene as Hermanos inscritos en escuelas deportivas"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">En qué escuela<input type="checkbox" name="general"  class="chk" value="escuelaHermanosInscritos as En qué escuela"><span class="checkmark"></span></label></td>							
 							
 							
 							</tr>
@@ -428,20 +438,25 @@
 							
 							<tr>
 							
-							<td><input type="checkbox" name="general"  class="chk" value="formaPagoBene as Forma_de_pago">Forma de pago</td>
-							<td><input type="checkbox" name="general"  class="chk" value="banco as Banco">Banco</td>
-							<td><input type="checkbox" name="general"  class="chk" value="cuentaDeposito as Número de cuenta">Número de cuenta</td>		
-							<td><input type="checkbox" name="general"  class="chk" value="tarjetaDeposito as Número de tarjeta">Número de tarjeta</td>		
-							<td><input type="checkbox" name="general"  class="chk" value="claveReferenciado as Clave de pago">Clave de pago</td>
-							<td><input type="checkbox" name="general"  class="chk" value="vigenciaReferenciado as Vigencia">Vigencia</td>		
-							<td><input type="checkbox" name="general"  class="chk" value="montoBeca as Monto de apoyo">Monto de apoyo</td>		
-							<td><input type="checkbox" name="general"  class="chk" value="finalidadApoyo as Finalidad del apoyo">Finalidad del apoyo</td>
-							<td><input type="checkbox" name="general"  class="chk" value="observaciones as Observaciones">Observaciones</td>							
+							<td ><label class="customcheck">Forma de pago<input type="checkbox" name="general"  class="chk" value="formaPagoBene as Forma_de_pago"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Banco<input type="checkbox" name="general"  class="chk" value="banco as Banco"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Número de cuenta<input type="checkbox" name="general"  class="chk" value="cuentaDeposito as Número de cuenta"><span class="checkmark"></span></label></td>	
+							<td ><label class="customcheck">Número de tarjeta<input type="checkbox" name="general"  class="chk" value="tarjetaDeposito as Número de tarjeta"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Clave de pago<input type="checkbox" name="general"  class="chk" value="claveReferenciado as Clave de pago"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Vigencia<input type="checkbox" name="general"  class="chk" value="vigenciaReferenciado as Vigencia"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Monto de apoyo<input type="checkbox" name="general"  class="chk" value="montoBeca as Monto de apoyo"><span class="checkmark"></span></label></td>		
+							
+														
 							
 							
 							</tr>
 							
-							<tr>
+							<tr >
+							<td class="apoyo"><label class="customcheck">Finalidad del apoyo<input type="checkbox" name="general"  class="chk apoyo" value="finalidadApoyo as Finalidad del apoyo"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Observaciones<input type="checkbox" name="general"  class="chk" value="observaciones as Observaciones"><span class="checkmark"></span></label></td>
+							</tr>
+							
+							<tr style="display:none;">
 							<td><input type="checkbox" name="general"  class="chk" value="idBenefactor as Benefactor">Benefactor</td>
 							</tr>
 							

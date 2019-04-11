@@ -355,7 +355,7 @@ public List<Beneficiarios> reporteGeneral(int idTipoBeca,int idPeriodo, int idRe
 		}
 		
 		String	sql = "select * FROM view_beneficiarios where id_tipo_beca = "+idTipoBeca+idPString+idRString;
-		//System.out.println(sql);
+		System.out.println(sql);
 		
 		try {
 			return this.getJdbcTemplate().query(sql, new BeneficiariosMapa());

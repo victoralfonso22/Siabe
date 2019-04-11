@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+		<form class="form-inline" onSubmit="return false;" id="beneficiarioForm">
+			<div>
+				<h1 class="h1Class">Reportes donativos</h1>
+			</div>
+
+			<div class="valoresCentrados">
+				
+				<div class="row">
+				
+				
+				<input type="hidden" class="hid"  value="tipoBeca as Tipo beca">
+<input type="hidden" class="hid"  value="periodo as Periodo">
+<input type="hidden" class="hid"  value="matricula as Matricula">
+							<input type="hidden" class="hid"  value="nombre as Nombre">
+							<input type="hidden" class="hid"  value="apellidoPaterno as Apellido paterno">
+							<input type="hidden" class="hid"  value="apellidoMaterno as Apellido materno">
+							<input type="hidden" class="hid"  value="estatusBene as Estatus">
+							<input type="hidden" class="hid"  value="motivoEstatus as Motivo inactivación">
+							<input type="hidden" class="hid"  value="tipoBene as Tipo becario">
+							<input type="hidden" class="hid"  value="adscripcionBene as Adscripción">
+							<input type="hidden" class="hid"  value="region as Región">
+							<input type="hidden" class="hid"  value="area as Área">
+							<input type="hidden" class="hid"  value="facultad as Facultad">
+							<input type="hidden" class="hid"  value="nivel as Nivel">
+							<input type="hidden" class="hid"  value="modalidad as Modalidad">
+							<input type="hidden" class="hid"  value="carrera as Programa educativo"> 
+							<input type="hidden" class="hid" value="escuelaDeportivaBene as Escuela deportiva"> 
+							<input type="hidden" class="hid" value="fechaIngEscDep as Fecha de ingreso a la escuela deportiva">
+							<input type="hidden" class="hid" value="nivelEducativoBene as Nivel educativo que cursa">
+							<input type="hidden" class="hid" value="turnoBene as Turno">
+							<input type="hidden" class="hid" value="tipoInstitucionBene as Tipo_ institucion">						
+							<input type="hidden" class="hid" value="grado as Grado">
+							<input type="hidden" class="hid" value="nombreEdu as Nombre de la institución educativa">
+							<input type="hidden" class="hid" value="calleEdu as Calle institución educativa">
+							<input type="hidden" class="hid" value="numExtEdu as No. Ext. institución educativa">
+							<input type="hidden" class="hid" value="numIntEdu as No._Int._institución_educativa">
+							<input type="hidden" class="hid" value="colEdu as Colonia_o_fraccionamiento_institución_educativa">
+							<input type="hidden" class="hid" value="locEdu as Localidad_institución_educativa">
+							<input type="hidden" class="hid" value="munEdu as Municipio_institución_educativa">
+							<input type="hidden" class="hid" value="edoEdu as Estado_institución_educativa">
+							<input type="hidden" class="hid" value="cpEdu as C.P_institución_educativa">
+							<input type="hidden" class="hid" value="telEdu as Teléfono_institución_educativa">
+							<input type="hidden" class="hid" value="periodoActual as Periodo_actual">
+							<input type="hidden" class="hid" value="periodoPromedio as Periodo_promedio">
+							<input type="hidden" class="hid" value="periodoRebasa as Periodo_que_rebasa">
+							<input type="hidden" class="hid" value="promedioGeneral as Promedio general">
+							<input type="hidden" class="hid" value="edad as Edad">
+							<input type="hidden" class="hid" value="generoBene as Género">
+							<input type="hidden" class="hid" value="lenguaIndigena as Lengua indigena">
+							<input type="hidden" class="hid" value="discapacidad as Discapacidad">
+							<input type="hidden" class="hid" value="edoCivilBene as Estado civil">
+							<input type="hidden" class="hid" value="lugarNacimiento as Lugar nacimiento">
+							<input type="hidden" class="hid" value="fechaNacimiento as Fecha nacimiento">					
+							<input type="hidden" class="hid" value="breveHistoria as Breve historia">
+							<input type="hidden" class="hid" value="integrantesFamiliares as Integrantes familiares">
+							<input type="hidden" class="hid" value="ingresosFamiliares as Ingresos familiares">
+							<input type="hidden" class="hid" value="calleVivFam as Calle vivienda familiar">
+							<input type="hidden" class="hid" value="numEVivFam as No. Ext. vivienda familiar">
+							<input type="hidden" class="hid" value="numIVivFam as No. Int. vivienda familiar">
+							<input type="hidden" class="hid" value="colVivFam as Colonia o fraccionamiento vivienda familiar">
+							<input type="hidden" class="hid" value="locVivFam as Localidad vivienda familiar">
+							<input type="hidden" class="hid" value="munVivFam as Municipio vivienda familiar">
+							<input type="hidden" class="hid" value="edoVivFam as Estado vivienda familiar">
+							<input type="hidden" class="hid" value="cpVivFam as C.P vivienda familiar">
+							<input type="hidden" class="hid" value="enlaceMaps as Enlace maps">
+							<input type="hidden" class="hid" value="calleEst as Calle donde estudia">
+							<input type="hidden" class="hid" value="numEEst as No. Ext. donde estudia">
+							<input type="hidden" class="hid" value="numIEst as No. Int. donde estudia">
+							<input type="hidden" class="hid" value="colEst as Colonia o fraccionamiento donde estudia">
+							<input type="hidden" class="hid" value="locEst as Localidad donde estudia">
+							<input type="hidden" class="hid" value="munEst as Municipio donde estudia">
+							<input type="hidden" class="hid" value="edoEst as Estado donde estudia">
+							<input type="hidden" class="hid" value="cpEst as C.P donde estudia">	
+							<input type="hidden" class="hid" value="nombreTutor as Nombre tutor">
+							<input type="hidden" class="hid" value="parentescoTutor as Parentesco tutor">
+							<input type="hidden" class="hid" value="celular as Celular">		
+							<input type="hidden" class="hid" value="telDomicilio as Teléfono domicilio">
+							<input type="hidden" class="hid" value="tipoTelRefBene as Tipo teléfono de referencia">
+							<input type="hidden" class="hid" value="numTelRef as Numero teléfono de referencia">
+							<input type="hidden" class="hid" value="parentescoRef as Parentesco_teléfono de referencia">
+							<input type="hidden" class="hid" value="observacionesRef as Estado donde estudia">
+							<input type="hidden" class="hid" value="email as Correo electrónico">
+							<input type="hidden" class="hid" value="facebook as Facebook">	
+							<input type="hidden" class="hid" value="facebook2 as Facebook 2">
+							<input type="hidden" class="hid" value="facebook3 as Facebook 3">		
+							<input type="hidden" class="hid" value="ocupacionTutor as Ocupacion tutor">
+							<input type="hidden" class="hid" value="hermanosInscritosBene as Hermanos inscritos en escuelas deportivas">
+							<input type="hidden" class="hid" value="escuelaHermanosInscritos as En qué escuela">					
+							<input type="hidden" class="hid" value="formaPagoBene as Forma_de_pago">
+							<input type="hidden" class="hid" value="banco as Banco">
+							<input type="hidden" class="hid" value="cuentaDeposito as Número de cuenta">		
+							<input type="hidden" class="hid" value="tarjetaDeposito as Número de tarjeta">	
+							<input type="hidden" class="hid" value="claveReferenciado as Clave de pago">
+							<input type="hidden" class="hid" value="vigenciaReferenciado as Vigencia">	
+							<input type="hidden" class="hid" value="montoBeca as Monto de apoyo">		
+							<input type="hidden" class="hid" value="finalidadApoyo as Finalidad del apoyo">
+							<input type="hidden" class="hid" value="observaciones as Observaciones">
+				
+				<!-- 
+				<div class="col-xs-3 divReportes">
+				 <label>Todos</label><br/><br/>	
+							
+				<div class="iconosRoot">
+				<a onclick="beneficiariosTodos(1,'resultReport','iconosRoot');" class="lbl "><img title='Descargar pdf' class="image" src='/imagenes/pdf.png' alt='Descargar PDF' /></a>&nbsp&nbsp&nbsp 
+				<a onclick="beneficiariosTodos(2,'resultReport','iconosRoot');" class="lbl "><img src='/imagenes/excel.png' class="image"  title='Descargar excel' alt='Descargar excel' /></a>&nbsp&nbsp&nbsp 
+				<a onclick="beneficiariosTodos(3,'resultReport','iconosRoot');" class="lbl "><img src='/imagenes/html.png'  class="image" title='Descargar html' alt='Descargar html' /></a>
+				</div>
+				<br/> 
+				<br/> 
+				<div class="progress" id="resultReport" style="display:none;">
+							    <div class="progress-bar progress-bar-striped active" id="resultReport2" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:15%">							     
+							    </div>
+				</div>-->
+				</div>
+				
+				
+				
+				<div class="col-xs-3 divReportes lbl" onclick="beneficiarioGeneral();">
+				
+				<label class="lbl">General</label>
+				</div>
+				
+				</div>
+
+			</div>
+
+		</form>
+
+
+<!-- Empieza el modal para la modificacion de los beneficiarios--->
+
+		<div id="buscarBeneficiarioModal" class="modal" role="dialog"
+			style="overflow-y: auto;">
+			<div class="modal-dialog" role="document">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> 
+						<h4 class="modal-title divRespuesta">Modificar beneficiario</h4>-->
+					</div>
+					<div class="modal-body">
+						<form id="beneForm">
+							<div class="valoresCentrados">
+							<div><label for="idBene">Nombre de beneficiario </label><br><br><input type="text"
+								id="idBeneNom" class="form-control selectTextFormulario div50"
+								onkeyup="autocompletarBeneficiarioNom();" style="margin: 0 auto !important;" required>
+								<input type="hidden" id="idBeneNomHidden">
+							</div> 
+							<br/> 
+							<br/>
+							
+							<div id="iconosReporteBenNom" class="iconosModal" style="display: none;">
+							<a onclick="beneficiarioNombre(1,'resultReport1','iconosModal');" class="lbl "><img title='Descargar pdf' class="image"  src='/imagenes/pdf.png' alt='Descargar PDF' /></a>&nbsp&nbsp&nbsp 
+							<a onclick="beneficiarioNombre(2,'resultReport1','iconosModal');" class="lbl "><img src='/imagenes/excel.png' class="image"   title='Descargar excel' alt='Descargar excel' /></a>&nbsp&nbsp&nbsp 
+							<a onclick="beneficiarioNombre(3,'resultReport1','iconosModal');" class="lbl "><img src='/imagenes/html.png'  class="image"  title='Descargar html' alt='Descargar html' /></a>
+							</div>
+							 <br/>
+							<div class="progress" id="resultReport1" style="display:none;">
+							    <div class="progress-bar progress-bar-striped active" id="resultReport12" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:15%">							     
+							    </div>
+							 </div>
+							
+							<br />
+							<div id="respuestaPass"></div>
+							<br />
+							
+							<button type="button" class="btn btn-danger" data-dismiss="modal"
+								onclick="cerrarModal('buscarBeneficiarioModal');">Cancelar</button>
+								</div>
+							</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div id="beneficiarioGeneralModal" class="modal" role="dialog"
+			style="overflow-y: auto;">
+			<div class="modal-dialog modal-lg" role="document">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<!-- <button type="button" class="close" data-dismiss="modal">&times;</button> 
+						<h4 class="modal-title divRespuesta">Modificar beneficiario</h4>-->
+					</div>
+					<div class="modal-body">
+						<form id="beneForm">
+							<div class="valoresCentrados">
+							<div class="row">
+								<div class="col-xs-4 ">
+								
+									<label>Tipo de beca &nbsp;</label><br /> <select
+										id="idBecaGeneral" required
+										class="form-control selectText">
+										<option disabled selected value="">Selecciona beca...</option>
+										<option th:each="tBeca : ${tbecas}"
+											th:value="${tBeca.idTipoBeca}" th:text="${tBeca.nombre}"></option>
+									</select>
+								
+								</div>
+								
+								<div class="col-xs-4 ">
+								
+									<label>Periodo &nbsp;</label><br /> <select
+										id="idPeriodoGeneral" required
+										class="form-control selectText">
+										<option disabled selected value="">Selecciona periodo...</option>
+										<option th:each="periodo : ${periodos}"
+											th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+									</select>
+								
+								</div>
+								
+								<div class="col-xs-4 ">
+								
+									<label>Región &nbsp;</label><br /> <select
+										id="idRegionGeneral" required
+										class="form-control selectText">
+										<option disabled selected value="">Selecciona región...</option>
+										<option th:each="region : ${regiones}"
+											th:value="${region.idRegion}" th:text="${region.nombre}"></option>
+									</select>
+								
+								</div>
+								
+								</div>
+								<br/>
+								<br/> 
+							
+							<div id="generales" style="display:none;">
+							<!--  <label>Seleccion de datos</label>
+							<br>-->
+							<label class="customcheck" style="font-weight:bold; clear: both;">Marcar/Desmarcar Todos<input type="checkbox" id="checkTodos" name="checkPrincipal" /><span class="checkmark"></span></label>
+							
+							
+							<table class="tablaModalReporte" style="text-align:left !important;">
+							<tr>
+							<td colspan=8 style="text-align:center !important; border: 0px;">
+								<br />
+								<div class="divisionFormFormulario">
+								<h3>Datos académicos</h3>
+								</div>
+								<br />
+							</td>
+							</tr>
+							<tr>
+							
+							
+          					
+							<td ><label class="customcheck">Matrícula<input type="checkbox" name="general" class="chk" value="matricula as Matricula"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Nombre(s)<input type="checkbox" name="general" class="chk" value="nombre as Nombre"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Apellido paterno<input type="checkbox" name="general" class="chk" value="apellidoPaterno as Apellido paterno"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Apellido materno<input type="checkbox" name="general"  class="chk" value="apellidoMaterno as Apellido materno"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Estatus<input type="checkbox" name="general"  class="chk" value="estatusBene as Estatus"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Motivo inactivación<input type="checkbox" name="general"  class="chk" value="motivoEstatus as Motivo inactivación"><span class="checkmark"></span></label></td>
+							<td><label class="customcheck">Tipo becario<input type="checkbox" name="general"  class="chk" value="tipoBene as Tipo becario"><span class="checkmark"></span></label></td>
+							</tr>
+							
+							<tr>
+							
+							<td><label class="customcheck">Adscripción<input type="checkbox" name="general"  class="chk" value="adscripcionBene as Adscripción"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Región<input type="checkbox" name="general"  class="chk" value="region as Región"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Área<input type="checkbox" name="general"  class="chk" value="area as Área"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Facultad<input type="checkbox" name="general"  class="chk" value="facultad as Facultad"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Nivel<input type="checkbox" name="general"  class="chk" value="nivel as Nivel"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Modalidad<input type="checkbox" name="general"  class="chk" value="modalidad as Modalidad"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Programa educativo<input type="checkbox" name="general"  class="chk" value="carrera as Programa educativo"><span class="checkmark"></span></label></td>
+							</tr>
+							
+							<tr>
+							
+							<td ><label class="customcheck">Escuela deportiva<input type="checkbox" name="general"  class="chk" value="escuelaDeportivaBene as Escuela deportiva"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Fecha de ingreso a la escuela deportiva<input type="checkbox" name="general"  class="chk" value="fechaIngEscDep as Fecha de ingreso a la escuela deportiva"><span class="checkmark"></span></label></td>
+							
+							<td ><label class="customcheck">Nivel educativo que cursa<input type="checkbox" name="general"  class="chk" value="nivelEducativoBene as Nivel educativo que cursa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Turno<input type="checkbox" name="general"  class="chk" value="turnoBene as Turno"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Tipo institución<input type="checkbox" name="general"  class="chk" value="tipoInstitucionBene as Tipo_ institucion"><span class="checkmark"></span></label></td>							
+							<td ><label class="customcheck">Grado<input type="checkbox" name="general"  class="chk" value="grado as Grado"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Nombre de la institución educativa<input type="checkbox" name="general"  class="chk" value="nombreEdu as Nombre de la institución educativa"><span class="checkmark"></span></label></td>
+							</tr>
+							
+							<tr>
+							
+							<td ><label class="customcheck">Calle institución educativa<input type="checkbox" name="general"  class="chk" value="calleEdu as Calle institución educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">No. Ext. institución educativa<input type="checkbox" name="general"  class="chk" value="numExtEdu as No. Ext. institución educativa">&nbsp;&nbsp;<span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">No. Int. institución educativa<input type="checkbox" name="general"  class="chk" value="numIntEdu as No._Int._institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Colonia o fraccionamiento institución educativa<input type="checkbox" name="general"  class="chk" value="colEdu as Colonia_o_fraccionamiento_institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Localidad institución educativa<input type="checkbox" name="general"  class="chk" value="locEdu as Localidad_institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Municipio institución educativa<input type="checkbox" name="general"  class="chk" value="munEdu as Municipio_institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Estado institución educativa<input type="checkbox" name="general"  class="chk" value="edoEdu as Estado_institución_educativa"><span class="checkmark"></span></label></td>
+							
+							</tr>
+							
+							<tr>
+							
+							<td ><label class="customcheck">C.P institución educativa<input type="checkbox" name="general"  class="chk" value="cpEdu as C.P_institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Teléfono institución educativa<input type="checkbox" name="general"  class="chk" value="telEdu as Teléfono_institución_educativa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Periodo actual<input type="checkbox" name="general"  class="chk" value="periodoActual as Periodo_actual"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Periodo promedio<input type="checkbox" name="general"  class="chk" value="periodoPromedio as Periodo_promedio"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Periodos que rebasa<input type="checkbox" name="general"  class="chk" value="periodoRebasa as Periodo_que_rebasa"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Promedio general<input type="checkbox" name="general"  class="chk" value="promedioGeneral as Promedio general"><span class="checkmark"></span></label></td>
+							
+							</tr>
+							
+							
+							
+							<tr>
+							<td colspan=8>
+								<br />
+								<div class="divisionFormFormulario">
+								<h3>Datos generales</h3>
+								</div>
+								<br />
+							</td>
+							</tr>
+							
+							
+							<tr>
+							<td ><label class="customcheck">Edad<input type="checkbox" name="general"  class="chk" value="edad as Edad"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Género<input type="checkbox" name="general"  class="chk" value="generoBene as Género"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Lengua_indigena<input type="checkbox" name="general"  class="chk" value="lenguaIndigena as Lengua indigena"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Discapacidad<input type="checkbox" name="general"  class="chk" value="discapacidad as Discapacidad"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Estado civil<input type="checkbox" name="general"  class="chk" value="edoCivilBene as Estado civil"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Lugar nacimiento<input type="checkbox" name="general"  class="chk" value="lugarNacimiento as Lugar nacimiento"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Fecha nacimiento<input type="checkbox" name="general"  class="chk" value="fechaNacimiento as Fecha nacimiento"><span class="checkmark"></span></label></td>
+							
+							</tr>
+							
+							<tr>
+							<td ><label class="customcheck">Breve historia<input type="checkbox" name="general"  class="chk" value="breveHistoria as Breve historia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Integrantes familiares<input type="checkbox" name="general"  class="chk" value="integrantesFamiliares as Integrantes familiares"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Ingresos familiares<input type="checkbox" name="general"  class="chk" value="ingresosFamiliares as Ingresos familiares"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Calle vivienda familiar<input type="checkbox" name="general"  class="chk" value="calleVivFam as Calle vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">No. Ext. vivienda familiar<input type="checkbox" name="general"  class="chk" value="numEVivFam as No. Ext. vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">No. Int. vivienda familiar<input type="checkbox" name="general"  class="chk" value="numIVivFam as No. Int. vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Colonia o fraccionamiento vivienda familiar<input type="checkbox" name="general"  class="chk" value="colVivFam as Colonia o fraccionamiento vivienda familiar"><span class="checkmark"></span></label></td>
+							
+							</tr>
+							
+							<tr>
+							<td ><label class="customcheck">Localidad vivienda familiar<input type="checkbox" name="general"  class="chk" value="locVivFam as Localidad vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Municipio vivienda familiar<input type="checkbox" name="general"  class="chk" value="munVivFam as Municipio vivienda familiar"><span class="checkmark"></span></label></td>
+						
+							<td ><label class="customcheck">Estado vivienda familiar<input type="checkbox" name="general"  class="chk" value="edoVivFam as Estado vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">C.P institución vivienda familiar<input type="checkbox" name="general"  class="chk" value="cpVivFam as C.P vivienda familiar"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Enlace maps<input type="checkbox" name="general"  class="chk" value="enlaceMaps as Enlace maps"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Calle donde estudia<input type="checkbox" name="general"  class="chk" value="calleEst as Calle donde estudia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">No. Ext. donde estudia<input type="checkbox" name="general"  class="chk" value="numEEst as No. Ext. donde estudia"><span class="checkmark"></span></label></td>
+							
+							
+							</tr>
+							
+							<tr>
+							<td ><label class="customcheck">No. Int. donde estudia<input type="checkbox" name="general"  class="chk" value="numIEst as No. Int. donde estudia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Colonia o fraccionamiento donde estudia<input type="checkbox" name="general"  class="chk" value="colEst as Colonia o fraccionamiento donde estudia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Localidad donde estudia<input type="checkbox" name="general"  class="chk" value="locEst as Localidad donde estudia"><span class="checkmark"></span></label></td>
+						
+							<td ><label class="customcheck">Municipio donde estudia<input type="checkbox" name="general"  class="chk" value="munEst as Municipio donde estudia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Estado donde estudia<input type="checkbox" name="general"  class="chk" value="edoEst as Estado donde estudia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">C.P donde estudia<input type="checkbox" name="general"  class="chk" value="cpEst as C.P donde estudia">		<span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Nombre tutor<input type="checkbox" name="general"  class="chk" value="nombreTutor as Nombre tutor"><span class="checkmark"></span></label></td>		
+						
+							</tr>
+							
+							
+							
+							<tr>
+							<td colspan=8>
+								<br />
+								<div class="divisionFormFormulario">
+								<h3>Datos generales</h3>
+								</div>
+								<br />
+							</td>
+							</tr>
+							
+							
+							<tr>
+							<td ><label class="customcheck">Parentesco tutor<input type="checkbox" name="general"  class="chk" value="parentescoTutor as Parentesco tutor"><span class="checkmark"></span></label></td>							
+							<td ><label class="customcheck">Celular<input type="checkbox" name="general"  class="chk" value="celular as Celular"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Teléfono domicilio<input type="checkbox" name="general"  class="chk" value="telDomicilio as Teléfono domicilio"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Tipo teléfono de referencia<input type="checkbox" name="general"  class="chk" value="tipoTelRefBene as Tipo teléfono de referencia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Número teléfono de referencia<input type="checkbox" name="general"  class="chk" value="numTelRef as Numero teléfono de referencia"><span class="checkmark"></span></label></td>							
+							<td ><label class="customcheck">Parentesco teléfono de referencia<input type="checkbox" name="general"  class="chk" value="parentescoRef as Parentesco_teléfono de referencia"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Observaciones teléfono de referencia<input type="checkbox" name="general"  class="chk" value="observacionesRef as Estado donde estudia"><span class="checkmark"></span></label></td>
+							
+							</tr>
+							
+							<tr>
+							
+							<td ><label class="customcheck">Correo electrónico<input type="checkbox" name="general"  class="chk" value="email as Correo electrónico"><span class="checkmark"></span></label></td>
+									
+							<td ><label class="customcheck">Facebook<input type="checkbox" name="general"  class="chk" value="facebook as Facebook"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Facebook 2<input type="checkbox" name="general"  class="chk" value="facebook2 as Facebook 2"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Facebook 3<input type="checkbox" name="general"  class="chk" value="facebook3 as Facebook 3"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Ocupacion tutor<input type="checkbox" name="general"  class="chk" value="ocupacionTutor as Ocupacion tutor"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Hermanos inscritos en escuelas deportivas<input type="checkbox" name="general"  class="chk" value="hermanosInscritosBene as Hermanos inscritos en escuelas deportivas"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">En qué escuela<input type="checkbox" name="general"  class="chk" value="escuelaHermanosInscritos as En qué escuela"><span class="checkmark"></span></label></td>							
+							
+							
+							</tr>
+							
+							
+							<tr>
+							<td colspan=8>
+								<br />
+								<div class="divisionFormFormulario">
+								<h3>Datos bancarios</h3>
+								</div>
+								<br />
+							</td>
+							</tr>
+							
+							
+							
+							<tr>
+							
+							<td ><label class="customcheck">Forma de pago<input type="checkbox" name="general"  class="chk" value="formaPagoBene as Forma_de_pago"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Banco<input type="checkbox" name="general"  class="chk" value="banco as Banco"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Número de cuenta<input type="checkbox" name="general"  class="chk" value="cuentaDeposito as Número de cuenta"><span class="checkmark"></span></label></td>	
+							<td ><label class="customcheck">Número de tarjeta<input type="checkbox" name="general"  class="chk" value="tarjetaDeposito as Número de tarjeta"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Clave de pago<input type="checkbox" name="general"  class="chk" value="claveReferenciado as Clave de pago"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Vigencia<input type="checkbox" name="general"  class="chk" value="vigenciaReferenciado as Vigencia"><span class="checkmark"></span></label></td>		
+							<td ><label class="customcheck">Monto de apoyo<input type="checkbox" name="general"  class="chk" value="montoBeca as Monto de apoyo"><span class="checkmark"></span></label></td>		
+							
+														
+							
+							
+							</tr>
+							
+							<tr >
+							<td class="apoyo"><label class="customcheck">Finalidad del apoyo<input type="checkbox" name="general"  class="chk apoyo" value="finalidadApoyo as Finalidad del apoyo"><span class="checkmark"></span></label></td>
+							<td ><label class="customcheck">Observaciones<input type="checkbox" name="general"  class="chk" value="observaciones as Observaciones"><span class="checkmark"></span></label></td>
+							</tr>
+							
+							<tr style="display:none;">
+							<td><input type="checkbox" name="general"  class="chk" value="idBenefactor as Benefactor">Benefactor</td>
+							</tr>
+							
+							</table>
+							</div>
+							
+							<div id="deportivas" style="display:none;">
+							<label>Seleccion de datos</label>
+							<div class="row">
+							
+							</div>
+							</div>
+							<br/>
+							
+							<div id="iconosReporteGeneral" class="iconosModal" style="display: none;">
+							<a onclick="beneficiariosGeneral(1,'resultReport11','iconosModal');" class="lbl "><img title='Descargar pdf' class="image"  src='/imagenes/pdf.png' alt='Descargar PDF' /></a>&nbsp&nbsp&nbsp 
+							<a onclick="beneficiariosGeneral(2,'resultReport11','iconosModal');" class="lbl "><img src='/imagenes/excel.png' class="image"   title='Descargar excel' alt='Descargar excel' /></a>&nbsp&nbsp&nbsp 
+							<a onclick="beneficiariosGeneral(3,'resultReport11','iconosModal');" class="lbl "><img src='/imagenes/html.png'  class="image"  title='Descargar html' alt='Descargar html' /></a>
+							</div>
+							 <br/>
+							<div class="progress" id="resultReport11" style="display:none;">
+							    <div class="progress-bar progress-bar-striped active" id="resultReport112" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:15%">							     
+							    </div>
+							 </div>
+							
+							<br />
+							<div id="respuestaPass"></div>
+							<br />
+							
+							<button type="button" class="btn btn-danger" data-dismiss="modal"
+								onclick="cerrarModal('beneficiarioGeneralModal');">Cancelar</button>
+								</div>
+							</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+		<div class="valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+</html>

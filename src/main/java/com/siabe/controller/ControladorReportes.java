@@ -55,11 +55,27 @@ public class ControladorReportes {
 	}
 	
 	@GetMapping(value = "/reportes/beneficiarios")
-	public String campania(Model model, Principal principal) {
+	public String beneficiarios(Model model, Principal principal) {
 
 		model.addAttribute("tbecas", tipoBecaServicio.todosTipoBeca());		
 		return "/reportes/beneficiarios";
 	}
+	
+	@GetMapping(value = "/reportes/donativos")
+	public String donativos(Model model, Principal principal) {
+
+		model.addAttribute("tbecas", tipoBecaServicio.todosTipoBeca());		
+		return "/reportes/donativos";
+	}
+	
+	@GetMapping(value = "/reportes/relDonantesBeneficiarios")
+	public String relacion(Model model, Principal principal) {
+
+		model.addAttribute("tbecas", tipoBecaServicio.todosTipoBeca());		
+		return "/reportes/relDonantesBeneficiarios";
+	}
+	
+	
 	
 	@RequestMapping("/reportes/actualizaPeriodoRepGen")
 	public String actualizaSelPeriodos(Model model, Principal principal,@RequestParam int idTipoBeca) {

@@ -34,11 +34,10 @@
 			<div class="valoresCentrados">
 				<!-- Select del tipo de beca para mostrar datos a llenar -->
 				
-				<label class="sublabel">Tipo de movimiento &nbsp;</label><br/> <input
-						type="radio" name="altaCambio" onclick="checkIdAccion('alta');"
-						id="alta" value="1" checked> Alta&nbsp;&nbsp;&nbsp; <input
-						type="radio" name="altaCambio" onclick="checkIdAccion('cambio');"
-						id="cambio" value="0"> Cambio <br /> <br />
+				<label class="sublabel">Tipo de movimiento &nbsp;</label><br/>
+				
+				<label class="customradio">Alta<input type="radio" name="altaCambio" onclick="checkIdAccion('alta');" id="alta" value="1" checked><span class="radiomark"></span></label> 
+				<label class="customradio">Cambio<input	type="radio" name="altaCambio" onclick="checkIdAccion('cambio');" id="cambio" value="0"><span class="radiomark"></span></label> <br /> <br />
 				
 				
 				
@@ -455,11 +454,10 @@
 					
 					
 					<label style="font-weight: bold;">¿El domicilio
-						donde estudia, es el mismo a la vivienda familiar? &nbsp;</label> <input
-						type="radio" name="mismoDomicilio" onclick="checkIdsDom('siMD');"
-						id="siMD" value="1" checked> Si&nbsp;&nbsp;&nbsp; <input
-						type="radio" name="mismoDomicilio" onclick="checkIdsDom('noMD');"
-						id="noMD" value="0"> No <br /> <br />
+						donde estudia, es el mismo a la vivienda familiar? &nbsp;</label> 
+						 
+						<label class="customradio">Si<input	type="radio" name="mismoDomicilio" onclick="checkIdsDom('siMD');" id="siMD" value="1" checked> <span class="radiomark"></span></label> 
+						<label class="customradio">No<input	type="radio" name="mismoDomicilio" onclick="checkIdsDom('noMD');" id="noMD" value="0"> <span class="radiomark"></span></label> <br /> <br />
 					<div class="row ">
 						<div class="col-xs-3">
 							<label for="calleE">Calle</label><br> <input type="text"
@@ -604,11 +602,9 @@
 					</div>
 					<br />
 					<br> <label style="font-weight: bold;">Forma de pago </label><br>
-					<input type="radio" name="formaPago" onclick="checkIdsFP('dFP');"
-						id="dFP" value="1" checked> Depósito o
-					transferencia&nbsp;&nbsp;&nbsp; <input type="radio"
-						name="formaPago" onclick="checkIdsFP('pFP');" id="pFP" value="0"> Pago
-					referenciado <br /> <br />
+					
+					<label class="customradio">Depósito o transferencia<input type="radio" name="formaPago" onclick="checkIdsFP('dFP');" id="dFP" value="1" checked> <span class="radiomark"></span></label> 
+					<label class="customradio">Pago referenciado<input type="radio"	name="formaPago" onclick="checkIdsFP('pFP');" id="pFP" value="0"> <span class="radiomark"></span></label><br /> <br />
 					<div class="row ">
 						<div class="col-xs-4">
 							<label for="banco">Banco </label><br> <input type="text"
@@ -1053,8 +1049,9 @@
 					</div>
 					
 					<br> <label style="font-weight: bold;">El beneficiario tiene hermanos inscritos en las escuelas deportivas </label><br>
-					<input type="radio" name="hermanosEscuelas" onclick="checkIdsHED('hesD');"id="hesD" value="1" checked> No&nbsp;&nbsp;&nbsp; 
-					<input type="radio"	name="hermanosEscuelas" onclick="checkIdsHED('henD');" id="henD" value="0"> Si <br /> <br />
+					
+					<label class="customradio">No<input type="radio" name="hermanosEscuelas" onclick="checkIdsHED('hesD');"id="hesD" value="1" checked> <span class="radiomark"></span></label> 
+					<label class="customradio">Si<input type="radio"	name="hermanosEscuelas" onclick="checkIdsHED('henD');" id="henD" value="0"> <span class="radiomark"></span></label> <br /> <br />
 					<div class="row " id="eqeD" style="display:none;">
 						<div class="col-xs" >
 							<label for="escuelaHD">¿En qué escuela? </label><br> <input type="text"

@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="beneficiariosTodos" pageWidth="4000" pageHeight="600" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="3960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c120e502-33ba-412e-85c8-d5574a3d8918">
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<subDataset name="Dataset1" uuid="530b7afa-6050-4019-890f-e5fdeb54109b">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MysqlConexion"/>
+		<queryString language="SQL">
+			<![CDATA[select * from view_beneficiarios]]>
+		</queryString>
+		<field name="matricula" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="matricula"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="nombre" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="apellido_paterno" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="apellido_paterno"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="apellido_materno" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="apellido_materno"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="estatus" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="estatus"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="motivo_estatus" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="motivo_estatus"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="tipo_becario" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="tipo_becario"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="adscripcion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="adscripcion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="escuela_deportiva" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="escuela_deportiva"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="fecha_ing_escuela_dep" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.label" value="fecha_ing_escuela_dep"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="nivel_edu_cursa" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nivel_edu_cursa"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="turno" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="turno"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="tipo_institucion" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="tipo_institucion"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="grado" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="grado"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="nombre_edu" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nombre_edu"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="calle_edu" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="calle_edu"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="numE_edu" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="numE_edu"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="numIedu" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="numIedu"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="col_edu" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="col_edu"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="loc_edu" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="loc_edu"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="mun_edu" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="mun_edu"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="edo_edu" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="edo_edu"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="cp_edu" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="cp_edu"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="tel_edu" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="tel_edu"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="periodo_actual" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="periodo_actual"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="promedio_general" class="java.lang.Double">
+			<property name="com.jaspersoft.studio.field.label" value="promedio_general"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="edad" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="edad"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="genero" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="genero"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="lengua_indigena" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="lengua_indigena"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="discapacidad" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="discapacidad"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="estado_civil" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="estado_civil"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="lugar_nacimiento" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="lugar_nacimiento"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="fecha_nacimiento" class="java.sql.Date">
+			<property name="com.jaspersoft.studio.field.label" value="fecha_nacimiento"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="breve_historia" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="breve_historia"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="integrantes_familiares" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="integrantes_familiares"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="ingresos_familiares" class="java.lang.Double">
+			<property name="com.jaspersoft.studio.field.label" value="ingresos_familiares"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="calle_viv_fam" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="calle_viv_fam"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="numE_viv_fam" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="numE_viv_fam"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="numI_viv_fam" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="numI_viv_fam"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="col_viv_fam" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="col_viv_fam"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="loc_viv_fam" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="loc_viv_fam"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="mun_viv_fam" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="mun_viv_fam"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="edo_viv_fam" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="edo_viv_fam"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="cp_viv_fam" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="cp_viv_fam"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="enlace_maps" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="enlace_maps"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="mismo_vivienda_fam" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="mismo_vivienda_fam"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="calle_est" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="calle_est"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="numE_est" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="numE_est"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="numI_est" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="numI_est"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="col_est" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="col_est"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="loc_est" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="loc_est"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="mun_est" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="mun_est"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="edo_est" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="edo_est"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="cp_est" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="cp_est"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="nombre_tutor" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nombre_tutor"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="parentesco_tutor" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="parentesco_tutor"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="celular" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="celular"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="tel_domicilio" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="tel_domicilio"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="tipo_tel_ref" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="tipo_tel_ref"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="num_tel_ref" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="num_tel_ref"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="parentesco_ref" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="parentesco_ref"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="observaciones_ref" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="observaciones_ref"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="email" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="email"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="facebook" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="facebook"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="facebook2" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="facebook2"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="facebook3" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="facebook3"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="ocupacion_tutor" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="ocupacion_tutor"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="hermanos_inscritos" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="hermanos_inscritos"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="escuela_hermano" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="escuela_hermano"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="forma_pago" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="forma_pago"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="banco" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="banco"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="cuenta_deposito" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="cuenta_deposito"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="tarjeta_deposito" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="tarjeta_deposito"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="clave_referenciado" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="clave_referenciado"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="vigencia_referenciado" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="vigencia_referenciado"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="monto_beca" class="java.lang.Double">
+			<property name="com.jaspersoft.studio.field.label" value="monto_beca"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="finalidad_apoyo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="finalidad_apoyo"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="observaciones" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="observaciones"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="id_benefactor" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="id_benefactor"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="fecha_alta" class="java.sql.Timestamp">
+			<property name="com.jaspersoft.studio.field.label" value="fecha_alta"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="periodo" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="periodo"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="tipo_beca" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="tipo_beca"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="region" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="region"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="carrera" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="carrera"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="nivel" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nivel"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="modalidad" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="modalidad"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="facultad" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="facultad"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="area" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="area"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="estatus_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="estatus_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="tipo_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="tipo_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="adscripcion_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="adscripcion_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="escuela_deportiva_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="escuela_deportiva_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="nivel_educativo_que_cursa_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nivel_educativo_que_cursa_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="turno_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="turno_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="tipo_institucion_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="tipo_institucion_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="estado_civil_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="estado_civil_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="tipo_telefono_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="tipo_telefono_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="hermanos_inscritos_en_escuelas_deportivas_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="hermanos_inscritos_en_escuelas_deportivas_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="forma_de_pago_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="forma_de_pago_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="nombre_completo_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="nombre_completo_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="genero_bene" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="genero_bene"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="periodo_promedio" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="periodo_promedio"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+		<field name="periodo_rebasa" class="java.lang.Long">
+			<property name="com.jaspersoft.studio.field.label" value="periodo_rebasa"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="view_beneficiarios"/>
+		</field>
+	</subDataset>
+	<parameter name="imagenFuv" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{baseImagen}.toString()+"imagenes/MATRIZ LIS UV COLOR LEMA .png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imagenUV" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{baseImagen}.toString()+"imagenes/MATRIZ LIS UV COLOR LEMA .png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="baseImagen" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="tipoBeca" class="java.lang.String"/>
+	<field name="periodo" class="java.lang.String"/>
+	<field name="matricula" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apellidoPaterno" class="java.lang.String"/>
+	<field name="apellidoMaterno" class="java.lang.String"/>
+	<field name="estatus" class="java.lang.Integer"/>
+	<field name="motivoEstatus" class="java.lang.String"/>
+	<field name="tipoBecario" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="83" splitType="Stretch">
+			<image isLazy="true" onErrorType="Blank">
+				<reportElement x="0" y="0" width="70" height="77" uuid="96196024-fcd5-48ed-a8bd-ea9116a66f09"/>
+				<imageExpression><![CDATA["http://siabe/imagenes/logoFUV.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="180" y="0" width="400" height="43" uuid="355213ca-809a-4ed0-b21d-c72022683db6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Beneficiarios todos]]></text>
+			</staticText>
+			<image isLazy="true" onErrorType="Blank">
+				<reportElement x="710" y="0" width="70" height="77" uuid="96196024-fcd5-48ed-a8bd-ea9116a66f09"/>
+				<imageExpression><![CDATA["http://siabe/imagenes/logoUV.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="9" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="13" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="312" splitType="Stretch"/>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
