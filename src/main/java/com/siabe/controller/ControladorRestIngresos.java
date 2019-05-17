@@ -71,7 +71,7 @@ public class ControladorRestIngresos {
 
 
 	@PostMapping(value = "/ingresos/ajaxAgregarDonante")
-	public String postAjaxAddDonante(@RequestParam int idPeriodo, @RequestParam String razonSocial, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno ,@RequestParam int estatus, @RequestParam String motivoEstatus, @RequestParam String adscripcion,  @RequestParam String tipoDonante, @RequestParam int idRegion, 
+	public String postAjaxAddDonante(@RequestParam int idPeriodo, @RequestParam String razonSocial, @RequestParam String titulo, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno ,@RequestParam int estatus, @RequestParam String motivoEstatus, @RequestParam String adscripcion,  @RequestParam String tipoDonante, @RequestParam int idRegion, 
 			@RequestParam int sector, @RequestParam int idCampania, @RequestParam int medioAutorizacion, @RequestParam String observacionesMedioAutorizacion, @RequestParam int medioCobro, @RequestParam String numPersonal, @RequestParam String dependenciaAdscripcion, @RequestParam double donativoTotal, @RequestParam double donativoQuincenal,
 			@RequestParam int numQuincenas, @RequestParam int idQuincenaInicio, @RequestParam String anioQuincena,  @RequestParam int idCuentasBancarias, @RequestParam String referencia, @RequestParam int numPagos, @RequestParam double importeNumPagos, @RequestParam String banco, @RequestParam String nombreTarjetahabiente, @RequestParam String red, @RequestParam String tipoTarjeta,
 			@RequestParam String numTarjeta,@RequestParam int mesVencimiento, @RequestParam int anioVencimiento, @RequestParam String tipoDonativo, @RequestParam int mesInicioAportacion, @RequestParam String email, @RequestParam String celular, @RequestParam String telefono1, @RequestParam String telefono2,@RequestParam String calle, @RequestParam String numE,
@@ -79,7 +79,7 @@ public class ControladorRestIngresos {
 			@RequestParam String locFiscal, @RequestParam String munFiscal, @RequestParam String edoFiscal, @RequestParam String cpFiscal, @RequestParam String rfc, @RequestParam String observaciones, @RequestParam String idBeneficiarioAsignado, @RequestParam int idUsuario) throws ParseException {
 		
 		
-		String response = donativosServicio.insertaDonante(idPeriodo, razonSocial, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, adscripcion, tipoDonante, idRegion, sector, idCampania,
+		String response = donativosServicio.insertaDonante(idPeriodo, razonSocial, titulo, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, adscripcion, tipoDonante, idRegion, sector, idCampania,
 				medioAutorizacion, observacionesMedioAutorizacion, medioCobro, numPersonal, dependenciaAdscripcion, donativoTotal, donativoQuincenal, numQuincenas, idQuincenaInicio, anioQuincena, idCuentasBancarias,
 				referencia, numPagos, importeNumPagos, banco, nombreTarjetahabiente, red, tipoTarjeta, numTarjeta, mesVencimiento, anioVencimiento, tipoDonativo, mesInicioAportacion, email, celular, telefono1, 
 				telefono2, calle,numE, numI, col, loc, mun, edo, cp, calleFiscal, numEFiscal, numIFiscal, colFiscal, locFiscal, munFiscal, edoFiscal, cpFiscal, rfc, observaciones, idBeneficiarioAsignado, idUsuario);
@@ -90,12 +90,12 @@ public class ControladorRestIngresos {
 	}
 	
 	@PostMapping(value = "/ingresos/ajaxAgregarPatrocinador")
-	public String postAjaxPatrocinador(@RequestParam int idPeriodo, @RequestParam String razonSocial, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno, @RequestParam String adscripcion, @RequestParam int idRegion, @RequestParam int sector, 
+	public String postAjaxPatrocinador(@RequestParam int idPeriodo, @RequestParam String razonSocial, @RequestParam String titulo, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno, @RequestParam String adscripcion, @RequestParam int idRegion, @RequestParam int sector, 
 			 @RequestParam String descripcionDonativo, @RequestParam String email, @RequestParam String celular, @RequestParam String telefono1, @RequestParam String telefono2, @RequestParam String calle ,@RequestParam String numE, @RequestParam String numI, @RequestParam String col, @RequestParam String loc, @RequestParam String mun, 
 			 @RequestParam String edo, @RequestParam int cp, @RequestParam String calleFiscal, @RequestParam String numEFiscal, @RequestParam String numIFiscal, @RequestParam String colFiscal, @RequestParam String locFiscal, @RequestParam String munFiscal, @RequestParam String edoFiscal, @RequestParam String cpFiscal,
 			 @RequestParam String rfc, @RequestParam String observaciones, @RequestParam int idUsuario) throws ParseException {
 		
-		 String response = donativosServicio.insertaPatrocinador(idPeriodo, razonSocial, nombre, apellidoPaterno, apellidoMaterno, adscripcion, idRegion, sector, descripcionDonativo, email, celular, telefono1, telefono2, calle,numE, numI,
+		 String response = donativosServicio.insertaPatrocinador(idPeriodo, razonSocial, titulo, nombre, apellidoPaterno, apellidoMaterno, adscripcion, idRegion, sector, descripcionDonativo, email, celular, telefono1, telefono2, calle,numE, numI,
 				 col, loc, mun, edo, cp, calleFiscal, numEFiscal, numIFiscal, colFiscal, locFiscal, munFiscal, edoFiscal, cpFiscal, rfc, observaciones, idUsuario);
 		
 		
@@ -123,7 +123,7 @@ public class ControladorRestIngresos {
 	}
 	
 	@PostMapping(value = "/ingresos/ajaxModificarDonante")
-	public String postAjaxtDonanteModificar( @RequestParam String razonSocial, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno ,@RequestParam int estatus, @RequestParam String motivoEstatus, @RequestParam String adscripcion,  @RequestParam String tipoDonante, @RequestParam int idRegion, 
+	public String postAjaxtDonanteModificar( @RequestParam String razonSocial, @RequestParam String titulo, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno ,@RequestParam int estatus, @RequestParam String motivoEstatus, @RequestParam String adscripcion,  @RequestParam String tipoDonante, @RequestParam int idRegion, 
 			@RequestParam int sector, @RequestParam int idCampania, @RequestParam int medioAutorizacion, @RequestParam String observacionesMedioAutorizacion, @RequestParam int medioCobro, @RequestParam String numPersonal, @RequestParam String dependenciaAdscripcion, @RequestParam double donativoTotal, @RequestParam double donativoQuincenal,
 			@RequestParam int numQuincenas, @RequestParam int idQuincenaInicio, @RequestParam String anioQuincena, @RequestParam int idCuentasBancarias, @RequestParam String referencia, @RequestParam int numPagos, @RequestParam double importeNumPagos, @RequestParam String banco, @RequestParam String nombreTarjetahabiente, @RequestParam String red, @RequestParam String tipoTarjeta,
 			@RequestParam String numTarjeta,@RequestParam int mesVencimiento, @RequestParam int anioVencimiento, @RequestParam String tipoDonativo, @RequestParam int mesInicioAportacion, @RequestParam String email, @RequestParam String celular, @RequestParam String telefono1, @RequestParam String telefono2,@RequestParam String calle, @RequestParam String numE,
@@ -131,7 +131,7 @@ public class ControladorRestIngresos {
 			@RequestParam String locFiscal, @RequestParam String munFiscal, @RequestParam String edoFiscal, @RequestParam String cpFiscal, @RequestParam String rfc, @RequestParam String observaciones, @RequestParam int idUsuario, @RequestParam int idDonativo) throws ParseException {
 		
 
-		String response = donativosServicio.actualizaDatosDonantes( razonSocial, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, adscripcion, tipoDonante, idRegion, sector,
+		String response = donativosServicio.actualizaDatosDonantes( razonSocial, titulo,nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, adscripcion, tipoDonante, idRegion, sector,
 				idCampania, medioAutorizacion, observacionesMedioAutorizacion, medioCobro, numPersonal, dependenciaAdscripcion, donativoTotal, donativoQuincenal, numQuincenas, idQuincenaInicio, anioQuincena,
 				idCuentasBancarias, referencia, numPagos, importeNumPagos, banco, nombreTarjetahabiente, red, tipoTarjeta, numTarjeta, mesVencimiento, anioVencimiento, tipoDonativo,
 				mesInicioAportacion, email, celular, telefono1, telefono2, calle, numE, numI, col, loc, mun, edo, cp, calleFiscal, numEFiscal, numIFiscal, colFiscal, locFiscal, munFiscal, edoFiscal, 
@@ -143,12 +143,12 @@ public class ControladorRestIngresos {
 	}
 	
 	@PostMapping(value = "/ingresos/ajaxModificarPatrocinador")
-	public String postAjaxtDeportivaModificar( @RequestParam String razonSocial, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno, @RequestParam String adscripcion, @RequestParam int idRegion, @RequestParam int sector, 
+	public String postAjaxtDeportivaModificar( @RequestParam String razonSocial, @RequestParam String titulo, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno, @RequestParam String adscripcion, @RequestParam int idRegion, @RequestParam int sector, 
 			 @RequestParam String descripcionDonativo, @RequestParam String email, @RequestParam String celular, @RequestParam String telefono1, @RequestParam String telefono2, @RequestParam String calle ,@RequestParam String numE, @RequestParam String numI, @RequestParam String col, @RequestParam String loc, @RequestParam String mun, 
 			 @RequestParam String edo, @RequestParam int cp, @RequestParam String calleFiscal, @RequestParam String numEFiscal, @RequestParam String numIFiscal, @RequestParam String colFiscal, @RequestParam String locFiscal, @RequestParam String munFiscal, @RequestParam String edoFiscal, @RequestParam String cpFiscal,
 			 @RequestParam String rfc, @RequestParam String observaciones, @RequestParam int idUsuario,  @RequestParam int idDonativo) throws ParseException {
 		
-		 String response = donativosServicio.actualizaDatosPatrocinadores( razonSocial, nombre, apellidoPaterno, apellidoMaterno, adscripcion, idRegion, sector, descripcionDonativo, email, 
+		 String response = donativosServicio.actualizaDatosPatrocinadores( razonSocial, titulo, nombre, apellidoPaterno, apellidoMaterno, adscripcion, idRegion, sector, descripcionDonativo, email, 
 				 celular, telefono1, telefono2, calle, numE, numI, col, loc, mun, edo, cp, calleFiscal, numEFiscal, numIFiscal, colFiscal, locFiscal, munFiscal, edoFiscal, cpFiscal, rfc, observaciones, 
 				 idUsuario, idDonativo);
 		

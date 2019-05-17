@@ -614,7 +614,7 @@ $("#donativoForm").submit(function(event) {
         	
         	
         	
-        	parametros = { "idPeriodo" : $("#idPeriodoDon").val(),  "razonSocial" : $("#razonSocialDon").val(),  "nombre" : $("#nombresDon").val(),  "apellidoPaterno" : $("#aPaternoDon").val(),  
+        	parametros = { "idPeriodo" : $("#idPeriodoDon").val(),  "razonSocial" : $("#razonSocialDon").val(), "titulo" : $("#tituloDon").val(),  "nombre" : $("#nombresDon").val(),  "apellidoPaterno" : $("#aPaternoDon").val(),  
         			"apellidoMaterno" : $("#aMaternoDon").val(), "estatus" : $("#estatusDon").val(), "motivoEstatus" : $("#motivoEstInactivoDon").val(),  "adscripcion" : $("#adscripcionDon").val(), "tipoDonante" : $("#tDonanteDon").val(),  
         			"idRegion" : $("#idRegionHiddenDon").val(), "sector" : $("#sectorDon").val(), "idCampania" : $("#idCampaniaDon").val(), "medioAutorizacion" : $("#medioAutorizacionDon").val(), "observacionesMedioAutorizacion" : $("#observacionesMADon").val(),        			
         			"medioCobro" : $("#medioCobroDon").val(), "numPersonal" : numPersonal, "dependenciaAdscripcion" : dependenciaAdscripcion,        			
@@ -648,7 +648,7 @@ $("#donativoForm").submit(function(event) {
         	
         	mensaje ="<p class='divRespuesta'>! Patrocinador agregado !<br></p>";
         	
-        	parametros = { "idPeriodo" : $("#idPeriodoDon").val(),  "razonSocial" : $("#razonSocialP").val(),  "nombre" : $("#nombresP").val(),  "apellidoPaterno" : $("#aPaternoP").val(),  
+        	parametros = { "idPeriodo" : $("#idPeriodoDon").val(),  "razonSocial" : $("#razonSocialP").val(), "titulo" : $("#tituloP").val(),  "nombre" : $("#nombresP").val(),  "apellidoPaterno" : $("#aPaternoP").val(),  
         			"apellidoMaterno" : $("#aMaternoP").val(), "adscripcion" : $("#adscripcionP").val(), "idRegion" : $("#idRegionHiddenP").val(), "sector" : $("#sectorP").val(), 
         			"descripcionDonativo": $("#descripcionDP").val(), "email": $("#correoP").val(), "celular" : $("#celularP").val(),  "telefono1" : $("#tel1P").val(), "telefono2" : $("#tel2P").val(),
         			"calle" : $("#calleP").val(), "numE" : $("#nExteriorP").val(),  "numI" : $("#nInteriorP").val(),  "col" : $("#colP").val(),  "loc" : $("#localidadP").val(), 
@@ -667,7 +667,7 @@ $("#donativoForm").submit(function(event) {
 		        if(tDonativo== 1){
 		       
 		        	mensaje ="<p class='divRespuesta'>! Donante modificado !<br></p>";
-		        	if( $("#razonSocialDonH").val() != $("#razonSocialDon").val() || $("#nombresDonH").val() != $("#nombresDon").val() || $("#aPaternoDonH").val() != $("#aPaternoDon").val() ||
+		        	if( $("#razonSocialDonH").val() != $("#razonSocialDon").val() || $("#tituloDonH").val() != $("#tituloDon").val() || $("#nombresDonH").val() != $("#nombresDon").val() || $("#aPaternoDonH").val() != $("#aPaternoDon").val() ||
 						$("#aMaternoDonH").val() != $("#aMaternoDon").val()  || $("#estatusDonH").val() != $("#estatusDon").val()  || $("#motivoEstInactivoDonH").val() != $("#motivoEstInactivoDon").val()  ||
 						$("#tDonanteDonH").val() != $("#tDonanteDon").val()  || $("#adscripcionDonH").val() != $("#adscripcionDon").val()  ||
 						$("#idRegionHiddenDonH").val() != $("#idRegionHiddenDon").val()  || $("#sectorDonH").val() != $("#sectorDon").val()  || $("#idCampaniaDonH").val() != $("#idCampaniaDon").val()  ||
@@ -692,7 +692,7 @@ $("#donativoForm").submit(function(event) {
 		        	
 		        	_url= "ajaxModificarDonante";
 		        	
-		        	parametros = { "razonSocial" : $("#razonSocialDon").val(),  "nombre" : $("#nombresDon").val(),  "apellidoPaterno" : $("#aPaternoDon").val(),  
+		        	parametros = { "razonSocial" : $("#razonSocialDon").val(), "titulo" : $("#tituloDon").val(),  "nombre" : $("#nombresDon").val(),  "apellidoPaterno" : $("#aPaternoDon").val(),  
 		        			"apellidoMaterno" : $("#aMaternoDon").val(), "estatus" : $("#estatusDon").val(), "motivoEstatus" : $("#motivoEstInactivoDon").val(),  "adscripcion" : $("#adscripcionDon").val(), "tipoDonante" : $("#tDonanteDon").val(),  
 		        			"idRegion" : $("#idRegionHiddenDon").val(), "sector" : $("#sectorDon").val(), "idCampania" : $("#idCampaniaDon").val(), "medioAutorizacion" : $("#medioAutorizacionDon").val(), "observacionesMedioAutorizacion" : $("#observacionesMADon").val(),
 		        			"medioCobro" : $("#medioCobroDon").val(), "numPersonal" : numPersonal, "dependenciaAdscripcion" : dependenciaAdscripcion,"donativoTotal" : donativoTotal,"donativoQuincenal" : donativoQuincenal, 
@@ -715,7 +715,7 @@ $("#donativoForm").submit(function(event) {
         	
         	
         	mensaje ="<p class='divRespuesta'>! Patrocinador modificado !<br></p>";
-        	if( $("#razonSocialDonH").val() != $("#razonSocialP").val() || $("#nombresDonH").val() != $("#nombresP").val() || $("#aPaternoDonH").val() != $("#aPaternoP").val() ||
+        	if( $("#razonSocialDonH").val() != $("#razonSocialP").val() || $("#tituloDonH").val() != $("#tituloP").val() || $("#nombresDonH").val() != $("#nombresP").val() || $("#aPaternoDonH").val() != $("#aPaternoP").val() ||
 				$("#aMaternoDonH").val() != $("#aMaternoP").val()  ||
 				$("#adscripcionDonH").val() != $("#adscripcionP").val()  || $("#descripcionDPH").val() != $("#descripcionDP").val() || 
 				$("#idRegionHiddenDonH").val() != $("#idRegionHiddenP").val()  || $("#sectorDonH").val() != $("#sectorP").val()  ||  $("#correoDonH").val() != $("#correoP").val()  ||
@@ -730,7 +730,7 @@ $("#donativoForm").submit(function(event) {
         	
         	_url= "ajaxModificarPatrocinador";
         	
-        	parametros = { "razonSocial" : $("#razonSocialP").val(),  "nombre" : $("#nombresP").val(),  "apellidoPaterno" : $("#aPaternoP").val(),  
+        	parametros = { "razonSocial" : $("#razonSocialP").val(), "titulo" : $("#tituloP").val(),  "nombre" : $("#nombresP").val(),  "apellidoPaterno" : $("#aPaternoP").val(),  
         			"apellidoMaterno" : $("#aMaternoP").val(), "adscripcion" : $("#adscripcionP").val(), "idRegion" : $("#idRegionHiddenP").val(), "sector" : $("#sectorP").val(), 
         			"descripcionDonativo": $("#descripcionDP").val(), "email": $("#correoP").val(), "celular" : $("#celularP").val(),  "telefono1" : $("#tel1P").val(), "telefono2" : $("#tel2P").val(),
         			"calle" : $("#calleP").val(), "numE" : $("#nExteriorP").val(),  "numI" : $("#nInteriorP").val(),  "col" : $("#colP").val(),  "loc" : $("#localidadP").val(), 
@@ -776,13 +776,13 @@ $("#donativoForm").submit(function(event) {
 				*/
 				//$("#donativoForm")[0].reset();
 				
-		/*		$("textarea.vacias").val('');
+				$("textarea.vacias").val('');
 				$("input.vacias").val('');
 				$("select.vacias").val(1);
 				$("textarea.vacias").val('');
 				$("input.vacias").val('');
 				$('input:radio[name="mismoDF"][value="0"]').prop('checked', true);
-				$('input:radio[name="mismoDFP"][value="1"]').prop('checked', true);*/
+				$('input:radio[name="mismoDFP"][value="1"]').prop('checked', true);
 				
 				$("select.selectInicial").val("");
 				$("#idPeriodoDon").val("").trigger('change');
@@ -831,12 +831,13 @@ function autocompletarDonanteMod() {
 						//alert(data);
 						return {
 							//label: item.nombre + " - " +item.,
-							label : item.razonSocial+"  -  "+item.nombre +" "+item.apellidoPaterno+" "+item.apellidoMaterno,
+							label : item.razonSocial+"  -  "+item.titulo+" "+item.nombre +" "+item.apellidoPaterno+" "+item.apellidoMaterno,
 							value : item.idDonativo,
 							idDonativo : item.idDonativo,
 							idPeriodo : item.idPeriodo,
 							periodo : item.periodo,
 							razonSocial : item.razonSocial,
+							titulo : item.titulo,
 							nombre : item.nombre,
 							apellidoPaterno : item.apellidoPaterno,
 							apellidoMaterno : item.apellidoMaterno,
@@ -990,6 +991,7 @@ function autocompletarDonanteMod() {
 		//		$("#idPeriodoDon").val(ui.item.idPeriodo);	
 							
 				$("#razonSocialDon").val(ui.item.razonSocial);
+				$("#tituloDon").val(ui.item.titulo);
 				$("#nombresDon").val(ui.item.nombre);
 				$("#aPaternoDon").val(ui.item.apellidoPaterno);
 				$("#aMaternoDon").val(ui.item.apellidoMaterno);
@@ -1125,6 +1127,7 @@ function autocompletarDonanteMod() {
 		//		$("#idPeriodoDon").val(ui.item.idPeriodo);	
 				
 				$("#razonSocialP").val(ui.item.razonSocial);
+				$("#tituloP").val(ui.item.titulo);
 				$("#nombresP").val(ui.item.nombre);
 				$("#aPaternoP").val(ui.item.apellidoPaterno);
 				$("#aMaternoP").val(ui.item.apellidoMaterno);
@@ -1186,6 +1189,7 @@ function autocompletarDonanteMod() {
 				$("#idPeriodoDonH").val(ui.item.idPeriodo);	
 				
 				$("#razonSocialDonH").val(ui.item.razonSocial);
+				$("#tituloDonH").val(ui.item.titulo);
 				$("#nombresDonH").val(ui.item.nombre);
 				$("#aPaternoDonH").val(ui.item.apellidoPaterno);
 				$("#aMaternoDonH").val(ui.item.apellidoMaterno);
@@ -1351,6 +1355,7 @@ function actualizaInputsDonMod(){
 		//		$("#idPeriodoDon").val(data[1].idPeriodo);	
 							
 				$("#razonSocialDon").val(data[1].razonSocial);
+				$("#tituloDon").val(data[1].titulo);
 				$("#nombresDon").val(data[1].nombre);
 				$("#aPaternoDon").val(data[1].apellidoPaterno);
 				$("#aMaternoDon").val(data[1].apellidoMaterno);
@@ -1485,6 +1490,7 @@ function actualizaInputsDonMod(){
 		//		$("#idPeriodoDon").val(data[1].idPeriodo);	
 				
 				$("#razonSocialP").val(data[1].razonSocial);
+				$("#tituloP").val(data[1].titulo);
 				$("#nombresP").val(data[1].nombre);
 				$("#aPaternoP").val(data[1].apellidoPaterno);
 				$("#aMaternoP").val(data[1].apellidoMaterno);
@@ -1545,6 +1551,7 @@ function actualizaInputsDonMod(){
 				$("#idPeriodoDonH").val(data[1].idPeriodo);	
 				
 				$("#razonSocialDonH").val(data[1].razonSocial);
+				$("#tituloDonH").val(data[1].titulo);
 				$("#nombresDonH").val(data[1].nombre);
 				$("#aPaternoDonH").val(data[1].apellidoPaterno);
 				$("#aMaternoDonH").val(data[1].apellidoMaterno);

@@ -13,6 +13,7 @@ public class Donativos {
 	private int idTipoBeca;
     
     private String razonSocial;
+    private String titulo;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -115,7 +116,7 @@ public class Donativos {
 
 
 
-	public Donativos(int idDonativo, int idDonativoTipo, int idPeriodo, String periodo, String tipoBeca, int idTipoBeca, String razonSocial,
+	public Donativos(int idDonativo, int idDonativoTipo, int idPeriodo, String periodo, String tipoBeca, int idTipoBeca, String razonSocial, String titulo,
 			String nombre, String apellidoPaterno, String apellidoMaterno, int estatus, String estatusDon,
 			String motivoEstatus, int adscripcion, int tipoDonante, String tipoDon, int idRegion, String region,
 			int sector, String sectoDon, String descripcionDonativo, int idCampania, String campania,
@@ -137,6 +138,7 @@ public class Donativos {
 		this.tipoBeca = tipoBeca;
 		this.idTipoBeca = idTipoBeca;
 		this.razonSocial = razonSocial;
+		this.titulo = titulo;
 		this.nombre = nombre;
 		this.apellidoPaterno = apellidoPaterno;
 		this.apellidoMaterno = apellidoMaterno;
@@ -1106,7 +1108,20 @@ public class Donativos {
 	public void setNombreCompletoDon(String nombreCompletoDon) {
 		this.nombreCompletoDon = nombreCompletoDon;
 	}
+
+
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
     
+	
     
     
 		 

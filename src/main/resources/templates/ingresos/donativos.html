@@ -78,14 +78,28 @@
 					<br />
 					<!-- Primera fila de datos periodo,matricula -->
 					
-						
-						<div >
+					
+					<div class="row ">
+						<div class="col-xs-6">
 							<label for="razonSocialDon">Denominación o Razón Social</label><br> <input
 								type="text" id="razonSocialDon" minlength="3" 
 								placeholder="" 
-								class="form-control selectTextFormulario vacias  donativosRequired div50" maxlength="100"
+								class="form-control selectTextFormulario vacias  donativosRequired " maxlength="100"
 								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
 						</div>
+						<div class="col-xs-6">
+							<label for="tituloDon">Titulo</label><br> <input minlength="3"
+								type="text" id="tituloDon"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+"
+								class="form-control selectTextFormulario vacias ">
+						</div>
+						
+					</div>
+					
+					
+					
+					
+						
+						
 
 						<!-- Segunda fila de datos nombre,ap paterno, ap materno -->
 					
@@ -708,15 +722,27 @@
 					<br />
 					<!-- Primera fila de datos periodo,matricula -->
 					
-					
-
-						<div class="">
+					<div class="row ">
+						<div class="col-xs-6">
 							<label for="razonSocialP">Denominación o Razón Social</label><br> <input
 								type="text" id="razonSocialP" minlength="3" 
 								placeholder="" 
-								class="form-control selectTextFormulario vacias  patrocRequired div50" maxlength="100"
+								class="form-control selectTextFormulario vacias  patrocRequired " maxlength="100"
 								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
 						</div>
+						<div class="col-xs-6">
+							<label for="tituloP">Titulo</label><br> <input minlength="3"
+								type="text" id="tituloP"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+"
+								class="form-control selectTextFormulario vacias ">
+						</div>
+						
+					</div>
+					
+					
+					
+					
+
+						
 
 						<!-- Segunda fila de datos nombre,ap paterno, ap materno -->
 				
@@ -994,6 +1020,7 @@
 			<input type="hidden" id="idPeriodoDonH">
 				
 				<input type="hidden" id="razonSocialDonH">
+				<input type="hidden" id="tituloDonH">
 				<input type="hidden" id="nombresDonH">
 				<input type="hidden" id="aPaternoDonH">
 				<input type="hidden" id="aMaternoDonH">

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+	
+			<div>
+				<h1 class="h1Class">Refrendo de donantes</h1>
+			</div>
+
+			<div class="valoresCentrados">
+
+			<br/> <label class="customradio">Donantes <input type="radio" name="altaCambio" onclick="checkIds('donan');" id="donan" value="1" checked> <span class="radiomark"></span></label> 
+			<label class="customradio">Beneficiarios<input	type="radio" name="altaCambio" onclick="checkIds('benen');" id="benen" value="0"> <span class="radiomark"></span></label><br /> <br />		
+       
+			
+			
+	
+			<div class="row " >
+						<div class="col-xs-6" style="margin: 0 auto; float: none;">
+							<label for="idPeriodoCF">Periodo</label><br> <select onchange="cambiaPeriodoAs();"
+								id="idPeriodoAs" 
+								class="form-control selectTextFormulario">
+								<option disabled selected value="">Selecciona periodo</option>
+								<option th:each="periodo : ${periodos}"
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+							</select>
+						</div>
+				</div>
+				<br/>
+			
+			
+			<div class="row"  >
+						<div class="col-xs-6 " style=" margin: 0 auto; float: none;">
+							<label for="idDonBene" id="donBene">Beneficiario</label><br>
+							<input type="text" id="idDonBene" disabled						
+								class="form-control selectTextFormulario"
+								onkeyup="autocompleteDonBeneAS();">
+								<input	type="hidden" id="idBenefactorHiddenCF"> 
+								<input type="hidden" id="valBenefactorHiddenCF">
+						</div>
+			<input type="hidden" id="identificador"/>
+			</div>
+			
+			
+			<br/>
+			<br/>	
+			<input type="hidden" id="valorAsig" th:value="${donativoAsignado}" />
+			<div id="labelsD" style="display:none;">
+			<label >Donativo total : </label><span class="etiquetaSpan" id="spDonativoTotal"></span>&nbsp&nbsp&nbsp&nbsp			
+			<label >Donativo asignado : </label><span class="etiquetaSpan" id="spDonativoAsignado" th:text="${donativoAsignado}"></span>&nbsp&nbsp&nbsp&nbsp
+			<label>Saldo : </label><span class="etiquetaSpan" id="spDSaldo"></span>&nbsp&nbsp&nbsp&nbsp
+			</div>
+			<div id="labelsB" style="display:none;">			
+			<label >Monto de beca/apoyo : </label><span class="etiquetaSpan" id="spMontoBeca"></span>&nbsp&nbsp&nbsp&nbsp
+			<label >Monto asignado : <span class="etiquetaSpan" id="spMontoAsignado" th:text="${donativoAsignado}"></span></label>&nbsp&nbsp&nbsp&nbsp
+			<label>Saldo : <span class="etiquetaSpan" id="spBSaldo"></span></label>
+			</div>
+			<br/>
+			<br/>
+			
+			
+			<div id="registros" style="display:none; margin: 0 auto;">
+			
+			
+			
+			<table class="table tabla" id="registrosAs" >
+				<tr>
+					<th>#</th>
+					<th ><label id="etiquetaTab" style="color:#fff; font-weight: normal;"></label></th>		
+					<th style="display:none;" id="thTipoBeca"><label style="color:#fff; font-weight: normal;">Tipo beca</label></th>					
+					<th><label  style="color:#fff; font-weight: normal;">Saldo</label></th>
+					<th><label  style="color:#fff; font-weight: normal;">Monto a asignar</label></th>
+					<th>Seleccionar</th>
+				</tr>
+					<th:block th:each="registrosTabla,iterationStatus : ${registrosTab}" >
+				<tr class="" th:classappend="${registrosTabla.clase} ? tdSencilloPermiso : tdSencillo"  >							
+					<td th:text="${iterationStatus.count}" ></td>
+					<td  th:text="${registrosTabla.nombreCompleto}" ></td>
+					
+					<td th:if="${asig} == 1" class="col-xs-2" style="display:none;"></td>
+								
+					<td th:unless="${asig} == 1" class="col-xs-2" th:text="${registrosTabla.tipoBeca}"></td>
+					
+					
+					<td  th:text="${registrosTabla.saldo}" ></td>
+					
+					
+					<td th:if="${asig} == 1" class="col-xs-2"><input
+								type="text" th:id="${'montoAsig'+registrosTabla.idDonante}" th:disabled="${registrosTabla.donativoAsignado == '$0.00'}" minlength="2" maxlength="10"
+								onkeypress="return filterFloat(event,this)" th:value="${registrosTabla.donativoAsignado}"
+								class="form-control " th:onblur="|guardaDonativo(this.value,1,${registrosTabla.idDonante});|">
+								
+								<input type="hidden" th:id="${'montoAsigHidden'+registrosTabla.idDonante}" th:value="${registrosTabla.donativoAsignado}"></td>
+								
+					<td th:unless="${asig} == 1" class="col-xs-2"><input
+								type="text" th:id="${'montoAsig'+registrosTabla.idBeneficiario}" th:disabled="${registrosTabla.donativoAsignado == '$0.00'}" minlength="2" maxlength="10"
+								onkeypress="return filterFloat(event,this)" th:value="${registrosTabla.donativoAsignado}"
+								class="form-control " th:onblur="|guardaDonativo(this.value,2,${registrosTabla.idBeneficiario});|">
+								
+								<input type="hidden" th:id="${'montoAsigHidden'+registrosTabla.idBeneficiario}" th:value="${registrosTabla.donativoAsignado}"></td>
+								
+					<td th:if="${asig} == 1">  <label class="customcheck"><input type="checkbox" th:id="${registrosTabla.idDonante}" th:checked="${registrosTabla.clase}" th:onclick="|deshabilitaMonto(1,'${registrosTabla.idDonante}');|"> <span class="checkmark"></span></label></td>
+					<td th:unless="${asig} == 1"><label class="customcheck"><input type="checkbox" th:id="${registrosTabla.idBeneficiario}" th:checked="${registrosTabla.clase}" th:onclick="|deshabilitaMonto(2,'${registrosTabla.idBeneficiario}');|"><span class="checkmark"></span></label></td>				
+					
+				</tr>
+				</th:block>
+	
+			</table>
+			
+			
+			
+			<div >
+					<br> <br> <br>
+					<button type="submit" id="btn-guardar"
+						class="btn btn-primary pull-center" >Guardar</button>
+				</div>
+			
+			</div>
+			
+			</div>
+
+
+
+<!-- Empieza el modal para la modificacion de los beneficiarios--->
+		
+
+		<div class="valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+	
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+<script src="/js/administracion.js"></script>
+</html>

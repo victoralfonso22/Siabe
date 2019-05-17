@@ -167,5 +167,15 @@ public class ControladorAdministracion {
 		
 		}
 	}
+	
+	
+	@GetMapping(value = "/administracion/refrendo_donantes")
+	public String refrendoDonantes(Model model, Principal principal) throws IOException {
+
+		model.addAttribute("periodos", periodoServicio.todosPerido());
+	//	model.addAttribute("lista", archivoStorageServicio.listarArchivos().size());
+		
+		return "/administracion/refrendo_donantes";
+	}
 
 }

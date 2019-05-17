@@ -102,17 +102,20 @@ $("#idBecaGeneral").change(function(){
 		}
 	});
 	
-	$("#generales").show();
+	
 	
 	if($("#idBecaGeneral").val() == 4){
+		$("#generales").hide();
 		$(".apoyo").hide();
-		$(".deportivas").show();
+		$("#deportivas").show();
 	}else if($("#idBecaGeneral").val() == 3){
 		$(".apoyo").show();
-		$(".deportivas").hide();
+		$("#generales").show();
+		$("#deportivas").hide();
 	}else{
+		$("#generales").show();
 		$(".apoyo").hide();
-		$(".deportivas").hide();
+		$("#deportivas").hide();
 	}
 });
 
@@ -120,6 +123,15 @@ $("#idBecaGeneral").change(function(){
 $('document').ready(function(){
 	   $("#checkTodos").change(function () {
 	      $("input:checkbox").prop('checked', $(this).prop("checked"));
+	  });
+	});
+
+
+
+$('document').ready(function(){
+	   $("#checkTodosDeport").change(function () {
+		   $('input:checkbox[name="deporti"]').prop('checked', $(this).prop("checked"));
+	      //$('input:checkbox[name="deporti"]').prop('checked', true);
 	  });
 	});
 
@@ -139,3 +151,13 @@ $("#idPeriodoGeneral").change(function(){
 	});
 });
 
+
+function visualiza(id,clase){
+	if($("#"+id).is(':checked')){
+		alert("check");
+		$('input.'+clase).prop('checked', true);
+	}else{
+		$('input.'+clase).prop('checked', false);
+		alert("no check");
+	}
+}

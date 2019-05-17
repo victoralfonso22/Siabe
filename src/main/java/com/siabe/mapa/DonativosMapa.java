@@ -12,7 +12,7 @@ public class DonativosMapa implements RowMapper<Donativos> {
 			= "SELECT * from view_donativos ";
 	
 	public static final String INSERT_SQL_DONANTES //
-	= "INSERT INTO donativos (donativo_tipo,id_periodo,razon_social, nombres, apellido_paterno,apellido_materno,estatus,motivo_estatus,adscripcion,tipo_donante, id_region,"
+	= "INSERT INTO donativos (donativo_tipo,id_periodo,razon_social, titulo, nombres, apellido_paterno,apellido_materno,estatus,motivo_estatus,adscripcion,tipo_donante, id_region,"
 			+ "sector,	id_campania, medio_autorizacion_donativo,observaciones_medio_autorizacion,medio_cobro,num_personal,dependencia_adscripcion,donativo_total,donativo_quincenal,"
 			+ "num_quincenas,id_quincena_inicio,anio_quincena,id_cuentas_bancarias,referencia,num_pagos,importe_num_pagos,banco,nombre_tarjetahabiente,red,tipo_tarjeta,"
 			+ "num_tarjeta,mes_vencimiento,anio_vencimiento,tipo_donativo,mes_inicio_aportacion,email,celular, telefono1,telefono2,calle,"
@@ -20,7 +20,7 @@ public class DonativosMapa implements RowMapper<Donativos> {
 			+ "colonia_fiscal, localidad_fiscal, municipio_fiscal, estado_fiscal, cp_fiscal, rfc,observaciones,id_usuario) values ";
 	
 	public static final String INSERT_SQL_PATROCINADORES //
-	= "INSERT INTO donativos (donativo_tipo,id_periodo,razon_social, nombres, apellido_paterno,apellido_materno," 
+	= "INSERT INTO donativos (donativo_tipo,id_periodo,razon_social, titulo, nombres, apellido_paterno,apellido_materno," 
 	+ "adscripcion, id_region, sector, descripcion_donativo, email,celular, telefono1,telefono2,calle,num_exterior,num_interior,colonia, localidad, municipio, estado, cp," + 
 			"calle_fiscal,num_exterior_fiscal,num_interior_fiscal,colonia_fiscal, localidad_fiscal, municipio_fiscal, estado_fiscal, cp_fiscal, rfc," + 
 			"observaciones,id_usuario) values ";
@@ -67,6 +67,7 @@ public class DonativosMapa implements RowMapper<Donativos> {
 		String tipoBeca = rs.getString("tipo_beca");
 		int idTipoBeca = rs.getInt("id_tipo_beca");
 		String razonSocial = rs.getString("razon_social");
+		String titulo = rs.getString("titulo");
 		String nombre = rs.getString("nombres");
 		String apellidoPaterno = rs.getString("apellido_paterno");
 		String apellidoMaterno = rs.getString("apellido_materno");
@@ -136,7 +137,7 @@ public class DonativosMapa implements RowMapper<Donativos> {
 		String beneficiario = rs.getString("nombre_completo_bene");
 		String nombreCompletoDon = rs.getString("nombre_completo_don");
 		
-		return new Donativos( idDonativo, idDonativoTipo, idPeriodo,  periodo,  tipoBeca,  idTipoBeca,  razonSocial,
+		return new Donativos( idDonativo, idDonativoTipo, idPeriodo,  periodo,  tipoBeca,  idTipoBeca,  razonSocial, titulo,
 				 nombre,  apellidoPaterno,  apellidoMaterno,  estatus,  estatusDon,
 				 motivoEstatus,  adscripcion,  tipoDonante,  tipoDon,  idRegion,  region,
 				 sector,  sectoDon,  descripcionDonativo,  idCampania,  campania,
