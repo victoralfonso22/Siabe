@@ -84,12 +84,12 @@
 							<label for="razonSocialDon">Denominación o Razón Social</label><br> <input
 								type="text" id="razonSocialDon" minlength="3" 
 								placeholder="" 
-								class="form-control selectTextFormulario vacias  donativosRequired " maxlength="100"
-								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
+								class="form-control selectTextFormulario vacias   " maxlength="100"
+								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ.\s]+">
 						</div>
 						<div class="col-xs-6">
-							<label for="tituloDon">Titulo</label><br> <input minlength="3"
-								type="text" id="tituloDon"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+"
+							<label for="tituloDon">Titulo</label><br> <input minlength="2"
+								type="text" id="tituloDon"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ.\s]+"
 								class="form-control selectTextFormulario vacias ">
 						</div>
 						
@@ -253,17 +253,23 @@
 					<br />
 					
 					<div class="row ">
-						<div class="col-xs-6 ">
+						<div class="col-xs-4 ">
 							<label for="correoDon">Correo electrónico </label><br> <input
 								type="text" id="correoDon" 
 								pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
 								class="form-control selectTextFormulario vacias  donativosRequired ">
-						</div>
-						<div class="col-xs-6">
+						</div>						
+						<div class="col-xs-4">
 							<label for="celularDon">Celular </label><br> <input type="text"
 								id="celularDon" minlength="10" maxlength="10"
 								onkeypress="return valida(event)" 
 								class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+						<div class="col-xs-4">
+							<label for="extensionDon">Extensión </label><br> <input type="text"
+								id="extensionDon" minlength="1"
+								
+								class="form-control selectTextFormulario vacias   ">
 						</div>
 						
 					</div> 
@@ -362,14 +368,28 @@
 					
 					<label class="customradio">No<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFS');"	id="mismoDFS" value="0" checked><span class="radiomark"></span></label> 
 					<label class="customradio">Si<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFN');" id="mismoDFN" value="1"><span class="radiomark"></span></label> <br /> <br />
-					<br /> 
+					<br />
+					
+					
 					<div class="row ">
+						<div class="col-xs-12">
+							<label for="razonSocialFisDon">Denominación o Razón Social</label><br> <input
+								type="text" id="razonSocialFisDon" minlength="3" 
+								placeholder="" 
+								class="form-control selectTextFormulario vacias   " maxlength="100"
+								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
+						</div>
+					 </div>
+					 <br /> <br>
+					<div class="row ">
+					
+					
 						<div class="col-xs-4">
 							<label for="calleFDon">Calle</label><br> <input type="text"
 								id="calleFDon" minlength="4"
 								class="form-control selectTextFormulario vacias  donativosRequired " >
 						</div>
-						
+					
 						<div class="col-xs-4">
 							<label for="nExteriorFDon">No. Ext</label><br> <input
 								type="text" id="nExteriorFDon" 
@@ -727,12 +747,12 @@
 							<label for="razonSocialP">Denominación o Razón Social</label><br> <input
 								type="text" id="razonSocialP" minlength="3" 
 								placeholder="" 
-								class="form-control selectTextFormulario vacias  patrocRequired " maxlength="100"
-								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
+								class="form-control selectTextFormulario vacias   " maxlength="100"
+								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ.\s]+">
 						</div>
 						<div class="col-xs-6">
-							<label for="tituloP">Titulo</label><br> <input minlength="3"
-								type="text" id="tituloP"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ\s]+"
+							<label for="tituloP">Titulo</label><br> <input minlength="2"
+								type="text" id="tituloP"  pattern="[A-Za-zñÑáéíóúÁÉÍÓÚüÜ.\s]+"
 								class="form-control selectTextFormulario vacias ">
 						</div>
 						
@@ -820,19 +840,26 @@
 			
 					
 					<div class="row ">
-						<div class="col-xs-3 ">
+						<div class="col-xs-4 ">
 							<label for="correoP">Correo electrónico </label><br> <input
 								type="text" id="correoP" 
 								pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
 								class="form-control selectTextFormulario vacias  patrocRequired ">
 						</div>
-						<div class="col-xs-3">
+						<div class="col-xs-4">
 							<label for="celularP">Celular </label><br> <input type="text"
 								id="celularP" minlength="10" maxlength="10"
 								onkeypress="return valida(event)" 
 								class="form-control selectTextFormulario vacias  patrocRequired ">
 						</div>
-
+						<div class="col-xs-4">
+							<label for="extensionP">Extensión </label><br> <input type="text"
+								id="extensionP" minlength="1"
+								
+								class="form-control selectTextFormulario vacias   ">
+						</div>
+						</div>
+						<div class="row ">
 						<div class="col-xs-3">
 							<label for="tel1P">Teléfono 1</label><br> <input
 								type="text" id="tel1P" 
@@ -846,6 +873,7 @@
 								class="form-control selectTextFormulario vacias " minlength="10"
 								maxlength="10" onkeypress="return valida(event)">
 						</div>
+						
 
 					</div>
 					<br> <br>
@@ -918,6 +946,16 @@
 					<label class="customradio">No<input	type="radio" name="mismoDFP" onclick="checkMismoDFP('mismoDFSP');"	id="mismoDFSP" value="0" checked><span class="radiomark"></span></label> 
 					<label class="customradio">Si<input	type="radio" name="mismoDFP" onclick="checkMismoDFP('mismoDFNP');" id="mismoDFNP" value="1"><span class="radiomark"></span></label> <br /> <br />
 					<br /> 
+					<div class="row ">
+						<div class="col-xs-12">
+							<label for="razonSocialFisP">Denominación o Razón Social</label><br> <input
+								type="text" id="razonSocialFisP" minlength="3" 
+								placeholder="" 
+								class="form-control selectTextFormulario vacias  " maxlength="100"
+								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
+						</div>
+					 </div>
+					 <br /> <br>
 					<div class="row ">
 						<div class="col-xs-4">
 							<label for="calleFP">Calle</label><br> <input type="text"
@@ -1081,6 +1119,7 @@
 
 				<input type="hidden" id="correoDonH">
 				<input type="hidden" id="celularDonH">
+				<input type="hidden" id="extensionDonH">
 				<input type="hidden" id="tel1DonH">
 				<input type="hidden" id="tel2DonH">
 				
@@ -1092,7 +1131,8 @@
 					<input type="hidden" id="municipioDonH">
 					<input type="hidden" id="estadoDonH">
 					<input type="hidden" id="cpDonH">
-					
+										
+					<input type="hidden" id="razonFiscalH">
 					<input type="hidden" id="calleFDonH">
 					<input type="hidden" id="nExteriorFDonH">
 					<input type="hidden" id="nInteriorFDonH">

@@ -140,12 +140,25 @@ public class ControladorRestEgresos {
 		Map<String,Beneficiarios> response = new TreeMap<String,Beneficiarios>();
 		
 		for(int b = 0; b < beneficiario.size() ;b++) {
-			if(idPeriodo == 0 && idTipoBeca == 0) {
+		/*	if(idPeriodo == 0 && idTipoBeca == 0) {
 			response.put(beneficiario.get(b).getNombre(), beneficiario.get(b));
 			}else {
 			response.put("1", beneficiario.get(b));			
-			}
+			}*/
+			
+			
+				response.put(beneficiario.get(b).getNombre(), beneficiario.get(b));
+				
+				
 		}
+		if(response.isEmpty()) {
+			Beneficiarios ben = new Beneficiarios();
+			ben.setNombre("Sin resultados");
+			ben.setApellidoPaterno("");
+			ben.setApellidoMaterno("");
+			response.put(ben.getNombre(), ben);			
+		}
+		
 		
 		return response;
 

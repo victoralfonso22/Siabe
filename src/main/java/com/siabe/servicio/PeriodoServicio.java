@@ -19,6 +19,10 @@ public class PeriodoServicio {
 		return periodoDAO.regresarPeriodo(idPeriodo);
 	}
 	
+	public List<Periodo> regresaPeriodosMayor(int idPeriodo) {
+		return periodoDAO.regresarPeriodosMayor(idPeriodo);
+	}
+	
 	public String insertPeriodo(String nombre, Date fecha_inicio, Date fecha_final) {
 		return periodoDAO.insertaPeriodo(nombre, fecha_inicio, fecha_final);
 	}

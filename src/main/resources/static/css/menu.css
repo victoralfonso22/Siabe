@@ -425,6 +425,13 @@ th{
 	font-size:13px !important; 	
 }
 
+.widthDivision{
+	font-weight: bold !important;
+	color : #00993D !important;
+	font-size:13px !important; 
+	padding: 10px;	
+}
+
 
 .inactivo{background: #D9534F; color:#fff;}
 
@@ -477,12 +484,12 @@ th{
 .divReportes{	
 	border: 2px solid #00993D;
 	color :black !important;
-	border-radius: 18px;
+
 	padding: 10px;
-	margin: 0 .5em!important;
+
 }
 
-.divReportes label{
+.divReportes td{
 	color :#00993D !important;
 	font-size: initial;
 	font-weight: normal;
@@ -492,10 +499,12 @@ th{
 /*	background: #f2f9ff; */
 	border: 2px solid #337AB7;
 	color:white !important;
-	box-shadow: 3px 3px 3px 0px rgba(51,122,183,1);    
+	background :  #337AB7;
+	font-weight: bold;
+    /*box-shadow: 3px 3px 3px 0px rgba(51,122,183,1);*/    
 }
 
-.divReportes:hover label{
+.divReportes:hover td{
 	color :#337AB7 !important;  
 }
 

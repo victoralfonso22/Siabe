@@ -23,6 +23,7 @@ public class Donativos {
     private String motivoEstatus;
     
     private int adscripcion;
+    private String adscripcionDon;
     
     private int tipoDonante;
     private String tipoDon;
@@ -78,6 +79,7 @@ public class Donativos {
     
     private String email;
     private String celular;
+    private String extension;
     private String telefono1;
     private String telefono2;
     
@@ -91,6 +93,7 @@ public class Donativos {
     private String edo;
     private String cp;
         
+    private String razonFiscal;
     private String calleFiscal;
     private String numEFiscal;
     private String numIFiscal;
@@ -125,11 +128,11 @@ public class Donativos {
 			double donativoQuincenal, int numQuincenas, int idQuincenaInicio, String quincenaInicio, String anioQuincena,
 			int idCuentaBancaria, String cuentaBancaria, String referencia, int numPagos, double importeNumPagos,
 			String banco, String nombreTarjetahabiente, String red, String tipoTarjeta, String numTarjeta,
-			int mesVencimiento, int anioVencimiento, String tipoDonativo, int mesInicioAportacion, String email, String celular,
+			int mesVencimiento, int anioVencimiento, String tipoDonativo, int mesInicioAportacion, String email, String celular, String extension,
 			String telefono1, String telefono2, String calle, String numE, String numI, String col, String loc,
-			String mun, String edo, String cp, String calleFiscal, String numEFiscal, String numIFiscal, String colFiscal,
+			String mun, String edo, String cp,  String razonFiscal,String calleFiscal, String numEFiscal, String numIFiscal, String colFiscal,
 			String locFiscal, String munFiscal, String edoFiscal, String cpFiscal, String rfc, String observaciones,
-			int idBeneficiario, String beneficiario, String nombreCompletoDon) {
+			int idBeneficiario, String beneficiario, String nombreCompletoDon, String adscripcionDon) {
 		super();
 		this.idDonativo = idDonativo;
 		this.idDonativoTipo = idDonativoTipo;
@@ -184,6 +187,7 @@ public class Donativos {
 		this.mesInicioAportacion = mesInicioAportacion;
 		this.email = email;
 		this.celular = celular;
+		this.extension = extension;
 		this.telefono1 = telefono1;
 		this.telefono2 = telefono2;
 		this.calle = calle;
@@ -194,6 +198,7 @@ public class Donativos {
 		this.mun = mun;
 		this.edo = edo;
 		this.cp = cp;
+		this.razonFiscal = razonFiscal;
 		this.calleFiscal = calleFiscal;
 		this.numEFiscal = numEFiscal;
 		this.numIFiscal = numIFiscal;
@@ -207,6 +212,7 @@ public class Donativos {
 		this.idBeneficiario = idBeneficiario;
 		this.beneficiario = beneficiario;
 		this.nombreCompletoDon = nombreCompletoDon;
+		this.adscripcionDon = adscripcionDon;
 	}
 
 
@@ -1120,8 +1126,42 @@ public class Donativos {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-    
-	
+
+
+
+	public String getAdscripcionDon() {
+		return adscripcionDon;
+	}
+
+
+
+	public void setAdscripcionDon(String adscripcionDon) {
+		this.adscripcionDon = adscripcionDon;
+	}
+
+
+
+	public String getExtension() {
+		return extension;
+	}
+
+
+
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+
+
+
+	public String getRazonFiscal() {
+		return razonFiscal;
+	}
+
+
+
+	public void setRazonFiscal(String razonFiscal) {
+		this.razonFiscal = razonFiscal;
+	}
     
     
 		 

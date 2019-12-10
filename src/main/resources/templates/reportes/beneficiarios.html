@@ -131,15 +131,13 @@
 				</div>
 				
 				
-				<div class="col-xs-3 divReportes lbl" onclick="buscarBeneficiarioNombre();">
+				<table>
+				<tr>
+				<td class="col-xs-3 divReportes lbl" onclick="buscarBeneficiarioNombre();">1 - Por nombre</td>
+				<td class="col-xs-3 divReportes lbl" onclick="beneficiarioGeneral();">2 - General</td>
+				</tr>
+				</table>
 				
-				<label class="lbl">Por nombre</label>
-				</div>
-				
-				<div class="col-xs-3 divReportes lbl" onclick="beneficiarioGeneral();">
-				
-				<label class="lbl">General</label>
-				</div>
 				
 				</div>
 
@@ -162,6 +160,14 @@
 					<div class="modal-body">
 						<form id="beneForm">
 							<div class="valoresCentrados">
+							<div>
+							<label>Periodo &nbsp;</label><br /> <select
+										id="idPeriodoNombre" required
+										class="form-control selectText">
+										
+										<option selected th:each="periodo : ${periodos}"
+											th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+									</select></div>
 							<div><label for="idBene">Nombre de beneficiario </label><br><br><input type="text"
 								id="idBeneNom" class="form-control selectTextFormulario div50"
 								onkeyup="autocompletarBeneficiarioNom();" style="margin: 0 auto !important;" required>

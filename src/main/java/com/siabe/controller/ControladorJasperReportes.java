@@ -71,13 +71,13 @@ public class ControladorJasperReportes {
 	/*********************TIEMPOS PROMEDIO**************************************/
 	@RequestMapping(value = "/catalogos/reporteTiempoPromedio")
 	public void reportesTiemposPromedio(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam("type") String type, @RequestParam("idPeriodo") int idPeriodo, @RequestParam("idRegion") int idRegion,@RequestParam("inputBusca") String inputBusca, @RequestParam("carrera") int carrera,
+			@RequestParam("type") String type,  @RequestParam("idRegion") int idRegion,@RequestParam("inputBusca") String inputBusca, @RequestParam("carrera") int carrera,
 			@RequestParam("facultad") int facultad, @RequestParam("area") int area)
 					throws Exception {
 
 		System.out.println("Escribe type " + type);
 		
-		Periodo p = periodoServicio.regresaPeriodo(idPeriodo);
+		//Periodo p = periodoServicio.regresaPeriodo(idPeriodo);
 		
 		
 		if(!type.equals("html")) {
@@ -85,7 +85,7 @@ public class ControladorJasperReportes {
 		}
 		
 //data source
-		JRDataSource dataSource = new JRBeanCollectionDataSource(tiempoPromedioServicio.todosTiemposPromedioPeriodoRegionInput(idPeriodo, idRegion, inputBusca,carrera,facultad,area));
+		JRDataSource dataSource = new JRBeanCollectionDataSource(tiempoPromedioServicio.todosTiemposPromedioPeriodoRegionInput( idRegion, inputBusca,carrera,facultad,area));
 		
 //compile jrxml template and get report
 		JasperReport report;
@@ -95,7 +95,7 @@ public class ControladorJasperReportes {
 		Map<String, Object> parameters = new HashMap<>();
 		ServletContext context = request.getServletContext();
 	
-		parameters.put("periodo", p.getNombre());
+		//parameters.put("periodo", p.getNombre());
 		
 		if (!type.equals("pdf")) {
 		parameters.put(JRParameter.IS_IGNORE_PAGINATION, Boolean.TRUE);
@@ -194,22 +194,57 @@ public class ControladorJasperReportes {
 		TiempoPromedio tiempoPromedio = tiempoPromedioServicio.regresaTiempoPromedio(beneficiario.getIdCarrera());
 		
 		
-		
+		if(beneficiario.getMontoBeca() != 0) {
 		parameters.put("montoBecaFormat",utilidadesWeb.formatoMoneda(beneficiario.getMontoBeca()));
+		}else {
+			parameters.put("montoBecaFormat","");	
+		}
 		
+		if(beneficiario.getFechaNacimiento() != null) {
 		parameters.put("fechaNacimientoFormat",utilidadesWeb.MillisToDate(beneficiario.getFechaNacimiento().getTime()));
+		}else {
+			parameters.put("fechaNacimientoFormat","");	
+		}
 		
+		if(beneficiario.getIngresosFamiliares() != 0) {
 		parameters.put("ingresosFamiliaresFormat",utilidadesWeb.formatoMoneda(beneficiario.getIngresosFamiliares()));
+		}else {
+			parameters.put("ingresosFamiliaresFormat","");	
+		}
 		
 		if(tipoBeca != 4) {
-		parameters.put("periodoPromedio",tiempoPromedio.getPeriodoPromedio());
+			int periodoPromedio;
+			try{				
+				periodoPromedio = tiempoPromedio.getPeriodoPromedio();
+			}catch(Exception e){
+				periodoPromedio = 0;
+			}
+			
+			int periodoActual;
+			try{				
+				periodoActual = beneficiario.getPeriodoActual();
+			}catch(Exception e){
+				periodoActual = 0;
+			}
+			
 		
-		int periodoRebasa = tiempoPromedio.getPeriodoPromedio() - beneficiario.getPeriodoActual();
+		parameters.put("periodoPromedio",periodoPromedio);
 		
-		parameters.put("periodoRebasa",periodoRebasa);	
+		
+		int periodoRebasa = periodoPromedio - periodoActual;
+		
+		
+		parameters.put("periodoRebasa",periodoRebasa);
+		
 		
 		}else {
+			
+		if(beneficiario.getFechaIngEscDep() != null) {	
 		parameters.put("fechaIngresoFormat",utilidadesWeb.MillisToDate(beneficiario.getFechaIngEscDep().getTime()));
+		}else {
+			parameters.put("fechaIngresoFormat","");	
+		}
+		
 		}
 		
 		map.forEach(

@@ -15,13 +15,13 @@ public class DonativosMapa implements RowMapper<Donativos> {
 	= "INSERT INTO donativos (donativo_tipo,id_periodo,razon_social, titulo, nombres, apellido_paterno,apellido_materno,estatus,motivo_estatus,adscripcion,tipo_donante, id_region,"
 			+ "sector,	id_campania, medio_autorizacion_donativo,observaciones_medio_autorizacion,medio_cobro,num_personal,dependencia_adscripcion,donativo_total,donativo_quincenal,"
 			+ "num_quincenas,id_quincena_inicio,anio_quincena,id_cuentas_bancarias,referencia,num_pagos,importe_num_pagos,banco,nombre_tarjetahabiente,red,tipo_tarjeta,"
-			+ "num_tarjeta,mes_vencimiento,anio_vencimiento,tipo_donativo,mes_inicio_aportacion,email,celular, telefono1,telefono2,calle,"
-			+ "num_exterior,num_interior,colonia, localidad, municipio, estado, cp,calle_fiscal,num_exterior_fiscal,num_interior_fiscal,"
+			+ "num_tarjeta,mes_vencimiento,anio_vencimiento,tipo_donativo,mes_inicio_aportacion,email,celular, extension, telefono1,telefono2,calle,"
+			+ "num_exterior,num_interior,colonia, localidad, municipio, estado, cp, razon_social_fiscal, calle_fiscal,num_exterior_fiscal,num_interior_fiscal,"
 			+ "colonia_fiscal, localidad_fiscal, municipio_fiscal, estado_fiscal, cp_fiscal, rfc,observaciones,id_usuario) values ";
 	
 	public static final String INSERT_SQL_PATROCINADORES //
 	= "INSERT INTO donativos (donativo_tipo,id_periodo,razon_social, titulo, nombres, apellido_paterno,apellido_materno," 
-	+ "adscripcion, id_region, sector, descripcion_donativo, email,celular, telefono1,telefono2,calle,num_exterior,num_interior,colonia, localidad, municipio, estado, cp," + 
+	+ "adscripcion, id_region, sector, descripcion_donativo, email,celular, extension, telefono1,telefono2,calle,num_exterior,num_interior,colonia, localidad, municipio, estado, cp, razon_social_fiscal," + 
 			"calle_fiscal,num_exterior_fiscal,num_interior_fiscal,colonia_fiscal, localidad_fiscal, municipio_fiscal, estado_fiscal, cp_fiscal, rfc," + 
 			"observaciones,id_usuario) values ";
 	
@@ -56,6 +56,9 @@ public class DonativosMapa implements RowMapper<Donativos> {
 	public static final String DONATIVO_SQL_TRDONBENASIG //
 	= "select ifnull(donativo,0) from trDonantesBeneficiarios ";
 	
+	public static final String procedureRefrendo //
+	= "call refrendarDonativos ";
+	
 	
 	@Override
 	public Donativos mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -75,6 +78,7 @@ public class DonativosMapa implements RowMapper<Donativos> {
 		String estatusDon = rs.getString("estatus_don");
 		String motivoEstatus = rs.getString("motivo_estatus");
 		int adscripcion = rs.getInt("adscripcion");
+		String adscripcionDon = rs.getString("adscripcion_don");
 		int tipoDonante = rs.getInt("tipo_donante");
 		String tipoDon = rs.getString("tipo_don");
 		int idRegion = rs.getInt("id_region");
@@ -113,6 +117,7 @@ public class DonativosMapa implements RowMapper<Donativos> {
 		int mesInicioAportacion = rs.getInt("mes_inicio_aportacion");
 		String email = rs.getString("email");
 		String celular = rs.getString("celular");
+		String extension = rs.getString("extension");
 		String telefono1 = rs.getString("telefono1");
 		String telefono2 = rs.getString("telefono2");
 		String calle = rs.getString("calle");
@@ -123,6 +128,7 @@ public class DonativosMapa implements RowMapper<Donativos> {
 		String mun = rs.getString("municipio");
 		String edo = rs.getString("estado");
 		String cp = rs.getString("cp");
+		String razonFiscal = rs.getString("razon_social_fiscal");
 		String calleFiscal = rs.getString("calle_fiscal");
 		String numEFiscal = rs.getString("num_exterior_fiscal");
 		String numIFiscal = rs.getString("num_interior_fiscal");
@@ -146,11 +152,11 @@ public class DonativosMapa implements RowMapper<Donativos> {
 				 donativoQuincenal,  numQuincenas,  idQuincenaInicio,  quincenaInicio, anioQuincena,
 				 idCuentaBancaria,  cuentaBancaria,  referencia,  numPagos,  importeNumPagos,
 				 banco,  nombreTarjetahabiente,  red,  tipoTarjeta,  numTarjeta,
-				 mesVencimiento,  anioVencimiento, tipoDonativo, mesInicioAportacion,  email,  celular,
+				 mesVencimiento,  anioVencimiento, tipoDonativo, mesInicioAportacion,  email,  celular, extension,
 				 telefono1,  telefono2,  calle,  numE,  numI,  col,  loc,
-				 mun,  edo,  cp,  calleFiscal,  numEFiscal,  numIFiscal,  colFiscal,
+				 mun,  edo,  cp, razonFiscal, calleFiscal,  numEFiscal,  numIFiscal,  colFiscal,
 				 locFiscal,  munFiscal,  edoFiscal,  cpFiscal,  rfc,  observaciones,
-				 idBeneficiario,  beneficiario,nombreCompletoDon);
+				 idBeneficiario,  beneficiario,nombreCompletoDon, adscripcionDon);
 	}
 
 }

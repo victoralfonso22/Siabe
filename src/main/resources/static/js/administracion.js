@@ -393,3 +393,200 @@ var parametrosPermisos = {"idDonante": idDonante, "idBeneficiario": idBeneficiar
 	
 	//
 }
+
+
+
+function cambiaPeriodoRefrendoDonantivos(){
+	
+	$("#registrosTablaDo").show();
+	
+	 var datos = {
+				idPeriodo : $("#idPeriodoAs").val()
+			}
+	$("#registrosDon").load("/administracion/refrendoDonantesTabla", datos,function( response, status, xhr ) {
+		  if(response.includes("Sesión inactiva")){				 
+				 window.location = "/login?session=false";
+				    }else{
+				    	$("input[name=dona]").each(function (index) {
+				    		id = $(this).attr('id');
+				    		$("#id"+id).removeClass("tdSencilloPermiso");
+				    		//$("#"+id).prop("checked", false);  
+				    		$("#"+id).prop("disabled", false);
+				    		$("#id"+id).addClass("tdSencillo");
+				    		
+				    	});
+				    	
+				    	
+				    }
+			  
+			if(xhr.status==200 && xhr.statusText== "parsererror"){
+				window.location = "/login?session=false";
+			}
+		}); 
+	
+	 
+	 $("#idPeriodoRef").load("/administracion/refrendoDonantesPeriodoRefrendo", datos,function( response, status, xhr ) {
+		  if(response.includes("Sesión inactiva")){				 
+				 window.location = "/login?session=false";
+				    }else{
+				    }
+			  
+			if(xhr.status==200 && xhr.statusText== "parsererror"){
+				window.location = "/login?session=false";
+			}
+		});
+	
+}
+
+$( document ).ready(function() {
+$('#btn-guardar').click(function(e) { 
+	var arreglo = [];
+	var ban = false;
+	
+	$("input[name=dona]").each(function (index) {
+		if($(this).is(':checked')){
+		  id = $(this).attr('id');
+		  arreglo.push(id);
+		  ban = true;
+		}
+	});
+	
+	if(ban == false){
+		alert("Debes seleccionar un donante a refrendar");
+	}else if($("#idPeriodoRef").val() == null){
+		alert("Debe seleccionar un periodo a enviar refrendos");	
+	}else{
+		var parametrosRefrendoDonante = {"idDonante": arreglo, "idPeriodo": $("#idPeriodoRef").val(),"idUsuario" : $("#idUsuario").val()};  
+		$("#postResultDiv").show();
+		$("#postResultDiv").html("<div class='loader'></div>");
+		$.ajax({
+		    	type : "POST",
+				url :"registraRefrendoDonativo",
+				data : parametrosRefrendoDonante,
+				success : function(result) {	
+				  //  alert(result);
+				    if(result.includes("Sesión inactiva")){
+					window.location = "/login?session=false";
+				    }else if(result == "Done"){
+				    	$("#registrosTablaDo").hide();
+				    	$("#idPeriodoAs").val("");				    	
+				    	$("#postResultDiv").html("<p class='divRespuesta'>! Donativos refrendados !<br></p>");
+				    	//cambiaPeriodoRefrendoDonantivos();
+				    	//$("#idPeriodoAs").val("").trigger('change');
+				}else if(result == "Not"){
+					alert("No todos los donativos fueron refrendados");
+				}
+				    $("#postResultDiv").delay(6000).hide(600);
+					
+					console.log(result);
+				},
+				error : function(jqXHR,e) {	
+					//alert(jqXHR.responseText);
+					respuesta = jqXHR.responseText;
+					
+					if(respuesta.includes("Duplicate entry")){
+						
+						
+						var porciones = respuesta.split('Duplicate entry');
+						
+						var otraPorcion = porciones[1];
+						
+						//alert(otraPorcion);
+						
+						var masPorciones = otraPorcion.split(' ');
+						//alert(masPorciones[1].replace('\'',''));
+						var ultimaCadena = masPorciones[1].replace('\'','');
+						var casiUltima = ultimaCadena.split('-');
+						
+						$("#postResultDiv").html("<p style='color:red;'>! No se pueden refrendar los donativos, ya existe el RFC <b>"+casiUltima[0]+"</b> en el periodo refrendo seleccionado !<br></p>");
+				    
+				   // $("#postResultDiv").delay(6000).hide(600);
+						
+						/*for(i=0;i<porciones.length;i++){
+							alert(porciones[i]);
+							/*if(porciones[i]=="Duplicate"){
+								
+							}
+						}*/
+						
+						
+						//const newString = originalString.replace("How", "Where");
+					}else{
+						
+						
+						
+					if (jqXHR.status != 200) {
+					window.location = "/error";
+					}else{
+						window.location = "/login?session=false";
+					}			
+					console.log("ERROR: ", e);		
+					}
+				}
+			});
+		
+		
+		
+		
+	}
+	
+	
+});
+});
+
+
+$('#idPeriodoRef').change(function(e) { 
+	var arreglo = [];
+	var ban = false;
+	
+	
+		var parametrosRefrendoDonante = {"idPeriodo": $("#idPeriodoRef").val()};  
+
+		$.ajax({
+		    	type : "POST",
+				url :"donantivosPeriodo",
+				data : parametrosRefrendoDonante,
+				success : function(result) {	
+				  //  alert(result);
+				    if(result.includes("Sesión inactiva")){
+					window.location = "/login?session=false";
+				    }else{
+				    	
+				    	
+				    	var porciones = result.split('-');
+				    	
+				    	for(i=0;i<porciones.length;i++){
+				    		
+				    		if(porciones[i] != ''){
+				    		//	alert("#id"+porciones[i]);
+				    		$("#id"+porciones[i]).removeClass("tdSencillo");
+				    		$("#"+porciones[i]).prop("checked", false);  
+				    		$("#"+porciones[i]).prop("disabled", true);
+				    		$("#id"+porciones[i]).addClass("tdSencilloPermiso");
+				    		}
+						
+				    	}
+				    	
+				    	
+				    	
+				    	
+				}
+					console.log(result);
+				},
+				error : function(jqXHR,e) {	
+					//alert(jqXHR.responseText);
+					respuesta = jqXHR.responseText;
+						
+					if (jqXHR.status != 200) {
+					window.location = "/error";
+					}else{
+						window.location = "/login?session=false";
+					}			
+					console.log("ERROR: ", e);		
+					
+				}
+			});
+		
+
+	
+});

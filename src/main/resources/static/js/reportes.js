@@ -23,9 +23,9 @@ function autocompletarBeneficiarioNom() {
 				dataType : "json",
 				data : {
 					term : request.term,
-					idPeriodo : 0,
-					idTipoBeca : 0
-				//	idPeriodo : $("#idPeriodo").val()
+			//		idPeriodo : 0,
+					idTipoBeca : 0,
+					idPeriodo : $("#idPeriodoNombre").val()
 				},
 				success : function(data) {
 
@@ -55,9 +55,15 @@ function autocompletarBeneficiarioNom() {
 		},
 		select : function(event, ui) {
 			this.value = ui.item.label;
+			if(ui.item.label.trim() != "Sin resultados"){
 			$("#idBeneNomHidden").val(ui.item.value);	
 			$("#iconosReporteBenNom").show();
+			}else{
+				$("#idBeneNom").val("");
+				$("#idBeneNomHidden").val("");
+			}
 			return false;
+			
 			
 		},
 		minLength: 0
@@ -65,6 +71,8 @@ function autocompletarBeneficiarioNom() {
 
 	});
 }
+
+
 
 
 
@@ -149,6 +157,12 @@ $("#idPeriodoGeneral").change(function(){
 			window.location = "/login?session=false";
 		}
 	});
+});
+
+
+$("#idPeriodoNombre").change(function(){
+	$("#idBeneNomHidden").val("");
+	$("#idBeneNom").val("");
 });
 
 

@@ -28,6 +28,7 @@ import com.siabe.modelo.TiempoPromedio;
 import com.siabe.modelo.Areas;
 import com.siabe.modelo.Campana;
 import com.siabe.modelo.CuentasBancarias;
+import com.siabe.modelo.Donativos;
 import com.siabe.modelo.Facultades;
 import com.siabe.modelo.Quincenas;
 import com.siabe.servicio.UsuarioServicio;
@@ -485,7 +486,7 @@ public class ControladorRestCatalogo {
 			
 			
 			List<TiempoPromedio> tiempoPromedioP = new ArrayList<TiempoPromedio>(
-					tiempoPromedioServicio.todosTiemposPromedioPeriodo(idPeriodo));
+					tiempoPromedioServicio.todosTiemposPromedioPeriodo());
 
 			response += "<br/><br/>"
 					+ "<table class=\"table tabla\"  id=\"tableTiempoPeriodo\">"
@@ -504,7 +505,7 @@ public class ControladorRestCatalogo {
 				response += "<tr class=\"tdSencillo\" id="+tiempoPromedioP.get(b).getIdCarrera()+" title='Click para editar' onclick='modificarTiempoPromedio(\""+tiempoPromedioP.get(b).getCarrera()+"\",\""+tiempoPromedioP.get(b).getNivel()+"\",\""
 						+ tiempoPromedioP.get(b).getModalidad()+"\","+tiempoPromedioP.get(b).getPlan()+","+tiempoPromedioP.get(b).getPeriodoPromedio()+","+tiempoPromedioP.get(b).getIdFacultad()+","+tiempoPromedioP.get(b).getIdArea()+","
 								+ tiempoPromedioP.get(b).getIdRegion()+","+tiempoPromedioP.get(b).getIdCarrera()+","+tiempoPromedioP.get(b).getEstatus()+")'>"
-						+ "<td>"+tiempoPromedioP.get(b).getIdCarrera()+"</td>"
+						+ "<td>"+a+"</td>"
 						+ "<td>"+tiempoPromedioP.get(b).getCarrera()+"</td>"
 						+ "<td>"+tiempoPromedioP.get(b).getNivel()+"</td>"
 						+ "<td>"+tiempoPromedioP.get(b).getModalidad()+"</td>"
@@ -536,12 +537,12 @@ public class ControladorRestCatalogo {
 	
 	
 	@PostMapping(value = "/catalogos/ajaxTiempoRegionSelect")
-	public String postAjaxtTiempoRegionT(@RequestParam int idRegion, @RequestParam int idPeriodo, @RequestParam String buscarInput, @RequestParam int carrera, @RequestParam int facultad, @RequestParam int area) {
+	public String postAjaxtTiempoRegionT(@RequestParam int idRegion, @RequestParam String buscarInput, @RequestParam int carrera, @RequestParam int facultad, @RequestParam int area) {
 		String response = "";
 
 
 			List<TiempoPromedio> tiempoPromedioR = new ArrayList<TiempoPromedio>(
-					tiempoPromedioServicio.todosTiemposPromedioPeriodoRegionInput(idPeriodo, idRegion, buscarInput, carrera, facultad, area));
+					tiempoPromedioServicio.todosTiemposPromedioPeriodoRegionInput( idRegion, buscarInput, carrera, facultad, area));
 
 			response += "<br/><br/>"
 					+ "<table class=\"table tabla\"  id=\"tableTiempoPeriodo\">"
@@ -560,7 +561,7 @@ public class ControladorRestCatalogo {
 				response += "<tr class=\"tdSencillo\" id="+tiempoPromedioR.get(b).getIdCarrera()+" title='Click para editar' onclick='modificarTiempoPromedio(\""+tiempoPromedioR.get(b).getCarrera()+"\",\""+tiempoPromedioR.get(b).getNivel()+"\",\""
 						+ tiempoPromedioR.get(b).getModalidad()+"\","+tiempoPromedioR.get(b).getPlan()+","+tiempoPromedioR.get(b).getPeriodoPromedio()+","+tiempoPromedioR.get(b).getIdFacultad()+","+tiempoPromedioR.get(b).getIdArea()+","
 								+ tiempoPromedioR.get(b).getIdRegion()+","+tiempoPromedioR.get(b).getIdCarrera()+","+tiempoPromedioR.get(b).getEstatus()+")'>"
-						+ "<td>"+tiempoPromedioR.get(b).getIdCarrera()+"</td>"
+						+ "<td>"+a+"</td>"
 						+ "<td>"+tiempoPromedioR.get(b).getCarrera()+"</td>"
 						+ "<td>"+tiempoPromedioR.get(b).getNivel()+"</td>"
 						+ "<td>"+tiempoPromedioR.get(b).getModalidad()+"</td>"
@@ -680,9 +681,9 @@ public class ControladorRestCatalogo {
 	
 	
 	@PostMapping(value = "/catalogos/ajaxtPromedio")
-	public String postAjaxtPromedio(@RequestParam String carrera, @RequestParam String nivel, @RequestParam String modalidad,  @RequestParam int plan,  @RequestParam int pPromedio, @RequestParam int idRegion, @RequestParam int idFac , @RequestParam int idArea , @RequestParam int idPeriodo) {		
+	public String postAjaxtPromedio(@RequestParam String carrera, @RequestParam String nivel, @RequestParam String modalidad,  @RequestParam int plan,  @RequestParam int pPromedio, @RequestParam int idRegion, @RequestParam int idFac , @RequestParam int idArea ) {		
 
-		String response = tiempoPromedioServicio.insertCarrera(idFac,idArea, idRegion, carrera, nivel, modalidad, plan, pPromedio, idPeriodo);
+		String response = tiempoPromedioServicio.insertCarrera(idFac,idArea, idRegion, carrera, nivel, modalidad, plan, pPromedio);
 		
 		return response;
 
@@ -754,6 +755,13 @@ public class ControladorRestCatalogo {
 		
 		for(int b = 0; b < region.size() ;b++) {
 			response.put(region.get(b).getNombre(), region.get(b));
+		}
+		
+		if(response.isEmpty()) {
+			Regiones reg = new Regiones();
+			reg.setNombre("Sin resultados");
+			
+			response.put(reg.getNombre(), reg);			
 		}
 		
 		return response;
@@ -852,6 +860,12 @@ public  @ResponseBody Map<String,Quincenas> postAjaxAutocompleteQuincena(@Reques
 		response.put(quincena.get(b).getNombre(), quincena.get(b));
 	}
 	
+	if(response.isEmpty()) {
+		Quincenas quin = new Quincenas();
+		quin.setNombre("Sin resultados");		
+		response.put(quin.getNombre(), quin);			
+	}
+	
 	return response;
 
 }
@@ -866,6 +880,14 @@ public  @ResponseBody Map<String,CuentasBancarias> postAjaxAutocompleteCuentaBan
 	
 	for(int b = 0; b < quincena.size() ;b++) {
 		response.put(quincena.get(b).getNombre(), quincena.get(b));
+	}
+	if(response.isEmpty()) {
+		CuentasBancarias cta = new CuentasBancarias();
+		cta.setNombre("Sin resultados");
+		cta.setClabe("");
+		cta.setNumeroCuenta("");
+		cta.setSucursal("");
+		response.put(cta.getNombre(), cta);			
 	}
 	
 	return response;

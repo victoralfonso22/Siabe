@@ -282,6 +282,8 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 				"join view_beneficiarios vn2 on vn2.id_periodo = b.id_periodo and vn2.nombre_completo_bene = b.nombre_completo_bene group by b.nombre_completo_bene )a\r\n" + 
 				"on a.nombre_completo_bene = vn.nombre_completo_bene  and a.id_periodo = vn.id_periodo and a.id_tipo_beca = vn.id_tipo_beca";
 				
+		}else if(idPeriodo != 0 && idTipoBeca == 0){
+			sql= BeneficiariosMapa.BASE_SQL +" where nombre_completo_bene like '%"+termino+"%' and id_periodo = "+idPeriodo+" ;";
 		}else {
 			sql= BeneficiariosMapa.BASE_SQL +" where nombre_completo_bene = '"+termino+"' and id_periodo = "+idPeriodo+" and id_tipo_beca = "+idTipoBeca+";";
 		}

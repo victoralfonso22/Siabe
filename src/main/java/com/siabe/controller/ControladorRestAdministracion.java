@@ -72,5 +72,50 @@ public class ControladorRestAdministracion {
 		return donativosServicio.insertaDonativoDonanteBeneficiario(idDonante, idBeneficiario, donativo);
 		}
 	}
+	
+	
+	@PostMapping(value ="/administracion/registraRefrendoDonativo")
+	public String registraRefrendoDonativo(@RequestParam(value="idDonante[]") Integer[] idDonante, @RequestParam int idPeriodo, @RequestParam int idUsuario) {
+	//	model.addAttribute("periodos", periodoServicio.todosPeridoIdBeca(idTipoBeca));
+		
+		int flag = 0;
+		for (int x=0;x<idDonante.length;x++) {
+			if(donativosServicio.refrendaDonativo(Integer.valueOf(idDonante[x]), idPeriodo, idUsuario)) {
+				flag+=1;
+			}
+				
+			
+			  System.out.println(idDonante[x]);
+		}
+		
+		//System.out.println("longitud "+idDonante.length+" | flag"+flag);
+		if(idDonante.length == flag) {
+		return "Done";
+		}else {
+			return "Not";
+		}
+		
+		
+	
+	}
+	
+	@PostMapping(value ="/administracion/donantivosPeriodo")
+	public String donantivosPeriodo(@RequestParam int idPeriodo) {
+		List<Donativos> lista = new ArrayList<Donativos>();
+		
+		String ids = "";
+		
+		lista = donativosServicio.regresaDonantesPeriodoRFC(idPeriodo);
+		
+		for (int x=0;x<lista.size();x++) {
+			ids+=lista.get(x).getIdDonativo()+"-";			
+			
+		}
+		
+		return ids;
+		
+		
+	
+	}
 
 }

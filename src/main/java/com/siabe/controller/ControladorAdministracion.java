@@ -173,9 +173,42 @@ public class ControladorAdministracion {
 	public String refrendoDonantes(Model model, Principal principal) throws IOException {
 
 		model.addAttribute("periodos", periodoServicio.todosPerido());
+		
+		
 	//	model.addAttribute("lista", archivoStorageServicio.listarArchivos().size());
 		
 		return "/administracion/refrendo_donantes";
 	}
+	
+	@RequestMapping("/administracion/refrendoDonantesTabla")
+	public String regresaTablaDonativos(Model model, Principal principal, @RequestParam int idPeriodo) {		
+		
+		model.addAttribute("donativos",donativosServicio.regresaDonantesPeriodo(idPeriodo));
+		
+		model.addAttribute("periodosT",periodoServicio.regresaPeriodosMayor(idPeriodo));
+		
+		if(principal == null) {
+		return "/login";	
+		}else {
+			
+			return "/administracion/refrendo_donantes :: #registrosDon";
+		}
+	}
+	
+	@RequestMapping("/administracion/refrendoDonantesPeriodoRefrendo")
+	public String regresaPeriodoRefrendoDonativos(Model model, Principal principal, @RequestParam int idPeriodo) {		
+		
+		model.addAttribute("periodosT",periodoServicio.regresaPeriodosMayor(idPeriodo));
+		
+		if(principal == null) {
+		return "/login";	
+		}else {
+			
+			return "/administracion/refrendo_donantes :: #idPeriodoRef";
+		}
+	}
+	
+	
+	
 
 }

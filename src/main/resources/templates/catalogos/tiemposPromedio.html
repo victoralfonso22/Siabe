@@ -23,7 +23,7 @@
 			
 
 			<div class="table-responsive valoresCentrados">
-			<div id="logosReportes" class="divLogosReportes ">
+			<div id="logosReportes" class="divLogosReportes" style="display: inherit;">
 			<div class="iconosRoot">
 			<a onclick="reporteTiempoPromedio(1,'resultReport','iconosRoot');" class="lbl "><img title='Descargar pdf' id="pdfTiempoPromedio" src='/imagenes/pdf.png' alt='Descargar PDF' /></a>&nbsp&nbsp&nbsp 
 			<a onclick="reporteTiempoPromedio(2,'resultReport','iconosRoot');" class="lbl "><img src='/imagenes/excel.png' title='Descargar excel' alt='Descargar excel' /></a>&nbsp&nbsp&nbsp 
@@ -37,16 +37,16 @@
 							    <div class="progress-bar progress-bar-striped active" id="resultReport2" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:15%">							     
 							    </div>
 				</div>
-			<div class="divLogosAgregar" id="logosAgregar">
-			<label class="labelAgregar" title='Agregar tiempo promedio' onclick="nuevoTiempoPeriodoModal();"><img  alt='Agregar tiempo promedio' src="/imagenes/mas.png" >Tiempo promedio </label>
-			<label class="labelAgregar" title='Agregar área' onclick="nuevoAreaModal();"><img  alt='Agregar área' src="/imagenes/mas.png" >Nueva/modificar Área </label>
-			<label class="labelAgregar" title='Agregar facultad' onclick="nuevoFacultadModal();"><img  alt='Agregar facultad' src="/imagenes/mas.png" >Facultad </label>
+			<div class="divLogosAgregar" id="logosAgregar" style="display: inherit;">
+			<label class="labelAgregar" title='Agregar tiempo promedio' onclick="nuevoTiempoPeriodoModal();"><span class="glyphicon glyphicon-plus"></span> Tiempo promedio		</label><label class="widthDivision">|</label>
+			<label class="labelAgregar" title='Agregar área' onclick="nuevoAreaModal();"><span class="glyphicon glyphicon-plus"></span> Nueva/modificar Área	</label><label class="widthDivision">|</label>
+			<label class="labelAgregar" title='Agregar facultad' onclick="nuevoFacultadModal();"><span class="glyphicon glyphicon-plus"></span> Facultad	</label>
 			</div> 
 			
 			<br/>
 			<br/>
 			<br/>
-			<div style="z-index: 10;">
+			<!-- <div style="z-index: 10;">
 			<select id="peridoTSeleccionado" required  class="form-control selectText" >
 					<option disabled selected value=""> Selecciona un periodo</option>
                          <option th:each="periodo : ${periodos}"
@@ -56,13 +56,13 @@
 			</div>
 			<br/>
 			<br/>
-			
+			-->
 			
 			<div id="regionesTiempoPeriodo">
 			</div>
 			<br/>
 			
-			<div style="display: none;" id="opcionesBusca">
+			<div  id="opcionesBusca">
 			<span>Buscar por: </span>
 			<br/> 
 			
@@ -70,9 +70,63 @@
 			<label class="customcheck">Facultad<input type="checkbox" id="fac" onclick="verTiempoPromerdio();">  <span class="checkmark"></span></label>
 			<label class="customcheck">Área<input type="checkbox" id="are" onclick="verTiempoPromerdio();">  <span class="checkmark"></span></label></br>
 			</div>
-			<input class="form-control selectText widthAutocompletar" style="display:none;" type='text' placeholder='Buscar' onkeyup="verTiempoPromerdio();" id='buscarTiempoPromedio'></input>
+			<input class="form-control selectText widthAutocompletar" type='text' placeholder='Buscar' onkeyup="verTiempoPromerdio();" id='buscarTiempoPromedio'></input>
+			
+			<br>
+			<br>
+			<select class="form-control selectText" required onchange="verTiempoPromerdio();" id="idRegionTiempo">
+					 <option value='0' selected>Selecciona una región</option>			
+				<option th:each="region : ${regiones}"
+                            th:value="${region.idRegion}"
+                            th:text="${region.nombre}"></option>
+			
+			</select><br/><br/>
+					 <div id="selction-ajax"></div>
+			
+			
 			
 			<div id="tablaTiempoPeriodo">
+			
+			
+			
+			
+			<table class="table tabla"  id="tableTiempoPeriodo">
+					<tr><th>#</th>
+					<th>Carrera</th>
+					<th>Nivel</th>
+					<th>Modalidad</th>
+					<th>Plan</th>
+					<th>Periodo promedio</th>
+					<th>Facultad</th>
+					<th>Area</th>
+					<th>Región</th>
+					<th>Estatus</th></tr>
+			
+			<th:block th:each="tiempoPromedio,iterationStatus : ${tiemposPromedio}" >
+			<tr class="tdSencillo" th:id="${tiempoPromedio.idCarrera}"  th:onclick="|modificarTiempoPromedio('${tiempoPromedio.carrera},${tiempoPromedio.nivel},${tiempoPromedio.modalidad},${tiempoPromedio.plan},
+			${tiempoPromedio.periodoPromedio},${tiempoPromedio.facultad},${tiempoPromedio.area},${tiempoPromedio.idRegion},${tiempoPromedio.idCarrera},${tiempoPromedio.estatus}');|" >
+		
+						<td th:text="${iterationStatus.count}" ></td>
+						<td th:text="${tiempoPromedio.carrera}" ></td>
+						<td th:text="${tiempoPromedio.nivel}" ></td>
+						<td th:text="${tiempoPromedio.modalidad}" ></td>
+						<td th:text="${tiempoPromedio.plan}" ></td>
+						<td th:text="${tiempoPromedio.periodoPromedio}" ></td>
+						<td th:text="${tiempoPromedio.facultad}" ></td>
+						<td th:text="${tiempoPromedio.area}" ></td>
+						<td th:text="${tiempoPromedio.region}" ></td>
+						<td th:text="${tiempoPromedio.estatusDefinicion}" ></td>
+						</tr>
+				</th:block>
+			
+			<tr style='cursor:pointer;' onclick="nuevoTiempoPeriodoModal();">
+					<td colspan=10><img  alt='Agregar' src="/imagenes/mas.png"> Agregar tiempo promedio</td></tr></table>
+			
+			
+			
+			
+			
+			
 			</div>
 			<br/>
 			</div>

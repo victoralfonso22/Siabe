@@ -1693,7 +1693,7 @@ function verTiempoPromerdio() {
 		$("#buscarTiempoPromedio").val("");
 	}
 	
-	var parametrosPermisos = {"idRegion": $("#idRegionTiempo").val(), "idPeriodo": $("#peridoTSeleccionado").val(), "buscarInput" : $("#buscarTiempoPromedio").val(), "carrera" : carrera, "facultad" : facultad, "area" : area};  
+	var parametrosPermisos = {"idRegion": $("#idRegionTiempo").val(), "buscarInput" : $("#buscarTiempoPromedio").val(), "carrera" : carrera, "facultad" : facultad, "area" : area};  
 	
 	$.ajax({
 	    		type : "POST",

@@ -296,6 +296,7 @@ function autocompletarRegion(idRegion,idRegionHidden,valRegionHidden,idArea,idFa
 		},
 		select : function(event, ui) {
 			this.value = ui.item.label;
+			if(ui.item.label.trim() != "Sin resultados"){
 			$("#"+idRegionHidden).val(ui.item.value);
 			$("#"+valRegionHidden).val(this.value);
 		//	alert("valor "+$("#valRegionHidden").val()+" id"+$("#idRegionHidden").val());
@@ -323,6 +324,11 @@ function autocompletarRegion(idRegion,idRegionHidden,valRegionHidden,idArea,idFa
 			$("#"+idCarrera).val('');
 			$("#idCarreraHidden").val('');
 			$("#valCarreraHidden").val('');
+			}else{
+				$("#"+idRegion).val("");
+				$("#"+idRegionHidden).val("");
+				
+			}
 			return false;
 		},
 		minLength: 0
@@ -376,9 +382,16 @@ function autocompletarRegionD(idRegion,idRegionHidden,valRegionHidden,focoSig) {
 		},
 		select : function(event, ui) {
 			this.value = ui.item.label;
+			//alert(ui.item.label.trim());
+			if(ui.item.label.trim() != "Sin resultados"){
 			$("#"+idRegionHidden).val(ui.item.value);
 			$("#"+valRegionHidden).val(this.value);		
 			$("#"+focoSig).focus();		
+		}else{
+			$("#"+idRegion).val("");
+			$("#"+idRegionHidden).val("");
+			$("#"+valRegionHidden).val("");
+		}
 			return false;
 		},
 		minLength: 0
@@ -799,6 +812,8 @@ $("#beneficiarioForm").submit(function(event) {
     event.preventDefault();
     
     bandera = true;
+    
+    mood = true;
    
     if( $('input:radio[name=altaCambio]:checked').val() ==1){
     	
@@ -868,6 +883,8 @@ $("#beneficiarioForm").submit(function(event) {
     	
     	
     }else if( $('input:radio[name=altaCambio]:checked').val() ==0){
+    	
+    	mood = false;
     	
     	inputTBeca ="becaSeleccionadaModif";
 		
@@ -1002,9 +1019,11 @@ $("#beneficiarioForm").submit(function(event) {
 				
 				console.log(result);
 				
+				
+				if(mood){
 				$("#"+inputTBeca).val(tBeca).trigger('change');
 				
-		/*		$("textarea.vacias").val('');
+				$("textarea.vacias").val('');
 				$("input.vacias").val('');
 				$("select.vacias").val(1);
 				$("input.deshab").prop("disabled",true);
@@ -1013,7 +1032,8 @@ $("#beneficiarioForm").submit(function(event) {
 				$('input:radio[name="mismoDomicilio"][value="1"]').prop('checked', true);
 				$('input:radio[name="formaPago"][value="1"]').prop('checked', true);
 				$('input:radio[name="hermanosEscuelas"][value="1"]').prop('checked', true);
-				*/
+			    }
+				
 				
 			    }else if (result == "Duplicado"){
 			    	$("#postResultDiv").delay(1000).hide(100);
@@ -1177,7 +1197,9 @@ function autocompletarBeneficiarioMod() {
 			return false;
 		},
 		select : function(event, ui) {
-			//this.value = ui.item.label;
+			this.value = ui.item.label;
+
+			if(ui.item.label.trim() != "Sin resultados"){
 			
 			$("#nombreCompletoBeneH").val(ui.item.nombreCompletoBene);
 			
@@ -1438,6 +1460,9 @@ function autocompletarBeneficiarioMod() {
 				}else if(ui.item.hermanosInscritos == 0){
 					$('input:radio[name="hermanosEscuelas"][value="0"]').prop('checked', true);
 					checkIdsHED('henD');
+				}else{
+					$('input:radio[name="hermanosEscuelas"][value="1"]').prop('checked', true);
+					checkIdsHED('hesD');
 				}
 				$("#escuelaHD").val(ui.item.escuelaHermanosInscritos);
 				
@@ -1551,6 +1576,12 @@ function autocompletarBeneficiarioMod() {
 		//	$("#becaModif").show();
 			$("#periodoTBecaMod").show();
 			$("#btn-guardar").show();
+			
+			}else{
+				$("#idBene").val("");
+				
+			}
+			
 			return false;
 		},
 		minLength: 0
@@ -1821,6 +1852,9 @@ function actualizaInputsBenMod(){
 				}else if(data[1].hermanosInscritos == 0){
 					$('input:radio[name="hermanosEscuelas"][value="0"]').prop('checked', true);
 					checkIdsHED('henD');
+				}else{
+					$('input:radio[name="hermanosEscuelas"][value="1"]').prop('checked', true);
+					checkIdsHED('hesD');
 				}
 				$("#escuelaHD").val(data[1].escuelaHermanosInscritos);
 				

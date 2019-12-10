@@ -163,7 +163,7 @@
 				</textElement>
 				<text><![CDATA[Región]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="40" y="210" width="130" height="20" uuid="5bbb8226-38ba-4b34-92dd-6d4fd4946b8f"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -201,7 +201,7 @@
 				</textElement>
 				<text><![CDATA[Fecha de ingreso a la escuela deportiva]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="641" y="210" width="129" height="20" uuid="66d170fb-273a-4337-a966-f53338e9da3d"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -246,7 +246,7 @@
 				</textElement>
 				<text><![CDATA[Tipo de institución]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="53" y="44" width="190" height="20" uuid="551fe0a4-6982-453b-add3-156bbd1fa794"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -327,7 +327,7 @@
 				</textElement>
 				<text><![CDATA[Tipo becario]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="323" y="44" width="190" height="20" uuid="1233127e-78fb-4190-ac3b-8ae14083a721"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -335,7 +335,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{periodo}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="43" y="119" width="120" height="20" uuid="39432641-6598-4534-a987-8cf2d4f63b33"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -343,7 +343,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[($P{estatus}==1? "Activo":"Incativo")]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="53" y="84" width="120" height="20" uuid="850e36cf-3321-4d8d-8f49-d6e1343f6eee"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -351,7 +351,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="353" y="84" width="120" height="20" uuid="2cbf70c6-07f1-430c-86df-e1188d5bf6ad"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -359,7 +359,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{apellidoPaterno}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="650" y="84" width="120" height="20" uuid="66ed6d49-cfde-48ae-9308-673f8174df2a"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -367,7 +367,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{apellidoMaterno}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="263" y="119" width="120" height="20" uuid="4836d587-3e05-4e63-b47d-ae191050d6a7"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -375,7 +375,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{motivoEstatus}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="483" y="119" width="100" height="20" uuid="fe717061-b9dc-4ce5-b6f3-f05c636c8ae1"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -398,7 +398,7 @@
 				</textElement>
 				<text><![CDATA[Adscripción]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="670" y="119" width="100" height="20" uuid="8c954941-578d-4819-b67c-b4764cc66797"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -473,7 +473,7 @@
 				</textElement>
 				<text><![CDATA[Promedio general]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="90" y="454" width="40" height="20" uuid="0cfdf419-093b-4577-aa3b-b40e18626e13"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -496,7 +496,7 @@
 				</textElement>
 				<text><![CDATA[Edad]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="240" y="454" width="50" height="20" uuid="699651b4-c57c-4357-a6c9-51e85ab5e83f"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -519,7 +519,7 @@
 				</textElement>
 				<text><![CDATA[Género]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="418" y="454" width="77" height="20" uuid="611fbd3e-cb7c-40e9-b2bb-df573f084df0"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -558,7 +558,7 @@
 					</textElement>
 					<text><![CDATA[Calle]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="41" y="-188" width="180" height="20" uuid="8e0af1ff-a2b4-4215-b9ed-929039bc2b60"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -581,7 +581,7 @@
 					</textElement>
 					<text><![CDATA[No. Ext.]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="279" y="-188" width="69" height="20" uuid="b2d4fab0-642d-43dc-8b3f-fe04a12405b3"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -589,7 +589,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$P{numEVivFam}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="414" y="-188" width="69" height="20" uuid="2badcf70-fedd-44e8-aae7-c17fa2a89aab"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -627,7 +627,7 @@
 					</textElement>
 					<text><![CDATA[Colonia o Fraccionamiento]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="631" y="-188" width="140" height="20" uuid="698615af-ffdc-4faa-8971-a4e27fd3e960"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -650,7 +650,7 @@
 					</textElement>
 					<text><![CDATA[Localidad]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="61" y="-148" width="140" height="20" uuid="ba4e663a-b1b1-4d56-9df1-aa9801432102"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -673,7 +673,7 @@
 					</textElement>
 					<text><![CDATA[Municipio]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="274" y="-148" width="140" height="20" uuid="3a342e46-7246-4871-81d8-927f8062c8c0"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -696,7 +696,7 @@
 					</textElement>
 					<text><![CDATA[Estado]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="480" y="-148" width="140" height="20" uuid="15c8d981-f137-47b1-8cc4-4db651293cd1"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -719,7 +719,7 @@
 					</textElement>
 					<text><![CDATA[C.P.]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="671" y="-148" width="100" height="20" uuid="95835eea-e7c0-4946-b904-b80c8d372281"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -742,7 +742,7 @@
 					</textElement>
 					<text><![CDATA[Enlace maps]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="81" y="-107" width="690" height="20" uuid="d4bc2ad5-4390-4566-af7b-61e9ce4a80f8"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -773,7 +773,7 @@
 				</textElement>
 				<text><![CDATA[Lugar de nacimiento]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="105" y="490" width="205" height="20" uuid="1802df5e-60f8-4822-9815-b106cb62679f"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -796,7 +796,7 @@
 				</textElement>
 				<text><![CDATA[Fecha de nacimiento]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="440" y="490" width="140" height="20" uuid="d050d3e5-3412-4096-8da8-1473c7263de8"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -819,7 +819,7 @@
 				</textElement>
 				<text><![CDATA[Breve historia del beneficiario]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="3" y="560" width="747" height="90" uuid="d2dce751-38e4-4134-9f25-61993717ade2"/>
 				<textElement textAlignment="Left" verticalAlignment="Justified">
 					<font fontName="Calibri" size="10"/>
@@ -842,7 +842,7 @@
 				</textElement>
 				<text><![CDATA[Integrantes familiares]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="217" y="664" width="140" height="20" uuid="34b49704-2898-4324-af78-d519d361300e"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -865,7 +865,7 @@
 				</textElement>
 				<text><![CDATA[Ingresos familiares reportados]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="570" y="664" width="140" height="20" uuid="d8f7b143-0b76-4de6-b2ce-c317453ce7ef"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -899,7 +899,7 @@
 					</textElement>
 					<text><![CDATA[Celular]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="470" y="-45" width="80" height="20" uuid="74beef91-120e-4219-8e10-3fcd5cda5dfa"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -922,7 +922,7 @@
 					</textElement>
 					<text><![CDATA[Teléfono domicilio]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="680" y="-44" width="80" height="20" uuid="233f393a-624e-44ef-aee1-f7c4bfe25fc3"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -960,7 +960,7 @@
 					</textElement>
 					<text><![CDATA[Número]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="293" y="10" width="80" height="20" uuid="2627db21-8a99-4377-9e2b-36392a05f89e"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -983,7 +983,7 @@
 					</textElement>
 					<text><![CDATA[Parentesco]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="443" y="10" width="80" height="20" uuid="378f0144-b228-4750-a359-aa97428310b2"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1006,7 +1006,7 @@
 					</textElement>
 					<text><![CDATA[Observaciones]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="611" y="10" width="150" height="20" uuid="3a695f1a-e4ea-44d5-8cd8-2ddcfc44a1fc"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1029,7 +1029,7 @@
 					</textElement>
 					<text><![CDATA[Correo electrónico]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="101" y="84" width="115" height="20" uuid="cadd8eff-0d46-4407-a299-ae2b5bd2b5a5"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1052,7 +1052,7 @@
 					</textElement>
 					<text><![CDATA[Facebook 1]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="289" y="85" width="101" height="20" uuid="04b96542-f3d8-48d6-aa35-369bde198e3c"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1060,7 +1060,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$P{facebook}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="489" y="85" width="101" height="20" uuid="61d38c2a-e24e-4e18-9778-e0bccf15e171"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1083,7 +1083,7 @@
 					</textElement>
 					<text><![CDATA[Facebook 2]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="669" y="84" width="101" height="20" uuid="e28e42d9-50be-4c72-922b-080c78afc0e4"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1106,7 +1106,7 @@
 					</textElement>
 					<text><![CDATA[Facebook 3]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="112" y="9" width="123" height="20" uuid="416c7fda-9e49-4e1b-a7e6-f294127857b7"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1114,7 +1114,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[($P{tipoTelRef}.equals("1")? "Celular":($P{tipoTelRef}.equals("2")? "Casa":"Oficina"))]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="307" y="-734" width="123" height="20" uuid="4bd9a33c-e35f-44e7-8bf7-178ecbb566b4"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1122,7 +1122,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[($P{escuelaDeportiva}.equals("1")? "Baloncesto":($P{escuelaDeportiva}.equals("2")? "Soccer":"Americano"))]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="130" y="-697" width="123" height="20" uuid="af6d82bf-5f07-48c5-9959-20e910426eb0"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1130,7 +1130,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[($P{nivelEduCursa}.equals("1")? "Primaria":($P{nivelEduCursa}.equals("2")? "Secundaria":"Preparatoria"))]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="314" y="-697" width="99" height="20" uuid="780cdcc5-be8c-48c6-92b4-89941f448878"/>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1160,7 +1160,7 @@
 					</textElement>
 					<text><![CDATA[Calle]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="321" y="-624" width="180" height="20" uuid="160bdca8-dbc5-4916-bf24-dcab477e3fd3"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1183,7 +1183,7 @@
 					</textElement>
 					<text><![CDATA[No. Ext.]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="559" y="-624" width="69" height="20" uuid="a4be00d5-3cf1-452f-b9b5-0c1c87f1ca00"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1191,7 +1191,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$P{numExtEdu}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="694" y="-624" width="69" height="20" uuid="6811e4d3-4dca-4992-844c-cead9fe78b62"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1229,7 +1229,7 @@
 					</textElement>
 					<text><![CDATA[Colonia o Fraccionamiento]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="133" y="-584" width="174" height="20" uuid="e0afd46f-f9f7-4859-a8d0-d2b0007291ae"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1252,7 +1252,7 @@
 					</textElement>
 					<text><![CDATA[Localidad]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="403" y="-584" width="140" height="20" uuid="d369aab7-4f7e-4f20-81ec-82b781b053ce"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1275,7 +1275,7 @@
 					</textElement>
 					<text><![CDATA[Municipio]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="606" y="-584" width="160" height="20" uuid="215db575-cbae-4c66-80c7-0e89cdf35217"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1298,7 +1298,7 @@
 					</textElement>
 					<text><![CDATA[Estado]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="48" y="-550" width="90" height="20" uuid="ee4f6bf2-0816-4357-8150-354a44975ac2"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1321,7 +1321,7 @@
 					</textElement>
 					<text><![CDATA[C.P.]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="220" y="-550" width="100" height="20" uuid="e230a908-7cf5-485c-8ce3-9d6a12ca8909"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1344,7 +1344,7 @@
 					</textElement>
 					<text><![CDATA[Nombre]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="60" y="-624" width="203" height="20" uuid="8e50c1b9-2859-4102-9ef5-bc8d9f0c89e2"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1352,7 +1352,7 @@
 					</textElement>
 					<textFieldExpression><![CDATA[$P{nombreEdu}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="420" y="-550" width="100" height="20" uuid="4971adab-b8b7-42d8-a0f6-f1bc832a55f9"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1390,7 +1390,7 @@
 					</textElement>
 					<text><![CDATA[Nombre y apellidos]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="100" y="-43" width="159" height="20" uuid="5b70fded-c011-426c-9dbf-fe62bae4a2f1"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1413,7 +1413,7 @@
 					</textElement>
 					<text><![CDATA[Parentesco]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="325" y="-43" width="80" height="20" uuid="858b2c28-18c6-4f40-a4d6-a1bba35cead8"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1436,7 +1436,7 @@
 					</textElement>
 					<text><![CDATA[Ocupación]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="100" y="50" width="187" height="20" uuid="07dbf586-9787-4b5d-baa9-ee8fcc3eff6e"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Calibri" size="10"/>
@@ -1460,7 +1460,7 @@
 					</textElement>
 					<text><![CDATA[Escuela]]></text>
 				</staticText>
-				<textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 					<reportElement positionType="Float" x="443" y="150" width="101" height="20" uuid="4794f73a-2c53-46d6-b1f9-7ddd53401f81">
 						<printWhenExpression><![CDATA[new Boolean($P{hermanosInscritos}==0)]]></printWhenExpression>
 					</reportElement>
@@ -1486,7 +1486,7 @@
 				</textElement>
 				<text><![CDATA[Monto o % de beca o apoyo]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="150" y="1134" width="140" height="20" uuid="8ed5dd2f-59b0-4a09-9d0b-925d4acd363b"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -1509,7 +1509,7 @@
 				</textElement>
 				<text><![CDATA[Observaciones]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="418" y="1134" width="225" height="20" uuid="59fb0609-053b-4fce-bb30-ee56730f0774"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -1541,7 +1541,7 @@
 				</textElement>
 				<text><![CDATA[Turno]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="527" y="247" width="100" height="20" uuid="bcd338c2-2fdf-419e-99d6-7fcbe9c09673"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -1564,7 +1564,7 @@
 				</textElement>
 				<text><![CDATA[Grado]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement positionType="Float" x="680" y="247" width="89" height="20" uuid="8787812a-e61e-4b3e-af05-0fd1467ef312"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
@@ -1593,7 +1593,7 @@
 				</textElement>
 				<text><![CDATA[Hermanos inscritos en las escuelas deportivas]]></text>
 			</staticText>
-			<textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="217" y="1092" width="100" height="20" uuid="5ccd007c-a357-47cf-9b3e-8fe81b919991"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="10"/>
