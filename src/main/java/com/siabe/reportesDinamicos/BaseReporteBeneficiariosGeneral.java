@@ -16,10 +16,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.siabe.modelo.Beneficiarios;
+import com.siabe.modelo.Donativos;
 import com.siabe.servicio.BeneficiariosServicio;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
@@ -42,7 +45,9 @@ public abstract class BaseReporteBeneficiariosGeneral extends TestCase {
     public int idTipoBeca;
     public int idPeriodo;
     public int idRegion;
+    public String type;
     public String tipoB;
+    public ArrayList<Integer> contadores;
     
     protected JasperReport jr;
     protected final Map<String, Object> params = new HashMap<String, Object>();
@@ -67,7 +72,7 @@ public abstract class BaseReporteBeneficiariosGeneral extends TestCase {
 			  one does the magic) and the JRDataSource
 			 */
         
-        params.put(JRParameter.IS_IGNORE_PAGINATION, Boolean.TRUE);
+      //  params.put(JRParameter.IS_IGNORE_PAGINATION, Boolean.FALSE);
         
         jr = DynamicJasperHelper.generateJasperReport(dr, getLayoutManager(), params);
 
@@ -115,9 +120,22 @@ public abstract class BaseReporteBeneficiariosGeneral extends TestCase {
      * @return JRDataSource
      */
     protected JRDataSource getDataSource() {
-        Collection dummyCollection = beneficiariosServicio.reporteGeneral(idTipoBeca, idPeriodo, idRegion);        
-        dummyCollection = SortUtils.sortCollection(dummyCollection, dr.getColumns());
+  
+        
+List<Beneficiarios> don = beneficiariosServicio.reporteGeneral(idTipoBeca, idPeriodo, idRegion);  
+    	
+    	for(int a = 0;a< don.size();a++) {
+    		don.get(a).setIdBeneficiario(a+1);
+    	}
+    	
+        Collection dummyCollection = don;
 
+
+        dummyCollection = SortUtils.sortCollection(dummyCollection, dr.getColumns());
+        
+      //  System.out.println("dummy "+dummyCollection.size());
+        
+        
         //here contains dummy hardcoded objects...
         return new JRBeanCollectionDataSource(dummyCollection);
     }

@@ -14,8 +14,8 @@ public class TiempoPromedio {
     private String area;
     private int idRegion;
     private String region;
-    private int idPeriodo;
-    private String periodo;
+   // private int idPeriodo;
+  //  private String periodo;
     private int estatus;
     private String estatusDefinicion;
     
@@ -25,7 +25,7 @@ public class TiempoPromedio {
     }
  
     public TiempoPromedio(int idCarrera, String carrera, String nivel, String modalidad, int plan, int periodoPromedio, int idFacultad, 
-    		String facultad, int idArea, String area, int idRegion, String region, int idPeriodo, String periodo, int estatus, String estatusDefinicion) {
+    		String facultad, int idArea, String area, int idRegion, String region,  int estatus, String estatusDefinicion) {
         this.idCarrera = idCarrera;
         this.carrera = carrera;
         this.nivel = nivel;
@@ -38,8 +38,8 @@ public class TiempoPromedio {
         this.area = area;
         this.idRegion = idRegion;
         this.region = region;
-        this.idPeriodo = idPeriodo;
-        this.periodo = periodo;
+     //   this.idPeriodo = idPeriodo;
+     //   this.periodo = periodo;
         this.estatus  = estatus;
         this.estatusDefinicion = estatusDefinicion;
          }
@@ -140,7 +140,7 @@ public class TiempoPromedio {
 		this.region = region;
 	}
 
-	public int getIdPeriodo() {
+	/*public int getIdPeriodo() {
 		return idPeriodo;
 	}
 
@@ -154,7 +154,7 @@ public class TiempoPromedio {
 
 	public void setPeriodo(String periodo) {
 		this.periodo = periodo;
-	}
+	}*/
 
 	public int getEstatus() {
 		return estatus;

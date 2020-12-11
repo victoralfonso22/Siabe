@@ -2,9 +2,9 @@ package com.siabe.controller;
 
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-
+import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.List;
 import java.util.Map;
 
 
@@ -20,13 +20,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.siabe.modelo.Beneficiarios;
+import com.siabe.modelo.Nomina;
 import com.siabe.modelo.Periodo;
 import com.siabe.modelo.TiempoPromedio;
 import com.siabe.reportesDinamicos.ReporteDinamicoBeneficiariosGeneral;
+import com.siabe.reportesDinamicos.ReporteDinamicoDonantesGeneral;
 import com.siabe.servicio.TiempoPromedioServicio;
 import com.siabe.utils.UtilidadesWeb;
 import com.siabe.servicio.BeneficiariosServicio;
 import com.siabe.servicio.PeriodoServicio;
+import com.siabe.servicio.NominaServicio;
+import com.siabe.servicio.DepositoTransferenciaServicio;
+import com.siabe.servicio.TarjetaServicio;
 
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JREmptyDataSource;
@@ -67,17 +72,29 @@ public class ControladorJasperReportes {
 	
 	@Autowired
 	private ReporteDinamicoBeneficiariosGeneral reporteDinamicoBeneficiariosGeneral;
+	
+	@Autowired
+	private ReporteDinamicoDonantesGeneral reporteDinamicoDonantesGeneral;
+	
+	@Autowired
+	private NominaServicio nominaServicio;
+	
+	@Autowired
+	private DepositoTransferenciaServicio depositoTransferenciaServicio;
+	
+	@Autowired
+	private TarjetaServicio tarjetaServicio;
 
 	/*********************TIEMPOS PROMEDIO**************************************/
 	@RequestMapping(value = "/catalogos/reporteTiempoPromedio")
 	public void reportesTiemposPromedio(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam("type") String type, @RequestParam("idPeriodo") int idPeriodo, @RequestParam("idRegion") int idRegion,@RequestParam("inputBusca") String inputBusca, @RequestParam("carrera") int carrera,
+			@RequestParam("type") String type, @RequestParam("idRegion") int idRegion,@RequestParam("inputBusca") String inputBusca, @RequestParam("carrera") int carrera,
 			@RequestParam("facultad") int facultad, @RequestParam("area") int area)
 					throws Exception {
 
 		System.out.println("Escribe type " + type);
 		
-		Periodo p = periodoServicio.regresaPeriodo(idPeriodo);
+		//Periodo p = periodoServicio.regresaPeriodo();
 		
 		
 		if(!type.equals("html")) {
@@ -85,7 +102,7 @@ public class ControladorJasperReportes {
 		}
 		
 //data source
-		JRDataSource dataSource = new JRBeanCollectionDataSource(tiempoPromedioServicio.todosTiemposPromedioPeriodoRegionInput(idPeriodo, idRegion, inputBusca,carrera,facultad,area));
+		JRDataSource dataSource = new JRBeanCollectionDataSource(tiempoPromedioServicio.todosTiemposPromedioRegionInput( idRegion, inputBusca,carrera,facultad,area));
 		
 //compile jrxml template and get report
 		JasperReport report;
@@ -95,7 +112,7 @@ public class ControladorJasperReportes {
 		Map<String, Object> parameters = new HashMap<>();
 		ServletContext context = request.getServletContext();
 	
-		parameters.put("periodo", p.getNombre());
+		//parameters.put("periodo", p.getNombre());
 		
 		if (!type.equals("pdf")) {
 		parameters.put(JRParameter.IS_IGNORE_PAGINATION, Boolean.TRUE);
@@ -197,7 +214,11 @@ public class ControladorJasperReportes {
 		
 		parameters.put("montoBecaFormat",utilidadesWeb.formatoMoneda(beneficiario.getMontoBeca()));
 		
+		if(beneficiario.getFechaNacimiento() != null) {
 		parameters.put("fechaNacimientoFormat",utilidadesWeb.MillisToDate(beneficiario.getFechaNacimiento().getTime()));
+		}else {
+			parameters.put("fechaNacimientoFormat","");
+		}
 		
 		parameters.put("ingresosFamiliaresFormat",utilidadesWeb.formatoMoneda(beneficiario.getIngresosFamiliares()));
 		
@@ -238,17 +259,19 @@ public class ControladorJasperReportes {
 	@RequestMapping(value = "/reportes/reporteBeneficiariosGeneral")
 	public void reporteBeneficiariosGeneral(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam("valores") String valores , @RequestParam("idTipoBeca") int idTipoBeca ,@RequestParam("idPeriodo") int idPeriodo ,@RequestParam("idRegion") int idRegion ,
-			@RequestParam("type") String type, @RequestParam("tipoB") String tipoB) throws Exception {
+			@RequestParam("type") String type, @RequestParam("tipoB") String tipoB,@RequestParam("contadores") ArrayList<Integer> contadores) throws Exception {
 		reporteDinamicoBeneficiariosGeneral.cadena = valores;
 		
 		reporteDinamicoBeneficiariosGeneral.idTipoBeca = idTipoBeca;
 		reporteDinamicoBeneficiariosGeneral.idPeriodo = idPeriodo;
 		reporteDinamicoBeneficiariosGeneral.idRegion = idRegion;
 		reporteDinamicoBeneficiariosGeneral.tipoB = tipoB;
+		reporteDinamicoBeneficiariosGeneral.type = type;
+		reporteDinamicoBeneficiariosGeneral.contadores = contadores;
 		
 		reporteDinamicoBeneficiariosGeneral.testReport();
 
-		System.out.println("Escribe type " + type);
+		//System.out.println("Escribe type " + type);
 		
 		
 		if(!type.equals("html")) {
@@ -262,6 +285,41 @@ public class ControladorJasperReportes {
 			reporteExcel(reporteDinamicoBeneficiariosGeneral.jp, response,"Beneficiarios");
 		}else if (type.equals("html")) {
 			reporteHTML(reporteDinamicoBeneficiariosGeneral.jp, response);
+		}
+
+	}
+	
+	
+	/*********************************************************************************DONANTES*************************************************************************/
+	
+	@RequestMapping(value = "/reportes/reporteDonantesGeneral")
+	public void reporteDonantesGeneral(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("valores") String valores ,@RequestParam("idPeriodo") int idPeriodo ,@RequestParam("idRegion") int idRegion ,
+			@RequestParam("type") String type,@RequestParam("contadores") ArrayList<Integer> contadores) throws Exception {
+		reporteDinamicoDonantesGeneral.cadena = valores;		
+	
+		reporteDinamicoDonantesGeneral.idPeriodo = idPeriodo;
+		reporteDinamicoDonantesGeneral.idRegion = idRegion;
+		reporteDinamicoDonantesGeneral.type = type;
+		reporteDinamicoDonantesGeneral.contadores = contadores;
+		
+		
+		reporteDinamicoDonantesGeneral.testReport();
+
+		System.out.println("Escribe type " + type);
+		
+		
+		if(!type.equals("html")) {
+		response.setContentType("application/" + type);
+		}
+
+				
+		if (type.equals("pdf")) {
+			reportePDF(reporteDinamicoDonantesGeneral.jp, response);
+		} else if (type.equals("vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+			reporteExcel(reporteDinamicoDonantesGeneral.jp, response,"Donantes");
+		}else if (type.equals("html")) {
+			reporteHTML(reporteDinamicoDonantesGeneral.jp, response);
 		}
 
 	}
@@ -340,8 +398,153 @@ public class ControladorJasperReportes {
 		//return baos.toByteArray();
 	}
 	
+	/*********************NOMINA**************************************/
+	@RequestMapping(value = "/reportes/reporteNominaGeneral")
+	public void reportesCobranzaNomina(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("idPeriodo") int idPeriodo, @RequestParam("idQuincena") int idQuincena, @RequestParam("type") String type)
+					throws Exception {
+
+		System.out.println("Escribe type " + type);
+		
+		//Periodo p = periodoServicio.regresaPeriodo();
+		
+		
+		if(!type.equals("html")) {
+		response.setContentType("application/" + type);
+		}
+		
+//data source
+		JRDataSource dataSource = new JRBeanCollectionDataSource(nominaServicio.obtenerNominasPeriodo(idPeriodo, idQuincena) );
+		
+//compile jrxml template and get report
+		JasperReport report;
+		InputStream stream = getClass().getResourceAsStream("/reportes/donantes/nominaGeneral.jrxml");
+		report = JasperCompileManager.compileReport(stream);
+
+		Map<String, Object> parameters = new HashMap<>();
+		ServletContext context = request.getServletContext();
+	
+		//parameters.put("periodo", p.getNombre());
+		
+		if (!type.equals("pdf")) {
+		parameters.put(JRParameter.IS_IGNORE_PAGINATION, Boolean.TRUE);
+		}
+
+//fill the report with data source objects
+		JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, dataSource);
+
+		if (type.equals("pdf")) {
+			
+			reportePDF(jasperPrint, response);
+			
+
+		} else if (type.equals("vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+			reporteExcel(jasperPrint, response,"Nómina");
+		}else if (type.equals("html")) {
+			reporteHTML(jasperPrint, response);
+		}
+
+	}
 	
 	
+
+	
+	/*********************DEPOSITO O TRANSFERENCIA**************************************/
+	@RequestMapping(value = "/reportes/reporteDepTraGeneral")
+	public void reportesCobranzaDepositoTransferencia(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("idPeriodo") int idPeriodo, @RequestParam("type") String type)
+					throws Exception {
+
+		System.out.println("Escribe type " + type);
+		
+		//Periodo p = periodoServicio.regresaPeriodo();
+		
+		
+		if(!type.equals("html")) {
+		response.setContentType("application/" + type);
+		}
+		
+//data source
+		JRDataSource dataSource = new JRBeanCollectionDataSource(depositoTransferenciaServicio.obtenerDepositoTransferenciaPeriodo(idPeriodo));
+		
+//compile jrxml template and get report
+		JasperReport report;
+		InputStream stream = getClass().getResourceAsStream("/reportes/donantes/depositoTransferenciaGeneral.jrxml");
+		report = JasperCompileManager.compileReport(stream);
+
+		Map<String, Object> parameters = new HashMap<>();
+		ServletContext context = request.getServletContext();
+	
+		//parameters.put("periodo", p.getNombre());
+		
+		if (!type.equals("pdf")) {
+		parameters.put(JRParameter.IS_IGNORE_PAGINATION, Boolean.TRUE);
+		}
+
+//fill the report with data source objects
+		JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, dataSource);
+
+		if (type.equals("pdf")) {
+			
+			reportePDF(jasperPrint, response);
+			
+
+		} else if (type.equals("vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+			reporteExcel(jasperPrint, response,"Depósito o transferencia");
+		}else if (type.equals("html")) {
+			reporteHTML(jasperPrint, response);
+		}
+
+	}
+	
+	
+	/*********************TARJETA**************************************/
+	@RequestMapping(value = "/reportes/reporteTarjetaGeneral")
+	public void reportesCobranzaTarjeta(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam("idPeriodo") int idPeriodo, @RequestParam("anio") int anio, @RequestParam("mes") int mes, @RequestParam("type") String type)
+					throws Exception {
+
+		System.out.println("Escribe type " + type);
+		
+		//Periodo p = periodoServicio.regresaPeriodo();
+		
+		
+		if(!type.equals("html")) {
+		response.setContentType("application/" + type);
+		}
+		
+//data source
+		JRDataSource dataSource = new JRBeanCollectionDataSource(tarjetaServicio.obtenerTarjetaPeriodo(idPeriodo, anio, mes));
+		
+//compile jrxml template and get report
+		JasperReport report;
+		InputStream stream = getClass().getResourceAsStream("/reportes/donantes/tarjetaGeneral.jrxml");
+		report = JasperCompileManager.compileReport(stream);
+
+		Map<String, Object> parameters = new HashMap<>();
+		ServletContext context = request.getServletContext();
+	
+		//parameters.put("periodo", p.getNombre());
+		
+		if (!type.equals("pdf")) {
+		parameters.put(JRParameter.IS_IGNORE_PAGINATION, Boolean.TRUE);
+		}
+
+//fill the report with data source objects
+		JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters, dataSource);
+
+		if (type.equals("pdf")) {
+			
+			reportePDF(jasperPrint, response);
+			
+
+		} else if (type.equals("vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+			reporteExcel(jasperPrint, response,"Tarjeta");
+		}else if (type.equals("html")) {
+			reporteHTML(jasperPrint, response);
+		}
+
+	}
 	
 	
 }

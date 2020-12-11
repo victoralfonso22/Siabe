@@ -78,15 +78,23 @@
 					<br />
 					<!-- Primera fila de datos periodo,matricula -->
 					
-						
-						<div >
+							<div class="row ">
+							<div class="col-xs-6">
 							<label for="razonSocialDon">Denominación o Razón Social</label><br> <input
 								type="text" id="razonSocialDon" minlength="3" 
 								placeholder="" 
-								class="form-control selectTextFormulario vacias  donativosRequired div50" maxlength="100"
+								class="form-control selectTextFormulario vacias  donativosRequired " maxlength="100"
 								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
 						</div>
-
+							
+						<div class="col-xs-6">
+							<label for="tituloDon">Titulo</label><br> <input
+								type="text" id="tituloDon"  pattern="[A-Za-z.ñÑáéíóúÁÉÍÓÚüÜ\s]+" minlength="3"
+								class="form-control selectTextFormulario vacias  donativosRequired ">
+						</div>
+						
+					</div>
+						
 						<!-- Segunda fila de datos nombre,ap paterno, ap materno -->
 					
 					<br />
@@ -144,6 +152,7 @@
 								class="form-control selectTextFormulario vacias  donativosRequired ">
 								<option selected value="1">Nuevo</option>
 								<option value="2">Refrendo</option>
+								<!-- /* NoheCambio */ -->			<option value="10" style="display: none;"></option>
 							</select>
 						</div>
 
@@ -179,6 +188,7 @@
 								class="form-control selectTextFormulario vacias  donativosRequired ">
 								<option selected value="1">Sociedad en general </option>
 								<option value="2">Personal UV</option>
+					<!-- /* NoheCambio */ -->			<option value="10" style="display: none;"></option>
 							</select>
 						</div>
 
@@ -194,8 +204,8 @@
 						</div> -->
 						<div class="col-xs-4">
 							<label for="idCampaniaDon">Campaña</label><br> <select
-								id="idCampaniaDon"  required
-								class="form-control selectTextFormulario selectInicial donativosRequired">
+								id="idCampaniaDon"  
+								class="form-control selectTextFormulario  donativosRequired">
 								<option selected value="1">Adopta un Becario</option>
 								<option value="2">Siempre Universitarios</option>
 								
@@ -349,6 +359,16 @@
 					<label class="customradio">No<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFS');"	id="mismoDFS" value="0" checked><span class="radiomark"></span></label> 
 					<label class="customradio">Si<input	type="radio" name="mismoDF" onclick="checkMismoDF('mismoDFN');" id="mismoDFN" value="1"><span class="radiomark"></span></label> <br /> <br />
 					<br /> 
+					
+					<div class="">
+							<label for="razonSocialFDon">Denominación o Razón Social Fiscal</label><br> <input
+								type="text" id="razonSocialFDon" minlength="3" 
+								placeholder="" 
+								class="form-control selectTextFormulario vacias  donativosRequired div50" maxlength="100"
+								pattern="[A-Za-z0-9.ñÑáéíóúÁÉÍÓÚ\s]+">
+						</div>
+					<br>
+					
 					<div class="row ">
 						<div class="col-xs-4">
 							<label for="calleFDon">Calle</label><br> <input type="text"
@@ -428,7 +448,8 @@
 								class="form-control selectTextFormulario vacias div50  donativosRequired ">
 								<option selected value="1">Nómina</option>
 								<option value="2">Depósito o transferencia</option>
-								<option value="3">Tarjeta de crédito/débito</option>								
+								<option value="3">Tarjeta de crédito/débito</option>	
+								<!-- /* NoheCambio */ --><option value="10" style="display: none;"></option>							
 							</select>
 							<br/>
 							<br/>
@@ -994,6 +1015,7 @@
 			<input type="hidden" id="idPeriodoDonH">
 				
 				<input type="hidden" id="razonSocialDonH">
+				<input type="hidden" id="tituloDonH">
 				<input type="hidden" id="nombresDonH">
 				<input type="hidden" id="aPaternoDonH">
 				<input type="hidden" id="aMaternoDonH">
@@ -1066,6 +1088,7 @@
 					<input type="hidden" id="estadoDonH">
 					<input type="hidden" id="cpDonH">
 					
+					<input type="hidden" id="razonSocialFDonH">
 					<input type="hidden" id="calleFDonH">
 					<input type="hidden" id="nExteriorFDonH">
 					<input type="hidden" id="nInteriorFDonH">

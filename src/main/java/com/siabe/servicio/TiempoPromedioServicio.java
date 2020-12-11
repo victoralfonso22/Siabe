@@ -33,24 +33,24 @@ public class TiempoPromedioServicio {
 	}
 	
 	
-	public List<TiempoPromedio> todosTiemposPromedioPeriodo(int idPeriodo){
-		return tiempoPromedioDAO.obtenerTiemposPromedioIdPeriodo(idPeriodo);
+	public List<TiempoPromedio> todosTiemposPromedioPeriodo(){
+		return tiempoPromedioDAO.obtenerTiemposPromedio();
 	}
 	
 	public List<TiempoPromedio> todosTiemposPromedioRegion(int idRegion){
 		return tiempoPromedioDAO.obtenerTiemposPromedioRegion(idRegion);
 	}
 	
-	public List<TiempoPromedio> todosTiemposPromedioPeriodoRegion(int idPeriodo,int idRegion){
-		return tiempoPromedioDAO.tiemposPromedioIdPeriodoIdRegion(idPeriodo, idRegion);
+	/*public List<TiempoPromedio> todosTiemposPromedioRegion(int idPeriodo,int idRegion){
+		return tiempoPromedioDAO.tiemposPromedioIdRegion(idPeriodo, idRegion);
+	}*/
+	
+	public List<TiempoPromedio> todosTiemposPromedioRegionInput(int idRegion, String termino, int carrera, int facultad, int area){
+		return tiempoPromedioDAO.tiemposPromedioIdRegionInput( idRegion, termino, carrera, facultad, area);
 	}
 	
-	public List<TiempoPromedio> todosTiemposPromedioPeriodoRegionInput(int idPeriodo,int idRegion, String termino, int carrera, int facultad, int area){
-		return tiempoPromedioDAO.tiemposPromedioIdPeriodoIdRegionInput(idPeriodo, idRegion, termino, carrera, facultad, area);
-	}
-	
-	public String insertCarrera(int idFacultad, int idArea, int idRegion,String nombre, String nivel, String modalidad, int plan, int periodoPromedio, int idPeriodo) {
-		return tiempoPromedioDAO.insertaCarrera(idFacultad, idArea, idRegion, nombre, nivel, modalidad, plan, periodoPromedio, idPeriodo);
+	public String insertCarrera(int idFacultad, int idArea, int idRegion,String nombre, String nivel, String modalidad, int plan, int periodoPromedio) {
+		return tiempoPromedioDAO.insertaCarrera(idFacultad, idArea, idRegion, nombre, nivel, modalidad, plan, periodoPromedio);
 	}
 	
 	public String actualizarCarrera(int idFacultad, int idArea, int idRegion,String nombre, String nivel, String modalidad, int plan, int periodoPromedio, int estatus, int idCarrera) {

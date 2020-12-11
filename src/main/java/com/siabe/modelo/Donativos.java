@@ -8,11 +8,9 @@ public class Donativos {
 	
 	private int idPeriodo;
 	private String periodo;
-	
-	private String tipoBeca;
-	private int idTipoBeca;
-    
+
     private String razonSocial;
+    private String titulo;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -22,6 +20,7 @@ public class Donativos {
     private String motivoEstatus;
     
     private int adscripcion;
+    private String adscripcionDon;    
     
     private int tipoDonante;
     private String tipoDon;
@@ -30,7 +29,7 @@ public class Donativos {
     private String region;
     
     private int sector;
-    private String sectoDon;
+    private String sectorDon;
     
     private String descripcionDonativo;
     
@@ -89,7 +88,8 @@ public class Donativos {
     private String mun;
     private String edo;
     private String cp;
-        
+    
+    private String razonSocialFiscal;
     private String calleFiscal;
     private String numEFiscal;
     private String numIFiscal;
@@ -115,10 +115,10 @@ public class Donativos {
 
 
 
-	public Donativos(int idDonativo, int idDonativoTipo, int idPeriodo, String periodo, String tipoBeca, int idTipoBeca, String razonSocial,
+	public Donativos(int idDonativo, int idDonativoTipo, int idPeriodo, String periodo, String razonSocial, String titulo,
 			String nombre, String apellidoPaterno, String apellidoMaterno, int estatus, String estatusDon,
-			String motivoEstatus, int adscripcion, int tipoDonante, String tipoDon, int idRegion, String region,
-			int sector, String sectoDon, String descripcionDonativo, int idCampania, String campania,
+			String motivoEstatus, int adscripcion, String adscripcionDon, int tipoDonante, String tipoDon, int idRegion, String region,
+			int sector, String sectorDon, String descripcionDonativo, int idCampania, String campania,
 			int medioAutorizacionDonativo, String medioAutorizacionDon, String observacionMedioAutorizacion,
 			int medioCobro, String medioCobroDon, String numPersonal, String dependenciaAdscripcion, double donativoTotal,
 			double donativoQuincenal, int numQuincenas, int idQuincenaInicio, String quincenaInicio, String anioQuincena,
@@ -126,7 +126,7 @@ public class Donativos {
 			String banco, String nombreTarjetahabiente, String red, String tipoTarjeta, String numTarjeta,
 			int mesVencimiento, int anioVencimiento, String tipoDonativo, int mesInicioAportacion, String email, String celular,
 			String telefono1, String telefono2, String calle, String numE, String numI, String col, String loc,
-			String mun, String edo, String cp, String calleFiscal, String numEFiscal, String numIFiscal, String colFiscal,
+			String mun, String edo, String cp, String razonSocialFiscal,String calleFiscal, String numEFiscal, String numIFiscal, String colFiscal,
 			String locFiscal, String munFiscal, String edoFiscal, String cpFiscal, String rfc, String observaciones,
 			int idBeneficiario, String beneficiario, String nombreCompletoDon) {
 		super();
@@ -134,8 +134,7 @@ public class Donativos {
 		this.idDonativoTipo = idDonativoTipo;
 		this.idPeriodo = idPeriodo;
 		this.periodo = periodo;
-		this.tipoBeca = tipoBeca;
-		this.idTipoBeca = idTipoBeca;
+		this.titulo = titulo;
 		this.razonSocial = razonSocial;
 		this.nombre = nombre;
 		this.apellidoPaterno = apellidoPaterno;
@@ -144,12 +143,13 @@ public class Donativos {
 		this.estatusDon = estatusDon;
 		this.motivoEstatus = motivoEstatus;
 		this.adscripcion = adscripcion;
+		this.adscripcionDon = adscripcionDon;
 		this.tipoDonante = tipoDonante;
 		this.tipoDon = tipoDon;
 		this.idRegion = idRegion;
 		this.region = region;
 		this.sector = sector;
-		this.sectoDon = sectoDon;
+		this.sectorDon = sectorDon;
 		this.descripcionDonativo = descripcionDonativo;
 		this.idCampania = idCampania;
 		this.campania = campania;
@@ -192,6 +192,7 @@ public class Donativos {
 		this.mun = mun;
 		this.edo = edo;
 		this.cp = cp;
+		this.razonSocialFiscal = razonSocialFiscal;
 		this.calleFiscal = calleFiscal;
 		this.numEFiscal = numEFiscal;
 		this.numIFiscal = numIFiscal;
@@ -242,32 +243,6 @@ public class Donativos {
 	public void setPeriodo(String periodo) {
 		this.periodo = periodo;
 	}
-
-
-
-	public String getTipoBeca() {
-		return tipoBeca;
-	}
-
-
-
-	public void setTipoBeca(String tipoBeca) {
-		this.tipoBeca = tipoBeca;
-	}
-
-
-
-	public int getIdTipoBeca() {
-		return idTipoBeca;
-	}
-
-
-
-	public void setIdTipoBeca(int idTipoBeca) {
-		this.idTipoBeca = idTipoBeca;
-	}
-
-
 
 	public String getRazonSocial() {
 		return razonSocial;
@@ -425,14 +400,14 @@ public class Donativos {
 
 
 
-	public String getSectoDon() {
-		return sectoDon;
+	public String getsectorDon() {
+		return sectorDon;
 	}
 
 
 
-	public void setSectoDon(String sectoDon) {
-		this.sectoDon = sectoDon;
+	public void setsectorDon(String sectorDon) {
+		this.sectorDon = sectorDon;
 	}
 
 
@@ -1105,6 +1080,42 @@ public class Donativos {
 
 	public void setNombreCompletoDon(String nombreCompletoDon) {
 		this.nombreCompletoDon = nombreCompletoDon;
+	}
+
+
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+
+
+	public String getAdscripcionDon() {
+		return adscripcionDon;
+	}
+
+
+
+	public void setAdscripcionDon(String adscripcionDon) {
+		this.adscripcionDon = adscripcionDon;
+	}
+
+
+
+	public String getRazonSocialFiscal() {
+		return razonSocialFiscal;
+	}
+
+
+
+	public void setRazonSocialFiscal(String razonSocialFiscal) {
+		this.razonSocialFiscal = razonSocialFiscal;
 	}
     
     

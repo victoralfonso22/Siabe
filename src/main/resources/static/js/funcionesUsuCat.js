@@ -1593,16 +1593,14 @@ $("#tipoMedioCobroFormM").submit(function(event) {
 
 /**************************************************************************TIEMPOS PERIODO**********************************************************************************/
 
-$("#peridoTSeleccionado").change(function(event) {
-    
-	idPeriodo = $("#peridoTSeleccionado").val();
+function cargaPagina(){
 
 	// DO POST	
-	var parametrosPermisos = {"idPeriodo": idPeriodo};    
+	var parametrosPermisos = {};    
 	    
 	$.ajax({
 	    		type : "POST",
-			url :"ajaxTiempoPeriodoSelect",
+			url :"ajaxTiempoSelect",
 			data : parametrosPermisos,
 			success : function(result) {
 				$("#logosReportes").show();
@@ -1619,7 +1617,7 @@ $("#peridoTSeleccionado").change(function(event) {
 			    $("#fac").prop("checked", false);
 			    $("#are").prop("checked", false);
 				$("#regionesTiempoPeriodo").html(result);
-				tablaTiempoPromerdioP(idPeriodo);
+				tablaTiempoPromerdioP();
 				$("#buscarTiempoPromedio").val('');
 				
 			    }
@@ -1628,6 +1626,7 @@ $("#peridoTSeleccionado").change(function(event) {
 			},
 			error : function(jqXHR,e) {			
 				if (jqXHR.status != 200) {
+					alert(jqXHR.responseText);
 				window.location = "/error";
 				}else{
 					window.location = "/login?session=false";
@@ -1637,12 +1636,12 @@ $("#peridoTSeleccionado").change(function(event) {
 		});
 	
 
-});
+}
 
 
-function tablaTiempoPromerdioP(idPeriodo){
+function tablaTiempoPromerdioP(){
 	
-var parametrosPermisos = { "idPeriodo": idPeriodo};    
+var parametrosPermisos = {};    
 
 $.ajax({
     		type : "POST",
@@ -1662,6 +1661,7 @@ $.ajax({
 		},
 		error : function(jqXHR,e) {			
 			if (jqXHR.status != 200) {
+				alert(jqXHR.responseText);
 			window.location = "/error";
 			}else{
 				window.location = "/login?session=false";
@@ -1693,7 +1693,7 @@ function verTiempoPromerdio() {
 		$("#buscarTiempoPromedio").val("");
 	}
 	
-	var parametrosPermisos = {"idRegion": $("#idRegionTiempo").val(), "idPeriodo": $("#peridoTSeleccionado").val(), "buscarInput" : $("#buscarTiempoPromedio").val(), "carrera" : carrera, "facultad" : facultad, "area" : area};  
+	var parametrosPermisos = {"idRegion": $("#idRegionTiempo").val(), "buscarInput" : $("#buscarTiempoPromedio").val(), "carrera" : carrera, "facultad" : facultad, "area" : area};  
 	
 	$.ajax({
 	    		type : "POST",
@@ -1814,13 +1814,13 @@ $("#timepoPeriodoForm").submit(function(event) {
     	idRegion = idRegionAntes;
     }
     idFac = $("#idFac").val();
-    idPeriodo = $("#peridoTSeleccionado").val();
+  //  idPeriodo = $("#peridoTSeleccionado").val();
     
 
     cerrarModal('nuevoTiempoPeriodoModal');
     $("#postResultDiv").html("<div class='loader'></div>");
     
-    var parametrosUpdate = {"carrera" : carrera,"nivel" : nivel, "modalidad" : modalidad, "plan" : plan, "pPromedio": pPromedio, "idRegion" : idRegion, "idFac" : idFac, "idArea" : idArea, "idPeriodo" : idPeriodo};
+    var parametrosUpdate = {"carrera" : carrera,"nivel" : nivel, "modalidad" : modalidad, "plan" : plan, "pPromedio": pPromedio, "idRegion" : idRegion, "idFac" : idFac, "idArea" : idArea,};
     
 	// DO POST
 	$.ajax({

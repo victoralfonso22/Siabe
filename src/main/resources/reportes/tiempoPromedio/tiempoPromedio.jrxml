@@ -52,29 +52,13 @@
 				<text><![CDATA[Tiempos promedio]]></text>
 			</staticText>
 			<image isLazy="true" onErrorType="Blank">
-				<reportElement x="710" y="0" width="70" height="77" uuid="96196024-fcd5-48ed-a8bd-ea9116a66f09"/>
+				<reportElement x="709" y="0" width="70" height="77" uuid="96196024-fcd5-48ed-a8bd-ea9116a66f09"/>
 				<imageExpression><![CDATA["http://siabe/imagenes/logoUV.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="25" splitType="Stretch">
-			<staticText>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="3" width="70" height="20" forecolor="#0976DB" uuid="b59f23bd-2096-4bab-a501-39911a93e84d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="true"/>
-					<paragraph lineSpacing="Double"/>
-				</textElement>
-				<text><![CDATA[Periodo]]></text>
-			</staticText>
-			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="70" y="3" width="180" height="20" uuid="0b17f94c-0007-4dc5-b335-87e1d61ac3e4"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{periodo}]]></textFieldExpression>
-			</textField>
-		</band>
+		<band height="11" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="30" splitType="Stretch">

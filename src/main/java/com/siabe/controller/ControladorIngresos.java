@@ -52,7 +52,7 @@ public class ControladorIngresos {
 	public String campania(Model model, Principal principal) {
 
 	//	model.addAttribute("tbecas", tipoBecaServicio.todosTipoBeca());		
-		model.addAttribute("periodos", periodoServicio.todosPerido());
+		model.addAttribute("periodos", periodoServicio.todosPeridosActivosNoDeportiva());
 		return "/ingresos/donativos";
 	}
 	

@@ -12,7 +12,7 @@
 
 
 </head>
-<body class="container-full">
+<body class="container-full" onload="cargaPagina();">
 	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
 	<div class="container bordeContainer">
 		<form class="form-inline" onSubmit="return false;" >
@@ -46,7 +46,7 @@
 			<br/>
 			<br/>
 			<br/>
-			<div style="z-index: 10;">
+		<!-- 	<div style="z-index: 10;">
 			<select id="peridoTSeleccionado" required  class="form-control selectText" >
 					<option disabled selected value=""> Selecciona un periodo</option>
                          <option th:each="periodo : ${periodos}"
@@ -56,13 +56,13 @@
 			</div>
 			<br/>
 			<br/>
-			
+			 -->
 			
 			<div id="regionesTiempoPeriodo">
 			</div>
 			<br/>
 			
-			<div style="display: none;" id="opcionesBusca">
+			<div  id="opcionesBusca">
 			<span>Buscar por: </span>
 			<br/> 
 			
@@ -70,7 +70,7 @@
 			<label class="customcheck">Facultad<input type="checkbox" id="fac" onclick="verTiempoPromerdio();">  <span class="checkmark"></span></label>
 			<label class="customcheck">Área<input type="checkbox" id="are" onclick="verTiempoPromerdio();">  <span class="checkmark"></span></label></br>
 			</div>
-			<input class="form-control selectText widthAutocompletar" style="display:none;" type='text' placeholder='Buscar' onkeyup="verTiempoPromerdio();" id='buscarTiempoPromedio'></input>
+			<input class="form-control selectText widthAutocompletar"  type='text' placeholder='Buscar' onkeyup="verTiempoPromerdio();" id='buscarTiempoPromedio'></input>
 			
 			<div id="tablaTiempoPeriodo">
 			</div>
@@ -275,7 +275,7 @@
                		<label class="customradio">Nueva <input type="radio" id="nuevaAr" name="areasModal" onclick="checkIds('nuevaAr');" value='N' checked><span class="radiomark"></span></label>
                		<label class="customradio">Modificar<input type="radio" id="modificacionAr" name="areasModal" onclick="checkIds('modificacionAr');" value='M'><span class="radiomark"></span></label>
                		<br><br>
-               		<select id="idAreaNM" class="form-control selectText" style="display:none">
+               		<select id="idAreaNM" class="form-control selectText" >
 					<option disabled selected value=""> Selecciona area...</option>
                          <option th:each="areas : ${areas}"
                             th:value="${areas.idArea}"
@@ -316,7 +316,7 @@
                		<label class="customradio">Nueva<input type="radio" id="nuevaFacd" name="facultadesModal" onclick="checkIdsFac('nuevaFacd');" value='N' checked><span class="radiomark"></span></label>
                		<label class="customradio">Modificar<input type="radio" id="modificarFacd" name="facultadesModal" onclick="checkIdsFac('modificarFacd');" value='M'><span class="radiomark"></span></label>
                		<br><br>
-               		<select id="idFacNM" required  class="form-control selectText" style="display:none">
+               		<select id="idFacNM" required  class="form-control selectText" >
 					<option disabled selected value=""> Selecciona facultad...</option>
                          <option th:each="facultades : ${facultades}"
                             th:value="${facultades.idFacultad}"

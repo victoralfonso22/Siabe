@@ -84,6 +84,63 @@ function beneficiarioGeneral(){
 }
 
 
+function donanteGeneral(){
+	
+	$("#generales").hide();
+	$("#iconosReporteGeneral").hide();
+	$("#idBeneNom").val('');
+	$("#idBeneNomHidden").val('');
+	$('input[name=general]').prop('checked', false);
+	$('input[name=checkPrincipal]').prop('checked', false);
+	
+	$("#idPeriodoGeneralDonante").val('');
+	$("#idRegionGeneral").val('');
+	$("#donanteGeneralModal").show();
+}
+
+function cobranza(){
+	
+	$("#generales").hide();
+	$("#iconosReporteGeneral").hide();
+	$("#idBeneNom").val('');
+	$("#idBeneNomHidden").val('');
+	$('input[name=general]').prop('checked', false);
+	$('input[name=checkPrincipal]').prop('checked', false);
+	
+	$("#idPeriodoGeneralDonante").val('');
+	$("#idRegionGeneral").val('');
+	$("#cobranzaModal").show();
+}
+
+function cambiaMedioCobro(){
+
+	$("#iconosReporteCobranza").hide();
+
+	if($("#medioCobroC").val() == 1){
+		$("#idQuincena").val(null);
+		$("#rowQuincena").show();
+		$("#rowTarjeta").hide();
+	}else if($("#medioCobroC").val() == 2){
+		$("#rowQuincena").hide();
+		$("#rowTarjeta").hide();
+	}else if($("#medioCobroC").val() == 3){
+		$("#rowQuincena").hide();
+		$("#rowTarjeta").show();
+	}
+
+	verificarCombinacionCobranza();	
+}
+
+function verificarCombinacionCobranza(){
+	
+	if($("#medioCobroC").val() == 1 && $("#idQuincena").val() != null && $("#idPeriodoC").val() != null){
+		$("#iconosReporteCobranza").show();
+
+	}else if( $("#idPeriodoC").val() != null && ($("#medioCobroC").val() == 2 || $("#medioCobroC").val() == 3)){
+		$("#iconosReporteCobranza").show();
+	}
+}
+
 $("#idBecaGeneral").change(function(){
 	$('input[name=general]').prop('checked', false);
 	$('input[name=checkPrincipal]').prop('checked', false);
@@ -93,6 +150,11 @@ $("#idBecaGeneral").change(function(){
 			idTipoBeca : $("#idBecaGeneral").val()
 		}
 	
+	
+	if($("#idBecaGeneral").val() != ''){
+	
+	
+		
 	$("#idPeriodoGeneral").load("actualizaPeriodoRepGen", datos,function( response, status, xhr ) {			  
 		  if(response.includes("Sesión inactiva")){				 
 			 window.location = "/login?session=false";
@@ -102,32 +164,45 @@ $("#idBecaGeneral").change(function(){
 		}
 	});
 	
-	$("#generales").show();
+	
+	$("#chequea").show();
 	
 	if($("#idBecaGeneral").val() == 4){
 		$(".apoyo").hide();
-		$(".deportivas").show();
+		$("#deportivas").show();
+		$("#generales").hide();
 	}else if($("#idBecaGeneral").val() == 3){
 		$(".apoyo").show();
-		$(".deportivas").hide();
+		$("#deportivas").hide();
+		$("#generales").show();
 	}else{
 		$(".apoyo").hide();
-		$(".deportivas").hide();
+		$("#deportivas").hide();
+		$("#generales").show();
 	}
+	
+	}else{
+
+		$("#idPeriodoGeneral").val('');
+		$("#idRegionGeneral").val('');
+		$("#generales").hide();
+		$(".apoyo").hide();
+		$("#deportivas").hide();
+		$("#iconosReporteGeneral").hide();
+	}
+	
 });
-
-
-$('document').ready(function(){
-	   $("#checkTodos").change(function () {
-	      $("input:checkbox").prop('checked', $(this).prop("checked"));
-	  });
-	});
 
 
 $("#idPeriodoGeneral").change(function(){
 	var datos = {
 			idPeriodo : $("#idPeriodoGeneral").val()
 		}
+	
+	
+	if($("#idPeriodoGeneral").val() != ''){
+		
+	
 	
 	$("#idRegionGeneral").load("actualizaRegionRepGen", datos,function( response, status, xhr ) {			  
 		  if(response.includes("Sesión inactiva")){				 
@@ -137,5 +212,43 @@ $("#idPeriodoGeneral").change(function(){
 			window.location = "/login?session=false";
 		}
 	});
+	
+	}
+});
+
+
+$("#idPeriodoGeneralDonante").change(function(){
+	$('input[name=general]').prop('checked', false);
+	$('input[name=checkPrincipal]').prop('checked', false);
+	$("#iconosReporteGeneral").show();
+	var datos = {
+			idPeriodo : $("#idPeriodoGeneralDonante").val()
+		}
+	
+	
+	if($("#idPeriodoGeneralDonante").val() != ''){
+		
+		$("#generales").show();
+		
+
+	
+	$("#idRegionGeneral").load("actualizaRegionRepGen", datos,function( response, status, xhr ) {			  
+		  if(response.includes("Sesión inactiva")){				 
+			 window.location = "/login?session=false";
+			    }
+		if(xhr.status==200 && xhr.statusText== "parsererror"){
+			window.location = "/login?session=false";
+		}
+	});
+	
+	}else{
+
+		$("#idPeriodoGeneralDonante").val('');
+		$("#idRegionGeneral").val('');
+		$("#generales").hide();
+		$(".apoyo").hide();
+		$(".deportivas").hide();
+		$("#iconosReporteGeneral").hide();
+	}
 });
 

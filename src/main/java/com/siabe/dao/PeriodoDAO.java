@@ -95,7 +95,88 @@ public class PeriodoDAO extends JdbcDaoSupport {
 
 	public List<Periodo> obtenerPeriodos() {
 
-		String sql = PeriodoMapa.BASE_SQL +" order by nombre";
+		String sql = PeriodoMapa.BASE_SQL +" order by nombre desc";
+		try {
+			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
+
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+	public List<Periodo> obtenerPeriodosMayores(int idPeriodo) {
+
+		String sql = PeriodoMapa.BASE_SQL +" where id > "+idPeriodo+" order by nombre desc";
+		System.out.println(sql);
+		try {
+			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
+
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+	public List<Periodo> obtenerPeriodosMayoresNoDeportiva(int idPeriodo) {
+
+		String sql = PeriodoMapa.BASE_SQL +" where id > "+idPeriodo+" and deportiva = 0 order by nombre desc";
+		System.out.println(sql);
+		try {
+			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
+
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+	public List<Periodo> obtenerPeriodosMayoresSiDeportiva(int idPeriodo) {
+
+		String sql = PeriodoMapa.BASE_SQL +" where id > "+idPeriodo+" and deportiva = 1 order by nombre desc";
+		System.out.println(sql);
+		try {
+			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
+
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+	
+	public List<Periodo> periodoActivoDeportiva(int idTipoBeca) {
+		
+		int dep = 0;
+		if(idTipoBeca == 4) {
+			dep=1;
+		}
+		
+		String sql = PeriodoMapa.BASE_SQL +" where deportiva = "+dep+" and estatus = 1 order by nombre desc";
+		System.out.println(sql);
+		try {
+			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
+
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+public List<Periodo> periodoTodosDeportiva(int idTipoBeca) {
+		
+		int dep = 0;
+		if(idTipoBeca == 4) {
+			dep=1;
+		}
+		
+		String sql = PeriodoMapa.BASE_SQL +" where deportiva = "+dep+" order by nombre desc";
+		System.out.println(sql);
 		try {
 			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
 
@@ -108,7 +189,34 @@ public class PeriodoDAO extends JdbcDaoSupport {
 	
 	public List<Periodo> obtenerPeriodosActivos() {
 
-		String sql = PeriodoMapa.BASE_SQL +" where estatus = 1 order by nombre";
+		String sql = PeriodoMapa.BASE_SQL +" where estatus = 1 order by nombre desc";
+		try {
+			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
+
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+	
+	public List<Periodo> obtenerPeriodosActivosSinEscuelas() {
+
+		String sql = PeriodoMapa.BASE_SQL +" where estatus = 1 and deportiva = 0 order by nombre desc";
+		try {
+			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
+
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+	public List<Periodo> obtenerPeriodosActivosSoloEscuelas() {
+
+		String sql = PeriodoMapa.BASE_SQL +" where estatus = 1 and deportiva = 1 order by nombre desc";
 		try {
 			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
 
@@ -136,7 +244,7 @@ public class PeriodoDAO extends JdbcDaoSupport {
 	
 	public List<Periodo> obtenerPeriodosXBeneficiario(String beneficiario) {
 
-		String sql = PeriodoMapa.BASE_SQL_PERIODOS_BENEFICIARIO + " WHERE vn.nombre_completo_bene = ? GROUP BY p.id";
+		String sql = PeriodoMapa.BASE_SQL_PERIODOS_BENEFICIARIO + " WHERE vn.nombre_completo_bene = ? GROUP BY p.id order by p.nombre desc";
 		Object[] params = new Object[] { beneficiario };
 		PeriodoMapa mapper = new PeriodoMapa();
 		try {
@@ -150,7 +258,7 @@ public class PeriodoDAO extends JdbcDaoSupport {
 	
 	public List<Periodo> obtenerPeriodosXDonante(String donante) {
 
-		String sql = PeriodoMapa.BASE_SQL_PERIODOS_DONANTE + " WHERE vn.nombre_completo_don = ? GROUP BY p.id";
+		String sql = PeriodoMapa.BASE_SQL_PERIODOS_DONANTE + " WHERE vn.nombre_completo_don = ? GROUP BY p.id order by p.nombre desc";
 		Object[] params = new Object[] { donante };
 		PeriodoMapa mapper = new PeriodoMapa();
 		try {

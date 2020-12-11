@@ -5,6 +5,7 @@ import java.net.UnknownHostException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.Collection;
@@ -258,7 +259,20 @@ public class UtilidadesWeb {
         String currency = format.format(num);
         return currency;
     }
+    
+    
+    public Date formatoFecha(String cadena) {
+    	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
 
+			return  formatter.parse(cadena);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+    }
 
    
 }

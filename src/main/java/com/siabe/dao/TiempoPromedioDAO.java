@@ -63,7 +63,7 @@ String sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' 
 
 	}
 	
-	public List<TiempoPromedio> obtenerTiemposPromedioIdPeriodo(int idPeriodo) {
+	/*public List<TiempoPromedio> obtenerTiemposPromedioIdPeriodo(int idPeriodo) {
 
 		String sql = TiempoPromedioMapa.BASE_SQL + " where id_periodo = ? order by area,carrera; ";
 		
@@ -78,7 +78,7 @@ String sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' 
 			return null;
 		}
 
-	}
+	}*/
 	
 	
 	public List<TiempoPromedio> obtenerTiemposPromedioRegion(int idRegion) {
@@ -97,7 +97,7 @@ String sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' 
 	}
 	
 	
-	public List<TiempoPromedio> tiemposPromedioIdPeriodoIdRegion(int idPeriodo, int idRegion) {
+	/*public List<TiempoPromedio> tiemposPromedioIdPeriodoIdRegion(int idPeriodo, int idRegion) {
 
 		String sql = TiempoPromedioMapa.BASE_SQL + " where id_periodo = ? and id_region = ?; ";
 		
@@ -110,9 +110,9 @@ String sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' 
 			return null;
 		}
 
-	}
+	}*/
 	
-	public List<TiempoPromedio> tiemposPromedioIdPeriodoIdRegionInput(int idPeriodo, int idRegion, String termino, int carrera, int facultad, int area) {
+	public List<TiempoPromedio> tiemposPromedioIdRegionInput(int idRegion, String termino, int carrera, int facultad, int area) {
 		String sql;
 		String term = "";
 		
@@ -132,14 +132,14 @@ String sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' 
 			term = " area like '%"+termino+"%' and ";
 		}
 		
-		if(idRegion != 0) {
+		if(idRegion != 0 ) {
 		//sql = TiempoPromedioMapa.BASE_SQL + " where (carrera like '%"+termino+"%' or facultad like '%"+termino+"%' or area like '%"+termino+"%') and id_periodo = "+idPeriodo+" and id_region = "+idRegion+" order by area,carrera; ";
-			sql = TiempoPromedioMapa.BASE_SQL + " where "+term+" id_region = "+idRegion+" and id_periodo = "+idPeriodo+" order by area,carrera; ";
+			sql = TiempoPromedioMapa.BASE_SQL + " where "+term+" id_region = "+idRegion+"  order by area,carrera; ";
 		}else {
-			sql = TiempoPromedioMapa.BASE_SQL + " where "+term+" id_periodo = "+idPeriodo+" order by area,carrera; ";
+			sql = TiempoPromedioMapa.BASE_SQL + " order by area,carrera; ";
 		}
 		
-		System.out.println(sql);
+		//System.out.println(sql);
 		try {
 			return this.getJdbcTemplate().query(sql, new TiempoPromedioMapa());
 
@@ -149,11 +149,11 @@ String sql = TiempoPromedioMapa.BASE_SQL + " where carrera like '%"+termino+"%' 
 
 	}
 	
-public String insertaCarrera(int idFacultad, int idArea, int idRegion, String nombre, String nivel, String modalidad, int plan, int periodoPromedio, int idPeriodo) {
+public String insertaCarrera(int idFacultad, int idArea, int idRegion, String nombre, String nivel, String modalidad, int plan, int periodoPromedio) {
 		
-		String sql = TiempoPromedioMapa.INSERT_SQL_CARRERA + "(?,?,?,?,?,?,?,?,?)";
+		String sql = TiempoPromedioMapa.INSERT_SQL_CARRERA + "(?,?,?,?,?,?,?,?)";
 
-		Object[] params = new Object[] { idFacultad, idArea,idRegion, nombre , nivel, modalidad, plan, periodoPromedio,idPeriodo};			
+		Object[] params = new Object[] { idFacultad, idArea,idRegion, nombre , nivel, modalidad, plan, periodoPromedio};			
 		try {			
 			this.getJdbcTemplate().update(sql, params);
 			

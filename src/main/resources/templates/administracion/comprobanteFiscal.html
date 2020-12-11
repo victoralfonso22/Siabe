@@ -149,5 +149,18 @@
 		<th:block th:include="/default/pie"></th:block>
 	</div>
 </body>
-<script src="/js/archivos.js"></script>
+<script type="text/javascript">
+multipleUploadForm.addEventListener('submit', function(event){
+	 event.preventDefault();
+   var files = multipleFileUploadInput.files;
+   if(files.length === 0) {
+       multipleFileUploadError.innerHTML = "Please select at least one file";
+       multipleFileUploadError.style.display = "block";
+   }
+   uploadMultipleFiles(files);
+  
+}, true);
+</script>
+<script src="/js/archivos.js">
+</script>
 </html>

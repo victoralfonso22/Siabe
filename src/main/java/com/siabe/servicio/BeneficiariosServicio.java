@@ -112,4 +112,12 @@ public class BeneficiariosServicio {
 	public List<Beneficiarios> reporteGeneral(int idTipoBeca, int idPeriodo, int idRegion){
 		return beneficiariosDAO.reporteGeneral(idTipoBeca, idPeriodo, idRegion);
 	}
+	
+	public List<Beneficiarios> refrendo(int idPeriodo, int idRegion, int idTipoBeca){
+		return beneficiariosDAO.refrendo(idPeriodo, idRegion, idTipoBeca);
+	}
+	
+	public String refrendarBeneficiario(int idBeneficiario,int idPeriodo){
+		return beneficiariosDAO.refrendaBeneficiario(idBeneficiario, idPeriodo);
+	}
 }

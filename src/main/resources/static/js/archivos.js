@@ -6,6 +6,7 @@ var singleFileUploadError = document.querySelector('#singleFileUploadError');
 var singleFileUploadSuccess = document.querySelector('#singleFileUploadSuccess');
 
 var multipleUploadForm = document.querySelector('#multipleUploadForm');
+var multipleUploadForm1 = document.querySelector('#multipleUploadForm1');
 var multipleFileUploadInput = document.querySelector('#multipleFileUploadInput');
 var multipleFileUploadError = document.querySelector('#multipleFileUploadError');
 var multipleFileUploadSuccess = document.querySelector('#multipleFileUploadSuccess');
@@ -13,24 +14,51 @@ var multipleFileUploadSuccess = document.querySelector('#multipleFileUploadSucce
 function uploadSingleFile(file) {
     var formData = new FormData();
     formData.append("file", file);
+    console.log("hola");
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/uploadFile");
+    xhr.open("POST", "/uploadSingleFiles");
 
     xhr.onload = function() {
         console.log(xhr.responseText);
         var response = JSON.parse(xhr.responseText);
         if(xhr.status == 200) {
-            singleFileUploadError.style.display = "none";
-            singleFileUploadSuccess.innerHTML = "<p>File Uploaded Successfully.</p><p>DownloadUrl : <a href='" + response.fileDownloadUri + "' target='_blank'>" + response.fileDownloadUri + "</a></p>";
-            singleFileUploadSuccess.style.display = "block";
+        	formData.append("idUsuario", $("#idUsuario").val());
+        	
+        	 $("#registros").html("");
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: "/administracion/import",
+                data: formData,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 600000,
+                success: function (data) {
+                    $("#registros").append(data);
+                    $("#tabal").show();
+
+                },
+                error: function (e) {
+
+                    $("#result").text(e.responseText);
+                    console.log("ERROR : ", e);
+                    $("#btnSubmit").prop("disabled", false);
+
+                }
+            });
+        	
+       
         } else {
             singleFileUploadSuccess.style.display = "none";
             singleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
-        }
+        } 
     }
 
     xhr.send(formData);
+    
+    
 }
 
 function uploadMultipleFiles(files) {
@@ -96,37 +124,16 @@ function uploadMultipleFiles(files) {
     xhr.send(formData);
 }
 
-/*singleUploadForm.addEventListener('submit', function(event){
-    var files = singleFileUploadInput.files;
-    if(files.length === 0) {
-        singleFileUploadError.innerHTML = "Please select a file";
-        singleFileUploadError.style.display = "block";
-    }
-    uploadSingleFile(files[0]);
-    event.preventDefault();
-}, true);*/
-
-
-multipleUploadForm.addEventListener('submit', function(event){
-	 event.preventDefault();
-    var files = multipleFileUploadInput.files;
-    if(files.length === 0) {
-        multipleFileUploadError.innerHTML = "Please select at least one file";
-        multipleFileUploadError.style.display = "block";
-    }
-    uploadMultipleFiles(files);
-   
-}, true);
-
 
 
 function updateSize() {
-    var nBytes = 0,
+    var nBytes = 0, 
             oFiles = document.getElementById("multipleFileUploadInput").files,
             nFiles = oFiles.length;
     for (var nFileId = 0; nFileId < nFiles; nFileId++) {
-        nBytes += oFiles[nFileId].size;
+        nBytes += oFiles[nFileId].size;       
     }
+    
 
     var sOutput = nBytes + " bytes";
     // optional code for multiples approximation
@@ -134,11 +141,33 @@ function updateSize() {
         sOutput = nApprox.toFixed(3) + " " + aMultiples[nMultiple] + " (" + nBytes + " bytes)";
     }
     // end of optional code
-
+    
     //document.getElementById("fileNum").innerHTML = nFiles;
-    document.getElementById("fileSize").innerHTML = sOutput;
+    document.getElementById("fileSize").innerHTML = sOutput ;
 }
 
+function extension(){
+	var fileName = '', 
+    oFiles = document.getElementById("singleFileUploadInput").files,
+    nFiles = oFiles.length;
+	for (var nFileId = 0; nFileId < nFiles; nFileId++) {
+		fileName += oFiles[nFileId].name;
+	}
+	
+	return fileName.split('.').pop();
+	
+}
+
+function compruebaExtencionExcel(){
+	console.log(extension());
+	if(extension() != "xlsx"){
+		$("#singleFileUploadInput").val('');
+		document.getElementById("fileSize").innerHTML = '0' ;
+		alert("El archivo debe ser un Excel con extensión .xlsx");
+		
+	}
+	
+}
 
 function cambiaPeriodoCF(){
 	

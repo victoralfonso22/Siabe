@@ -210,6 +210,32 @@ function getValueCheckboxPorClase(clase){
 }
 
 
+/*****************************************Chequear todos los checkboxes********************************************/	
+
+
+$('document').ready(function(){
+	   $("#checkTodos").change(function () {
+	      $("input:checkbox").prop('checked', $(this).prop("checked"));
+	  });
+	});
+
+/*****************************************OBTENER EL NÚMERO DE CHECKBOX SELECCIONADOS********************************************/	
+
+function getContadorCheckboxPorClase(clase){
+	
+	var contador = 0;
+	
+	
+	$("."+clase+":checked").each(function() {
+		contador++;
+	//	alert(contador);
+	});
+	
+
+	return contador;
+}
+
+
 function getValuePorClase(clase){
 	/* declare an checkbox array */
 	var chkArray = [];
@@ -238,3 +264,42 @@ Number.prototype.format = function(n, x) {
     var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
     return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
 };
+
+
+/*********************************************************************FACULTADES DE LAS AREAS*///////////////////////////////////////////////////////////////////////////////////////////////
+
+function peridoDeportiva(idTipoBeca, id, atributo, link) {
+	
+	
+	
+	var datos = {
+			
+			idTipoBeca : idTipoBeca,
+			atributo : atributo,
+			link : link
+
+		}
+	
+	
+	$("#"+id).load("periodosActivoDeportiva", datos,function( response, status, xhr ) {			  
+		  if(response.includes("Sesión inactiva")){				 
+			 window.location = "/login?session=false";
+			    }else{
+			    
+			    }
+		if(xhr.status==200 && xhr.statusText== "parsererror"){
+			window.location = "/login?session=false";
+		}
+	});
+	
+}
+
+/***************************formato de numero double */
+
+function fomatoDouble(num) {
+  return '$ ' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+
+function fomatoDoubleSoloNum(num) {
+  return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}

@@ -120,8 +120,43 @@ $( document ).ready(function() {
 
 
 $("#becaSeleccionada").change(function(event) {
+	
+	
+//
+	
+	if( $('input:radio[name=altaCambio]:checked').val() ==1){
+		$("#periodoAlta").show();
+	}else{
+		$("#periodoAlta").hide();
+	}
+	
+	
+	
+	$("#logosAgregar").show();
+	
+$("#btn-guardar").show();
+
+	
 
 	tipoBeca = $("#becaSeleccionada").val();
+	peridoDeportiva(tipoBeca,'idPeriodo','periodos','/egresos/beneficiarios :: #idPeriodo');
+	$("#idPeriodo").trigger('change');
+/*	
+	if($("#sport").val() == 1){
+		$('#becaSeleccionada').children('option[value=4]').show();  		
+		$('#becaSeleccionada').children('option[value=1]').hide();
+		$('#becaSeleccionada').children('option[value=2]').hide();  	
+		$('#becaSeleccionada').children('option[value=3]').hide();
+		$('#becaSeleccionada').children('option[value=5]').hide(); 
+	}else{
+		$('#becaSeleccionada').children('option[value=4]').hide();  		
+		$('#becaSeleccionada').children('option[value=1]').show();
+		$('#becaSeleccionada').children('option[value=2]').show();  	
+		$('#becaSeleccionada').children('option[value=3]').show();
+		$('#becaSeleccionada').children('option[value=5]').show(); 
+	}*/
+		
+		
 
 if(tipoBeca == 1 || tipoBeca == 2 || tipoBeca == 3 || tipoBeca == 5){
 		
@@ -133,13 +168,13 @@ if(tipoBeca == 1 || tipoBeca == 2 || tipoBeca == 3 || tipoBeca == 5){
 		}else{
 			$("#divBenficiarioAsig").hide();
 		}*/
-		$('input.becasRequired').prop('required', true);
+/* NoheCambio		$('input.becasRequired').prop('required', true);
 		$('select.becasRequired').prop('required', true);
 		$('textarea.becasRequired').prop('required', true);
 		
 		$('input.depRequired').prop('required', false);
 		$('select.depRequired').prop('required', false);
-		$('textarea.depRequired').prop('required', false);
+		$('textarea.depRequired').prop('required', false); */
 		
 		
 	}else if(tipoBeca == 4){
@@ -150,32 +185,32 @@ if(tipoBeca == 1 || tipoBeca == 2 || tipoBeca == 3 || tipoBeca == 5){
 		$("#idRegionD").attr("placeholder","Escribe y selecciona una opción");
 		
 		
-		$('input.becasRequired').prop('required', false);
+		/* NoheCambio		$('input.becasRequired').prop('required', false);
 		$('select.becasRequired').prop('required', false);
 		$('textarea.becasRequired').prop('required', false);
 		
 		$('input.depRequired').prop('required', true);
 		$('select.depRequired').prop('required', true);
-		$('textarea.depRequired').prop('required', true);
+		$('textarea.depRequired').prop('required', true); */
 	}
 
 	if(tipoBeca == 4 || tipoBeca == 5){
-		$('input.becasRequired5').prop('required', false);
+		/* NoheCambio	$('input.becasRequired5').prop('required', false);
 		$('select.becasRequired5').prop('required', false);
-		$('textarea.becasRequired5').prop('required', false);
+		$('textarea.becasRequired5').prop('required', false); */
 
 	}else{
-		$('input.becasRequired5').prop('required', true);
+		/* NoheCambio	$('input.becasRequired5').prop('required', true);
 		$('select.becasRequired5').prop('required', true);
-		$('textarea.becasRequired5').prop('required', true);
+		$('textarea.becasRequired5').prop('required', true); */
 	}
 	
 	if($("#becaSeleccionada").val() == 3){
 		$("#fApoyo").show();
-		$("#fApoyo").prop('required', true);
+		/* NoheCambio	$("#fApoyo").prop('required', true); */
 	}else{
 		$("#fApoyo").hide();
-		$("#fApoyo").prop('required', false);
+		/* NoheCambio	$("#fApoyo").prop('required', false); */
 	}
 	
 	
@@ -185,10 +220,10 @@ if(tipoBeca == 1 || tipoBeca == 2 || tipoBeca == 3 || tipoBeca == 5){
 $("#estatus").change(function(event) {
 	if ($("#estatus").val() == 0) {
 		$("#motivosEstatus").show();
-		$("#motivoEstInactivo").prop('required', true);
+		/* NoheCambio	$("#motivoEstInactivo").prop('required', true); */
 	} else {
 		$("#motivosEstatus").hide();
-		$("#motivoEstInactivo").prop('required', false);
+		/* NoheCambio	$("#motivoEstInactivo").prop('required', false); */
 	}
 });
 
@@ -196,10 +231,10 @@ $("#estatus").change(function(event) {
 $("#estatusD").change(function(event) {
 	if ($("#estatusD").val() == 0) {
 		$("#motivosEstatusD").show();
-		$("#motivoEstInactivoD").prop('required', true);
+		/* NoheCambio		$("#motivoEstInactivoD").prop('required', true); */
 	} else {
 		$("#motivosEstatusD").hide();
-		$("#motivoEstInactivoD").prop('required', false);
+		/* NoheCambio	$("#motivoEstInactivoD").prop('required', false); */
 	}
 });
 
@@ -217,11 +252,11 @@ $("#estatusD").change(function(event) {
  * **************************************/
 function cambiaPeriodo(id,idRegion){
 	/***********************************agregado por cambio de tipo de beca por periodo al cargar la pagina de beneficiarios***************************************************/
-	$("#becaAlta").show();
-	$("#becaSeleccionada").val(1).trigger('change');
-	$("#logosAgregar").show();
 	
-$("#btn-guardar").show();
+
+
+
+//alert($("#sport").val());
 	
 	if( $('input:radio[name=altaCambio]:checked').val() ==1){
 	$("textarea.vacias").val('');
@@ -243,11 +278,11 @@ $("#btn-guardar").show();
 	}
 	
 	/**************************************************************************************/
-	if($("#"+id).val() > 0){
+	//if($("#"+id).val() > 0){
 	$("#"+idRegion).prop('disabled',false);
 	$("#"+idRegion).attr("placeholder","Escribe y selecciona una opción");
 	$("#benefactor").prop('disabled',false);
-	}
+	//}
 
 }
 
@@ -689,53 +724,53 @@ $("#periodoActual").blur(function(event) {
 function checkIdsDom(id){
 	if($("#"+id).val() == '1'){
 		$("#calleE").prop('disabled',true);
-		$("#calleE").prop('required',false);
+		/* NoheCambio		$("#calleE").prop('required',false); */
 		$("#calleE").val('');
 		$("#nInteriorE").prop('disabled',true);
-		$("#nInteriorE").prop('required',false);
+		/* NoheCambio		$("#nInteriorE").prop('required',false);*/
 		$("#nInteriorE").val('');
 		$("#nExteriorE").prop('disabled',true);
-		$("#nExteriorE").prop('required',false);
+		/* NoheCambio	$("#nExteriorE").prop('required',false); */
 		$("#nExteriorE").val('');
 		$("#colE").prop('disabled',true);
-		$("#colE").prop('required',false);
+		/* NoheCambio	$("#colE").prop('required',false); */
 		$("#colE").val('');
 		$("#localidadE").prop('disabled',true);
-		$("#localidadE").prop('required',false);
+		/* NoheCambio	$("#localidadE").prop('required',false); */
 		$("#localidadE").val('');
 		$("#municipioE").prop('disabled',true);
-		$("#municipioE").prop('required',false);
+		/* NoheCambio	$("#municipioE").prop('required',false); */
 		$("#municipioE").val('');
 		$("#estadoE").prop('disabled',true);
-		$("#estadoE").prop('required',false);
+		/* NoheCambio	$("#estadoE").prop('required',false); */
 		$("#estadoE").val('');
 		$("#cpE").prop('disabled',true);
-		$("#cpE").prop('required',false);
+		/* NoheCambio	$("#cpE").prop('required',false); */
 		$("#cpE").val('');
 	}else if($("#"+id).val() == '0'){
 		$("#calleE").prop('disabled',false);
-		$("#calleE").prop('required',true);
+		/* NoheCambio	$("#calleE").prop('required',true); */
 		$("#calleE").val('');
 		$("#nInteriorE").prop('disabled',false);
-		$("#nInteriorE").prop('required',false);
+		/* NoheCambio	$("#nInteriorE").prop('required',false); */
 		$("#nInteriorE").val('');
 		$("#nExteriorE").prop('disabled',false);
-		$("#nExteriorE").prop('required',true);
+		/* NoheCambio	$("#nExteriorE").prop('required',true); */
 		$("#nExteriorE").val('');
 		$("#colE").prop('disabled',false);
-		$("#colE").prop('required',true);
+		/* NoheCambio	$("#colE").prop('required',true); */
 		$("#colE").val('');
 		$("#localidadE").prop('disabled',false);
-		$("#localidadE").prop('required',true);
+		/* NoheCambio		$("#localidadE").prop('required',true); */
 		$("#localidadE").val('');
 		$("#municipioE").prop('disabled',false);
-		$("#municipioE").prop('required',true);
+		/* NoheCambio	$("#municipioE").prop('required',true); */
 		$("#municipioE").val('');
 		$("#estadoE").prop('disabled',false);
-		$("#estadoE").prop('required',true);
+		/* NoheCambio		$("#estadoE").prop('required',true); */
 		$("#estadoE").val('');
 		$("#cpE").prop('disabled',false);
-		$("#cpE").prop('required',true);
+		/* NoheCambio	$("#cpE").prop('required',true); */
 		$("#cpE").val('');
 	}
 }
@@ -744,39 +779,39 @@ function checkIdsDom(id){
 function checkIdsFP(id){
 	if($("#"+id).val() == '1'){
 		$("#ncta").show();
-		$("#numCuenta").prop('required',true);
+		/* NoheCambio		$("#numCuenta").prop('required',true); */
 		$("#numCuenta").val('');
 		$("#ntar").show();
-		$("#numTarjeta").prop('required',true);
+		/* NoheCambio	$("#numTarjeta").prop('required',true); */
 		$("#numTarjeta").val('');
 		$("#clvP").hide();
-		$("#clavePago").prop('required',false);
+		/* NoheCambio	$("#clavePago").prop('required',false); */
 		$("#clavePago").val('');
 		$("#vigia").hide();
-		$("#vigencia").prop('required',false);
+		/* NoheCambio	$("#vigencia").prop('required',false); */
 		$("#vigencia").val('');
 		
 	}else if($("#"+id).val() == '0'){
 		$("#ncta").hide();
-		$("#numCuenta").prop('required',false);
+		/* NoheCambio	$("#numCuenta").prop('required',false); */
 		$("#numCuenta").val('');
 		$("#ntar").hide();
-		$("#numTarjeta").prop('required',false);
+		/* NoheCambio	$("#numTarjeta").prop('required',false); */
 		$("#numTarjeta").val('');
 		$("#clvP").show();
-		$("#clavePago").prop('required',true);
+		/* NoheCambio	$("#clavePago").prop('required',true); */
 		$("#clavePago").val('');
 		$("#vigia").show();
-		$("#vigencia").prop('required',true);
+		/* NoheCambio	$("#vigencia").prop('required',true); */
 		$("#vigencia").val('');
 		
 	}
 	
 	if($("#becaSeleccionada").val() == 5){
-		$("#numCuenta").prop('required',false);
+		/* NoheCambio	$("#numCuenta").prop('required',false);
 		$("#numTarjeta").prop('required',false);
 		$("#clavePago").prop('required',false);
-		$("#vigencia").prop('required',false);
+		$("#vigencia").prop('required',false); */
 	}
 }
 
@@ -785,10 +820,10 @@ function checkIdsHED(id){
 	$("#escuelaHD").val('');
 	if($("#"+id).val() == '1'){
 		$("#eqeD").hide();
-		$("#escuelaHD").prop('required',false);				
+		/* NoheCambio	$("#escuelaHD").prop('required',false);			*/	
 	}else if($("#"+id).val() == '0'){
 		$("#eqeD").show();
-		$("#escuelaHD").prop('required',true);
+		/* NoheCambio	$("#escuelaHD").prop('required',true); */
 	}
 }
 
@@ -799,6 +834,81 @@ $("#beneficiarioForm").submit(function(event) {
     event.preventDefault();
     
     bandera = true;
+    
+    /* NoheCambio */
+    tBeca = $("#becaSeleccionada").val();
+    
+    if(tBeca== 1 || tBeca == 2 || tBeca == 3 || tBeca == 5){
+    	/* NoheCambio */
+
+		
+		if($("#idRegionHidden").val() == "") {$("#idRegionHidden").val(0)}
+		
+		if($("#idCarreraHidden").val() == "") {$("#idCarreraHidden").val(0)}
+		
+		if($("#periodoActual").val() == "") {$("#periodoActual").val(0)}
+		
+		if($("#pGeneral").val() == "") {$("#pGeneral").val(0.0)}
+		
+		if($("#edad").val() == "") {$("#edad").val(0)}
+		
+		if($("#iFamiliares").val() == "") {$("#iFamiliares").val(0)}
+		
+		if($("#ingresos").val() == "") {$("#ingresos").val(0.0)}
+		
+		if($("#cp").val() == "") {$("#cp").val(0);}	
+		
+		if($("#fechaNacimiento").val() == "") {var now = new Date();
+
+		var day = ("0" + now.getDate()).slice(-2);
+		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+		var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+		$('#fechaNacimiento').val(today);}
+				
+		if($("#montoApoyo").val() == "") {$("#montoApoyo").val(0.0)}
+	
+    }else{
+    	if($("#idRegionHiddenD").val() == "") {$("#idRegionHiddenD").val(0)}
+    	
+    	if($("#gradoD").val() == "") {$("#gradoD").val(0)}
+
+    	if($("#cpIED").val() == "") {$("#cpIED").val(0)}
+    	
+    	if($("#edadD").val() == "") {$("#edadD").val(0)}
+    	
+    	if($("#iFamiliaresD").val() == "") {$("#iFamiliaresD").val(0)}
+    	
+    	if($("#cpD").val() == "") {$("#cpD").val(0)}
+    	
+    	if($("#pGeneralD").val() == "") {$("#pGeneralD").val(0.0)}
+    	
+    	if($("#ingresosD").val() == "") {$("#ingresosD").val(0.0)}
+    	
+    	if($("#montoApoyoD").val() == "") {$("#montoApoyoD").val(0.0)}
+    	
+    	if($("#fechaIngresoD").val() == "") {var now = new Date();
+
+		var day = ("0" + now.getDate()).slice(-2);
+		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+		var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+		$('#fechaIngresoD').val(today);}
+    	
+    	if($("#fechaNacimientoD").val() == "") {var now = new Date();
+
+		var day = ("0" + now.getDate()).slice(-2);
+		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+		var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+		$('#fechaNacimientoD').val(today);}
+    	
+    }    
+    
+	/* termina cambio */
    
     if( $('input:radio[name=altaCambio]:checked').val() ==1){
     	
@@ -822,6 +932,7 @@ $("#beneficiarioForm").submit(function(event) {
         		}
         	}
         	
+        	        	
         	_url= "ajaxAgregarBeneficiarioBeca";
         	
         	parametros = { "idPeriodo" : $("#idPeriodo").val(), "idTipoBeca" : $("#becaSeleccionada").val(), "matricula" : $("#matricula").val(),  "nombre" : $("#nombres").val(),  "apellidoPaterno" : $("#aPaterno").val(),  
@@ -1949,24 +2060,25 @@ function actualizaInputsBenMod(){
 function checkIdAccion(id){
 	$("#idBene").val('');
 	//$("#becaSeleccionada").val('');
-	$("#becaAlta").hide();
+	
+	$("#periodoAlta").hide();
 	$("#datosBecasDeportivas").hide();
 	$("#datosBecas").hide();
 	$("#btn-guardar").hide();
 	$("#periodoTBecaMod").hide();
 	//$("#becaModif").hide();
 	if($("#"+id).val() == '1'){
-		$("#periodoAlta").show();
+		$("#becaAlta").show();
 		$("#periodoTBecaMod").hide();
 		
-		$("#idPeriodo").val("");
+		$("#becaSeleccionada").val("");
 	//	$("#becaAlta").show();
 		$("#completeCambio").hide();				
 	}else if($("#"+id).val() == '0'){
 		$("#divBenficiarioAsig").hide();
-		$("#periodoAlta").hide();
-		//$("#periodoTBecaMod").show();
 		$("#becaAlta").hide();
+		//$("#periodoTBecaMod").show();
+
 		$("#completeCambio").show();
 		//$("#btn-guardar").show();
 	}

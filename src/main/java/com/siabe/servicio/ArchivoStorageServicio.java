@@ -27,13 +27,17 @@ public class ArchivoStorageServicio {
 
 	private final Path fileStorageLocation;
 	
+	private final Path fileStorageLocationOne;
+	
 
     @Autowired
     public ArchivoStorageServicio() {
     //public ArchivoStorageServicio(PropiedadesArchivosGuardados fileStorageProperties) {
         //this.fileStorageLocation = Paths.get("C:\\Users\\victo\\Music\\comprobantes").toAbsolutePath().normalize();
         this.fileStorageLocation = Paths.get("/home/Siabe/archivos")
-                .toAbsolutePath().normalize();        
+                .toAbsolutePath().normalize();
+        this.fileStorageLocationOne = Paths.get("/home/Siabe/archivos/beneficiarios")
+                .toAbsolutePath().normalize();
    //     System.out.println("1 "+this.fileStorageLocation);
         try {
             Files.createDirectories(this.fileStorageLocation);
@@ -57,6 +61,29 @@ public class ArchivoStorageServicio {
             // Copy file to the target location (Replacing existing file with the same name)
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
             System.out.println("2 "+fileStorageLocation+" filename"+fileName);
+            Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+
+            return fileName;
+        } catch (IOException ex) {
+            throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
+        }
+    }
+    
+    public String storeFile(MultipartFile file) {
+        // Normalize file name
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+      //  fileName = "/beneficiarios/"+fileName;
+
+        try {
+            // Check if the file's name contains invalid characters
+            if(fileName.contains("..")) {
+                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
+            }
+            
+          
+            // Copy file to the target location (Replacing existing file with the same name)
+            Path targetLocation = this.fileStorageLocationOne.resolve(fileName);
+            System.out.println("2 "+fileStorageLocationOne+" filename"+fileName);
             Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 
             return fileName;

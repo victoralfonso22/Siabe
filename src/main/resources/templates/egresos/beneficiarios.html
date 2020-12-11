@@ -42,36 +42,52 @@
 				
 				
 				
-				<br />
-				<div id="periodoAlta" style="z-index: 10;">
 				
-							<label for="idPeriodo">Periodo</label><br> <select onchange="cambiaPeriodo('idPeriodo','idRegion');"
-								id="idPeriodo" 
-								class="form-control selectText div50">
-								<option disabled selected value="">Selecciona periodo</option>
-								<option th:each="periodo : ${periodos}"
-									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
-							</select>
-							
-							<br>
-							<br>
-				</div>
-				<div id="becaAlta" style="display:none;">			
+					<div id="becaAlta" style="z-index: 10;">			
 							<label>Tipo de beca &nbsp;</label><br/>
 					<select id="becaSeleccionada" required 
-						class="form-control selectText  ">						
+						class="form-control selectText  ">		
+						<option disabled selected value="">Selecciona tipo de beca</option>				
 						<option th:each="tBeca : ${tbecas}" th:value="${tBeca.idTipoBeca}"
 							th:text="${tBeca.nombre}"></option>
 					</select>
 					
 				</div>
+				
+				<br />
+				<div id="periodoAlta" style="display:none;" >
+							<label for="idPeriodo">Periodo</label><br> <select onchange="cambiaPeriodo('idPeriodo','idRegion');"
+								id="idPeriodo"
+								class="form-control selectText div50">
+							
+								<option th:each="periodo : ${periodos}"
+									th:value="${periodo.idPeriodo}" th:utext="${periodo.nombre}" ></option>
+							</select>
+							
+							<br>
+							<br>
+				</div>
+			
 				<div id="completeCambio" style="display: none;"><label for="idBene">Nombre de beneficiario </label><br> <input type="text"
 								id="idBene" class="form-control selectTextFormulario div50"
 								onkeyup="autocompletarBeneficiarioMod();"
 								 >
 				</div> 			
 				<br />
+				
 				<div th:fragment="periodoTBecaMod" id="periodoTBecaMod">
+				
+					<div id="becaModif" style="display:none;" >			
+							<label>Tipo de beca &nbsp;</label><br/>
+					<select id="becaSeleccionadaModif" onchange="actualizaInputsBenMod();"   
+						class="form-control selectText  ">						
+						<option th:each="tBeca : ${tbecasMod}" th:value="${tBeca.idTipoBeca}"
+							th:text="${tBeca.nombre}"></option>
+					</select>
+					
+				</div>
+				
+				<br>
 				<div id="periodoModif" style="z-index: 10;  display:none;">
 				
 							<label for="idPeriodoModif">Periodo</label><br> <select 
@@ -84,15 +100,7 @@
 							<br>
 							<br>
 				</div>
-				<div id="becaModif" style="display:none;" >			
-							<label>Tipo de beca &nbsp;</label><br/>
-					<select id="becaSeleccionadaModif" onchange="actualizaInputsBenMod();"   
-						class="form-control selectText  ">						
-						<option th:each="tBeca : ${tbecasMod}" th:value="${tBeca.idTipoBeca}"
-							th:text="${tBeca.nombre}"></option>
-					</select>
-					
-				</div>
+			
 				</div>
 				<br/>
 				<!-- Datos para dar de alta a beneficiario -->

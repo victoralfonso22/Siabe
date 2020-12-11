@@ -52,7 +52,7 @@ public class ControladorEgresos {
 	public String campania(Model model, Principal principal) {
 
 		model.addAttribute("tbecas", tipoBecaServicio.todosTipoBeca());		
-		model.addAttribute("periodos", periodoServicio.todosPeridosActivos());
+	//	model.addAttribute("periodos", periodoServicio.todosPeridosActivos());
 		return "/egresos/beneficiarios";
 	}
 	
@@ -68,12 +68,12 @@ public class ControladorEgresos {
 		}
 	}
 	
-	/*@RequestMapping("/egresos/actualizaRegion")
-	public String actualizaSelRegiones(Model model, Principal principal,@RequestParam int idPeriodo) {
-		model.addAttribute("regiones", regionesServicio.regresaRegionesPeriodo(idPeriodo));
-		return "/egresos/beneficiarios :: #idRegion";
-	}*/
-	
-	
+	@RequestMapping("/egresos/periodosActivoDeportiva")
+	public String periodosActivoDeportiva(Model model, Principal principal,@RequestParam int idTipoBeca,@RequestParam String atributo, @RequestParam String link) {
+
+		model.addAttribute(atributo, periodoServicio.periodoActivoDeportiva(idTipoBeca));
+			
+		return link;
+	}
 
 }

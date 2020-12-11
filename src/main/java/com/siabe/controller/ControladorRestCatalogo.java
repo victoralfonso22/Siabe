@@ -29,6 +29,7 @@ import com.siabe.modelo.Areas;
 import com.siabe.modelo.Campana;
 import com.siabe.modelo.CuentasBancarias;
 import com.siabe.modelo.Facultades;
+import com.siabe.modelo.Periodo;
 import com.siabe.modelo.Quincenas;
 import com.siabe.servicio.UsuarioServicio;
 import com.siabe.servicio.PeriodoServicio;
@@ -125,6 +126,15 @@ public class ControladorRestCatalogo {
 		return response;
 
 	}
+	
+	@PostMapping(value = "/catalogos/periodosActivoDeportiva")
+	public List<Periodo> periodosActivoDeportiva(@RequestParam int idTipoBeca) {
+
+		return periodoServicio.periodoActivoDeportiva(idTipoBeca);
+
+	}
+	
+	
 
 	@PostMapping(value = "/catalogos/ajaxtBeca")
 	public String postAjaxtBeca(@RequestParam String nombre) {
@@ -444,13 +454,13 @@ public class ControladorRestCatalogo {
 
 	}
 
-	@PostMapping(value = "/catalogos/ajaxTiempoPeriodoSelect")
-	public String postAjaxtTiempoPeriodoT(@RequestParam int idPeriodo) {
+	@PostMapping(value = "/catalogos/ajaxTiempoSelect")
+	public String postAjaxtTiempoPeriodoT() {
 		String response = "";
-		if (idPeriodo != 0) {
+	
 
 			List<Regiones> regionesPeriodo = new ArrayList<Regiones>(
-					regionesServicio.regresaRegionesPeriodo(idPeriodo));
+					regionesServicio.todosRegionesPrincipales());
 
 			response +=	""
 					+ "<select class=\"form-control selectText\" required onchange=\"verTiempoPromerdio();\" id=\"idRegionTiempo\"> "
@@ -466,10 +476,7 @@ public class ControladorRestCatalogo {
 			
 			
 
-		} else {
-			response = "Nada";
-		}
-		// System.out.println(response);
+	
 
 		return response;
 
@@ -477,15 +484,14 @@ public class ControladorRestCatalogo {
 	
 	
 	@PostMapping(value = "/catalogos/ajaxTiempoPeriodoTablaP")
-	public String postAjaxTiempoPeriodoTabla(@RequestParam int idPeriodo) {
+	public String postAjaxTiempoPeriodoTabla() {
 		String response = "";
-		if (idPeriodo != 0) {
-			
+				
 			/**************************************************************************************************************************/
 			
 			
 			List<TiempoPromedio> tiempoPromedioP = new ArrayList<TiempoPromedio>(
-					tiempoPromedioServicio.todosTiemposPromedioPeriodo(idPeriodo));
+					tiempoPromedioServicio.todosTiemposPromedioPeriodo());
 
 			response += "<br/><br/>"
 					+ "<table class=\"table tabla\"  id=\"tableTiempoPeriodo\">"
@@ -524,10 +530,7 @@ public class ControladorRestCatalogo {
 			/**************************************************************************************************************************/
 			
 
-		} else {
-			response = "Nada";
-		}
-		// System.out.println(response);
+	
 
 		return response;
 
@@ -536,12 +539,12 @@ public class ControladorRestCatalogo {
 	
 	
 	@PostMapping(value = "/catalogos/ajaxTiempoRegionSelect")
-	public String postAjaxtTiempoRegionT(@RequestParam int idRegion, @RequestParam int idPeriodo, @RequestParam String buscarInput, @RequestParam int carrera, @RequestParam int facultad, @RequestParam int area) {
+	public String postAjaxtTiempoRegionT(@RequestParam int idRegion, @RequestParam String buscarInput, @RequestParam int carrera, @RequestParam int facultad, @RequestParam int area) {
 		String response = "";
 
 
 			List<TiempoPromedio> tiempoPromedioR = new ArrayList<TiempoPromedio>(
-					tiempoPromedioServicio.todosTiemposPromedioPeriodoRegionInput(idPeriodo, idRegion, buscarInput, carrera, facultad, area));
+					tiempoPromedioServicio.todosTiemposPromedioRegionInput( idRegion, buscarInput, carrera, facultad, area));
 
 			response += "<br/><br/>"
 					+ "<table class=\"table tabla\"  id=\"tableTiempoPeriodo\">"
@@ -680,9 +683,9 @@ public class ControladorRestCatalogo {
 	
 	
 	@PostMapping(value = "/catalogos/ajaxtPromedio")
-	public String postAjaxtPromedio(@RequestParam String carrera, @RequestParam String nivel, @RequestParam String modalidad,  @RequestParam int plan,  @RequestParam int pPromedio, @RequestParam int idRegion, @RequestParam int idFac , @RequestParam int idArea , @RequestParam int idPeriodo) {		
+	public String postAjaxtPromedio(@RequestParam String carrera, @RequestParam String nivel, @RequestParam String modalidad,  @RequestParam int plan,  @RequestParam int pPromedio, @RequestParam int idRegion, @RequestParam int idFac , @RequestParam int idArea ) {		
 
-		String response = tiempoPromedioServicio.insertCarrera(idFac,idArea, idRegion, carrera, nivel, modalidad, plan, pPromedio, idPeriodo);
+		String response = tiempoPromedioServicio.insertCarrera(idFac,idArea, idRegion, carrera, nivel, modalidad, plan, pPromedio);
 		
 		return response;
 

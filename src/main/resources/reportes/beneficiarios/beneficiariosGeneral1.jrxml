@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="beneficiariosTodos" pageWidth="4000" pageHeight="595" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="3960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="c120e502-33ba-412e-85c8-d5574a3d8918">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Beneficiarios General" pageWidth="4500" pageHeight="612" orientation="Landscape" whenNoDataType="BlankPage" columnWidth="4464" leftMargin="18" rightMargin="18" topMargin="54" bottomMargin="54" whenResourceMissingType="Empty" uuid="c120e502-33ba-412e-85c8-d5574a3d8918">
 	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
 	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
 	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<style name="Style1" backcolor="#BFD2F5">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==1]]></conditionExpression>
+			<style backcolor="#B9B6FA"/>
+		</conditionalStyle>
+	</style>
 	<parameter name="imagenFuv" class="java.lang.String">
 		<defaultValueExpression><![CDATA[$P{baseImagen}.toString()+"imagenes/MATRIZ LIS UV COLOR LEMA .png"]]></defaultValueExpression>
 	</parameter>
@@ -27,7 +37,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="109" splitType="Stretch">
+		<band height="82" splitType="Stretch">
 			<image isLazy="true" onErrorType="Blank">
 				<reportElement x="0" y="0" width="70" height="77" uuid="96196024-fcd5-48ed-a8bd-ea9116a66f09"/>
 				<imageExpression><![CDATA["http://siabe/imagenes/logoFUV.png"]]></imageExpression>
@@ -46,18 +56,25 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="57" splitType="Stretch"/>
+		<band height="17" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="65" splitType="Stretch"/>
+		<band height="20" splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="127" splitType="Stretch"/>
-		<band/>
+		<band height="112" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
-		<band height="20" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
+	<pageFooter>
+		<band height="40">
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="100" height="30" uuid="a2704570-37fa-42ed-90ea-a5e3cc984fc9"/>
+				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
 	<summary>
 		<band splitType="Stretch"/>
 	</summary>

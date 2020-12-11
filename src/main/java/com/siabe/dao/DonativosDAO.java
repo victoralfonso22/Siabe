@@ -67,11 +67,37 @@ public class DonativosDAO extends JdbcDaoSupport {
 
 			
 	
-	public String insertaDonante(int idPeriodo, String razonSocial, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String adscripcion,  String tipoDonante, int idRegion, 
+	public String refrendaDonante(int idDonativo,int idPeriodo, double donativoTotal, int medioCobro, int numPagos, int quinMes, String observaciones) {
+		
+		String sql = " call refrendarDonativos("+idDonativo+", "+idPeriodo+","+donativoTotal+","+medioCobro+","+numPagos+","+quinMes+",'"+observaciones+"');";
+
+		String sql2 = "update donativos set refrendado = 1  where id = "+idDonativo+";";
+		
+		try {
+			
+			
+		this.getJdbcTemplate().update(sql);
+		this.getJdbcTemplate().update(sql2);
+
+		
+			
+		return "Done";
+		} catch (EmptyResultDataAccessException e) {
+			return "Error";
+		}catch(IncorrectResultSizeDataAccessException ex) {
+			return "MasFilas";
+		}catch(DataIntegrityViolationException exx) {
+			System.out.println(exx.getMessage());
+			return "Duplicado";
+		}
+	}
+	
+	
+	public String insertaDonante(int idPeriodo, String razonSocial, String titulo, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String adscripcion,  String tipoDonante, int idRegion, 
 			int sector, int idCampania, int medioAutorizacionDonativo, String observacionesMedioAutorizacion, int medioCobro, String numPersonal, String dependenciaAdscripcion, double donativoTotal, double donativoQuincenal,
 			int numQuincenas, int idQuincenaInicio, String anioQuincena, int idCuentasBancarias, String referencia, int numPagos, double importeNumPagos, String banco, String nombreTarjetahabiente, String red, String tipoTarjeta,
 			String numTarjeta,int mesVencimiento, int anioVencimiento, String tipoDonativo, int mesInicioAportacion, String email, String celular, String telefono1, String telefono2,String calle,
-			String numE,String numI, String col, String loc, String mun, String edo, int cp, String calleFiscal, String numEFiscal, String numIFiscal, 
+			String numE,String numI, String col, String loc, String mun, String edo, int cp, String razonSocialFiscal, String calleFiscal, String numEFiscal, String numIFiscal, 
 			String colFiscal,String locFiscal, String munFiscal, String edoFiscal, String cpFiscal, String rfc, String observaciones, String idBeneficiarioAsignado, int idUsuario) {
 		
 		String sql = DonativosMapa.INSERT_SQL_DONANTES + " (1, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
@@ -79,13 +105,13 @@ public class DonativosDAO extends JdbcDaoSupport {
 															+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
 															+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
 															+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?,"
-															+ "?, ?, ?, ?, ?, ?, ?, ?)";
+															+ "?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-		Object[] params = new Object[] { idPeriodo,  razonSocial.trim(),  nombre.trim(),  apellidoPaterno.trim(),  apellidoMaterno.trim() , estatus,  motivoEstatus,  adscripcion,   tipoDonante,  idRegion, 
+		Object[] params = new Object[] { idPeriodo,  razonSocial.trim(),  titulo.trim(),  nombre.trim(),  apellidoPaterno.trim(),  apellidoMaterno.trim() , estatus,  motivoEstatus,  adscripcion,   tipoDonante,  idRegion, 
 				 sector,  idCampania,  medioAutorizacionDonativo,  observacionesMedioAutorizacion,  medioCobro,  numPersonal,  dependenciaAdscripcion,  donativoTotal,  donativoQuincenal,
 				 numQuincenas,  idQuincenaInicio, anioQuincena,  idCuentasBancarias,  referencia,  numPagos,  importeNumPagos,  banco,  nombreTarjetahabiente,  red,  tipoTarjeta, 
 				 numTarjeta, mesVencimiento,  anioVencimiento,  tipoDonativo,  mesInicioAportacion,  email,  celular,  telefono1,  telefono2, calle,
-				 numE,  numI,  col,  loc,  mun,  edo,  cp,  calleFiscal,  numEFiscal,  numIFiscal,  
+				 numE,  numI,  col,  loc,  mun,  edo,  cp, razonSocialFiscal, calleFiscal,  numEFiscal,  numIFiscal,  
 				 colFiscal,  locFiscal,  munFiscal,  edoFiscal,  cpFiscal, rfc.toUpperCase(),  observaciones, idUsuario };
 		
 		try {
@@ -105,9 +131,11 @@ public class DonativosDAO extends JdbcDaoSupport {
 		}catch(IncorrectResultSizeDataAccessException ex) {
 			return "MasFilas";
 		}catch(DataIntegrityViolationException exx) {
+			System.out.println(exx.getMessage());
 			return "Duplicado";
 		}
 	}
+	
 	
 	
 	public String insertaPatrocinador(int idPeriodo, String razonSocial, String nombre, String apellidoPaterno, String apellidoMaterno, String adscripcion, int idRegion, int sector, 
@@ -136,6 +164,7 @@ public class DonativosDAO extends JdbcDaoSupport {
 		}catch(IncorrectResultSizeDataAccessException ex) {
 			return "MasFilas";
 		}catch(DataIntegrityViolationException exx) {
+			System.out.println(exx.getMessage());
 			return "Duplicado";
 		}
 	}
@@ -153,27 +182,27 @@ public class DonativosDAO extends JdbcDaoSupport {
 
 	}
 
-	public String actualizaDatosDonantes( String razonSocial, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String adscripcion,  String tipoDonante, int idRegion, 
+	public String actualizaDatosDonantes( String razonSocial, String titulo, String nombre, String apellidoPaterno, String apellidoMaterno ,int estatus, String motivoEstatus, String adscripcion,  String tipoDonante, int idRegion, 
 			int sector, int idCampania, int medioAutorizacionDonativo, String observacionesMedioAutorizacion, int medioCobro, String numPersonal, String dependenciaAdscripcion, double donativoTotal, double donativoQuincenal,
 			int numQuincenas, int idQuincenaInicio, String anioQuincena, int idCuentasBancarias, String referencia, int numPagos, double importeNumPagos, String banco, String nombreTarjetahabiente, String red, String tipoTarjeta,
 			String numTarjeta,int mesVencimiento, int anioVencimiento, String tipoDonativo, int mesInicioAportacion, String email, String celular, String telefono1, String telefono2,String calle,String numE, 
-			String numI, String col, String loc, String mun, String edo, int cp, String calleFiscal, String numEFiscal, String numIFiscal, String colFiscal, 
+			String numI, String col, String loc, String mun, String edo, int cp, String razonSocialFiscal, String calleFiscal, String numEFiscal, String numIFiscal, String colFiscal, 
 			String locFiscal, String munFiscal, String edoFiscal, String cpFiscal, String rfc, String observaciones, int idUsuario, int idDonativo) {
 
-		String sql = DonativosMapa.UPDATE_SQL + " razon_social = ?, nombres = ?, apellido_paterno = ?,apellido_materno = ?,estatus = ?,motivo_estatus = ?," + 
+		String sql = DonativosMapa.UPDATE_SQL + " razon_social = ?, titulo = ?, nombres = ?, apellido_paterno = ?,apellido_materno = ?,estatus = ?,motivo_estatus = ?," + 
 				"			adscripcion = ?,tipo_donante = ?, id_region = ?, sector = ?,	id_campania = ?, medio_autorizacion_donativo = ?,observaciones_medio_autorizacion = ?," + 
 				"			medio_cobro = ?,num_personal = ?,dependencia_adscripcion = ?,donativo_total = ?,donativo_quincenal = ?,num_quincenas = ?,id_quincena_inicio = ?, anio_quincena = ?, id_cuentas_bancarias = ?,referencia = ?," + 
 				"			num_pagos = ?,importe_num_pagos = ?,banco = ?,nombre_tarjetahabiente = ?,red = ?,tipo_tarjeta = ?,num_tarjeta = ?,mes_vencimiento = ?,anio_vencimiento = ?,tipo_donativo = ?," + 
 				"			mes_inicio_aportacion = ?,email = ?,celular = ?, telefono1 = ?,telefono2 = ?,calle = ?,num_exterior = ?,num_interior = ?,colonia = ?, localidad = ?, municipio = ?, estado = ?, cp = ?," + 
-				"			calle_fiscal = ?,num_exterior_fiscal = ?,num_interior_fiscal = ?,colonia_fiscal = ?, localidad_fiscal = ?, municipio_fiscal = ?, estado_fiscal = ?, cp_fiscal = ?, rfc = ?," + 
+				"			razon_social_fiscal = ?, calle_fiscal = ?,num_exterior_fiscal = ?,num_interior_fiscal = ?,colonia_fiscal = ?, localidad_fiscal = ?, municipio_fiscal = ?, estado_fiscal = ?, cp_fiscal = ?, rfc = ?," + 
 				"			observaciones = ? where id =?;";
 		
 		//System.out.println(sql);
-		Object[] params = new Object[] {  razonSocial.trim(),  nombre.trim(),  apellidoPaterno.trim(),  apellidoMaterno.trim() , estatus,  motivoEstatus,  adscripcion,   tipoDonante,  idRegion, 
+		Object[] params = new Object[] {  razonSocial.trim(),  titulo.trim(), nombre.trim(),  apellidoPaterno.trim(),  apellidoMaterno.trim() , estatus,  motivoEstatus,  adscripcion,   tipoDonante,  idRegion, 
 				 sector,  idCampania,  medioAutorizacionDonativo,  observacionesMedioAutorizacion,  medioCobro,  numPersonal,  dependenciaAdscripcion,  donativoTotal,  donativoQuincenal,
 				 numQuincenas,  idQuincenaInicio, anioQuincena, idCuentasBancarias,  referencia,  numPagos,  importeNumPagos,  banco,  nombreTarjetahabiente,  red,  tipoTarjeta,  numTarjeta,
 				 mesVencimiento,  anioVencimiento,  tipoDonativo,  mesInicioAportacion,  email,  celular,  telefono1,  telefono2,
-				 calle,numE,  numI,  col,  loc,  mun,  edo,  cp,  calleFiscal,  numEFiscal,  numIFiscal,  colFiscal,  locFiscal,  munFiscal,  edoFiscal,  cpFiscal,
+				 calle,numE,  numI,  col,  loc,  mun,  edo,  cp, razonSocialFiscal, calleFiscal,  numEFiscal,  numIFiscal,  colFiscal,  locFiscal,  munFiscal,  edoFiscal,  cpFiscal,
 				 rfc,  observaciones,  idDonativo};
 		// System.out.println(sql+ id+ password);
 		
@@ -190,6 +219,7 @@ public class DonativosDAO extends JdbcDaoSupport {
 		}catch(IncorrectResultSizeDataAccessException ex) {
 			return "MasFilas";
 		}catch(DataIntegrityViolationException exx) {
+			System.out.println(exx.getMessage());
 			return "Duplicado";
 		}
 
@@ -242,6 +272,27 @@ public class DonativosDAO extends JdbcDaoSupport {
 			sql = DonativosMapa.BASE_SQL + " where nombre_completo_don = '"+termino+"' and id_periodo = "+idPeriodo+";"; 
 		}
 		//System.out.println(sql);
+		
+		try {
+			return this.getJdbcTemplate().query(sql, new DonativosMapa());
+
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
+	
+public List<Donativos> autocompletarDonantesCobranza(String termino, int idPeriodo, int medioCobro, String idss) {
+		
+		String notIn = "";
+		
+		if(idss != "") {
+			notIn = " and id not in ("+idss+") ";
+		}
+
+			String	sql = DonativosMapa.BASE_SQL + " where ((nombre_completo_don LIKE '%"+termino+"%') OR (rfc LIKE  '%"+termino+"%') OR (razon_social LIKE  '%"+termino+"%'))  and id_periodo = "+idPeriodo+" and medio_cobro = "+medioCobro+" and estatus = 1 "+notIn+" limit 20;"; 
+		
+		System.out.println(sql);
 		
 		try {
 			return this.getJdbcTemplate().query(sql, new DonativosMapa());
@@ -368,24 +419,22 @@ public List<Donativos> autocompletarBenefactorNoPatrocinador(String termino, int
 		}catch(IncorrectResultSizeDataAccessException ex) {
 			return "MasFilas";
 		}catch(DataIntegrityViolationException exx) {
+			System.out.println(exx.getMessage());
 			return "Duplicado";
 		}
 	}
 	
-	/*
-public List<Donativos> reporteGeneral(int idTipoBeca,int idPeriodo, int idRegion) {
-		String idPString = "";
+	
+public List<Donativos> reporteGeneral(int idPeriodo, int idRegion) {
+
 		String idRString = "";
 	
-		if(idPeriodo!=0) {
-			idPString = " and id_periodo = "+idPeriodo;
-		}
-		
+
 		if(idRegion!=0) {
 			idRString = " and id_region = "+idRegion;
 		}
 		
-		String	sql = "select * FROM view_donativos where id_tipo_beca = "+idTipoBeca+idPString+idRString;
+		String	sql = "select * FROM view_donativos where id_periodo = "+idPeriodo+idRString+" ORDER BY nombre_completo_don, id_periodo, id_region";
 		//System.out.println(sql);
 		
 		try {
@@ -395,6 +444,34 @@ public List<Donativos> reporteGeneral(int idTipoBeca,int idPeriodo, int idRegion
 			return null;
 		}
 
-	}*/
+	}
+
+
+public List<Donativos> refrendo(int idPeriodo, int idRegion, int idCampania) {
+
+	String idRString = "", idCString = "";
+
+
+	if(idRegion!=0) {
+		idRString = " and id_region = "+idRegion;
+	}
+	
+	if(idCampania!=0) {
+		idCString = " and id_campania = "+idCampania;
+	}
+	
+	String	sql = "select * FROM view_donativos where id_periodo = "+idPeriodo+idRString+idCString+" and refrendado = 0 ORDER BY region desc, id_campania asc , nombres ASC";
+	System.out.println(sql);
+	
+	try {
+		return this.getJdbcTemplate().query(sql, new DonativosMapa());
+
+	} catch (EmptyResultDataAccessException e) {
+		return null;
+	}
+
+}
+
+
 
 }

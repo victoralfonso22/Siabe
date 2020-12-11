@@ -84,11 +84,16 @@ public class ControladorRestEgresos {
 			String tarjetaDeposito, @RequestParam String claveReferenciado, @RequestParam String vigenciaReferenciado, @RequestParam double montoBeca, @RequestParam String finalidadApoyo, 
 			@RequestParam String observaciones, @RequestParam String idBenefactor, @RequestParam int idUsuario) throws ParseException {
 		
-		
+		System.out.println(idPeriodo+idTipoBeca+ matricula+ nombre+ apellidoPaterno+ apellidoMaterno+ estatus+ motivoEstatus+ tipoBecario+ adscripcion+ idRegion+ 
+				idCarrera+ periodoActual+ promedioGeneral+ edad+ genero+ lenguaIndigena+ discapacidad+ estadoCivil+ lugarNacimiento+ "fecha"+ breveHistoria+ integrantesFamiliares+ 
+				ingresosFamiliares+ calleVivFam+ numEVivFam+ numIVivFam+ colVivFam+ locVivFam+ munVivFam+ edoVivFam+ cpVivFam+ enlaceMaps+ mismoVivFam+ calleEst+ numEEst+ numIEst+ colEst+ locEst+ 
+				munEst+ edoEst+ cpEst+ celular+ telDomicilio+ tipoTelRef+ numTelRef+ parentescoRef+ observacionesRef+ email+ facebook+ facebook2+ facebook3+ formaPago+ banco+ cuentaDeposito+ 
+				tarjetaDeposito+ claveReferenciado+ vigenciaReferenciado+ montoBeca+ finalidadApoyo+ observaciones+ idBenefactor+ idUsuario);
+
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date dateBirth = formatter.parse(fechaNacimiento);
-		
+	
 		String response = beneficiariosServicio.insertaBeneficiarioBeca(idPeriodo,idTipoBeca, matricula, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, tipoBecario, adscripcion, idRegion, 
 				idCarrera, periodoActual, promedioGeneral, edad, genero, lenguaIndigena, discapacidad, estadoCivil, lugarNacimiento, dateBirth, breveHistoria, integrantesFamiliares, 
 				ingresosFamiliares, calleVivFam, numEVivFam, numIVivFam, colVivFam, locVivFam, munVivFam, edoVivFam, cpVivFam, enlaceMaps, mismoVivFam, calleEst, numEEst, numIEst, colEst, locEst, 

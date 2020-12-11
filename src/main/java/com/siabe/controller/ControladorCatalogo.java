@@ -107,7 +107,8 @@ public class ControladorCatalogo {
 
 		return "/catalogos/periodos :: periodos";
 	}
-
+	
+	
 	@RequestMapping("/catalogos/refreshTablatBeca")
 	public String refreshTablaTBeca(Model model, Principal principal) {
 		Usuario u = new Usuario();
@@ -261,6 +262,7 @@ public class ControladorCatalogo {
 		model.addAttribute("quincenas", quincenasServicio.todasQuincenas());
 		return "/catalogos/quincenas :: #quincenasF";
 	}
+	
 	
 	
 }

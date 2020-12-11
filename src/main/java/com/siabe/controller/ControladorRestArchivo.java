@@ -1,6 +1,9 @@
 package com.siabe.controller;
 
 
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +11,19 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.siabe.modelo.Beneficiarios;
 import com.siabe.servicio.ArchivoStorageServicio;
 import com.siabe.utils.PropiedadesArchivosGuardados;
 import com.siabe.utils.UploadArchivoResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,12 +51,33 @@ public class ControladorRestArchivo {
         return new UploadArchivoResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
     }
+    
+    @PostMapping("/uploadFileBene")
+    public UploadArchivoResponse uploadFileBene(@RequestParam("file") MultipartFile file) {
+        String fileName = fileStorageService.storeFile(file);
+
+        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/downloadFile/")
+                .path(fileName)
+                .toUriString();
+
+        return new UploadArchivoResponse(fileName, fileDownloadUri,
+                file.getContentType(), file.getSize());
+    }
 
     @PostMapping("/uploadMultipleFiles")
     public List<UploadArchivoResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, @RequestParam int idPeriodo, @RequestParam int idDonativo) {
         return Arrays.asList(files)
                 .stream()
                 .map(file -> uploadFile(file,idPeriodo,idDonativo))
+                .collect(Collectors.toList());
+    }
+    
+    @PostMapping("/uploadSingleFiles")
+    public List<UploadArchivoResponse> uploadSingleFiles(@RequestParam("file") MultipartFile files) {
+        return Arrays.asList(files)
+                .stream()
+                .map(file -> uploadFileBene(file))
                 .collect(Collectors.toList());
     }
     
@@ -109,4 +136,7 @@ public class ControladorRestArchivo {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename().replace(idPeriodo+"-"+idDonativo+"-", "") + "\"")
                 .body(resource);
     }
+    
+  
+
 }

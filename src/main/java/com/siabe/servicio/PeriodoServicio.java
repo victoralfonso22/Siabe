@@ -31,10 +31,40 @@ public class PeriodoServicio {
 		return periodoDAO.obtenerPeriodosActivos();
 	}
 	
+	public List<Periodo> periodoActivoDeportiva(int idTipoBeca){
+		return periodoDAO.periodoActivoDeportiva(idTipoBeca);
+	}
+	
+	public List<Periodo> periodoTodosDeportiva(int idTipoBeca){
+		return periodoDAO.periodoTodosDeportiva(idTipoBeca);
+	}
+	
+	public List<Periodo> todosPeridosActivosNoDeportiva(){
+		return periodoDAO.obtenerPeriodosActivosSinEscuelas();
+	}
+	
+	
+	public List<Periodo> todosPeridosActivosSiDeportiva(){
+		return periodoDAO.obtenerPeriodosActivosSoloEscuelas();
+	}
+	
 	/*public List<Periodo> todosPeridoBD(){
 		return periodoDAO.obtenerPeriodosBenDona();
 	}
 	*/
+	
+	public List<Periodo> todosPeridoMayores(int idPeriodo){
+		return periodoDAO.obtenerPeriodosMayores(idPeriodo);
+	}
+	
+	public List<Periodo> todosPeridoMayoresNoDeportiva(int idPeriodo){
+		return periodoDAO.obtenerPeriodosMayoresNoDeportiva(idPeriodo);
+	}
+	
+	public List<Periodo> todosPeridoMayoresSiDeportiva(int idPeriodo){
+		return periodoDAO.obtenerPeriodosMayoresSiDeportiva(idPeriodo);
+	}
+	
 	public List<Periodo> periodosXBeneficiario(String beneficiario){
 		return periodoDAO.obtenerPeriodosXBeneficiario(beneficiario);
 	}

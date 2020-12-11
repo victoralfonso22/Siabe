@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 public class PeriodoMapa implements RowMapper<Periodo> {
 
 	public static final String BASE_SQL //
-			= "Select id, nombre,fecha_inicio, fecha_final, estatus From periodos ";
+			= "Select id, nombre,fecha_inicio, fecha_final, estatus, deportiva From periodos ";
 	
 	/*public static final String BASE_SQL_TB_PD //
 	= "Select p.id, p.nombre,p.fecha_inicio, p.fecha_final, p.id_tipo_beca, pd.nombre periodo_donante, pd.id id_periodo_donante,  p.estatus, tb.nombre tBeca \r\n" + 
@@ -46,9 +46,18 @@ public class PeriodoMapa implements RowMapper<Periodo> {
 		Date fecha_final = rs.getDate("fecha_final");
 		//int idTipoBeca = rs.getInt("id_tipo_beca");
 		int estatus = rs.getInt("estatus");
+		int deportiva = rs.getInt("deportiva");
 		//String tBeca = rs.getString("tBeca");
 		
-		return new Periodo(periodoId, nombre, fecha_inicio, fecha_final, estatus);
+		
+        String[] arrOfStr = nombre.split("/"); 
+        //for (int i = 0; i < arrOfStr.length;i++){ 
+        /*	nombre = arrOfStr[0];
+        	nombre = nombre+"	/n	/		"+arrOfStr[1];
+        	System.out.println(nombre);*/
+        //}
+		
+		return new Periodo(periodoId, nombre, fecha_inicio, fecha_final, estatus, deportiva);
 	}
 
 }

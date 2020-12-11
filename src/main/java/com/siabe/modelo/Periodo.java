@@ -7,21 +7,22 @@ public class Periodo {
 	private int idPeriodo;
     private String nombre;
     private Date fecha_inicio;
-    private Date fecha_final;
-    //private int idTipoBeca;
+    private Date fecha_final;    
     private int estatus;
+    private int deportiva;
     //private String tBeca;
     
     public Periodo() {
     	
     }
     
-    public Periodo(int idPeriodo, String nombre, Date fecha_inicio, Date fecha_final, int estatus) {
+    public Periodo(int idPeriodo, String nombre, Date fecha_inicio, Date fecha_final, int estatus, int deportiva) {
         this.idPeriodo = idPeriodo;
         this.nombre = nombre;
         this.fecha_inicio = fecha_inicio;
         this.fecha_final = fecha_final;      
         this.estatus = estatus;
+        this.deportiva = deportiva;
     }
 
 
@@ -73,6 +74,14 @@ public class Periodo {
 
 	public void setEstatus(int estatus) {
 		this.estatus = estatus;
+	}
+
+	public int getDeportiva() {
+		return deportiva;
+	}
+
+	public void setDeportiva(int deportiva) {
+		this.deportiva = deportiva;
 	}
  
 	

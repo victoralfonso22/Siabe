@@ -71,18 +71,18 @@ public class ControladorRestIngresos {
 
 
 	@PostMapping(value = "/ingresos/ajaxAgregarDonante")
-	public String postAjaxAddDonante(@RequestParam int idPeriodo, @RequestParam String razonSocial, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno ,@RequestParam int estatus, @RequestParam String motivoEstatus, @RequestParam String adscripcion,  @RequestParam String tipoDonante, @RequestParam int idRegion, 
+	public String postAjaxAddDonante(@RequestParam int idPeriodo, @RequestParam String razonSocial, @RequestParam String titulo, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno ,@RequestParam int estatus, @RequestParam String motivoEstatus, @RequestParam String adscripcion,  @RequestParam String tipoDonante, @RequestParam int idRegion, 
 			@RequestParam int sector, @RequestParam int idCampania, @RequestParam int medioAutorizacion, @RequestParam String observacionesMedioAutorizacion, @RequestParam int medioCobro, @RequestParam String numPersonal, @RequestParam String dependenciaAdscripcion, @RequestParam double donativoTotal, @RequestParam double donativoQuincenal,
 			@RequestParam int numQuincenas, @RequestParam int idQuincenaInicio, @RequestParam String anioQuincena,  @RequestParam int idCuentasBancarias, @RequestParam String referencia, @RequestParam int numPagos, @RequestParam double importeNumPagos, @RequestParam String banco, @RequestParam String nombreTarjetahabiente, @RequestParam String red, @RequestParam String tipoTarjeta,
 			@RequestParam String numTarjeta,@RequestParam int mesVencimiento, @RequestParam int anioVencimiento, @RequestParam String tipoDonativo, @RequestParam int mesInicioAportacion, @RequestParam String email, @RequestParam String celular, @RequestParam String telefono1, @RequestParam String telefono2,@RequestParam String calle, @RequestParam String numE,
-			@RequestParam String numI, @RequestParam String col, @RequestParam String loc, @RequestParam String mun, @RequestParam String edo, @RequestParam int cp, @RequestParam String calleFiscal, @RequestParam String numEFiscal, @RequestParam String numIFiscal, @RequestParam String colFiscal, 
+			@RequestParam String numI, @RequestParam String col, @RequestParam String loc, @RequestParam String mun, @RequestParam String edo, @RequestParam int cp,@RequestParam String razonSocialFiscal, @RequestParam String calleFiscal, @RequestParam String numEFiscal, @RequestParam String numIFiscal, @RequestParam String colFiscal, 
 			@RequestParam String locFiscal, @RequestParam String munFiscal, @RequestParam String edoFiscal, @RequestParam String cpFiscal, @RequestParam String rfc, @RequestParam String observaciones, @RequestParam String idBeneficiarioAsignado, @RequestParam int idUsuario) throws ParseException {
 		
 		
-		String response = donativosServicio.insertaDonante(idPeriodo, razonSocial, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, adscripcion, tipoDonante, idRegion, sector, idCampania,
+		String response = donativosServicio.insertaDonante(idPeriodo, razonSocial, titulo,nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, adscripcion, tipoDonante, idRegion, sector, idCampania,
 				medioAutorizacion, observacionesMedioAutorizacion, medioCobro, numPersonal, dependenciaAdscripcion, donativoTotal, donativoQuincenal, numQuincenas, idQuincenaInicio, anioQuincena, idCuentasBancarias,
 				referencia, numPagos, importeNumPagos, banco, nombreTarjetahabiente, red, tipoTarjeta, numTarjeta, mesVencimiento, anioVencimiento, tipoDonativo, mesInicioAportacion, email, celular, telefono1, 
-				telefono2, calle,numE, numI, col, loc, mun, edo, cp, calleFiscal, numEFiscal, numIFiscal, colFiscal, locFiscal, munFiscal, edoFiscal, cpFiscal, rfc, observaciones, idBeneficiarioAsignado, idUsuario);
+				telefono2, calle,numE, numI, col, loc, mun, edo, cp,razonSocialFiscal, calleFiscal, numEFiscal, numIFiscal, colFiscal, locFiscal, munFiscal, edoFiscal, cpFiscal, rfc, observaciones, idBeneficiarioAsignado, idUsuario);
 				
 		
 		return response;
@@ -122,19 +122,50 @@ public class ControladorRestIngresos {
 
 	}
 	
+	@RequestMapping(value = "/ingresos/autocompleteDonanteCobranza", method = RequestMethod.GET)
+	public  @ResponseBody Map<String,Donativos> autocompleteDonanteCobranza(@RequestParam String term,  @RequestParam int idPeriodo,  @RequestParam int medioCobro, @RequestParam String ids) {		
+		
+		
+		String idss = "";
+		if(ids != "") {
+		idss = ids.substring(0, ids.length() - 1);
+		}else {
+			idss = ids;
+		}
+		
+		//System.out.println(idss);
+		List<Donativos> donante = donativosServicio.autocompletarDonantesCobranza(term, idPeriodo,medioCobro, idss); 
+		
+		Map<String,Donativos> response = new LinkedHashMap<String,Donativos>();
+		
+		///if(donante.size() == 0) {
+		Donativos don = new Donativos();
+		/*don.setIdDonativo(0);
+		don.setNombreCompletoDon("Sin donante");	
+		don.setTitulo("");
+		response.put("Sin donante", don); */
+		//}else {
+		for(int b = 0; b < donante.size() ;b++) {
+			response.put(donante.get(b).getNombre(), donante.get(b));
+		//}
+		}
+		return response;
+
+	}
+	
 	@PostMapping(value = "/ingresos/ajaxModificarDonante")
-	public String postAjaxtDonanteModificar( @RequestParam String razonSocial, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno ,@RequestParam int estatus, @RequestParam String motivoEstatus, @RequestParam String adscripcion,  @RequestParam String tipoDonante, @RequestParam int idRegion, 
+	public String postAjaxtDonanteModificar( @RequestParam String razonSocial, @RequestParam String titulo, @RequestParam String nombre, @RequestParam String apellidoPaterno, @RequestParam String apellidoMaterno ,@RequestParam int estatus, @RequestParam String motivoEstatus, @RequestParam String adscripcion,  @RequestParam String tipoDonante, @RequestParam int idRegion, 
 			@RequestParam int sector, @RequestParam int idCampania, @RequestParam int medioAutorizacion, @RequestParam String observacionesMedioAutorizacion, @RequestParam int medioCobro, @RequestParam String numPersonal, @RequestParam String dependenciaAdscripcion, @RequestParam double donativoTotal, @RequestParam double donativoQuincenal,
 			@RequestParam int numQuincenas, @RequestParam int idQuincenaInicio, @RequestParam String anioQuincena, @RequestParam int idCuentasBancarias, @RequestParam String referencia, @RequestParam int numPagos, @RequestParam double importeNumPagos, @RequestParam String banco, @RequestParam String nombreTarjetahabiente, @RequestParam String red, @RequestParam String tipoTarjeta,
 			@RequestParam String numTarjeta,@RequestParam int mesVencimiento, @RequestParam int anioVencimiento, @RequestParam String tipoDonativo, @RequestParam int mesInicioAportacion, @RequestParam String email, @RequestParam String celular, @RequestParam String telefono1, @RequestParam String telefono2,@RequestParam String calle, @RequestParam String numE,
-			@RequestParam String numI, @RequestParam String col, @RequestParam String loc, @RequestParam String mun, @RequestParam String edo, @RequestParam int cp, @RequestParam String calleFiscal, @RequestParam String numEFiscal, @RequestParam String numIFiscal, @RequestParam String colFiscal, 
+			@RequestParam String numI, @RequestParam String col, @RequestParam String loc, @RequestParam String mun, @RequestParam String edo, @RequestParam int cp,@RequestParam String razonSocialFiscal, @RequestParam String calleFiscal, @RequestParam String numEFiscal, @RequestParam String numIFiscal, @RequestParam String colFiscal, 
 			@RequestParam String locFiscal, @RequestParam String munFiscal, @RequestParam String edoFiscal, @RequestParam String cpFiscal, @RequestParam String rfc, @RequestParam String observaciones, @RequestParam int idUsuario, @RequestParam int idDonativo) throws ParseException {
 		
 
-		String response = donativosServicio.actualizaDatosDonantes( razonSocial, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, adscripcion, tipoDonante, idRegion, sector,
+		String response = donativosServicio.actualizaDatosDonantes( razonSocial, titulo, nombre, apellidoPaterno, apellidoMaterno, estatus, motivoEstatus, adscripcion, tipoDonante, idRegion, sector,
 				idCampania, medioAutorizacion, observacionesMedioAutorizacion, medioCobro, numPersonal, dependenciaAdscripcion, donativoTotal, donativoQuincenal, numQuincenas, idQuincenaInicio, anioQuincena,
 				idCuentasBancarias, referencia, numPagos, importeNumPagos, banco, nombreTarjetahabiente, red, tipoTarjeta, numTarjeta, mesVencimiento, anioVencimiento, tipoDonativo,
-				mesInicioAportacion, email, celular, telefono1, telefono2, calle, numE, numI, col, loc, mun, edo, cp, calleFiscal, numEFiscal, numIFiscal, colFiscal, locFiscal, munFiscal, edoFiscal, 
+				mesInicioAportacion, email, celular, telefono1, telefono2, calle, numE, numI, col, loc, mun, edo, cp, razonSocialFiscal,calleFiscal, numEFiscal, numIFiscal, colFiscal, locFiscal, munFiscal, edoFiscal, 
 				cpFiscal, rfc, observaciones, idUsuario, idDonativo);
 				
 		
@@ -213,6 +244,8 @@ public class ControladorRestIngresos {
 
 	}
 	
+	
 
-
+	
+	
 }

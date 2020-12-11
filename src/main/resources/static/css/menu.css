@@ -488,15 +488,18 @@ th{
 	font-weight: normal;
 }
 
+
+
 .divReportes:hover {
-/*	background: #f2f9ff; */
+	background: #00993D; 
 	border: 2px solid #337AB7;
 	color:white !important;
-	box-shadow: 3px 3px 3px 0px rgba(51,122,183,1);    
+/*	box-shadow: 3px 3px 3px 0px rgba(51,122,183,1);    */
 }
 
 .divReportes:hover label{
-	color :#337AB7 !important;  
+	color :white !important; 
+/*	font-weight: bold; */
 }
 
 .divReportes:hover .image{
@@ -645,6 +648,16 @@ input[type="file"] {
 .tablaArchivos > tbody > tr > td > span{
 	font-weight: bold;
 	
+}
+
+#registrosRD > tbody > tr > td > input{
+	width: auto;
+	font-size: 11px !important;
+}
+
+.inop{
+	width: 100% !important;
+	font-size: 11px;
 }
 
 .subDivi{

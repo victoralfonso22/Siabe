@@ -159,7 +159,7 @@ public String insertaRegionPeridoN(int idRegion, int idPeriodo) {
 
 	public List<Regiones> obtenerRegionesNoPeriodo(int idPeriodo) {
 
-		String sql = RegionesMapa.BASE_SQL_REG +" where id not in (select id_region from trPeridoRegion where id_periodo = ?);";
+		String sql = RegionesMapa.BASE_SQL_REG +" where id not in (select id_region from trperidoregion where id_periodo = ?);";
 		Object[] params = new Object[] { idPeriodo };
 		RegionesMapa mapper = new RegionesMapa();
 		try {

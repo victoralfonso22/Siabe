@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.siabe.modelo.Beneficiarios;
-
+import com.siabe.modelo.Donativos;
 import com.siabe.mapa.BeneficiariosMapa;
 import com.siabe.mapa.DonativosMapa;
 import com.siabe.mapa.UsuarioMapa;
@@ -186,14 +186,14 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 				"tipo_tel_ref=?,num_tel_ref=?,parentesco_ref=?,observaciones_ref=?,email=?,facebook=?,facebook2=?,facebook3=?,forma_pago=?,banco=?,cuenta_deposito=?,tarjeta_deposito=?,clave_referenciado=?,vigencia_referenciado=?," + 
 				"monto_beca=?,finalidad_apoyo=?,observaciones=?  where id =?;";
 		
-		//System.out.println(sql);
+
 		Object[] params = new Object[] { matricula.toUpperCase().trim(), nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
 				 idCarrera,  periodoActual,  promedioGeneral,  edad,  genero,  lenguaIndigena,  discapacidad,  estadoCivil,  lugarNacimiento.trim(),  fechaNacimiento,
 				 breveHistoria.trim(),  integrantesFamiliares,  ingresosFamiliares,  calleVivFam,  numEVivFam,  numIVivFam,  colVivFam,  locVivFam,  munVivFam,  edoVivFam,
 				 cpVivFam,  enlaceMaps.trim(),  mismoVivFam,  calleEst.trim(),  numEEst,  numIEst,  colEst.trim(),  locEst.trim(),  munEst.trim(),  edoEst.trim(),  cpEst,  celular,  telDomicilio,
 				 tipoTelRef,  numTelRef,  parentescoRef,  observacionesRef,  email,  facebook,  facebook2,  facebook3,  formaPago,  banco,  cuentaDeposito, 
 				 tarjetaDeposito,  claveReferenciado,  vigenciaReferenciado,  montoBeca,  finalidadApoyo.trim(),  observaciones.trim(),  idBeneficiario};
-		// System.out.println(sql+ id+ password);
+
 		
 		
 		String sqlCambio = UsuarioMapa.INSERTA_CAMBIO_SQL + " ('beneficiarios',"+idBeneficiario+","+idUsuario+")";
@@ -227,7 +227,7 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 				"celular=?,tel_domicilio=?,tipo_tel_ref=?,num_tel_ref=?,parentesco_ref=?,observaciones_ref=?,email=?,facebook=?,facebook2=?,facebook3=?,ocupacion_tutor=?,hermanos_inscritos=?,escuela_hermano=?,monto_beca=?," + 
 				"observaciones=? where id =?;";
 		
-		//System.out.println(sql);
+
 		Object[] params = new Object[] { nombre.trim(), apellidoPaterno.trim(), apellidoMaterno.trim() , estatus,  motivoEstatus,  tipoBecario,  adscripcion,  idRegion, 
 				 escuelaDeportiva,  fechaIngEscDep,  nivelEduCursa,  turno,  tipoInstitucion,  grado,  nombreEdu.trim() ,calleEdu.trim(),  numExtEdu,  numIntEdu,  colEdu.trim(),  locEdu.trim(), 
 				 munEdu.trim(),  edoEdu.trim(),  cpEdu,  telEdu,  promedioGeneral,  edad,  genero,  lugarNacimiento.trim(),  fechaNacimiento,
@@ -235,7 +235,7 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 				 cpVivFam,  enlaceMaps,   nombreTutor,  parentescoTutor,  celular,  telDomicilio,
 				 tipoTelRef,  numTelRef,  parentescoRef,  observacionesRef,  email,  facebook,  facebook2,  facebook3,  ocupacionTutor,  hermanosInscritos,  escuelaHermanosInscritos, 
 				 montoBeca,  observaciones.trim(),  idBeneficiario};
-		// System.out.println(sql+ id+ password);
+
 		
 		
 		String sqlCambio = UsuarioMapa.INSERTA_CAMBIO_SQL + " ('beneficiarios',"+idBeneficiario+","+idUsuario+")";
@@ -285,7 +285,7 @@ public class BeneficiariosDAO extends JdbcDaoSupport {
 		}else {
 			sql= BeneficiariosMapa.BASE_SQL +" where nombre_completo_bene = '"+termino+"' and id_periodo = "+idPeriodo+" and id_tipo_beca = "+idTipoBeca+";";
 		}
-		System.out.println(sql);
+
 		try {
 			return this.getJdbcTemplate().query(sql, new BeneficiariosMapa());
 
@@ -313,8 +313,7 @@ public List<Beneficiarios> autocompletarBeneficiariosNoDepor(String termino, int
 		
 		
 		String	sql = BeneficiariosMapa.BASE_SQL + " WHERE id_periodo = "+idPeriodo+" and id_tipo_beca in(1,2,3) and (nombre_completo_bene LIKE '%"+termino+"%' OR matricula LIKE  '%"+termino+"%') order by nombre_completo_bene ; ";
-		
-		System.out.println(sql);
+
 		
 		try {
 			return this.getJdbcTemplate().query(sql, new BeneficiariosMapa());
@@ -330,7 +329,7 @@ public List<Beneficiarios> autocompletarBeneficiariosNoDeporAsig(String termino,
 	
 	String	sql = BeneficiariosMapa.BASE_SQL + " WHERE id_periodo = "+idPeriodo+" and id_tipo_beca in(1,2,3) and (nombre_completo_bene LIKE '%"+termino+"%' OR matricula LIKE  '%"+termino+"%') order by nombre_completo_bene ; ";
 	
-	System.out.println(sql);
+
 	
 	try {
 		return this.getJdbcTemplate().query(sql, new BeneficiariosMapa());
@@ -354,9 +353,8 @@ public List<Beneficiarios> reporteGeneral(int idTipoBeca,int idPeriodo, int idRe
 			idRString = " and id_region = "+idRegion;
 		}
 		
-		String	sql = "select * FROM view_beneficiarios where id_tipo_beca = "+idTipoBeca+idPString+idRString;
-		System.out.println(sql);
-		
+		String	sql = "select * FROM view_beneficiarios where id_tipo_beca = "+idTipoBeca+idPString+idRString+" ORDER BY nombre_completo_bene,id_periodo,id_region;";
+	
 		try {
 			return this.getJdbcTemplate().query(sql, new BeneficiariosMapa());
 
@@ -394,6 +392,50 @@ public int getCountIdBeneficiario(String matricula, int idPeriodo, int idTipoBec
 		return 0;
 	}
 
+}
+
+public List<Beneficiarios> refrendo(int idPeriodo, int idRegion, int idTipoBeca) {
+
+	String idRString = "", idCString = "";
+
+
+	if(idRegion!=0) {
+		idRString = " and id_region = "+idRegion;
+	}
+	
+	if(idTipoBeca!=0) {
+		idCString = " and id_tipo_beca = "+idTipoBeca;
+	}
+	
+	String	sql = "select * FROM view_beneficiarios where id_periodo = "+idPeriodo+idRString+idCString+" and refrendado = 0 ORDER BY region desc, id_tipo_beca asc , nombre ASC";
+	System.out.println(sql);
+	
+	try {
+		return this.getJdbcTemplate().query(sql, new BeneficiariosMapa());
+
+	} catch (EmptyResultDataAccessException e) {
+		return null;
+	}
+
+}
+
+public String refrendaBeneficiario(int idBeneficiario,int idPeriodo) {
+	
+	String sql = " call refrendarBeneficiarios("+idBeneficiario+", "+idPeriodo+");";
+
+	try {
+		
+	this.getJdbcTemplate().update(sql);
+		
+	return "Done";
+	} catch (EmptyResultDataAccessException e) {
+		return "Error";
+	}catch(IncorrectResultSizeDataAccessException ex) {
+		return "MasFilas";
+	}catch(DataIntegrityViolationException exx) {
+		System.out.println(exx.getMessage());
+		return "Duplicado";
+	}
 }
 
 }

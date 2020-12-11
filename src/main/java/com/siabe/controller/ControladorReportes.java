@@ -17,6 +17,7 @@ import com.siabe.utils.UtilidadesWeb;
 import com.siabe.servicio.PeriodoServicio;
 import com.siabe.servicio.PermisosMenuServicio;
 import com.siabe.servicio.RegionesServicio;
+import com.siabe.servicio.QuincenasServicio;
 
 
 
@@ -40,6 +41,9 @@ public class ControladorReportes {
 	
 	@Autowired
 	private RegionesServicio regionesServicio;
+	
+	@Autowired
+	private QuincenasServicio quincenasServicio;
 
 	@ModelAttribute
 	public void addAttributes(Model model, Principal principal) {
@@ -64,7 +68,8 @@ public class ControladorReportes {
 	@GetMapping(value = "/reportes/donativos")
 	public String donativos(Model model, Principal principal) {
 
-		model.addAttribute("tbecas", tipoBecaServicio.todosTipoBeca());		
+		model.addAttribute("periodos",  periodoServicio.todosPeridosActivosNoDeportiva());		
+		model.addAttribute("quincenas", quincenasServicio.todasQuincenas());
 		return "/reportes/donativos";
 	}
 	
@@ -79,7 +84,7 @@ public class ControladorReportes {
 	
 	@RequestMapping("/reportes/actualizaPeriodoRepGen")
 	public String actualizaSelPeriodos(Model model, Principal principal,@RequestParam int idTipoBeca) {
-		model.addAttribute("periodos", periodoServicio.todosPerido());
+		model.addAttribute("periodos", periodoServicio.periodoTodosDeportiva(idTipoBeca));
 		
 		if(principal == null) {
 		return "/login";	

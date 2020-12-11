@@ -2,8 +2,8 @@
 function generarReporte(url,idSpan,divClass){
 //DO POST
 	
-	$('#'+idSpan+'2').attr("aria-valuenow",50); 
-	$('#'+idSpan+'2').attr("style","width:50%");
+//	$('#'+idSpan+'2').attr("aria-valuenow",50); 
+//	$('#'+idSpan+'2').attr("style","width:50%");
 //	$('#'+idSpan+'2').html("Creando reporte 50%");
 $.ajax({
     		type : "POST",
@@ -12,14 +12,16 @@ $.ajax({
 		    if(result.includes("Sesión inactiva")){
 			window.location = "/login?session=false";
 		    }else{
+		    	move();
 		    
-		    	$('#'+idSpan+'2').attr("aria-valuenow",75); 
+		   /* 	$('#'+idSpan+'2').attr("aria-valuenow",75); 
 		    	//$('#'+idSpan)
 		    	$('#'+idSpan+'2').attr("style","width:75%");
 		    	$('#'+idSpan+'2').attr("aria-valuenow",100); 
 		    	//$('#'+idSpan)
-		    	$('#'+idSpan+'2').attr("style","width:100%");
+		    	$('#'+idSpan+'2').attr("style","width:100%");*/
 		    	setTimeout(function(){
+		    		
 		    		window.open(url,"_blank");
 		    	//	var w = window.open();
 		    	//	$(w.document.body).html(result);
@@ -31,12 +33,14 @@ $.ajax({
 		    	//$('img.image').css('opacity', '1');
 		    	
 		//	$("#"+idSpan).html("		Reporte creado");
+		    	
 			$("#"+idSpan).delay(4000).hide(600);
 			$("div."+divClass).delay(4000).show(600);
+			
 		    }
 		},
 		error : function(jqXHR,e) {
-		    	alert(e);
+			alert(jqXHR.responseText);
 			if (jqXHR.status != 200) {
 			window.location = "error";
 			}else{
@@ -162,7 +166,7 @@ function beneficiarioNombre(tipo,idSpan,divClass){
 //	$('#'+idSpan+'2').html("Creando reporte 10%");
 	
 	if(tipo == 1){
-	generarReporte("reporteBeneficiarioNombre?type=pdf&idBeneficiario="+$("#idBeneNomHidden").val(),idSpan,divClass);
+		generarReporte("reporteBeneficiarioNombre?type=pdf&idBeneficiario="+$("#idBeneNomHidden").val(),idSpan,divClass);
 	}else if(tipo == 2){
 		generarReporte("reporteBeneficiarioNombre?type=vnd.openxmlformats-officedocument.spreadsheetml.sheet&idBeneficiario="+$("#idBeneNomHidden").val(),idSpan,divClass);
 	}else if(tipo == 3){
@@ -173,15 +177,35 @@ function beneficiarioNombre(tipo,idSpan,divClass){
 
 function beneficiariosGeneral(tipo,idSpan,divClass){
 	
-	if(getValueCheckboxPorClase('chk') != ''){
+	conta = '';
 	
-	if($("#idPeriodoGeneral").val()== null){
-		idPer = 0;
+	if($("#idBecaGeneral").val() == 4){
+		if(getValueCheckboxPorClase('chkDe') != ''){
+			conta = 'valores';
+		}
+
+	}else if($("#idBecaGeneral").val() == 3){
+		if(getValueCheckboxPorClase('chk') != '' || getValueCheckboxPorClase('chkApoyo') != ''){
+			conta = 'valores';
+		}
 	}else{
-		idPer = $("#idPeriodoGeneral").val();
+		if(getValueCheckboxPorClase('chk') != '' ){
+			conta = 'valores';
+		}
 	}
 	
-	if($("#idRegionGeneral").val()== null){
+	
+	if(conta != ''){
+	
+	if($("#idPeriodoGeneral").val()== ''){
+		idPer = 0;
+		$("#periodoNom").prop("checked", true);
+	}else{
+		idPer = $("#idPeriodoGeneral").val();
+		$("#periodoNom").prop("checked", false);
+	}
+	
+	if($("#idRegionGeneral").val()== ''){
 		idReg = 0;
 	}else{
 		idReg = $("#idRegionGeneral").val();
@@ -190,17 +214,87 @@ function beneficiariosGeneral(tipo,idSpan,divClass){
 	$("div."+divClass).hide(600);
 	
 	$('#'+idSpan).show();
-	$('#'+idSpan).attr("aria-valuenow",20); 
-	//$('#'+idSpan).attr("style","width:10%");
-	$('#'+idSpan+'2').attr("style","width:20%");
-
+	$("#idBeneficiario").prop("checked", true);
+	
+var contadores =  [];
+	
+if($("#idBecaGeneral").val() != 4){
+	contadores.push(getContadorCheckboxPorClase("aca"));
+	contadores.push(getContadorCheckboxPorClase("gen"));
+	contadores.push(getContadorCheckboxPorClase("fam"));
+	contadores.push(getContadorCheckboxPorClase("est"));
+	contadores.push(getContadorCheckboxPorClase("dcon"));
+	contadores.push(getContadorCheckboxPorClase("tref"));
+	contadores.push(getContadorCheckboxPorClase("face"));
+	contadores.push(getContadorCheckboxPorClase("ban"));
+	contadores.push(getContadorCheckboxPorClase("obs"));
+	if($("#idBecaGeneral").val() == 3){
+		if($(".chkApoyo").is(':checked')){
+			contadores.pop();
+			contadores.push(getContadorCheckboxPorClase("obs")+1);
+			
+		}
+	}
+}else{
+	contadores.push(getContadorCheckboxPorClase("gen1"));
+	contadores.push(getContadorCheckboxPorClase("fam1"));
+	contadores.push(getContadorCheckboxPorClase("inf"));
+	contadores.push(getContadorCheckboxPorClase("tref1"));
+	contadores.push(getContadorCheckboxPorClase("face1"));
+	contadores.push(getContadorCheckboxPorClase("her"));
+	contadores.push(getContadorCheckboxPorClase("edu"));
+	contadores.push(getContadorCheckboxPorClase("obs1"));
+}
 	
 	if(tipo == 1){
-	generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=pdf"+"&tipoB="+$("#idBecaGeneral").text(),idSpan,divClass);
+		
+		if($("#idBecaGeneral").val() == 4){
+			generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chkDe')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=pdf"+"&tipoB="+$("#idBecaGeneral").text()+"&contadores="+contadores.toString(),idSpan,divClass);
+
+		}else if($("#idBecaGeneral").val() == 3){
+		
+			generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+","+getValueCheckboxPorClase('chkApoyo')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=pdf"+"&tipoB="+$("#idBecaGeneral").text()+"&contadores="+contadores.toString(),idSpan,divClass);
+		
+		}else{
+			generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=pdf"+"&tipoB="+$("#idBecaGeneral").text()+"&contadores="+contadores.toString(),idSpan,divClass);
+		}
+		
+		
+	
+	
 	}else if(tipo == 2){
-		generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=vnd.openxmlformats-officedocument.spreadsheetml.sheet"+"&tipoB="+$("#idBecaGeneral").text(),idSpan,divClass);
+		
+		if($("#idBecaGeneral").val() == 4){
+			generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chkDe')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=vnd.openxmlformats-officedocument.spreadsheetml.sheet"+"&tipoB="+$("#idBecaGeneral").text()+"&contadores="+contadores.toString(),idSpan,divClass);			
+
+		}else if($("#idBecaGeneral").val() == 3){			
+			generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+","+getValueCheckboxPorClase('chkApoyo')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=vnd.openxmlformats-officedocument.spreadsheetml.sheet"+"&tipoB="+$("#idBecaGeneral").text()+"&contadores="+contadores.toString(),idSpan,divClass);			
+		
+		}else{			
+			generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=vnd.openxmlformats-officedocument.spreadsheetml.sheet"+"&tipoB="+$("#idBecaGeneral").text()+"&contadores="+contadores.toString(),idSpan,divClass);
+			
+		}
+		
+		
+		
+		
+		
 	}else if(tipo == 3){
-		generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=html"+"&tipoB="+$("#idBecaGeneral").text(),idSpan,divClass);
+		if($("#idBecaGeneral").val() == 4){
+		
+			generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chkDe')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=html"+"&tipoB="+$("#idBecaGeneral").text()+"&contadores="+contadores.toString(),idSpan,divClass);
+
+		}else if($("#idBecaGeneral").val() == 3){			
+			
+			generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+","+getValueCheckboxPorClase('chkApoyo')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=html"+"&tipoB="+$("#idBecaGeneral").text()+"&contadores="+contadores.toString(),idSpan,divClass);
+		
+		}else{			
+			
+			generarReporte("reporteBeneficiariosGeneral?valores="+getValueCheckboxPorClase('chk')+"&idTipoBeca="+$("#idBecaGeneral").val()+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=html"+"&tipoB="+$("#idBecaGeneral").text()+"&contadores="+contadores.toString(),idSpan,divClass);
+			
+		}
+		
+		
 	}
 	
 	}else{
@@ -209,3 +303,136 @@ function beneficiariosGeneral(tipo,idSpan,divClass){
 
 }
 
+
+function donantesGeneral(tipo,idSpan,divClass){
+	
+	if(getValueCheckboxPorClase('chk') != ''){
+	
+	if($("#idPeriodoGeneralDonante").val()== ''){
+		idPer = 0;
+	}else{
+		idPer = $("#idPeriodoGeneralDonante").val();
+	}
+	
+	if($("#idRegionGeneral").val()== ''){
+		idReg = 0;
+	}else{
+		idReg = $("#idRegionGeneral").val();
+	}
+	
+	$("div."+divClass).hide(600);
+	 
+	$('#'+idSpan).show();
+	
+	
+	$("#idDonativo").prop("checked", true);
+	//$("#periodoNom").prop("checked", false);
+	
+	var contadores =  [];
+	
+	contadores.push(getContadorCheckboxPorClase("gen"));
+	contadores.push(getContadorCheckboxPorClase("con"));
+	contadores.push(getContadorCheckboxPorClase("par"));
+	contadores.push(getContadorCheckboxPorClase("fis"));
+	contadores.push(getContadorCheckboxPorClase("don"));
+	contadores.push(getContadorCheckboxPorClase("obs"));
+	
+	if(tipo == 1){
+		
+	generarReporte("reporteDonantesGeneral?valores="+getValueCheckboxPorClase('chk')+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=pdf"+"&contadores="+contadores.toString(),idSpan,divClass);
+
+	}else if(tipo == 2){
+	
+		generarReporte("reporteDonantesGeneral?valores="+getValueCheckboxPorClase('chk')+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=vnd.openxmlformats-officedocument.spreadsheetml.sheet"+"&contadores="+contadores.toString(),idSpan,divClass);
+	
+	}else if(tipo == 3){
+		
+		generarReporte("reporteDonantesGeneral?valores="+getValueCheckboxPorClase('chk')+"&idPeriodo="+idPer+"&idRegion="+idReg+"&type=html"+"&contadores="+contadores.toString(),idSpan,divClass);
+	
+	}
+	
+	}else{
+		alert('Debes seleccionar al menos un dato');
+	}
+
+}
+
+
+function cobranzaGeneral(tipo,idSpan,divClass){
+
+	
+	$("div."+divClass).hide(600);
+	 
+	$('#'+idSpan).show();
+	
+
+	if($("#medioCobroC").val() == 1){
+
+	if(tipo == 1){
+		
+		generarReporte("reporteNominaGeneral?idPeriodo="+$("#idPeriodoC").val()+"&idQuincena="+$("#idQuincena").val()+"&type=pdf",idSpan,divClass);
+
+	}else if(tipo == 2){
+	
+		generarReporte("reporteNominaGeneral?idPeriodo="+$("#idPeriodoC").val()+"&idQuincena="+$("#idQuincena").val()+"&type=vnd.openxmlformats-officedocument.spreadsheetml.sheet",idSpan,divClass);
+	
+	}else if(tipo == 3){
+		
+		generarReporte("reporteNominaGeneral?idPeriodo="+$("#idPeriodoC").val()+"&idQuincena="+$("#idQuincena").val()+"&type=html",idSpan,divClass);
+	
+	}
+	}else if($("#medioCobroC").val() == 2){
+
+	if(tipo == 1){
+		
+		generarReporte("reporteDepTraGeneral?idPeriodo="+$("#idPeriodoC").val()+"&type=pdf",idSpan,divClass);
+
+	}else if(tipo == 2){
+	
+		generarReporte("reporteDepTraGeneral?idPeriodo="+$("#idPeriodoC").val()+"&type=vnd.openxmlformats-officedocument.spreadsheetml.sheet",idSpan,divClass);
+	
+	}else if(tipo == 3){
+		
+		generarReporte("reporteDepTraGeneral?idPeriodo="+$("#idPeriodoC").val()+"&type=html",idSpan,divClass);
+	
+	}
+	}else if($("#medioCobroC").val() == 3){
+
+	if(tipo == 1){
+		
+		generarReporte("reporteTarjetaGeneral?idPeriodo="+$("#idPeriodoC").val()+"&anio="+$("#anio").val()+"&mes="+$("#mes").val()+"&type=pdf",idSpan,divClass);
+
+	}else if(tipo == 2){
+	
+		generarReporte("reporteTarjetaGeneral?idPeriodo="+$("#idPeriodoC").val()+"&anio="+$("#anio").val()+"&mes="+$("#mes").val()+"&type=vnd.openxmlformats-officedocument.spreadsheetml.sheet",idSpan,divClass);
+	
+	}else if(tipo == 3){
+		
+		generarReporte("reporteTarjetaGeneral?idPeriodo="+$("#idPeriodoC").val()+"&anio="+$("#anio").val()+"&mes="+$("#mes").val()+"&type=html",idSpan,divClass);
+	
+	}
+	}
+
+	
+
+}
+
+
+var i = 0;
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("resultReport112");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width++;
+        elem.style.width = width + "%";
+      }
+    }
+  }
+}
