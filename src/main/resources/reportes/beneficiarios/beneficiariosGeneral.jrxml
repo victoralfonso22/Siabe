@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Donantes General" pageWidth="3500" pageHeight="612" orientation="Landscape" whenNoDataType="BlankPage" columnWidth="3464" leftMargin="18" rightMargin="18" topMargin="54" bottomMargin="54" isTitleNewPage="true" uuid="c120e502-33ba-412e-85c8-d5574a3d8918">
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<property name="com.jaspersoft.studio.report.description" value=""/>
+	<parameter name="imagenFuv" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{baseImagen}.toString()+"imagenes/MATRIZ LIS UV COLOR LEMA .png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imagenUV" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{baseImagen}.toString()+"imagenes/MATRIZ LIS UV COLOR LEMA .png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="baseImagen" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="periodo" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apellidoPaterno" class="java.lang.String"/>
+	<field name="apellidoMaterno" class="java.lang.String"/>
+	<field name="estatus" class="java.lang.Integer"/>
+	<field name="motivoEstatus" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<image isLazy="true" onErrorType="Blank">
+				<reportElement x="0" y="0" width="70" height="77" uuid="96196024-fcd5-48ed-a8bd-ea9116a66f09"/>
+				<imageExpression><![CDATA["http://siabe/imagenes/logoFUV.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="180" y="0" width="400" height="43" uuid="355213ca-809a-4ed0-b21d-c72022683db6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Beneficiarios]]></text>
+			</staticText>
+			<image isLazy="true" onErrorType="Blank">
+				<reportElement x="710" y="0" width="70" height="77" uuid="96196024-fcd5-48ed-a8bd-ea9116a66f09"/>
+				<imageExpression><![CDATA["http://siabe/imagenes/logoUV.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="14" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="75" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="26">
+			<textField>
+				<reportElement x="0" y="6" width="70" height="20" uuid="6d69c338-ec72-4b06-aa72-98b5c8a6c3b3"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

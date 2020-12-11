@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	>
+<th:block th:include="/default/menu"></th:block>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+	
+			<div>
+				<h1 class="h1Class">Cobranza</h1>
+			</div>
+
+			<div class="valoresCentrados">
+
+		
+			<div class="row "  >
+						<div class="col-xs-6" style="float: left; ">
+							<label for="idPeriodoC">Periodo</label><br> <select onchange="cambiaPeriodoQuincenaCobranza();"
+								id="idPeriodoC" 
+								class="form-control selectTextFormulario">
+								<option disabled selected value="">Selecciona periodo</option>
+								<option th:each="periodo : ${periodos}"
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}" style="white-space: pre-line;" ></option>
+							</select>
+						</div>
+						
+						<div class="col-xs-6" style="float: right ; ">
+							<label for="medioCobroC">Medio de cobro</label><br> <select onchange="cambiaMedioCobro();" 
+								id="medioCobroC" 
+								class="form-control selectTextFormulario">
+								<option selected value="1">Nómina</option>
+								<option value="2">Depósito o transferencia</option>
+								<option value="3">Tarjeta de crédito/débito</option>	
+								
+							</select>
+						</div>
+						
+				</div>
+				<br/>
+			
+			
+			<br/>
+				
+				<div class="row " id="rowQuincena">
+						<div class="col-xs-4" style="margin:0 auto; float:none;">
+							<label for="idQuincena">Quincena</label><br> <select onchange="cambiaPeriodoQuincenaCobranza();"
+								id="idQuincena" 
+								class="form-control selectTextFormulario">
+								<option disabled selected value="">Selecciona quincena</option>
+								<option th:each="quincena : ${quincenas}"
+									th:value="${quincena.idQuincena}" th:text="${quincena.nombre}"></option>
+							</select>
+						</div>
+		
+				</div>
+				<div class="row " id="rowTarjeta" style="display: none;">
+						<div class="col-xs-6" style="float: left; ">
+							<label for="anio">Año</label><br> <select onchange="cambiaPeriodoQuincenaCobranza();"
+								id="anio" 
+								class="form-control selectTextFormulario">								
+								<option value="2020">2020</option>
+								<option value="2021">2021</option>
+								<option value="2022">2022</option>
+								<option value="2023">2023</option>
+								<option value="2024">2024</option>
+								<option value="2025">2025</option>
+	
+							</select>
+						</div>
+						
+						<div class="col-xs-6" style="float: right ; ">
+							<label for="mes">Mes</label><br> <select onchange="cambiaPeriodoQuincenaCobranza();" 
+								id="mes" 
+								class="form-control selectTextFormulario">
+								<option value="1">Enero</option>
+								<option value="2">Febrero</option>
+								<option value="3">Marzo</option>
+								<option value="4">Abril</option>
+								<option value="5">Mayo</option>
+								<option value="6">Junio</option>
+								<option value="7">Julio</option>
+								<option value="8">Agosto</option>
+								<option value="9">Septiembre</option>
+								<option value="10">Octubre</option>
+								<option value="11">Noviembre</option>
+								<option value="12">Diciembre</option>		
+								
+							</select>
+						</div>
+		
+				</div>
+			
+		
+			
+	
+			<div id="registrosNomina" style=" margin: 0 auto;">
+			
+
+
+
+				
+			
+				
+				<br/>
+				<br/>
+			
+			
+			<table class="table tabla" id="registrosRB" >
+
+			</table>
+			
+			
+			<div >
+					<br> <br>
+					<button type="submit" id="btn-guardar-cobranza" style="display:none;"
+						class="btn btn-primary pull-center" onclick="guardarCobranza();">Guardar</button>
+				</div>
+			
+			</div>
+			
+			</div>
+
+
+
+<!-- Empieza el modal para la modificacion de los beneficiarios--->
+		
+
+		<div class="valoresCentrados" id="postResultDiv1"></div>
+	</div>
+	<div style="padding-top: 20px;">
+	
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+<script src="/js/administracion.js"></script>
+
+</html>

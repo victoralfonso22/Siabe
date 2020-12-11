@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="depositoTransferenciaGeneral" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="c120e502-33ba-412e-85c8-d5574a3d8918">
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="periodo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{periodo}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imagenFuv" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{baseImagen}.toString()+"imagenes/MATRIZ LIS UV COLOR LEMA .png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imagenUV" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{baseImagen}.toString()+"imagenes/MATRIZ LIS UV COLOR LEMA .png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="baseImagen" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nombreCompletoDon" class="java.lang.String"/>
+	<field name="donativoTotal" class="java.lang.Double"/>
+	<field name="donativo" class="java.lang.Double"/>
+	<field name="numDescuento" class="java.lang.Integer"/>
+	<field name="numPagos" class="java.lang.Integer"/>
+	<field name="saldo" class="java.lang.Double"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<variable name="sumaAutori" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{donativoTotal}.doubleValue()]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="80" y="0" width="400" height="43" uuid="0f7712f4-0af4-4a38-abe8-54fa2e2d8916"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Depósito o transferencia]]></text>
+			</staticText>
+			<image isLazy="true" onErrorType="Blank">
+				<reportElement x="0" y="0" width="70" height="77" uuid="e16dfa56-7592-475c-b289-a62e610d5c5f"/>
+				<imageExpression><![CDATA["http://siabe/imagenes/logoFUV.png"]]></imageExpression>
+			</image>
+			<image isLazy="true" onErrorType="Blank">
+				<reportElement x="500" y="0" width="70" height="77" uuid="7d4c7018-4aaf-48aa-8461-29dfc4ac7296"/>
+				<imageExpression><![CDATA["http://siabe/imagenes/logoUV.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="11" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="21" y="1" width="189" height="30" forecolor="#0976DB" uuid="2da46963-bff3-4558-b37e-82063f4dd273">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2481b900-2f5e-4c2b-9eb7-7d7077c07ad4"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="1" width="69" height="30" forecolor="#0976DB" uuid="66833b83-c2b4-4bae-84b2-c75b6d48873c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbb7e755-0947-4e41-8f27-4ef0c57e98a8"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Donativo autorizado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="1" width="59" height="30" forecolor="#0976DB" uuid="be8e1ec3-7a7e-4871-918b-e9d03b94fb6f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6ff2bd3-10b9-48db-9297-330d01935c8a"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número de meses autorizados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="1" width="60" height="30" forecolor="#0976DB" uuid="2cb1cdcc-e060-4f62-9a12-3571a93772d3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. de descuento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="1" width="50" height="30" forecolor="#0976DB" uuid="bb82cb8d-d3a3-4a94-ac4d-3461482cbea3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="671adffd-c05b-41d5-9568-11b85f9c5788"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="1" width="60" height="30" forecolor="#0976DB" uuid="379ce917-eea4-4b6b-a7c2-1c071ae879ff">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Donativo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="1" width="20" height="30" forecolor="#0976DB" uuid="0e579690-c085-4ef9-9f5f-20b2c8deeefe">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6efb87a2-687e-43a7-b004-76a1b478b8cd"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[#]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="508" y="1" width="72" height="30" forecolor="#0976DB" uuid="b3514f08-ed0b-418d-83f5-39c4d815832a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="671adffd-c05b-41d5-9568-11b85f9c5788"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="21" y="-5" width="189" height="19" uuid="1cd98de9-7eb2-4fc6-966f-31f4b942e922">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2481b900-2f5e-4c2b-9eb7-7d7077c07ad4"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreCompletoDon}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00">
+				<reportElement x="210" y="-5" width="69" height="19" uuid="b9212e4e-3e80-43c5-bac2-2a9ec0e1a0d0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbb7e755-0947-4e41-8f27-4ef0c57e98a8"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+					<paragraph lineSpacing="1_1_2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{donativoTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="-5" width="59" height="19" uuid="3a3a9c60-7a6c-49fb-9e71-a05dc5123057">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6ff2bd3-10b9-48db-9297-330d01935c8a"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numPagos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="338" y="-5" width="60" height="19" uuid="fd9b0221-3653-4c3c-9eb3-f731cbf939bb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numDescuento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00">
+				<reportElement x="458" y="-5" width="50" height="19" uuid="84999f97-2544-4892-be35-4fb1fec5007f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="671adffd-c05b-41d5-9568-11b85f9c5788"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="$ #,##0.00">
+				<reportElement x="398" y="-5" width="60" height="19" uuid="27ba11a5-91b6-4b14-9679-fb15551902db">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{donativo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="-5" width="20" height="19" uuid="a2fe316c-2828-41e2-a323-a80308221ede">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6efb87a2-687e-43a7-b004-76a1b478b8cd"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="7.5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="508" y="-5" width="72" height="19" uuid="357d09c5-02c8-45f5-b962-cc09cf7a09b9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="671adffd-c05b-41d5-9568-11b85f9c5788"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+				<patternExpression><![CDATA["dd/MM/YYYY"]]></patternExpression>
+			</textField>
+		</band>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band height="21" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="23">
+			<textField pattern="$ #,##0.00">
+				<reportElement x="210" y="1" width="69" height="20" uuid="dc1e0f58-abfb-4498-b056-0083d1c99756"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$V{sumaAutori}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	>
+<th:block th:include="/default/menu"></th:block>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+	
+			<div>
+				<h1 class="h1Class">Excel Beneficiarios</h1>
+			</div>
+
+			<div class="valoresCentrados">
+
+			<div class="multiple-upload">
+				<form  id="singleUploadForm" name="singleUploadForm" enctype="multipart/form-data" action="/" method="POST">
+				<br/>
+				<br/> 
+				<input id="singleFileUploadInput" type="file" name="files" class="btn btn-mdb-color btn-rounded" required onchange="compruebaExtencionExcel();" />				
+				<br/>
+				<button type="submit" class="btn btn-primary pull-center">Subir archivos seleccionados</button>
+				</form>
+				<br/>
+				<br/>
+				</div>
+				<div id="tabal" style="display:none;">
+					<table class="table tabla table-hover table-condensed"   id="registros" > 
+							 <thead>
+							<tr> 
+								<th>#</th>
+								<th><label  style="color:#fff; font-weight: normal;">Tipo de beca</label></th>
+								<th><label  style="color:#fff; font-weight: normal;">Nombre</label></th>								
+								<th><label  style="color:#fff;  font-weight: normal;">Matrícula</label></th>							
+								<th><label  style="color:#fff; font-weight: normal;">Región</label></th>
+								<th><label  style="color:#fff; font-weight: normal;">Programa educativo</label></th>
+								
+							</tr>
+							</thead>
+							<tbody>
+							
+						<th:block th:each="registrosTabla,iterationStatus : ${registrosTab}" >
+				<tr  style="font-size: 11px;padding: 2.5px;" th:id="trRow+${registrosTabla.idBeneficiario}">							
+					<td style="font-size: 11px;padding: 2.5px;" th:text="${iterationStatus.count}" ></td>
+					<td style="font-size: 11px;padding: 2.5px;text-align:left;" th:text="${registrosTabla.nombre}" ></td>
+					
+		
+					
+					
+					<td style="font-size: 11px;padding: 2.5px;" th:text="${registrosTabla.idBeneficiario}" ></td>
+					
+					<td style="font-size: 11px;padding: 2.5px;" th:text="${registrosTabla.nombre}" ></td>
+					
+			
+									
+					
+				</tr>
+				</th:block>
+						</tbody>
+						</table>
+				</div>
+
+	
+			
+			
+		</div>
+			
+			</div>
+
+
+
+<!-- Empieza el modal para la modificacion de los beneficiarios--->
+		
+
+		<div class="valoresCentrados" id="postResultDiv1"></div>
+	</div>
+	<div style="padding-top: 20px;">
+	
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+<script src="/js/administracion.js"></script>
+<script type="text/javascript">
+singleUploadForm.addEventListener('submit', function(event){
+	event.preventDefault();
+    var files = singleFileUploadInput.files;
+    if(files.length === 0) {
+        singleFileUploadError.innerHTML = "Please select a file";
+        singleFileUploadError.style.display = "block";
+    }
+    uploadSingleFile(files[0]);
+    
+}, true);
+</script>
+<script src="/js/archivos.js"></script>
+
+</html>

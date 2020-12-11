@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="nominaGeneral" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="c120e502-33ba-412e-85c8-d5574a3d8918">
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.rows" value="true"/>
+	<property name="net.sf.jasperreports.awt.ignore.missing.font" value="true"/>
+	<parameter name="periodo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{periodo}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imagenFuv" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{baseImagen}.toString()+"imagenes/MATRIZ LIS UV COLOR LEMA .png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="imagenUV" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{baseImagen}.toString()+"imagenes/MATRIZ LIS UV COLOR LEMA .png"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="baseImagen" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nombreCompletoDon" class="java.lang.String"/>
+	<field name="numPersonal" class="java.lang.String"/>
+	<field name="donativoQuincenal" class="java.lang.Double"/>
+	<field name="numDescuento" class="java.lang.Integer"/>
+	<field name="numQuincenas" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="15" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="11" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="1" width="200" height="30" forecolor="#0976DB" uuid="2da46963-bff3-4558-b37e-82063f4dd273">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2481b900-2f5e-4c2b-9eb7-7d7077c07ad4"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="1" width="80" height="30" forecolor="#0976DB" uuid="66833b83-c2b4-4bae-84b2-c75b6d48873c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbb7e755-0947-4e41-8f27-4ef0c57e98a8"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NPER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="1" width="70" height="30" forecolor="#0976DB" uuid="be8e1ec3-7a7e-4871-918b-e9d03b94fb6f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6ff2bd3-10b9-48db-9297-330d01935c8a"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMDS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="1" width="60" height="30" forecolor="#0976DB" uuid="2cb1cdcc-e060-4f62-9a12-3571a93772d3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NDES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="470" y="1" width="50" height="30" forecolor="#0976DB" uuid="bb82cb8d-d3a3-4a94-ac4d-3461482cbea3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="671adffd-c05b-41d5-9568-11b85f9c5788"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NCDS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="1" width="60" height="30" forecolor="#0976DB" uuid="379ce917-eea4-4b6b-a7c2-1c071ae879ff">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TDES]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="-5" width="200" height="19" uuid="1cd98de9-7eb2-4fc6-966f-31f4b942e922">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2481b900-2f5e-4c2b-9eb7-7d7077c07ad4"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreCompletoDon}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="200" y="-5" width="80" height="19" uuid="b9212e4e-3e80-43c5-bac2-2a9ec0e1a0d0">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cbb7e755-0947-4e41-8f27-4ef0c57e98a8"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numPersonal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="-5" width="70" height="19" uuid="3a3a9c60-7a6c-49fb-9e71-a05dc5123057">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b6ff2bd3-10b9-48db-9297-330d01935c8a"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{donativoQuincenal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="-5" width="60" height="19" uuid="fd9b0221-3653-4c3c-9eb3-f731cbf939bb">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numDescuento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="-5" width="50" height="19" uuid="84999f97-2544-4892-be35-4fb1fec5007f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="671adffd-c05b-41d5-9568-11b85f9c5788"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[238]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="-5" width="60" height="19" uuid="27ba11a5-91b6-4b14-9679-fb15551902db">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="abc300af-87d1-4c4b-a41c-e587e0352f48"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numQuincenas}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band/>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch"/>
+	</columnFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
