@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<th:block th:include="/default/menu"></th:block>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Siabe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+
+</head>
+<body class="container-full">
+	<input type=hidden th:id="permisoGlobal" th:value="${permisoGlobal}" />
+	<div class="container bordeContainer">
+	
+			<div>
+				<h1 class="h1Class">Refrendo de donantes</h1>
+			</div>
+
+			<div class="valoresCentrados">
+
+		
+	
+			<div class="row " >
+						<div class="col-xs-6" style="margin: 0 auto; float: none;">
+							<label for="idPeriodoCF">Periodo</label><br> <select onchange="cambiaPeriodoRefrendoDonantivos();"
+								id="idPeriodoAs" 
+								class="form-control selectTextFormulario">
+								<option disabled selected value="">Selecciona periodo</option>
+								<option th:each="periodo : ${periodos}"
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+							</select>
+						</div>
+				</div>
+				<br/>
+			
+			
+			<br/>
+			
+			<div id="registrosTablaDo" style="display:none;">
+			
+			<table class="table tabla" id="registrosDon" >
+				<tr>
+					<th>#</th>
+					<th >Tipo</label></th>
+					<th >Denominación o razón social</label></th>		
+					<th ><label style="color:#fff; font-weight: normal;">RFC</label></th>					
+					<th><label  style="color:#fff; font-weight: normal;">Nombre</label></th>
+					<th><label  style="color:#fff; font-weight: normal;">Adscripción</label></th>
+					<th><label  style="color:#fff; font-weight: normal;">Región</label></th>
+					<th><label  style="color:#fff; font-weight: normal;">Sector</label></th>
+					<th><label  style="color:#fff; font-weight: normal;">Campáña</label></th>
+					<th><label  style="color:#fff; font-weight: normal;">Donativo</label></th>
+					<th>Seleccionar</th>
+				</tr>
+				<th:block th:each="registrosTabla,iterationStatus : ${donativos}" >
+				<tr  class="tdSencillo" th:id="${'id'+registrosTabla.idDonativo}">							
+					<td th:text="${iterationStatus.count}" ></td>
+					
+					<td th:if="${registrosTabla.idDonativoTipo} == 1" >Donante</td>
+								
+					<td th:unless="${registrosTabla.idDonativoTipo} == 1" >Patrocinador</td>
+					
+					<td  th:text="${registrosTabla.razonSocial}" ></td>
+					
+					<td  th:text="${registrosTabla.rfc}" ></td>
+					
+					<td th:if="${registrosTabla.titulo} == null" th:text="${registrosTabla.nombreCompletoDon}"></td>
+								
+					<td th:unless="${registrosTabla.titulo} == null" th:text="${registrosTabla.titulo +' '+ registrosTabla.nombreCompletoDon}"></td>
+						
+					<td  th:text="${registrosTabla.adscripcionDon}" ></td>
+					
+					<td  th:text="${registrosTabla.region}" ></td>
+					
+					<td  th:text="${registrosTabla.sectoDon}" ></td>
+					
+					<td  th:text="${registrosTabla.campania}" ></td>
+					
+					<td  th:text="${registrosTabla.donativoTotal}" ></td>
+					
+								
+					<td><label class="customcheck"><input name="dona"
+								type="checkbox" th:id="${registrosTabla.idDonativo}" 
+								><span class="checkmark"></span></label>
+									
+					
+				</tr>
+				</th:block>
+	
+			</table>
+			
+			<br> <br>
+			<div class="row " >
+						<div class="col-xs-6" style="margin: 0 auto; float: none;" id="peridoRef">
+							<label for="idPeriodoRef">Periodo a enviar refrendos</label><br> <select 
+								id="idPeriodoRef" 
+								class="form-control selectTextFormulario">
+								<option disabled selected value="">Selecciona periodo</option>
+								<option th:each="periodo : ${periodosT}"
+									th:value="${periodo.idPeriodo}" th:text="${periodo.nombre}"></option>
+							</select>
+						</div>
+				</div>
+			<div >
+					<br> <br> <br>
+					<button type="button" id="btn-guardar"
+						class="btn btn-primary pull-center" >Refrendar</button>
+				</div>
+			
+			</div>
+			
+			</div>
+
+		
+
+<!-- Empieza el modal para la modificacion de los beneficiarios--->
+		
+
+		<div class="valoresCentrados" id="postResultDiv"></div>
+	</div>
+	<div style="padding-top: 20px;">
+	
+		<th:block th:include="/default/pie"></th:block>
+	</div>
+</body>
+<script src="/js/administracion.js"></script>
+</html>

@@ -38,6 +38,20 @@ public class PeriodoDAO extends JdbcDaoSupport {
 			return null;
 		}
 	}
+	
+	public List<Periodo> regresarPeriodosMayor(int idPeriodo) {
+
+		String sql = PeriodoMapa.BASE_SQL +" where nombre > (select nombre from periodos where id = "+idPeriodo+") order by nombre";
+		System.out.println(sql);
+		try {
+			return this.getJdbcTemplate().query(sql, new PeriodoMapa());
+
+			// return userInfo;
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+
+	}
 
 	public String insertaPeriodo(String nombre, Date fecha_inicio, Date fecha_final) {
 		

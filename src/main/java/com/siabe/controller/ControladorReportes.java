@@ -62,6 +62,7 @@ public class ControladorReportes {
 	public String beneficiarios(Model model, Principal principal) {
 
 		model.addAttribute("tbecas", tipoBecaServicio.todosTipoBeca());		
+		model.addAttribute("periodos", periodoServicio.todosPerido());		
 		return "/reportes/beneficiarios";
 	}
 	
